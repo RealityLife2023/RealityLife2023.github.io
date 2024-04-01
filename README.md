@@ -10,7 +10,7 @@
 
 <h1 align="center">Reality Life</h1>
 <div align="center">
-  <img alt ="Portfolio" src="assets/img/RealitLifeReadMe.png">
+  <img alt ="Portfolio" src="assets/img/RealityLifeReadMe.png">
 </div>
 
 <p align="center">
@@ -29,7 +29,7 @@
 ## :dart: About
 
 Technology & Reality merging
-"Your knowledge continues for all eternity"
+"Keep your Memories and Knowledge alive"
 
 ## :sparkles: Features
 
