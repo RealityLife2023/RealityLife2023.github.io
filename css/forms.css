@@ -14,8 +14,11 @@ section.call-to-action__section>div.sign-options__div
 section.call-to-action__section>div.sign-forms__div
 {
    width: 50%;
-   height: 35rem;
+   height: 35.89rem;
    float : right;
+   border-radius : 55px;
+   position : relative;
+   overflow : hidden;
 }
 
 /* Possible its own style*/
@@ -52,6 +55,21 @@ form.white-generic__form,
 div.sign-forms__div>form.sign-account__form
 {
    background: #EEE;
+   position  : absolute;
+   left      : 0;
+   top       : 0;
+}
+
+div.sign-forms__div>form#open-signup-form
+{
+   left : 0px;
+   top  : 689px;
+}
+
+div.sign-forms__div>form#open-signup-form
+{
+   transition : 5s;
+   top  : 0px;
 }
 
 div.sign-options__div>p
@@ -147,7 +165,7 @@ form.sign-account__form
    padding-bottom : 3rem;
    display : block;
    text-align: center;
-   border-radius : 40px;
+   border-radius : 55px;
    background: linear-gradient(180deg, rgba(0, 32, 96, 1) 67%, rgb(26 65 75) 122%);
    font-family: "Poppins-Regular";
 }
@@ -233,20 +251,6 @@ form.sign-account__form>input:nth-child(2)
 }
 
 
-button.generic-blue__button
-{
-   padding : 9px 18px;
-   margin  : 40px 0 38px 0;
-   width : max-content;
-   border        : none;
-   border-radius : 55px;
-   background-color : var(--aqua);
-   color : var(--deep-blue);
-   font-family : "Poppins-Medium";
-   font-size   : 1.4rem;
-   font-weight : 300;
-   cursor : pointer;
-}
 
 
 
@@ -307,7 +311,26 @@ ul.record-types__ul>li.record-type__li
    margin-bottom : 1.1rem;
 }
 
+button.generic-blue__button
+{
+   padding : 9px 18px;
+   margin  : 40px 0 38px 0;
+   width : max-content;
+   border        : none;
+   border-radius : 55px;
+   background-color : var(--aqua);
+   color : var(--deep-blue);
+   font-family : "Poppins-Medium";
+   font-size   : 1.4rem;
+   font-weight : 300;
+   cursor : pointer;
+}
 
+button.generic-blue__button:hover
+{
+   background-color : var(--grey);
+   color            : var(--white);
+}
 
 @media (width : 430px) and (height : 932px )
 {
