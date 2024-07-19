@@ -24,10 +24,21 @@ aside.home-right__aside
    text-align  : right;
 }
 
+
+aside.home-left__aside>img:nth-child(1)
+{
+   --original-width  : 734px;
+   --original-height : 463px;
+   width  : 41vw;
+   height : 48vh;
+}
+
+
 aside.home-right__aside>p
 {
    max-width: 720px;
    box-sizing: border-box;
+   font-size : 3.3vh;
 }
 
 aside.home-left__aside>p
@@ -38,7 +49,7 @@ aside.home-left__aside>p
 article.home__article
 {
    width  : 100%;
-   height : 118vh;
+   height : 120vh;
 
    margin  : 1rem 0 1rem 0;
    padding : 0;
@@ -48,70 +59,82 @@ article.home__article
 
 span.globe-decoration__span
 {
-   max-width: 400px;
-   height: max-content;
+   --normal-width    : 370px;
+   --normal-height   : 348px;
+   width    : 27.9rem;
+   height   : 26.35rem;
 
-   display: inline-block;
+   display: flex;
+   position : relative;
 }
 
 span.globe-decoration__span>img
 {
-   position: absolute;
-   width    : 370px;
-   height   : 348px;
-   display : inline;
+   flex : 1;
 }
 
 span.globe-decoration__span>p
 {
+   /* top   : 50%;
+   left  : 50%; */
+
+   height: 100%;
+   width : 100%;
+
    position:absolute;
+
+   margin : 0;
+
+   text-align : center;
 }
 
 /* Recuerdos */
-span.globe-decoration__span:nth-child(2)>img
+span.globe-decoration__span:nth-child(2)
 {
-   top : 123%;
-   left : 14%;
-   width    : 277px;
-   height   : 258px;
-   display : inline;
+   --normal-width    : 277px;
+   --normal-height   : 258px;
+
+   width  : 14.3rem;
+   height : 13.2rem;
 }
 span.globe-decoration__span:nth-child(2)>p
 {
-   top  : 131.5%;
-   left : 17.1%;
+   /* margin-left : -94.4px;
+   margin-top  : -25.5px; */
+   line-height: 200px;
 }
 
 /* Acompañamiento */
-span.globe-decoration__span:nth-child(3)>img
+span.globe-decoration__span:nth-child(3)
 {
-   top  : 138%;
-   left : 28%;
-   width    : 321px;
-   height   : 302px;
-   display : inline;
+   --normal-width    : 321px;
+   --normal-height   : 302px;
+   width  : 16.72rem;
+   height : 15.2rem;
 }
 span.globe-decoration__span:nth-child(3)>p
 {
-   top  : 148.99%;
-   left : 30.3%;
+   font-size : 1.4rem;
 
-   font-size : 1.6rem;
+   margin-left : -126.2px;
+   margin-top  : -20px;
 }
 
-/* Tecnologia */
-span.globe-decoration__span:nth-child(4)>img
+/* Acompañamiento */
+span.globe-decoration__span:nth-child(4)
 {
-   top  : 158%;
-   left : 8%;
-   display : inline;
+   width : 17.3rem;
+   height : 16.4rem;
 }
 span.globe-decoration__span:nth-child(4)>p
 {
-   top  : 171.2%;
-   left : 12.8%;
-   font-size : 2.1rem;
+   font-size : 2rem;
+
+   margin-left : -110px;
+   margin-top  : -26.5px;
 }
+
+/* Tecnologia */
 
 p.home-router__p
 {
@@ -133,4 +156,12 @@ button.call-to-action__button
    display : block;
    width     : max-content;
    max-width : 300px;
+}
+
+section.call-to-action__section
+{
+   margin : 0;
+   margin-top : 13rem;
+
+   height : 125vh;
 }

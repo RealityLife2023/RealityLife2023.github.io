@@ -1,27 +1,93 @@
 /* Sign options */
 
-ul.sign-options__ul
+section.call-to-action__section>div.sign-options__div
 {
-   margin : auto;
+   width: 50%;
+   height: 30rem;
+   display: inline-flex;
+   float: left;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
+}
 
-   margin-top  : 1.2rem;
-   padding-top : 1rem;
+section.call-to-action__section>div.sign-forms__div
+{
+   width: 50%;
+   height: 35rem;
+   float : right;
+}
+
+/* Possible its own style*/
+form.white-generic__form>input::placeholder,
+div.sign-forms__div>form.sign-account__form>input::placeholder
+{
+   position: absolute;
+   left    : 0;
+   top     : 1rem;
+}
+
+form.white-generic__form>input:focus::placeholder,
+div.sign-forms__div>form.sign-account__form>input:focus::placeholder
+{
+   color : transparent;
+}
+
+
+form.white-generic__form>input,
+div.sign-forms__div>form.sign-account__form>input
+{
+   border-bottom : 2px solid var(--deep-blue);
+   text-align : left;
+   border-radius : 0;
+}
+
+form.white-generic__form>a,
+div.sign-forms__div>form.sign-account__form>a
+{
+   color : var(--deep-blue);
+}
+
+form.white-generic__form,
+div.sign-forms__div>form.sign-account__form
+{
+   background: #EEE;
+}
+
+div.sign-options__div>p
+{
+   margin        : auto;
+   margin-bottom : 0;
+   display : block;
+   font-size : 2.2rem;
+}
+
+
+div.sign-options__div>p.sign-call__p>a
+{
+   color       : var(--default);
+   font-family : "Poppins-Bold";
+   cursor : pointer;
+}
+
+div.sign-options__div>p.sign-call__p
+{
+   width     : 410px;
+   max-width : 415px;
+
+   margin-top : 0.5rem;
+   font-size  : 1.2rem;
 
    text-align : center;
-
-   user-select : none;
 }
 
-
-ul.sign-options__ul>li.sign-option__li
+form>div.prompt
 {
-   margin-top: 1.2rem;
-   margin-bottom: 1.2rem;
-
-   list-style-type: none;
+   margin : auto;
+   /* Max is aroung 18rem*/
+   max-width  : 18rem;
+   color : var(--blue-prompt);
 }
-
-
 
 ul.sign-options__ul>li.sign-option__li::marker
 {
@@ -29,21 +95,59 @@ ul.sign-options__ul>li.sign-option__li::marker
    background-color: rgba(0,0,0,0);
 }
 
+li.sign-option__li>button.generic-white__button
+{
+   margin  : 9px 0 9px 0;
+   width   : 480px;
+}
+
+ul.sign-options__ul>li.sign-option__li
+{
+   margin-top: 0.3rem;
+   margin-bottom: 0.3rem;
+   list-style-type: none;
+}
+
+ul.sign-options__ul
+{
+   margin : auto;
+   margin-top    : 1.2rem;
+   margin-bottom : 1rem;
+   padding       : 0;
+   text-align : center;
+   user-select : none;
+}
+
+
+/* Generic white button */
+button.generic-white__button
+{
+   width : max-content;
+   margin  : 40px 0 38px 0;
+   padding : 14px 20px;
+   border        : none;
+   border-radius : 35px;
+   background-color : var(--white);
+   color : var(--deep-blue);
+   font-family : "Poppins-Medium";
+   font-size   : 1.6rem;
+   font-weight : 300;
+   cursor : pointer;
+}
+
 
 /* Registration Form */
 form.sign-account__form
 {
+   width  : 500px;
+   height : max-content;
    margin : auto;
+   min-height : 380px;
+   padding-top    : 12rem;
    padding-bottom : 3rem;
    display : block;
-   width  : 500px;
-   min-height : 380px;
-   height : max-content;
-   padding-top : 12rem;
-
    text-align: center;
    border-radius : 40px;
-   /*background : rgb(0,32,96);*/
    background: linear-gradient(180deg, rgba(0, 32, 96, 1) 67%, rgb(26 65 75) 122%);
    font-family: "Poppins-Regular";
 }
@@ -131,11 +235,11 @@ form.sign-account__form>input:nth-child(2)
 
 button.generic-blue__button
 {
-   padding : 9px 12px;
+   padding : 9px 18px;
    margin  : 40px 0 38px 0;
    width : max-content;
    border        : none;
-   border-radius : 30px;
+   border-radius : 55px;
    background-color : var(--aqua);
    color : var(--deep-blue);
    font-family : "Poppins-Medium";
@@ -169,6 +273,14 @@ form.new-account__form>button
 
    border-radius: 5px 7px 4px 4px;
    font-family: "Poppins-Regular";
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+{
+   font-family : "Poppins-Regular";
+   font-size   : 1rem;
 }
 
 /* Record options */

@@ -22,8 +22,22 @@
    scrollbar-color : #002060 #003344;
 }
 
+
+html
+{
+   font-size : 1vw;
+
+}
+
+html::-webkit-scrollbar-thumb
+{
+   border-radius : 8px;
+
+}
+
 body
 {
+
    margin : 0;
 
    padding : 0px 0px;
@@ -32,6 +46,7 @@ body
    height : max-content;
    min-height : 100%;
 
+
    /* Custom variables */
 
    --gradient-a-background : rgb(4, 18, 52);
@@ -39,7 +54,10 @@ body
    --gradient-c-background : rgb(2, 56, 81);
    --default    : rgb(240,240,240);
    --deep-blue  : #002060;
+   --red-warn   : #BF483F;
+   --blue-prompt: #2A65AD;
    --aqua       : #A1ECFF;
+   --white      : #eee;
 
    /* end */
 
@@ -60,13 +78,11 @@ body
 
 img.brand-logo__img
 {
-   /*Do not make the asumption that the parent could have user-selec:none*/
+   --normal-dimension-width : 1045px;
+   --normal-dimension-height : 177px;
 
    --min-dimension-width  : calc(881px/4);
    --min-dimension-height : calc(187px/4);
-
-   --normal-dimension-width : 1045px;
-   --normal-dimension-height : 177px;
 
    margin        : auto;
    margin-bottom : 0.7rem;
@@ -74,14 +90,12 @@ img.brand-logo__img
    min-width  : var(--min-dimension-width);
    min-height : var(--min-dimension-height);
 
-   width  : var(--normal-dimension-width);
-   height : var(--normal-dimension-height);
+   width  : 53.8rem;
+   height : 9.28rem;
 
    display : block;
 
-   backdrop-filter         : none;
-   -webkit-backdrop-filter : none;
-
+   /*Do not make the asumption that the parent could have user-select:none*/
    user-select : none;
 }
 
@@ -92,7 +106,7 @@ q.welcome-quote__q
 
    font-family : "Poppins-Medium";
    font-weight : 500;
-   font-size   : 3rem;
+   font-size   : 3.8rem;
 }
 
 q.brand-quote__q>b
@@ -132,14 +146,15 @@ q.generic-quote__q
 
    display : block;
 
-   color     : var(--aqua);
-   font-family: "Poppins-Bold";
-   font-size : 3rem;
+   color       : var(--aqua);
+   text-align  : center;
+   font-family : "Poppins-Bold";
+   font-size   : 2.7rem;
 }
 
-div.brand-band__div
+header.brand-band__header
 {
-   height : 74vh;
+   height : 80vh;
 
    margin       : auto;
    margin-left  : 0;
@@ -164,7 +179,7 @@ nav.generic-nav-bar__nav
    margin-top    : 1rem;
    margin-bottom : 2rem;
 
-   padding-left  : 1.5rem;
+   padding-left  : 1.8vw;
 
    text-align : left;
 
@@ -177,16 +192,17 @@ nav.generic-nav-bar__nav
 
 nav.generic-nav-bar__nav>button.panel-option__button
 {
-   margin         : 0 3rem 0 3rem;
-   padding-top    : 4px;
-   padding-bottom : 2px;
+   --max-content-width: max-content;
 
+   margin         : 0 2vw 0 2vw;
+   padding-top    : 0.2rem;
+   padding-bottom : 0.12rem;
 
    border : none;
 
    color       : var(--default);
    font-weight : 100;
-   font-size   : 1.8rem;
+   font-size   : 1.8vw;
 
    background-color: transparent;
 }
@@ -194,6 +210,8 @@ nav.generic-nav-bar__nav>button.panel-option__button
 nav.generic-nav-bar__nav>button.panel-option__button:hover
 {
    cursor : help;
+   font-weight: bold;
+   width          : calc(var(--max-content-width) - 14px);
 }
 
 nav.generic-nav-bar__nav>button.generic-blue__button
@@ -213,20 +231,27 @@ nav.generic-nav-bar__nav>button.generic-blue__button
 
 }
 
-nav.generic-nav-bar__nav>button.generic-blue__button:hover
+nav.generic-nav-bar__nav>button.generic-blue__button:nth-child(6):hover,
+nav.generic-nav-bar__nav>button.panel-option__button:nth-child(7):hover
 {
    cursor : pointer;
 }
 
+nav.generic-nav-bar__nav>button.panel-option__button:nth-child(7)
+{
+   width : 10rem;
+   font-size : 1.2rem;
+}
+
+/* Note: Do not add a padding in the right and left, 
+ * is better if only the children add their own padding
+ */
 main.information__main
 {
    height    : max-content;
    min-height: 100vh;
 
    padding-top  : 1.5rem;
-   padding-left : 2rem;
-
-   padding-right  : 2rem;
    padding-bottom : 1.8rem;
 
    margin : auto;

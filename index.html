@@ -15,11 +15,11 @@
    <title>Reality Life</title>
 </head>
 <body>
-   <div class="brand-band__div">
+   <header class="brand-band__header">
       <q class="welcome-quote__q">Bienvenido a</q>
       <img class="brand-logo__img" src="../static/logo.png" alt="Reality Life logo">
       <q class="brand-quote__q">Mantén tus <b>recuerdos</b>, tus <b>conocimientos</b> y tu <b>legado siempre vivos</b>.</q>
-   </div>
+   </header>
    <nav class="generic-nav-bar__nav">
       <button class="panel-option__button">NOSOTROS</button>
       <button class="panel-option__button">EQUIPO</button>
@@ -52,14 +52,12 @@
             <p>Nuestra tecnología asegura la seguridad y autenticidad de tus datos, ofreciendo una experiencia inmersiva a través de realidad virtual y aumentada. Reality LIFE no solo almacena datos, sino que preserva tu legado emocional e intelectual, proporcionando consuelo y compañía constante a tus seres queridos.</p>
          </aside>
       </article>
-      <button class="call-to-action__button generic-blue__button">COMIENZA AHORA</button>
-      <q class="generic-quote__q">¡Empieza a almacenar tu legado hoy mismo!</q>
-      <form method="POST" class="sign-account__form">
+      <!-- <form method="POST" class="sign-account__form">
          <input type="email" name="email" placeholder="INGRESA TU CORREO">
          <input type="password" name="password" placeholder="INGRESA TU CONTRASEÑA">
          <a>¿Olvidaste la contraseña?</a>
          <button type="submit" class="generic-blue__button">INGRESAR</button>
-         <p>¿Todavía no tienes una cuenta? <a href="">Regístrate aquí</a></p>
+         <p class="sign-call__p">¿Todavía no tienes una cuenta? <a href="">Regístrate aquí</a></p>
       </form>
       <form method="POST" class="sign-account__form">
          <input  class="new-account-field__input" type="text" name="forename" placeholder="INGRESA TU NOMBRE">
@@ -67,11 +65,64 @@
          <input class="new-account-field__input" type="email" name="email" placeholder="INGRESA TU CORREO">
          <input class="new-account-field__input" type="password" name="password" placeholder="INGRESA TU CONTRASEÑA">
          <button type="submit" class="generic-blue__button">REGISTRARME</button>
-      </form>
+      </form> -->
+
+      <section class="call-to-action__section">
+         <button class="call-to-action__button generic-blue__button">PROBAR COOKIE</button>
+         <script>
+
+            let button = document.getElementsByClass("call-to-action__button")[0];
+
+            button.onclick = async (event) =>
+            {
+               event.preventDefault();
+
+               let url = "https://servicenuruk.realitynear.org:7726/cookie";
+
+               let request = { method : "POST" };
+
+               // Generate cookie and then request an authorization
+               fetch(url, request).then( async (response) =>
+               {
+                  let url = "https://servicenuruk.realitynear.org:7726/eatsanguche";
+
+                  let finalRequest = { method : "POST" };
+
+                  // Use the eat sanguche endpoint
+
+                  fecth(url, finalRequest);
+               });
+            };
+
+         </script>
+         <q class="generic-quote__q">¡Empieza a almacenar tu legado hoy mismo!</q>
+         <div class="sign-options__div">
+            <p>Regístrate o inicia sesión</p>
+            <ul class="sign-options__ul">
+               <li class="sign-option__li">
+                  <button class="generic-white__button oauth-sign__button">
+                     Continúa con Google
+                  </button>
+               </li>
+               <li class="sign-option__li">
+                  <button class="generic-white__button" id="slider-trigger-backward">
+                     Continúa con email
+                  </button>
+               </li>
+            </ul>
+            <p class="sign-call__p">¿Todavía no tienes una cuenta? <a id="slider-trigger-forward">Regístrate aquí</a></p>
+         </div>
+         <div class="sign-forms__div">
+            <form method="POST" class="sign-account__form white-generic__form">
+               <input type="email" name="email" placeholder="Tu correo">
+               <input type="password" name="password" placeholder="Tu contraseña">
+               <a>¿Olvidaste la contraseña?</a>
+               <button type="submit" class="generic-blue__button">INGRESAR</button>
+            </form>
+         </div>
+      </section>
    </main>
    <a href="" download="" id="invisible-anchor__a"></a>
-   <script src="src/record.js"></script>
-   <script src="src/navegation.js"></script>
    <footer class="generic-footer__footer">
       <img src="" alt="" class="mini-logo__img">
       <q class="brand-quote__q mini-quote">Keep your memories and knowledge always alive</q>
