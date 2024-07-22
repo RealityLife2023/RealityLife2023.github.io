@@ -101,7 +101,7 @@ firstChild.addEventListener("submit",  async (event) => {
 
          event.target.appendChild(div);
 
-         await setTimeout(window.loadDashboard, 2000);
+         await setTimeout(loadDashboard, 2000);
    });
 });
 
