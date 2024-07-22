@@ -58,19 +58,9 @@ class Dashboard extends HTMLElement
    }
 }
 
-function testWebComponents( event )
-{
-   if(lastComponent)
-      lastComponent.remove();
 
-   let htmlPiece = document.createElement(event.target.shadow);
+window.customElements.define("dashboard-view", Dashboard);
 
-   let main = document.getElementsByClassName("information__main")[0];
-
-   main.appendChild(htmlPiece);
-
-   lastComponent = htmlPiece;
-}
 
 
 function loadDashboard()
