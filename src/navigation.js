@@ -26,6 +26,8 @@ function loadDashboard()
    main.appendChild(dashboard);
 }
 
+window.loadDashboard = loadDashboard;
+
 
 
 // Take all the buttons

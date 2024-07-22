@@ -79,6 +79,7 @@ firstChild.addEventListener("submit",  async (event) => {
       {
          token = response.token;
 
+         /*
          // ERROR (user prompt)
          if(!response.ok)
          {
@@ -94,12 +95,13 @@ firstChild.addEventListener("submit",  async (event) => {
             
             throw new Error("Something went wrong");
          }
+         */
 
          div.textContent = "Disfruta tu tiempo aquí";
 
          event.target.appendChild(div);
 
-         await setTimeout(loadDashboard, 2000);
+         await setTimeout(window.loadDashboard, 2000);
    });
 });
 
