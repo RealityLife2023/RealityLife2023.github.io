@@ -26,7 +26,7 @@
       <button class="panel-option__button">PLANES</button>
       <button class="panel-option__button">DEMO</button>
       <button class="panel-option__button">CONTACTO</button>
-      <button class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
+      <button type="button" href="#slider-show" class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
       <button class="panel-option__button language-button"><img src="../static/language-icon.png" alt="Select language">Español</button>
    </nav>
    <main class="information__main">
@@ -67,7 +67,7 @@
          <button type="submit" class="generic-blue__button">REGISTRARME</button>
       </form> -->
 
-      <section class="call-to-action__section">
+      <section class="call-to-action__section" id="slider-show">
          <button class="call-to-action__button generic-blue__button">COMIENZA AHORA</button>
          <q class="generic-quote__q">¡Empieza a almacenar tu legado hoy mismo!</q>
          <div class="sign-options__div">
@@ -107,6 +107,21 @@
    </main>
    <a href="" download="" id="invisible-anchor__a"></a>
    <script src="src/registrationForms.js"></script>
+   <script> 
+
+      let emailButton = document.getElementsByClassName("panel-option__button")[5];
+
+      let section = document.getElementsByClassName("generic-quote__q")[0];
+
+      emailButton.onclick = (event) => 
+      {
+         event.preventDefault();
+
+         section.scrollIntoView( { behavior : "smooth" } );
+      };
+
+   </script>
+
    <footer class="generic-footer__footer">
       <img src="" alt="" class="mini-logo__img">
       <q class="brand-quote__q mini-quote">Keep your memories and knowledge always alive</q>

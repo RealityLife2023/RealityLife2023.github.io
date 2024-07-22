@@ -26,7 +26,7 @@
 html
 {
    font-size : 1vw;
-
+   scroll-behavior : smooth;
 }
 
 html::-webkit-scrollbar-thumb
