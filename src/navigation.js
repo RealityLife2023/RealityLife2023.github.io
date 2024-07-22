@@ -1,5 +1,4 @@
-
-let token;
+import { Dashboard } from "./customElements/dashboard.js";
 
 function testWebComponents( event )
 {
@@ -14,6 +13,19 @@ function testWebComponents( event )
 
    lastComponent = htmlPiece;
 }
+
+
+function loadDashboard()
+{
+   let main = document.getElementsByClassName("information__main")[0];
+
+   main.replaceChildren();
+
+   let dashboard = new Dashboard();
+
+   main.appendChild(dashboard);
+}
+
 
 
 // Take all the buttons
@@ -38,4 +50,3 @@ console.log("All settled up! These are the targeted buttons");
 console.debug(navButtons);
 */
 
- 

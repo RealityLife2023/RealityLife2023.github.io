@@ -1,3 +1,4 @@
+// record.js have to be appended first
 class Dashboard extends HTMLElement
 {
    connectedCallback()
@@ -56,4 +57,5 @@ class Dashboard extends HTMLElement
    }
 }
 
+export { Dashboard };
 

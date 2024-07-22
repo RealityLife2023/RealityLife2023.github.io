@@ -6,6 +6,10 @@ function selectForm( selected, unselected)
 
 }
 
+// BAD PRACTICE, SOLVE ASAP
+let token;
+//
+
 let firstChild = document.getElementById("open-sign-form");
 
 let secondChild = document.getElementById("open-signup-form");
@@ -149,4 +153,4 @@ secondChild.addEventListener("submit",  async (event) => {
          await setTimeout(loadDashboard, 2000);
    });
 });
-}
+

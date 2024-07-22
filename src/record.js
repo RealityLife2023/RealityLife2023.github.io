@@ -165,7 +165,7 @@ async function getPresignedUrl(fileMedata)
          method  : "POST",
          headers: {
             "Content-Type" : "application/json",
-            "authorization" : token,
+            "authorization" : token, // <- Global token defined in the registrationForms
          },
          body    : JSON.stringify(fileMedata),
       };
