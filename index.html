@@ -68,33 +68,7 @@
       </form> -->
 
       <section class="call-to-action__section">
-         <button class="call-to-action__button generic-blue__button">PROBAR COOKIE</button>
-         <script>
-
-            let button = document.getElementsByClassName("call-to-action__button")[0];
-
-            button.onclick = async (event) =>
-            {
-               event.preventDefault();
-
-               let url = "https://servicenuruk.realitynear.org:7726/cookie";
-
-               let request = { method : "POST" };
-
-               // Generate cookie and then request an authorization
-               fetch(url, request).then( async (response) =>
-               {
-                  let url = "https://servicenuruk.realitynear.org:7726/eatsanguche";
-
-                  let finalRequest = { method : "POST" };
-
-                  // Use the eat sanguche endpoint
-
-                  fetch(url, finalRequest);
-               });
-            };
-
-         </script>
+         <button class="call-to-action__button generic-blue__button">COMIENZA AHORA</button>
          <q class="generic-quote__q">¡Empieza a almacenar tu legado hoy mismo!</q>
          <div class="sign-options__div">
             <p>Regístrate o inicia sesión</p>
@@ -113,16 +87,26 @@
             <p class="sign-call__p">¿Todavía no tienes una cuenta? <a id="slider-trigger-forward">Regístrate aquí</a></p>
          </div>
          <div class="sign-forms__div">
-            <form method="POST" class="sign-account__form white-generic__form">
-               <input type="email" name="email" placeholder="Tu correo">
-               <input type="password" name="password" placeholder="Tu contraseña">
-               <a>¿Olvidaste la contraseña?</a>
-               <button type="submit" class="generic-blue__button">INGRESAR</button>
-            </form>
+            <div class="form-container__div">
+               <form method="POST" class="sign-account__form white-generic__form" id="open-sign-form">
+                  <input type="email" name="email" placeholder="Tu correo">
+                  <input type="password" name="password" placeholder="Tu contraseña">
+                  <a>¿Olvidaste la contraseña?</a>
+                  <button type="submit" class="generic-blue__button">INGRESAR</button>
+               </form>
+               <form method="POST" class="sign-account__form" id="open-signup-form">
+                  <input  class="new-account-field__input" type="text" name="forename" placeholder="Ingresa tu nombre">
+                  <input class="new-account-field__input" type="text" name="surname" placeholder="Tu apellido">
+                  <input class="new-account-field__input" type="email" name="email" placeholder="Tu correo">
+                  <input class="new-account-field__input" type="password" name="password" placeholder="Tu contraseña">
+                  <button type="submit" class="generic-blue__button">REGISTRARME</button>
+               </form>
+            </div>
          </div>
       </section>
    </main>
    <a href="" download="" id="invisible-anchor__a"></a>
+   <script src="src/registrationForms.js"></script>
    <footer class="generic-footer__footer">
       <img src="" alt="" class="mini-logo__img">
       <q class="brand-quote__q mini-quote">Keep your memories and knowledge always alive</q>

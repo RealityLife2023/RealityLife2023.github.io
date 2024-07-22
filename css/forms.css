@@ -23,12 +23,15 @@ section.call-to-action__section>div.sign-forms__div
 
 /* Possible its own style*/
 form.white-generic__form>input::placeholder,
-div.sign-forms__div>form.sign-account__form>input::placeholder
+div.sign-forms__div>form.sign-account__form>input::placeholder,
+div.form-container__div>form.sign-account__form>input::placeholder
 {
    position: absolute;
    left    : 0;
    top     : 1rem;
 }
+
+
 
 form.white-generic__form>input:focus::placeholder,
 div.sign-forms__div>form.sign-account__form>input:focus::placeholder
@@ -38,15 +41,76 @@ div.sign-forms__div>form.sign-account__form>input:focus::placeholder
 
 
 form.white-generic__form>input,
-div.sign-forms__div>form.sign-account__form>input
+div.form-container__div>form.sign-account__form>input
 {
    border-bottom : 2px solid var(--deep-blue);
    text-align : left;
    border-radius : 0;
 }
 
+/* Open forms */
+
+div.form-container__div
+{
+   width  : 500px;
+   height : 100%;
+
+   margin : auto;
+
+   position : relative;
+   overflow : hidden;
+
+   border-radius    : 55px;
+   background-color : var(--white);
+}
+
+div.form-container__div>form.sign-account__form
+{
+   position : absolute;
+   background : none;
+}
+
+div.form-container__div>form.sign-account__form:nth-child(1)
+{
+   top  : 0;
+   left : 0;
+}
+
+div.form-container__div>form.sign-account__form#unselected-form:nth-child(1)
+{
+   top : -100%;
+
+   transition : 3s;
+}
+
+div.form-container__div>form.sign-account__form#selected-form:nth-child(1)
+{
+   top : 0%;
+
+   transition : 3s;
+}
+
+div.form-container__div>form.sign-account__form:nth-child(2)
+{
+   top  : 100%;
+   left : 0;
+}
+
+div.form-container__div>form.sign-account__form#unselected-form:nth-child(2)
+{
+   top  : 100%;
+
+   transition : 2.5s;
+}
+
+div.form-container__div>form.sign-account__form#selected-form:nth-child(2)
+{
+   top  : 0%;
+   transition : 3.6s;
+}
+
 form.white-generic__form>a,
-div.sign-forms__div>form.sign-account__form>a
+div.form-container__div>form.sign-account__form>a
 {
    color : var(--deep-blue);
 }
@@ -60,17 +124,6 @@ div.sign-forms__div>form.sign-account__form
    top       : 0;
 }
 
-div.sign-forms__div>form#open-signup-form
-{
-   left : 0px;
-   top  : 689px;
-}
-
-div.sign-forms__div>form#open-signup-form
-{
-   transition : 5s;
-   top  : 0px;
-}
 
 div.sign-options__div>p
 {
@@ -170,6 +223,14 @@ form.sign-account__form
    font-family: "Poppins-Regular";
 }
 
+/* Padding adjustments
+div.form-container__div>form.sign-account__form
+{
+   padding-top : 10rem;
+   padding-bottom : 2.5rem;
+}
+*/
+
 /* Sign up */
 form.sign-account__form>p:nth-child(5)>a
 {
@@ -249,10 +310,6 @@ form.sign-account__form>input:nth-child(2)
    border-radius : 0 0 23px 23px;
    background : var(--default);
 }
-
-
-
-
 
 form.new-account__form
 {
