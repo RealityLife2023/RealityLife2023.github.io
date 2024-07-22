@@ -133,7 +133,7 @@ secondChild.addEventListener("submit",  async (event) => {
 
    let div = document.createElement("div");
 
-   div.ClassList.add("prompt");
+   div.classList.add("prompt");
 
    await fetch("https://servicenuruk.realitynear.org:7726/signup", request).then( async (response) =>
       {
