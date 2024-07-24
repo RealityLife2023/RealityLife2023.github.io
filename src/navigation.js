@@ -121,7 +121,6 @@ function loadDashboard()
 
    main.appendChild(dashboard);
 
-   dashboard.refreshFiles();
 }
 
 
