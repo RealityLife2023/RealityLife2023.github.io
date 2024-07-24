@@ -172,6 +172,9 @@ class Dashboard extends HTMLElement
 window.customElements.define("dashboard-view", Dashboard);
 
 
+// Global access to the variable
+
+let dashboard;
 
 function loadDashboard()
 {
@@ -179,9 +182,11 @@ function loadDashboard()
 
    main.replaceChildren();
 
-   let dashboard = new Dashboard();
+   let innerDashboard = new Dashboard();
 
-   main.appendChild(dashboard);
+   dashboard = innerDashboard;
+
+   main.appendChild(innerDashboard);
 }
 
 

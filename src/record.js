@@ -64,7 +64,7 @@ async function saveToRemoteDisk( event )
 
    console.debug(userNaming);
 
-   console.assert(userNaming.value.length == 0);
+   console.assert(userNaming.value.length != 0);
 
    let metadata = {
 
