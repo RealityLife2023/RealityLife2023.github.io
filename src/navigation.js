@@ -85,7 +85,7 @@ class Dashboard extends HTMLElement
 
          return await response.json();
 
-      }).then(insertFiles);
+      }).then(this.insertFiles);
    }
 
 
@@ -120,7 +120,6 @@ function loadDashboard()
    let dashboard = new Dashboard();
 
    main.appendChild(dashboard);
-
 }
 
 
