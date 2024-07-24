@@ -93,13 +93,17 @@ class Dashboard extends HTMLElement
    {
       let fileList = document.getElementsByClassName("user-files__ul")[0];
 
+      let innerDelimiter = "¬";
+
       console.log(files);
 
       for(let i = 0; i < files.length; i++)
       {
          let element = document.createElement("li");
 
-         element.textContent = files[i];
+         let cleanName = files[i].split(innerDelimiter)[0];
+
+         element.textContent = cleanName + ".webm";
 
          fileList.appendChild(element);
       }
