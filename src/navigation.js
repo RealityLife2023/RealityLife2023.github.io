@@ -104,7 +104,7 @@ class Dashboard extends HTMLElement
 
                fileList.appendChild(element);
             }
-      };
+      });
    }
 
    refreshFiles()
