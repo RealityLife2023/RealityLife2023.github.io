@@ -20,7 +20,7 @@ class Dashboard extends HTMLElement
                <input class="file-deposit__input" type="file">
             </li>
          </ul>
-         <ul class="user-files__ul">
+         <ul class="user-files__ul updatable-view">
          </ul>
       `;
 
@@ -59,6 +59,52 @@ class Dashboard extends HTMLElement
       };
 
       this.refreshFiles();
+
+      let fileList = document.getElementsByClassName("user-files__ul")[0];
+
+      fileList.updateSelf = async () =>
+      {
+         let url = "https://servicenuruk.realitynear.org:7726/nomination";
+
+         let request =
+         {
+            method : "POST",
+            headers :  {
+               "authorization" : token,
+            },
+         };
+
+         console.log("------- DEBUG --------");
+         console.log(request);
+
+         fetch(url, request).then( async (response) => 
+         {
+            if(!response.ok)
+            {
+               // Report error
+            }
+
+            return await response.json();
+
+         }).then( (data) =>
+         {
+            let fileList = document.getElementsByClassName("user-files__ul")[0];
+
+            let innerDelimiter = "¬";
+
+            console.log(files);
+
+            for(let i = 0; i < files.length; i++)
+            {
+               let element = document.createElement("li");
+
+               let cleanName = files[i].split(innerDelimiter)[0];
+
+               element.textContent = cleanName;
+
+               fileList.appendChild(element);
+            }
+      };
    }
 
    refreshFiles()
@@ -88,7 +134,6 @@ class Dashboard extends HTMLElement
       }).then(this.insertFiles);
    }
 
-
    insertFiles( files )
    {
       let fileList = document.getElementsByClassName("user-files__ul")[0];
@@ -107,6 +152,19 @@ class Dashboard extends HTMLElement
 
          fileList.appendChild(element);
       }
+   }
+
+
+   /**
+    * Calls the updatable event listener for every updatable-view element
+    * 
+    *
+   */
+   refresh()
+   {
+      let views = document.getElementsByClassName("updatable-view");
+
+      views.forEach( (element) => { element.updateSelf(); } );
    }
 }
 

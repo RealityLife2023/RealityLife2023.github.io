@@ -78,7 +78,6 @@ async function saveToRemoteDisk( event )
       encoding : "binary",
       // Weight in bytes
       weight : blob.size,
-
    };
 
    console.debug(metadata);
@@ -103,6 +102,9 @@ async function saveToRemoteDisk( event )
       // Debug the result
       console.debug(response);
       teller.textContent = "Video subido con exito";
+
+      dashboard.refresh();
+
    }).catch( (error) => 
    {
       console.debug(error);
