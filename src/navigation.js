@@ -98,7 +98,7 @@ class Dashboard extends HTMLElement
             {
                let element = document.createElement("li");
 
-               let cleanName = files[i].split(innerDelimiter)[0];
+               let cleanName = data[i].split(innerDelimiter)[0];
 
                element.textContent = cleanName;
 
@@ -163,7 +163,10 @@ class Dashboard extends HTMLElement
    {
       let views = document.getElementsByClassName("updatable-view");
 
-      views.forEach( (element) => { element.updateSelf(); } );
+      for(let i = 0; i < views.length; i++)
+      {
+         views[i].updateSelf();
+      }
    }
 
 }

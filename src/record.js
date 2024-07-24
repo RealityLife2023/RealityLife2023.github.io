@@ -107,7 +107,7 @@ async function saveToRemoteDisk( event )
 
    }).catch( (error) => 
    {
-      console.debug(error);
+      console.log(error);
       teller.textContent = "Algo a ocurrido vuelve porfavor a intentar subirlo";
    });
 }
