@@ -92,9 +92,9 @@ class Dashboard extends HTMLElement
 
             let innerDelimiter = "¬";
 
-            console.log(files);
+            console.log(data);
 
-            for(let i = 0; i < files.length; i++)
+            for(let i = 0; i < data.length; i++)
             {
                let element = document.createElement("li");
 
@@ -104,7 +104,8 @@ class Dashboard extends HTMLElement
 
                fileList.appendChild(element);
             }
-      });
+         });
+      }
    }
 
    refreshFiles()
@@ -157,8 +158,6 @@ class Dashboard extends HTMLElement
 
    /**
     * Calls the updatable event listener for every updatable-view element
-    * 
-    *
    */
    refresh()
    {
@@ -166,6 +165,7 @@ class Dashboard extends HTMLElement
 
       views.forEach( (element) => { element.updateSelf(); } );
    }
+
 }
 
 
