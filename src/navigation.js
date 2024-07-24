@@ -92,18 +92,19 @@ class Dashboard extends HTMLElement
 
             let innerDelimiter = "¬";
 
-            console.log(data);
+            fileList.replaceChildren();
 
             for(let i = 0; i < data.length; i++)
             {
                let element = document.createElement("li");
 
                let cleanName = data[i].split(innerDelimiter)[0];
-
+               
                element.textContent = cleanName;
 
                fileList.appendChild(element);
             }
+
          });
       }
    }
