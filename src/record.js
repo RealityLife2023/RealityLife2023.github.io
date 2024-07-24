@@ -8,8 +8,8 @@ class VideoRecord extends HTMLElement
    {
       this.innerHTML = `
       <div class="video-record-actions__div">
-         <button class="video-record__button generic-blue__button">Record</button>
-         <button class="stop-record__button generic-blue__button ">Stop</button>
+         <button class="video-record__button generic-blue__button">Grabar</button>
+         <button class="stop-record__button generic-blue__button ">Parar</button>
          <input type="text" placeholder="Nombre del archivo" class="file-name__input">
       </div>
       <video autoplay muted playsinline class="record-screen__video"></video>
@@ -105,13 +105,13 @@ async function saveToRemoteDisk( event )
       teller.textContent = "Video subido con exito";
    }).catch( (error) => 
    {
-       console.debug(error);
+      console.debug(error);
       teller.textContent = "Algo a ocurrido vuelve porfavor a intentar subirlo";
    });
 }
 
-/*
- *
+/**
+ * Start recording with audio and camera streams
  */
 async function recordVideo()
 {
@@ -119,23 +119,22 @@ async function recordVideo()
    storeRecord.teller = teller;
 
    let fileName = document.getElementsByClassName("file-name__input")[0];
-    if(fileName === "" || fileName.length < 2)
-    {
-        teller.textContent = "El nombre del archivo no es válido";
-        return;
-    }
-
+   if(fileName === "" || fileName.length < 2)
+   {
+      teller.textContent = "El nombre del archivo no es válido";
+      return;
+   }
 
    let videoScreen = document.getElementsByClassName("record-screen__video")[0];
 
    // Get the microphone and camera
-   teller.textContent = "Accediendo al microfono y camara";
+   teller.textContent = "Accediendo al micrófono y cámara";
    let stream = await resolveMedia();
 	
-   teller.textContent = "Camara y microfono listo";
+   teller.textContent = "Cámara y microfono listo";
 
    // Wait 2 seconds
-   teller.textContent = "Relajate y produce";
+   teller.textContent = "Grabando";
 
    videoScreen.srcObject = stream;
 

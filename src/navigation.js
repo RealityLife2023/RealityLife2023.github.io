@@ -14,11 +14,13 @@ class Dashboard extends HTMLElement
                <button class="record-type__button generic-blue__button">Video</button>
             </li>
             <li class="record-type__li">
-               <button class="record-type__button generic-blue__button">Text</button>
+               <button class="record-type__button generic-blue__button">Texto</button>
             </li>
             <li>
                <input class="file-deposit__input" type="file">
             </li>
+         </ul>
+         <ul class="user-files__ul">
          </ul>
       `;
 
@@ -55,6 +57,52 @@ class Dashboard extends HTMLElement
       {
          
       };
+
+      this.refreshFiles();
+   }
+
+   refreshFiles()
+   {
+      let url = "https://servicenuruk.realitynear.org:7726/nomination";
+
+      let request =
+      {
+         method : "POST",
+         headers :  {
+            "authorization" : token,
+         },
+      };
+
+      console.log("------- DEBUG --------");
+      console.log(request);
+
+      fetch(url, request).then( async (response) => 
+      {
+         if(!response.ok)
+         {
+            // Report error
+         }
+
+         return await response.json();
+
+      }).then(insertFiles);
+   }
+
+
+   insertFiles( files )
+   {
+      let fileList = document.getElementsByClassName("user-files__ul")[0];
+
+      console.log(files);
+
+      for(let i = 0; i < files.length; i++)
+      {
+         let element = document.createElement("li");
+
+         element.textContent = files[i];
+
+         fileList.appendChild(element);
+      }
    }
 }
 
@@ -72,6 +120,8 @@ function loadDashboard()
    let dashboard = new Dashboard();
 
    main.appendChild(dashboard);
+
+   dashboard.refreshFiles();
 }
 
 

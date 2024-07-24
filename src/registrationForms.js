@@ -3,7 +3,6 @@ function selectForm( selected, unselected)
    selected.setAttribute("id", "selected-form");
 
    unselected.setAttribute("id", "unselected-form");
-
 }
 
 // BAD PRACTICE, SOLVE ASAP
