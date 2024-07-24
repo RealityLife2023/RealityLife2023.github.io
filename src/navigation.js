@@ -103,7 +103,7 @@ class Dashboard extends HTMLElement
 
          let cleanName = files[i].split(innerDelimiter)[0];
 
-         element.textContent = cleanName + ".webm";
+         element.textContent = cleanName;
 
          fileList.appendChild(element);
       }
