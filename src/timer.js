@@ -13,15 +13,16 @@ class InternalClock
 
       if(this.second === 59)
       {
-	 this.second = 0;
-	 this.minute++;
+         this.second = 0;
+         this.minute++;
       }
 
       if(this.limit == this.minute)
       {
-	 this.callback();
+       this.callback();
       }
    }
+
 
    setLimitMinute( number, func )
    {
@@ -36,6 +37,10 @@ let clock;
 
 function restarter()
 {
+   // This means that the clock have been destroyed
+   if(clock === undefined)
+      return;
+
    setTimeout(mark, 1000);
 }
 
@@ -85,4 +90,13 @@ function startTimer( limit, func)
    clock.setLimitMinute( limit, func );
 
    restarter();
+}
+
+function stopTimer()
+{
+   let timer = document.getElementById("clock");
+
+   timer.textContent  = "";
+
+   delete clock;
 }

@@ -199,6 +199,8 @@ async function storeRecord()
 
    storeRecord.mediaRecorder.stop();
 
+   stopTimer();
+
    // Stop the MediaStreamTrack of every device
    storeRecord.videoScreen.srcObject.getTracks().forEach( (track) => track.stop() );
 
