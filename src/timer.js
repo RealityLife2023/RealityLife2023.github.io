@@ -83,4 +83,6 @@ function startTimer( limit, func)
    clock = new InternalClock();
 
    clock.setLimitMinute( limit, func );
+
+   restarter();
 }

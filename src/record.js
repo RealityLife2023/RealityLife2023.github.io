@@ -14,8 +14,8 @@ class VideoRecord extends HTMLElement
       </div>
 
       <div class="video-container__div">
-	 <video autoplay muted playsinline class="record-screen__video"></video>
-	 <p id="clock"></p>
+       <video autoplay muted playsinline class="record-screen__video"></video>
+       <p id="clock"></p>
       </div>
       <p id="teller__p"></p>
       `;
