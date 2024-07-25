@@ -82,5 +82,5 @@ function startTimer( limit, func)
 
    clock = new InternalClock();
 
-   clock.SetLimitMinute( limit, func );
+   clock.setLimitMinute( limit, func );
 }
