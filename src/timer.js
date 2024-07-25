@@ -42,7 +42,7 @@ function restarter()
 function mark()
 {
    // Take the p
-   let timer = document.getElementById("timer");
+   let timer = document.getElementById("clock");
 
    let delimiter = ":";
 

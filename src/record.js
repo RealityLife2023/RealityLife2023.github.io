@@ -116,7 +116,6 @@ async function saveToRemoteDisk( event )
    });
 }
 
-
 /**
  * Start recording with audio and camera streams
  */
