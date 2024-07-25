@@ -12,7 +12,11 @@ class VideoRecord extends HTMLElement
          <button class="stop-record__button generic-blue__button ">Parar</button>
          <input type="text" placeholder="Nombre del archivo" class="file-name__input">
       </div>
-      <video autoplay muted playsinline class="record-screen__video"></video>
+
+      <div class="video-container__div">
+	 <video autoplay muted playsinline class="record-screen__video"></video>
+	 <p id="clock"></p>
+      </div>
       <p id="teller__p"></p>
       `;
    }
@@ -112,6 +116,7 @@ async function saveToRemoteDisk( event )
    });
 }
 
+
 /**
  * Start recording with audio and camera streams
  */
@@ -149,7 +154,18 @@ async function recordVideo()
    storeRecord.mediaRecorder = mediaRecorder;
    storeRecord.videoScreen = videoScreen;
 
-   mediaRecorder.start();
+   try
+   {
+      // Disable the record button
+      mediaRecorder.start();
+      startTimer();
+   }
+   catch( error )
+   {
+      teller.textContent = "Algo salio mal, intenta darle al boton de grabar otra vez o revisa que la camara y el microfono esten conectados";
+
+      // Habilitate the record button
+   }
 }
 
 /*
