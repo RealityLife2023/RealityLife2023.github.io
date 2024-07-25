@@ -5,6 +5,8 @@ class InternalClock
    {
       this.second = 0;
       this.minute = 0;
+
+      this.element = document.getElementById("clock");
    }
 
    addSecond()
@@ -30,6 +32,11 @@ class InternalClock
       this.limit = number;
       this.callback = func;
    }
+
+   cleanElement()
+   {
+      this.element.textContent = "";
+   }
 }
 
 let clock;
@@ -46,8 +53,8 @@ function restarter()
 
 function mark()
 {
-   // Take the p
-   let timer = document.getElementById("clock");
+   if(window.innerClock == undefined)
+      return;
 
    let delimiter = ":";
 
@@ -65,7 +72,7 @@ function mark()
       seconds = `0${clock.second}`;
    }
 
-   timer.textContent = `${minutes}${delimiter}${seconds}`;
+   clock.element.textContent = `${minutes}${delimiter}${seconds}`;
 
    restarter();
 }
@@ -96,9 +103,7 @@ function startTimer( limit, func)
 
 function stopTimer()
 {
-   let timer = document.getElementById("clock");
-
-   timer.textContent  = "";
+   clock.cleanElement();
 
    delete window.innerClock;
 }
