@@ -163,6 +163,8 @@ async function recordVideo()
    {
       teller.textContent = "Algo salio mal, intenta darle al boton de grabar otra vez o revisa que la camara y el microfono esten conectados";
 
+      console.log( error );
+
       // Habilitate the record button
    }
 }
