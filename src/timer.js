@@ -38,7 +38,7 @@ let clock;
 function restarter()
 {
    // This means that the clock have been destroyed
-   if(window.clock === undefined)
+   if(window.innerClock === undefined)
       return;
 
    setTimeout(mark, 1000);
@@ -89,7 +89,7 @@ function startTimer( limit, func)
 
    clock.setLimitMinute( limit, func );
 
-   window.clock = clock;
+   window.innerClock = clock;
 
    restarter();
 }
@@ -100,5 +100,5 @@ function stopTimer()
 
    timer.textContent  = "";
 
-   delete window.clock;
+   delete window.innerClock;
 }
