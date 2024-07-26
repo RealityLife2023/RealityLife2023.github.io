@@ -251,7 +251,7 @@ class Dashboard extends HTMLElement
       {
          let element = document.createElement("file-element");
 
-         let halfs = data[i].split(innerDelimiter);
+         let halfs = files[i].split(innerDelimiter);
 
          let cleanName = halfs[0].split(".")[0];
          let hash = halfs[1];
