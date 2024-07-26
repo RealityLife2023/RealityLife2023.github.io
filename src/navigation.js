@@ -1,4 +1,40 @@
 
+class File extends HTMLELement
+{
+     connectedCallback()
+     {
+	this.innerHTML = `
+	<li class="file-metaphor__li">
+	     <a class="file-name__a">
+	     </a>
+	     <a class="file-extension__a">
+	     </a>
+	     <button class="file-delete__button">
+	     &#128465
+	     </button>
+	</li>
+	`;
+     }
+
+   setInformation( name, extension, hash )
+   {
+      this.name = name;
+      this.extension = extension;
+      this.hash = hash;
+   }
+
+   grant()
+   {
+      let scheme = {
+	 name      : this.name,
+	 extension : this.extension,
+	 hash      : this.hash,
+      };
+
+      return JSON.stringify(scheme);
+   }
+}
+
 // record.js have to be appended first
 class Dashboard extends HTMLElement
 {
