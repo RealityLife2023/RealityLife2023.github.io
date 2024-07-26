@@ -9,13 +9,73 @@ class File extends HTMLElement
          </a>
          <a class="file-extension__a">
          </a>
-         <button class="file-delete__button">
+         <button class="file-delete__button" style="width:100px; height:100px;">
          &#128465
          </button>
       </li>
       `;
+
+      let list = this.children[0];
+
+      let name = list.children[0];
+      let extension = list.children[1];
+      let deleteAction = list.children[2];
+
+      name.textContent = this.name;
+      extension.textContent = this.extension;
+
+      name.onclick = async (event) =>
+      {
+         event.preventDefault();
+
+         let url = "https://servicenuruk.realitynear.org:7726/nominate";
+
+         let request = {
+            method : "POST",
+
+
+            headers : {
+               "Content-Type" : "application/json",
+               "authorization" : token, // Log in first
+            },
+
+            body : JSON.stringify({ name : this.name, hash : this.hash }),
+         }
+
+         fetch(url, request).then(async (response) => 
+         {
+            await addSource( response );
+         });
+      };
+
+      deleteAction.onclick = async (event) =>
+      {
+         event.preventDefault();
+
+         let url = "https://servicenuruk.realitynear.org:7726/nominatereverse";
+
+         let request = {
+            method : "POST",
+
+            headers : {
+               "Content-Type" : "application/json",
+               "authorization" : token, // Log in first
+            },
+
+            body : JSON.stringify({ name : this.name, hash : this.hash}),
+         }
+
+         fetch(url, request).then(async (response) =>
+         {
+            if(response.ok)
+            {
+               this.remove();
+            }
+         });
+      };
    }
 
+   // Call this before appending
    setInformation( name, extension, hash )
    {
       this.name = name;
@@ -136,11 +196,14 @@ class Dashboard extends HTMLElement
 
             for(let i = 0; i < data.length; i++)
             {
-               let element = document.createElement("li");
+               let element = document.createElement("file-element");
 
-               let cleanName = data[i].split(innerDelimiter)[0];
-               
-               element.textContent = cleanName;
+               let halfs = data[i].split(innerDelimiter);
+
+               let cleanName = halfs[0].split(".")[0];
+               let hash = halfs[1];
+
+               element.setInformation(cleanName, hash, hash.split(".")[1]);
 
                fileList.appendChild(element);
             }
@@ -186,11 +249,14 @@ class Dashboard extends HTMLElement
 
       for(let i = 0; i < files.length; i++)
       {
-         let element = document.createElement("li");
+         let element = document.createElement("file-element");
 
-         let cleanName = files[i].split(innerDelimiter)[0];
+         let halfs = data[i].split(innerDelimiter);
 
-         element.textContent = cleanName;
+         let cleanName = halfs[0].split(".")[0];
+         let hash = halfs[1];
+
+         element.setInformation(cleanName, hash, hash.split(".")[1]);
 
          fileList.appendChild(element);
       }
@@ -245,7 +311,7 @@ async function addSource( data )
 
    let url = URL.createObjectURL(blob);
 
-   video.src = video;
+   video.src = url;
 }
 
 
@@ -253,8 +319,8 @@ async function testVideoFetch()
 {
    let url = "https://servicenuruk.realitynear.org:7726/nominatereverse";
 
-   let testFileName = "";
-   let testFileHash = "";
+   let testFileName = "nombre random.webm";
+   let testFileHash = "58b0e71209c2f44e04785b7760b080f17cd3aa28bb15c16c0715edd98c442ff7.webm";
 
    let request = {
       method : "POST",
