@@ -1,34 +1,34 @@
 
-class File extends HTMLELement
+class File extends HTMLElement
 {
-     connectedCallback()
-     {
-	this.innerHTML = `
-	<li class="file-metaphor__li">
-	     <a class="file-name__a">
-	     </a>
-	     <a class="file-extension__a">
-	     </a>
-	     <button class="file-delete__button">
-	     &#128465
-	     </button>
-	</li>
-	`;
-     }
+   connectedCallback()
+   {
+      this.innerHTML = `
+      <li class="file-metaphor__li">
+         <a class="file-name__a">
+         </a>
+         <a class="file-extension__a">
+         </a>
+         <button class="file-delete__button">
+         &#128465
+         </button>
+      </li>
+      `;
+   }
 
    setInformation( name, extension, hash )
    {
       this.name = name;
-      this.extension = extension;
       this.hash = hash;
+      this.extension = extension;
    }
 
    grant()
    {
       let scheme = {
-	 name      : this.name,
-	 extension : this.extension,
-	 hash      : this.hash,
+         name      : this.name,
+         extension : this.extension,
+         hash      : this.hash,
       };
 
       return JSON.stringify(scheme);
