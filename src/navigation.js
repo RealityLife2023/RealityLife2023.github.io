@@ -35,6 +35,8 @@ class File extends HTMLElement
    }
 }
 
+window.customElements.define("file-element", File);
+
 // record.js have to be appended first
 class Dashboard extends HTMLElement
 {
@@ -58,6 +60,8 @@ class Dashboard extends HTMLElement
          </ul>
          <ul class="user-files__ul updatable-view">
          </ul>
+
+         <video id="test-video-output" controls><video/>
       `;
 
       let actioners = document.getElementsByClassName("record-type__button");
@@ -229,27 +233,42 @@ function loadDashboard()
    main.appendChild(innerDashboard);
 }
 
-
-
-// Take all the buttons
-// Assing a global listener to them
-
-/*
-
-let views = ["about-us", "team-info", "price-info", "demo-form", "contact-us", "sign-form"];
-
-let lastComponent;
-
-let navButtons = document.getElementsByClassName("panel-option__button");
-
-
-for(let i = 0; i < navButtons.length; i++)
+/**
+ * 
+ * @param {Array} data - Raw stream of data
+ */
+async function addSource( data )
 {
-   navButtons[i].shadow = views[i];
-   navButtons[i].onclick = testWebComponents;
+   let video = document.getElementById("video-test-output");
+
+   let blob = await data.blob();
+
+   let url = URL.createObjectURL(blob);
+
+   video.src = video;
 }
 
-console.log("All settled up! These are the targeted buttons");
-console.debug(navButtons);
-*/
 
+async function testVideoFetch()
+{
+   let url = "https://servicenuruk.realitynear.org:7726/nominatereverse";
+
+   let testFileName = "";
+   let testFileHash = "";
+
+   let request = {
+      method : "POST",
+
+      headers : {
+         "Content-Type" : "application/json",
+         "authorization" : token, // Log in first
+      },
+
+      body : JSON.stringify({ name : testFileName, hash : testFileHash }),
+   }
+
+   fetch(url, request).then(async (response) => 
+   {
+      await addSource( response );
+   });
+}
