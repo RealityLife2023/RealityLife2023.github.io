@@ -1,0 +1,161 @@
+
+@media only screen and (width: 430px) and (height: 932px)
+{
+   :root
+   {
+      font-size : 1.4vw;
+   }
+
+   html
+   {
+      font-size : 2.4vh;
+   }
+   /* LOGIN SECTION */
+
+   section.call-to-action__section>div.sign-forms__div
+   {
+      width: 90%;
+      height: 52rem;
+      display : flex;
+      float   : none;
+      border-radius: 55px;
+      position: relative;
+      overflow: hidden;
+      margin: auto;
+   }
+
+   button.generic-blue__button
+   {
+       padding: 9px 18px;
+       width: max-content;
+       border: none;
+       border-radius: 55px;
+       background-color: var(--aqua);
+       color: var(--deep-blue);
+       font-family: "Poppins-Medium";
+       font-size: 2.89rem;
+       font-weight: 300;
+       cursor: pointer;
+   }
+
+   q.generic-quote__q
+   {
+       quotes: none;
+       margin: auto;
+       margin-top: 4.5rem;
+       margin-bottom: 4.5rem;
+       /* max-width: 35.4rem; */
+       display: block;
+       color: var(--aqua);
+       text-align: center;
+       font-family: "Poppins-Bold";
+       font-size: 4.8rem;
+       width: 82%;
+   }
+
+   div.sign-options__div>p
+   {
+       margin: auto;
+       margin-bottom: 0;
+       display: block;
+       font-size: 4.3rem;
+   }
+
+   ul.sign-options__ul
+   {
+       margin: auto;
+       margin-top: 20px;
+       margin-bottom: 22px;
+       padding: 0;
+       text-align: center;
+       user-select: none;
+    }
+
+    li.sign-option__li>button.generic-white__button
+    {
+       margin: 9px 0 9px 0;
+       width: 50rem;
+       font-size: 3.5rem;
+       cursor: pointer;
+    }
+
+    div.sign-options__div>p.sign-call__p
+    {
+           /* width: 37rem; */
+       /* max-width: 61rem; */
+       margin-top: 0.5rem;
+       font-size: 4rem;
+       text-align: center;
+       margin: auto;
+    }
+
+    div.form-container__div
+    {
+           height: 100%;
+    width: 47rem;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 55px;
+    background-color: var(--white);
+    /* display: flex; */
+    flex-flow: row;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* flex: 2 1; */
+
+    }
+    section.call-to-action__section>div.sign-options__div
+    {
+       width: 100%;
+       height: max-content;
+       display: inline-flex;
+       /* float: left; */
+       align-items: center;
+       /* flex-direction: column; */
+       justify-content: center;
+       flex-flow: column wrap;
+       margin: auto;
+       margin-bottom: 52px;
+       margin-top: 35px;
+    }
+
+
+     /**********/
+
+     /* FIRST IMPRESSION */
+
+     aside.home-left__aside
+     {
+	display: none;
+     }
+
+
+     q.brand-quote__q
+     {
+	quotes : none;
+
+	margin-top    : 1rem;
+	margin-bottom : 1.2rem;
+
+	margin-left  : 0px;
+	margin-right : 0px;
+
+	max-width : 1200px;
+
+	display : inline-block;
+
+	color     : var(--aqua);
+	font-size : 2.22rem;
+     }
+
+     aside.home-right__aside>p
+     {
+	max-width  : 50rem;
+	box-sizing : border-box;
+	font-size  : 1.8rem;
+     }
+
+
+}
