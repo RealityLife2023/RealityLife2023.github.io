@@ -31,8 +31,6 @@ div.form-container__div>form.sign-account__form>input::placeholder
    top     : 1rem;
 }
 
-
-
 form.white-generic__form>input:focus::placeholder,
 div.sign-forms__div>form.sign-account__form>input:focus::placeholder
 {
@@ -48,20 +46,22 @@ div.form-container__div>form.sign-account__form>input
    border-radius : 0;
 }
 
-/* Open forms */
 
+/* Open forms */
 div.form-container__div
 {
    width  : 500px;
    height : 100%;
-
    margin : auto;
-
    position : relative;
    overflow : hidden;
-
    border-radius    : 55px;
    background-color : var(--white);
+}
+
+div.form-container__div>form.sign-account__form>input
+{
+   background : none;
 }
 
 div.form-container__div>form.sign-account__form
@@ -79,14 +79,12 @@ div.form-container__div>form.sign-account__form:nth-child(1)
 div.form-container__div>form.sign-account__form#unselected-form:nth-child(1)
 {
    top : -100%;
-
    transition : 3s;
 }
 
 div.form-container__div>form.sign-account__form#selected-form:nth-child(1)
 {
    top : 0%;
-
    transition : 3s;
 }
 
@@ -139,6 +137,7 @@ div.sign-options__div>p.sign-call__p>a
    color       : var(--default);
    font-family : "Poppins-Bold";
    cursor : pointer;
+   text-decoration : underline;
 }
 
 div.sign-options__div>p.sign-call__p

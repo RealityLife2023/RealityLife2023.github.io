@@ -10,12 +10,82 @@
    {
       font-size : 2.4vh;
    }
+
    /* LOGIN SECTION */
+
+   form.white-generic__form>input::placeholder,
+   div.sign-forms__div>form.sign-account__form>input::placeholder,
+   div.form-container__div>form.sign-account__form>input::placeholder
+   {
+      position: absolute;
+      left    : 0;
+      top     : .4rem;
+      font-size : 3.2rem;
+   }
+
+   form.sign-account__form>input
+   {
+      width : 47rem;
+      min-height: 6rem;
+      padding: 10px 10px 10px 10px;
+      font-size : 3.76rem;
+   }
+
+   div.form-container__div>form.sign-account__form
+   {
+      width : auto;
+      height : auto;
+      min-height : auto;
+      padding: 12rem 12px 3rem 12px;
+   }
+
+   div.form-container__div>form.sign-account__form:nth-child(1)
+   {
+      top  : 6px;
+      left : 13px;
+   }
+
+   div.form-container__div>form.sign-account__form:nth-child(2)
+   {
+      top  : 100%;
+      left : 13px;
+   }
+
+   div.form-container__div>form.sign-account__form#unselected-form:nth-child(1)
+   {
+      top : -100%;
+      transition : 3s;
+   }
+
+   div.form-container__div>form.sign-account__form#selected-form:nth-child(1)
+   {
+      top : 6px;
+      transition : 3s;
+   }
+
+
+   div.form-container__div>form.sign-account__form#unselected-form:nth-child(2)
+   {
+      top  : 100%;
+      transition : 2.5s;
+   }
+
+   div.form-container__div>form.sign-account__form#selected-form:nth-child(2)
+   {
+      top  : 6px;
+      transition : 3.6s;
+   }
+
+   form.sign-account__form>a:nth-child(3)
+   {
+      margin: 33px 0px;
+      font-size: 3.7rem;
+   }
 
    section.call-to-action__section>div.sign-forms__div
    {
-      width: 90%;
-      height: 52rem;
+      width: 97%;
+      height: 75rem;
       display : flex;
       float   : none;
       border-radius: 55px;
@@ -33,7 +103,7 @@
        background-color: var(--aqua);
        color: var(--deep-blue);
        font-family: "Poppins-Medium";
-       font-size: 2.89rem;
+       font-size: 3.6rem;
        font-weight: 300;
        cursor: pointer;
    }
@@ -81,8 +151,6 @@
 
     div.sign-options__div>p.sign-call__p
     {
-           /* width: 37rem; */
-       /* max-width: 61rem; */
        margin-top: 0.5rem;
        font-size: 4rem;
        text-align: center;
@@ -91,21 +159,15 @@
 
     div.form-container__div
     {
-           height: 100%;
-    width: 47rem;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 55px;
-    background-color: var(--white);
-    /* display: flex; */
-    flex-flow: row;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* flex: 2 1; */
-
+       height: 100%;
+       width: 59rem;
+       margin: auto;
+       position: relative;
+       overflow: hidden;
+       border-radius: 55px;
+       background-color: var(--white);
     }
+
     section.call-to-action__section>div.sign-options__div
     {
        width: 100%;
@@ -121,8 +183,7 @@
        margin-top: 35px;
     }
 
-
-     /**********/
+    /**********/
 
      /* FIRST IMPRESSION */
 
@@ -156,6 +217,4 @@
 	box-sizing : border-box;
 	font-size  : 1.8rem;
      }
-
-
 }
