@@ -79,7 +79,7 @@
    form.sign-account__form>a:nth-child(3)
    {
       margin: 33px 0px;
-      font-size: 3.7rem;
+      font-size: 3.45rem;
    }
 
    section.call-to-action__section>div.sign-forms__div
@@ -151,7 +151,7 @@
 
     div.sign-options__div>p.sign-call__p
     {
-       width : calc(100vw - 10vw);
+       width : calc(100vw - 8vw);
        margin-top: 0.5rem;
        font-size: 4rem;
        text-align: center;
@@ -186,36 +186,64 @@
 
     /**********/
 
-     /* FIRST IMPRESSION */
+    /* FIRST IMPRESSION */
+
+
+    q.welcome-quote__q
+    {
+       font-size : 6.12rem;
+    }
+
+    q.brand-quote__q
+    {
+      quotes : none;
+      width: calc(100vw - 10vw);
+      margin : 1rem 0 1.2rem 0;
+      max-width : none;
+      display : inline-block;
+      color     : var(--aqua);
+      font-size : 4rem;
+    }
+
+    img.brand-logo__img
+    {
+      margin : 4vh auto;
+      width: 67.4rem;
+      height: 11.25rem;
+    }
 
      aside.home-left__aside
      {
-	display: none;
+        display: none;
      }
 
-
-     q.brand-quote__q
+     aside.home-right__aside
      {
-	quotes : none;
+       color: var(--default);
+       font-family: "Poppins-Regular";
+       font-size: 2.2rem;
+       text-align: left;
+       margin: auto;
+       padding: 0;
 
-	margin-top    : 1rem;
-	margin-bottom : 1.2rem;
+       float: none;
+       max-width:none;
 
-	margin-left  : 0px;
-	margin-right : 0px;
-
-	max-width : 1200px;
-
-	display : inline-block;
-
-	color     : var(--aqua);
-	font-size : 2.22rem;
      }
+
+
 
      aside.home-right__aside>p
      {
-	max-width  : 50rem;
-	box-sizing : border-box;
-	font-size  : 1.8rem;
+        max-width  : 50rem;
+        box-sizing : border-box;
+        font-size  : 3.4rem;
+        margin     : auto;
      }
+
+    header.brand-band__header
+    {
+       height: 86vh;
+       margin: auto;
+    }
 }
