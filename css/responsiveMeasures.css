@@ -1,5 +1,5 @@
 
-@media only screen and (340px < width <= 450px) and (568px < height <= 1000px)
+@media (340px < width <= 450px) and (568px < height <= 1000px)
 {
    :root
    {
@@ -151,6 +151,7 @@
 
     div.sign-options__div>p.sign-call__p
     {
+       width : calc(100vw - 10vw);
        margin-top: 0.5rem;
        font-size: 4rem;
        text-align: center;
