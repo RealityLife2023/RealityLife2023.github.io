@@ -77,12 +77,10 @@ span.globe-decoration__span>p
 {
 
    /*height: 100%;*/
-   width : 100%;
-
-   position:absolute;
-
    margin : 0;
-
+   width : 100%;
+   top   : 44%;
+   position:absolute;
    text-align : center;
 }
 
