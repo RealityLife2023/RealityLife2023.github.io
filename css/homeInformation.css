@@ -64,7 +64,7 @@ span.globe-decoration__span
    width    : 27.9rem;
    height   : 26.35rem;
 
-   display: flex;
+   display: inline-flex;
    position : relative;
 }
 
