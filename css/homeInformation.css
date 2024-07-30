@@ -75,10 +75,8 @@ span.globe-decoration__span>img
 
 span.globe-decoration__span>p
 {
-   /* top   : 50%;
-   left  : 50%; */
 
-   height: 100%;
+   /*height: 100%;*/
    width : 100%;
 
    position:absolute;
@@ -115,9 +113,10 @@ span.globe-decoration__span:nth-child(3)
 span.globe-decoration__span:nth-child(3)>p
 {
    font-size : 1.4rem;
-
+/*
    margin-left : -126.2px;
    margin-top  : -20px;
+   */
 }
 
 /* Acompañamiento */
@@ -130,8 +129,10 @@ span.globe-decoration__span:nth-child(4)>p
 {
    font-size : 2rem;
 
+   /*
    margin-left : -110px;
    margin-top  : -26.5px;
+   */
 }
 
 /* Tecnologia */
