@@ -203,7 +203,7 @@ class Dashboard extends HTMLElement
                let cleanName = halfs[0].split(".")[0];
                let hash = halfs[1];
 
-               element.setInformation(cleanName, hash, hash.split(".")[1]);
+               element.setInformation(cleanName, hash.split(".")[1], hash);
 
                fileList.appendChild(element);
             }
@@ -286,8 +286,17 @@ window.customElements.define("dashboard-view", Dashboard);
 
 let dashboard;
 
+/**
+ * Removes the header and nav elements
+ */
 function loadDashboard()
 {
+   let header = document.getElementsByTagName("header")[0];
+   let nav = document.getElementsByTagName("nav")[0];
+
+   header?.remove();
+   nav?.remove();
+
    let main = document.getElementsByClassName("information__main")[0];
 
    main.replaceChildren();

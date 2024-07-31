@@ -1,0 +1,49 @@
+section.general-tool-container__section
+{
+   width: 95%;
+   height: 65rem;
+   margin: auto;
+
+   border-radius: 70px;
+   background-color: #aAA;
+}
+
+ul.user-files__ul
+{
+   width: 96%;
+   padding : 0;
+   margin : 45px auto;
+   font-size : 4rem;
+}
+
+ul.user-files__ul>file-element>li.file-metaphor__li
+{
+   border-bottom: 0.2rem solid #BBB;
+   display: flex;
+   align-items: center ;
+   justify-content: flex-end;
+}
+
+ul.user-files__ul>file-element
+{
+   margin: 20px auto;
+   display : flex;
+}
+
+ul.user-files__ul>file-element>li>a.file-name__a
+{
+   flex:2 1 0%;
+   overflow:hidden;
+}
+
+ul.user-files__ul>file-element>li>a.file-extension__a
+{
+   flex:2 1 0%;
+}
+
+ul.user-files__ul>file-element>li>button
+{
+   font-size: 6rem;
+   background-color: transparent;
+   border:none;
+}

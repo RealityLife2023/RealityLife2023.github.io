@@ -387,13 +387,3 @@ button.generic-blue__button:hover
    background-color : var(--grey);
    color            : var(--white);
 }
-
-@media (width : 430px) and (height : 932px )
-{
-   ul.record-types__ul
-   {
-      padding-top : 1rem;
-      padding-left : 0;
-      font-style : italic;
-   }
-}
