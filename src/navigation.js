@@ -9,9 +9,7 @@ class File extends HTMLElement
          </a>
          <a class="file-extension__a">
          </a>
-         <button class="file-delete__button" style="width:100px; height:100px;">
-         &#128465
-         </button>
+         <button class="file-delete__button"> &#128465 </button>
       </li>
       `;
 
@@ -103,24 +101,23 @@ class Dashboard extends HTMLElement
    connectedCallback()
    {
       this.innerHTML = `
-         <h3 class="title-type__h3">Puedes grabar tus memorias en los siguientes formatos</h3>
-         <ul class="record-types__ul">
-            <li class="record-type__li">
-               <button class="record-type__button generic-blue__button">Audio</button>
-            </li>
-            <li class="record-type__li">
-               <button class="record-type__button generic-blue__button">Video</button>
-            </li>
-            <li class="record-type__li">
-               <button class="record-type__button generic-blue__button">Texto</button>
-            </li>
-            <li>
-               <input class="file-deposit__input" type="file">
-            </li>
-         </ul>
-         <ul class="user-files__ul updatable-view">
-         </ul>
+      <h3 class="title-type__h3">Puedes grabar tus memorias en los siguientes formatos</h3>
+      <ul class="record-types__ul">
+         <li class="record-type__li">
+            <button class="record-type__button generic-blue__button">Audio</button>
+         </li>
+         <li class="record-type__li">
+            <button class="record-type__button generic-blue__button">Video</button>
+         </li>
+         <li class="record-type__li">
+            <button class="record-type__button generic-blue__button">Texto</button>
+         </li>
+      </ul>
+      <section class="general-tool-container__section">
 
+      </section>
+      <ul class="user-files__ul updatable-view">
+      </ul>
          <video id="test-video-output" controls><video/>
       `;
 
