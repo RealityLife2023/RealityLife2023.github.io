@@ -1,7 +1,69 @@
+video-record
+{
+   text-align : center;
+   margin-top : 2.1rem;
+}
+
+video.record-screen__video
+{
+   margin : 45px auto;
+   width  : 640px;
+   height : 480px;
+   background-color : #555;
+   display:block;
+   border-radius : 35px;
+}
+
+div.video-container__div
+{
+   margin:auto;
+   width : 94%;
+   height : max-content;
+   border-radius : 35px;
+}
+
+div.video-record-actions__div
+{
+   margin : auto;
+   margin-top : 2rem;
+   user-select : none;
+
+   font-family: "Poppins-Regular";
+   text-align : center;
+}
+
+
+h3.title-type__h3
+{
+   margin : auto;
+   text-align: center;
+}
+
+ul.record-types__ul>li.record-type__li
+{
+   display: inline;
+}
+
+input.file-name__input
+{
+   width: 84%;
+   height: 2.8rem;
+   margin: 20px auto 35px auto;
+   padding: 15px 15px 15px 35px;
+   border-color: transparent;
+   display: block;
+   border-bottom: solid var(--aqua);
+   border-radius: 0 0 45px 45px;
+   background-color: transparent;
+   font-weight: 100;
+   font-family: "Poppins-Medium";
+   font-size: 2.5rem;
+}
+
 section.general-tool-container__section
 {
    width: 95%;
-   height: 105rem;
+   height: max-content;
    margin: auto;
    border-radius: 70px 70px 35px 35px;
    background-color: #aAA;
@@ -49,3 +111,18 @@ ul.user-files__ul>file-element>li>button
    background-color: transparent;
    border:none;
 }
+
+p#teller__p
+{
+   font-size: 2.1rem;
+   text-align: center;
+   height    : 5rem;
+}
+
+p#clock
+{
+   margin : 10px auto;
+   font-size: 3rem;
+   text-align: center;
+}
+

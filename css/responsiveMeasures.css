@@ -281,14 +281,16 @@
       padding:0;
    }
 
-   ul.record-types__ul>li.record-type__li
-   {
-      display: inline;
-   }
 
    ul.record-types__ul>li.record-type__li>button.generic-blue__button
    {
       width: 22.5rem;
       font-size: 3.5rem;
+   }
+
+   video.record-screen__video
+   {
+      width : 75%;
+/*      height : 75%;*/
    }
 }
