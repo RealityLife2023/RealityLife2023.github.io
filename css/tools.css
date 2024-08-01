@@ -105,11 +105,19 @@ ul.user-files__ul>file-element>li>a.file-extension__a
    flex:1 1 0%;
 }
 
-ul.user-files__ul>file-element>li>button
+ul.user-files__ul>file-element>li>button.file-delete__button
 {
    font-size: 6rem;
    background-color: transparent;
    border:none;
+   border-radius: 35px;
+   padding : 2px 9px;
+   text-align: center;
+}
+
+ul.user-files__ul>file-element>li>button.file-delete__button:hover
+{
+   background-color: rgba(194, 194, 194, 10%);
 }
 
 p#teller__p

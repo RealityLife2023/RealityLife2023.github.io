@@ -113,19 +113,15 @@ class Dashboard extends HTMLElement
             <button class="record-type__button generic-blue__button">Texto</button>
          </li>
       </ul>
-      <section class="general-tool-container__section">
-
-      </section>
-      <ul class="user-files__ul updatable-view">
-      </ul>
-         <video id="test-video-output" controls><video/>
+      <ul class="user-files__ul updatable-view"></ul>
       `;
+
 
       let actioners = document.getElementsByClassName("record-type__button");
 
-      let audioActioner = actioners[0];
-      let videoActioner = actioners[1];
       let textActioner = actioners[2];
+      let videoActioner = actioners[1];
+      let audioActioner = actioners[0];
 
       videoActioner.onclick = async (event) => 
       {
@@ -137,13 +133,6 @@ class Dashboard extends HTMLElement
          let videoRecord = new VideoRecord();
 
          main.appendChild(videoRecord);
-
-         // Set all buttons
-         let recordButton = document.getElementsByClassName("video-record__button")[0];
-         let stopButton = document.getElementsByClassName("stop-record__button")[0];
-
-         recordButton.onclick = recordVideo;
-         stopButton.onclick = storeRecord;
       };
 
       audioActioner.onclick = async (event) =>
@@ -242,8 +231,6 @@ class Dashboard extends HTMLElement
 
       let innerDelimiter = "¬";
 
-      console.log(files);
-
       for(let i = 0; i < files.length; i++)
       {
          let element = document.createElement("file-element");
@@ -253,7 +240,7 @@ class Dashboard extends HTMLElement
          let cleanName = halfs[0].split(".")[0];
          let hash = halfs[1];
 
-         element.setInformation(cleanName, hash, hash.split(".")[1]);
+         element.setInformation(cleanName, hash.split(".")[1], hash);
 
          fileList.appendChild(element);
       }
@@ -272,9 +259,7 @@ class Dashboard extends HTMLElement
          views[i].updateSelf();
       }
    }
-
 }
-
 
 window.customElements.define("dashboard-view", Dashboard);
 
