@@ -16,25 +16,101 @@
    <title>Reality Life</title>
 </head>
 <body>
+   <header class="brand-band__header">
+      <q class="welcome-quote__q">Bienvenido a</q>
+      <img class="brand-logo__img" src="../static/logo.png" alt="Reality Life logo">
+      <q class="brand-quote__q">Mantén tus <b>recuerdos</b>, tus <b>conocimientos</b> y tu <b>legado siempre vivos</b>.</q>
+   </header>
+   <nav class="generic-nav-bar__nav">
+      <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/aboutus.html">NOSOTROS</a></button>
+      <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/team.html">EQUIPO</a></button>
+      <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/pricing.html">PLANES</a></button>
+      <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/demo.html">DEMO</a></button>
+      <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/contact.html">CONTACTO</a></button>
+      <button type="button" href="#slider-show" class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
+      <button class="panel-option__button language-button"><img src="../static/language-icon.png" alt="Select language">Español</button>
+   </nav>
    <main class="information__main">
-      <h3 class="title-type__h3">Puedes grabar tus memorias en los siguientes formatos</h3>
-      <ul class="record-types__ul">
-         <li class="record-type__li">
-            <button class="record-type__button generic-blue__button">Audio</button>
-         </li>
-         <li class="record-type__li">
-            <button class="record-type__button generic-blue__button">Video</button>
-         </li>
-         <li class="record-type__li">
-            <button class="record-type__button generic-blue__button">Texto</button>
-         </li>
-      </ul>
-      <section class="general-tool-container__section">
-
+      <article class="home__article">
+         <aside class="home-left__aside">
+            <img src="../static/manor.png">
+            <span class="globe-decoration__span">
+               <img src="../static/globe.png">
+               <p>Recuerdos</p>
+            </span>
+            <span class="globe-decoration__span">
+               <img src="../static/globe.png">
+               <p>Acompañamiento</p>
+            </span>
+            <span class="globe-decoration__span">
+               <img src="../static/globe.png">
+               <p>Tecnología</p>
+            </span>
+         </aside>
+         <aside class="home-right__aside">
+            <p>Reality LIFE es una plataforma que preserva tus recuerdos, conocimientos y legado, enfrentando la muerte y enfermedades mentales como el alzheimer y la demencia. Utilizando tecnología Blockchain e Inteligencia Artificial, crea un avatar digital interactivo que permite a tus seres queridos mantener una conexión eterna contigo.</p>
+            <p>Nuestra tecnología asegura la seguridad y autenticidad de tus datos, ofreciendo una experiencia inmersiva a través de realidad virtual y aumentada. Reality LIFE no solo almacena datos, sino que preserva tu legado emocional e intelectual, proporcionando consuelo y compañía constante a tus seres queridos.</p>
+         </aside>
+      </article>
+      <section class="call-to-action__section" id="slider-show">
+         <button class="call-to-action__button generic-blue__button">COMIENZA AHORA</button>
+         <q class="generic-quote__q">¡Empieza a almacenar tu legado hoy mismo!</q>
+         <div class="sign-options__div">
+            <p>Regístrate o inicia sesión</p>
+            <ul class="sign-options__ul">
+               <li class="sign-option__li">
+                  <button class="generic-white__button oauth-sign__button">
+                     Continúa con Google
+                  </button>
+               </li>
+               <li class="sign-option__li">
+                  <button class="generic-white__button" id="slider-trigger-backward">
+                     Continúa con email
+                  </button>
+               </li>
+            </ul>
+            <p class="sign-call__p">¿Todavía no tienes una cuenta? <a id="slider-trigger-forward">Regístrate aquí</a></p>
+         </div>
+         <div class="sign-forms__div">
+            <div class="form-container__div">
+               <form method="POST" class="sign-account__form white-generic__form" id="open-sign-form">
+                  <input type="email" name="email" placeholder="Tu correo">
+                  <input type="password" name="password" placeholder="Tu contraseña">
+                  <a>¿Olvidaste la contraseña?</a>
+                  <button type="submit" class="generic-blue__button">INGRESAR</button>
+               </form>
+               <form method="POST" class="sign-account__form" id="open-signup-form">
+                  <input  class="new-account-field__input" type="text" name="forename" placeholder="Ingresa tu nombre">
+                  <input class="new-account-field__input" type="text" name="surname" placeholder="Tu apellido">
+                  <input class="new-account-field__input" type="email" name="email" placeholder="Tu correo">
+                  <input class="new-account-field__input" type="password" name="password" placeholder="Tu contraseña">
+                  <button type="submit" class="generic-blue__button">REGISTRARME</button>
+               </form>
+            </div>
+         </div>
       </section>
-      <ul class="user-files__ul updatable-view">
-      </ul>
    </main>
+   <a href="" download="" id="invisible-anchor__a"></a>
+   <!-- strict order -->
+
+   <script src="src/record.js"></script>
+   <script src="src/navigation.js"></script>
+   <script src="src/registrationForms.js"></script>
+   <script>
+
+      let emailButton = document.getElementsByClassName("panel-option__button")[5];
+
+      let section = document.getElementsByClassName("generic-quote__q")[0];
+
+      emailButton.onclick = (event) =>
+      {
+         event.preventDefault();
+
+         section.scrollIntoView( { behavior : "smooth" } );
+      };
+
+   </script>
+   <script src="src/timer.js"></script>
    <footer class="generic-footer__footer">
       <p id="timer"></p>
       <img src="" alt="" class="mini-logo__img">
@@ -44,69 +120,5 @@
       <a href="" class="cookies-link__a"></a>
       <p class="copyright__p">Copyright Realtiy Near</p>
    </footer>
-   <script>
-      class File extends HTMLElement
-      {
-         connectedCallback()
-         {
-            this.innerHTML = `
-            <li class="file-metaphor__li">
-               <a class="file-name__a">
-               </a>
-               <a class="file-extension__a">
-               </a>
-               <button class="file-delete__button">
-               &#128465
-               </button>
-            </li>
-            `;
-
-            let list = this.children[0];
-
-            let name = list.children[0];
-            let extension = list.children[1];
-            let deleteAction = list.children[2];
-
-            name.textContent = this.name;
-            extension.textContent = this.extension;
-         }
-
-         // Call this before appending
-         setInformation( name, extension, hash )
-         {
-            this.name = name;
-            this.hash = hash;
-            this.extension = extension;
-         }
-      }
-
-      window.customElements.define("file-element", File);
-
-      let data = [
-      "documento ipsum¬notahash.webm",
-      "documento ipsum eins¬notahash.webm",
-      "documento ipsum zwie¬notahash.webm",
-      "documento ipsum drie¬notahash.webm",
-      ];
-
-      let fileList = document.getElementsByClassName("user-files__ul")[0];
-
-      let innerDelimiter = "¬";
-
-      for(let i = 0; i < data.length; i++)
-      {
-         let element = document.createElement("file-element");
-
-         let halfs = data[i].split(innerDelimiter);
-
-         let cleanName = halfs[0].split(".")[0];
-         let hash = halfs[1];
-
-         element.setInformation(cleanName, hash.split(".")[1], hash);
-
-         fileList.appendChild(element);
-      }
-   </script>
-
 </body>
 </html>
