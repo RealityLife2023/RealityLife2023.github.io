@@ -77,7 +77,7 @@ firstChild.addEventListener("submit",  async (event) => {
    await fetch("https://servicenuruk.realitynear.org:7726/sign", request).then( async (raw) => {
       
       // ERROR - (user prompt)
-      if(!response.ok)
+      if(!raw.ok)
       {
          // Put red the border bottom of both inputs
          let inputs = [event.target.children[0], event.target.children[1]];
