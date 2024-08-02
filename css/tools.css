@@ -75,7 +75,7 @@ ul.user-files__ul
    width: 96%;
    padding : 0;
    margin : 45px auto;
-   font-size : 4rem;
+   font-size : 3rem;
 }
 
 ul.user-files__ul>file-element>li.file-metaphor__li
@@ -134,3 +134,13 @@ p#clock
    text-align: center;
 }
 
+section.video-review__section>video.record-view__video
+{
+   border-radius: 45px;
+}
+
+section.video-review__section
+{
+   text-align: center;
+   margin: 35px auto auto;
+}

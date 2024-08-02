@@ -74,27 +74,29 @@ firstChild.addEventListener("submit",  async (event) => {
 
    div.classList.add("prompt");
 
-   await fetch("https://servicenuruk.realitynear.org:7726/sign", request).then( async (raw) => raw.json()).then(async (response) =>
+   await fetch("https://servicenuruk.realitynear.org:7726/sign", request).then( async (raw) => {
+      
+      // ERROR - (user prompt)
+      if(!response.ok)
+      {
+         // Put red the border bottom of both inputs
+         let inputs = [event.target.children[0], event.target.children[1]];
+
+         inputs.forEach( element => { element.style.borderBottom = "2px solid var(--red-warn)";} );
+         inputs.forEach( element => { element.onclick = (event) => { event.target.style.borderColor = "2px solid var(--deep-blue)"; }});
+
+         div.textContent = "Puede que tengas un errorsito, puedes contactar a soporte si es necesario";
+
+         event.target.appendChild(div);
+
+         throw new Error("Something went wrong");
+      }
+
+      return raw.json();
+
+   }).then(async (response) =>
       {
          token = response.token;
-
-         /*
-         // ERROR (user prompt)
-         if(!response.ok)
-         {
-            // Put red the border bottom of both inputs
-            let inputs = [event.target.children[0], event.target.children[1]];
-
-            inputs.forEach( element => { element.style.borderBottom = "2px solid var(--red-warn)";} );
-            inputs.forEach( element => { element.onclick = (event) => { event.target.style.borderColor = "2px solid var(--deep-blue)"; }});
-
-            div.textContent = "Uy, puede que tengas un errorsito, puedes contactar a soporte si es necesario";
-
-            event.target.appendChild(div);
-            
-            throw new Error("Something went wrong");
-         }
-         */
 
          div.textContent = "Disfruta tu tiempo aquí";
 
@@ -136,8 +138,7 @@ secondChild.addEventListener("submit",  async (event) => {
 
    await fetch("https://servicenuruk.realitynear.org:7726/signup", request).then( async (response) =>
       {
-
-         // ERROR (user prompt)
+         // ERROR - (user prompt)
          if(!response.ok)
          {
             div.textContent = "Algo falló, vuelve a intentar y si no funciona contacta a soporte";
@@ -147,6 +148,8 @@ secondChild.addEventListener("submit",  async (event) => {
             throw new Error("Something went wrong");
          }
 
+         // Clean the fields
+
          div.textContent = "¡Has quedado registrado! Te invitamos a que ingreses con email";
 
          event.target.appendChild(div);
@@ -154,4 +157,3 @@ secondChild.addEventListener("submit",  async (event) => {
          await setTimeout(loadDashboard, 2000);
    });
 });
-

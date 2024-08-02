@@ -281,6 +281,11 @@
       padding:0;
    }
 
+   ul.user-files__ul
+   {
+      font-size: 4rem;
+   }
+
 
    ul.record-types__ul>li.record-type__li>button.generic-blue__button
    {

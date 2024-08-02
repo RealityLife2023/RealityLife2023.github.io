@@ -49,8 +49,8 @@ class VideoRecord extends HTMLElement
 
       let metadata = {
 
-         // Sanitize the name
-         name : `${this.fileName.value}.webm`,
+         // Sanitize the name and does not go with extension
+         name : `${this.fileName.value}`,
          mimetype : "video/webm",
          extension : "webm",
          // Take the date in ISO 8601 with the local time
@@ -128,7 +128,6 @@ class VideoRecord extends HTMLElement
     */
    async recordVideo()
    {
-
       if(this.fileName === "" || this.fileName.length < 2)
       {
          this.teller.textContent = "El nombre del archivo no es válido";
