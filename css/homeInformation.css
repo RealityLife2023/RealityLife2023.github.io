@@ -10,14 +10,14 @@ aside.home-left__aside
    color       : var(--aqua);
    font-family : "Poppins-Bold";
    font-size   : 1.8rem;
-   text-align  : center;
+   text-align  : left;
 }
 
 aside.home-right__aside
 {
    float : right;
    max-width   : 50%;
-   padding-right : 10px;
+   padding-right : 40px;
    color       : var(--default);
    font-family : "Poppins-Regular";
    font-size   : 2.2rem;
