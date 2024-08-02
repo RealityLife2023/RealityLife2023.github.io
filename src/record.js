@@ -66,12 +66,13 @@ async function recordVideo( event )
    // Wait 2 seconds
    tool.teller.textContent = "Grabando";
 
-   tool.videoScreen.srcObject = stream;
-
    let stream = await resolveMedia();
    tool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm"});
 
+
    tool.mediaRecorder.addEventListener("dataavailable", ( event ) => {tool.video = event});
+
+   tool.videoScreen.srcObject = stream;
 
    // Start the recording
    try
