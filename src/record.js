@@ -52,7 +52,7 @@ async function recordVideo( event )
 {
    event.preventDefault();
 
-   if(tool.fileName === "" || tool.fileName.length < 2)
+   if(tool.fileName.value === "" || tool.fileName.length < 2)
    {
       tool.teller.textContent = "El nombre del archivo no es válido";
       return;
@@ -128,6 +128,8 @@ async function saveToRemoteDisk( event )
 {
    event.preventDefault();
 
+   tool.submitButton.disabled = true;
+
    let blob = new Blob([tool.video.data], { type : "video/webm" });
 
    let date = new Date();
@@ -167,9 +169,17 @@ async function saveToRemoteDisk( event )
       };
 
    await fetch(params.url, request).then( (response) => {
+
       // Debug the result
+      console.log("========= DEBUG ========");
       console.debug(response);
-      tool.teller.textContent = "Video subido con exito";
+
+      tool.teller.textContent = "Video subido con éxito";
+
+      tool.recordButton.disabled = false;
+
+      tool.stopButton.disabled = true;
+      tool.submitButton.disabled = true;
 
       dashboard.refresh();
 
