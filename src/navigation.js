@@ -113,6 +113,7 @@ class Dashboard extends HTMLElement
             <button class="record-type__button generic-blue__button">Texto</button>
          </li>
       </ul>
+      <section class="section-general-tool__container"></section>
       <ul class="user-files__ul updatable-view"></ul>
       `;
 
@@ -132,7 +133,7 @@ class Dashboard extends HTMLElement
          // Instantiate the video-record
          let videoRecord = new VideoRecord();
 
-         main.appendChild(videoRecord);
+         this.children[2].appendChild(videoRecord);
       };
 
       audioActioner.onclick = async (event) =>
