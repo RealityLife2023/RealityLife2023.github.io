@@ -23,11 +23,10 @@ class VideoRecord extends HTMLElement
       this.teller = this.children[3];
       this.fileName = this.children[0];
 
-      this.videoScreen = this.children[1][0];
-      this.recordButton = this.children[2][0];
-      this.stopButton = this.children[2][1];
-      this.submitButton = this.children[2][2];
-
+      this.videoScreen = this.children[1].children[0];
+      this.recordButton = this.children[2].children[0];
+      this.stopButton = this.children[2].children[1];
+      this.submitButton = this.children[2].children[2];
 
       /* Settings for the elements */
 
