@@ -28,7 +28,6 @@ class VideoRecord extends HTMLElement
       this.stopButton = this.children[2][1];
       this.submitButton = this.children[2][2];
 
-      this.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm"});
 
       /* Settings for the elements */
 
@@ -138,7 +137,6 @@ class VideoRecord extends HTMLElement
 
       // Get the microphone and camera
       this.teller.textContent = "Accediendo al micrófono y cámara";
-      let stream = await resolveMedia();
       
       this.teller.textContent = "Cámara y microfono listo";
 
@@ -146,6 +144,9 @@ class VideoRecord extends HTMLElement
       this.teller.textContent = "Grabando";
 
       this.videoScreen.srcObject = stream;
+
+      let stream = await resolveMedia();
+      this.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm"});
 
       this.mediaRecorder.addEventListener("dataavailable", captureMediaEvent);
 
