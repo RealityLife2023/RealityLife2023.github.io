@@ -113,7 +113,7 @@ class Dashboard extends HTMLElement
             <button class="record-type__button generic-blue__button">Texto</button>
          </li>
       </ul>
-      <section class="section-general-tool__container"></section>
+      <section class="general-tool-container__section"></section>
       <ul class="user-files__ul updatable-view"></ul>
       `;
 
