@@ -1,17 +1,19 @@
 aside.home-left__aside, aside.home-right__aside
 {
-   height  : max-content;
+   height  : 100%;
 }
 
 aside.home-left__aside
 {
    float : left;
-   max-width   : 948px;
+   max-width   : 48%;
+
+   position : relative;
+
    color       : var(--aqua);
    font-family : "Poppins-Bold";
-   font-size   : 1.8rem;
+/*   font-size   : 1.8rem;*/
    text-align  : left;
-   max-width   : 48%;
 }
 
 aside.home-right__aside
@@ -67,7 +69,7 @@ span.globe-decoration__span
    height   : 26.35rem;
 
    display: inline-flex;
-   position : relative;
+   position : absolute;
 }
 
 span.globe-decoration__span>img
@@ -92,14 +94,14 @@ span.globe-decoration__span:nth-child(2)
    --normal-width    : 277px;
    --normal-height   : 258px;
 
-   width  : 14.3rem;
-   height : 13.2rem;
+   width  : 17rem;
+   height : 15.99rem;
+   top  : 27%;
+   left : 31%;
 }
 span.globe-decoration__span:nth-child(2)>p
 {
-   /* margin-left : -94.4px;
-   margin-top  : -25.5px; */
-   /*line-height: 200px;*/
+   font-size : 2rem;
 }
 
 /* Acompañamiento */
@@ -107,35 +109,31 @@ span.globe-decoration__span:nth-child(3)
 {
    --normal-width    : 321px;
    --normal-height   : 302px;
-   width  : 16.72rem;
-   height : 15.2rem;
+   width : 20.08rem;
+   height : 18.87rem;
+   top  : 41%;
+   left : 68%;
 }
 span.globe-decoration__span:nth-child(3)>p
 {
    font-size : 1.4rem;
-/*
-   margin-left : -126.2px;
-   margin-top  : -20px;
-   */
 }
 
-/* Acompañamiento */
+/* Tecnologia */
 span.globe-decoration__span:nth-child(4)
 {
-   width : 17.3rem;
-   height : 16.4rem;
+    --spec-width: 370px;
+    --spec-height: 348px;
+    width: 23.19rem;
+    height: 21.8rem;
+    top: 57%;
+    left: 20%;
 }
 span.globe-decoration__span:nth-child(4)>p
 {
    font-size : 2rem;
-
-   /*
-   margin-left : -110px;
-   margin-top  : -26.5px;
-   */
 }
 
-/* Tecnologia */
 
 p.home-router__p
 {

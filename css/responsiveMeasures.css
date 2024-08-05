@@ -217,9 +217,21 @@
    aside.home-left__aside
    {
       position: absolute;
-      top: 45%;
-      left: 14%;
-      width: 50rem;
+      top: 42%;
+      left: 10%;
+      width: 100%;
+      max-width : none;
+      height : auto;
+   }
+
+   span.globe-decoration__span:nth-child(2),
+   span.globe-decoration__span:nth-child(3),
+   span.globe-decoration__span:nth-child(4),
+   span.globe-decoration__span
+   {
+      position : relative;
+      top : auto;
+      left : auto;
    }
 
 
