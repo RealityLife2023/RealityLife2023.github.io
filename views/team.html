@@ -5,7 +5,6 @@
    <link rel="stylesheet" href="../css/home.css">
    <link rel="stylesheet" href="../css/forms.css">
    <link rel="stylesheet" href="../css/footer.css">
-   <link rel="stylesheet" href="../css/videoRecord.css">
    <link rel="stylesheet" href="../css/homeInformation.css">
    <link rel="stylesheet" href="../css/aboutUs.css">
    <meta charset="UTF-8">
@@ -55,4 +54,17 @@ Si bien Javier es desarrollador, necesitaba un socio que fuese CTO, y por eso de
 
 Reality Life nace después de una historia real. Javier recuerda con mucho amor a su abuela, quien le preparaba unos postres increíbles desde que era pequeños. A su abuela le diagnosticaron alzheimer cuando él era muy chico y vivía con el miedo de que esta no lo reconociera al pasar del tiempo. Es cuando Javier tiene hijos que se da cuenta de la importancia de preservar nuestro legado, nuestra personalidad y comportamiento, y que sea compartido con nuestras generaciones futuras, para que siempre reciban nuestros consejos y compañía cuando más lo necesitan.</p>
    </main>
+   <script>
+      let url = "https://realitylife2023.github.io/#slider-show";
+
+      let signButton = document.getElementsByClassName("generic-blue__button")[0];
+
+      signButton.onclick = ( event ) =>
+      {
+         event.preventDefault();
+
+         window.location.replace(url);
+      };
+   </script>
 </body>
+</html>

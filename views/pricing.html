@@ -4,7 +4,6 @@
    <link rel="stylesheet" href="../css/home.css">
    <link rel="stylesheet" href="../css/forms.css">
    <link rel="stylesheet" href="../css/footer.css">
-   <link rel="stylesheet" href="../css/videoRecord.css">
    <link rel="stylesheet" href="../css/homeInformation.css">
    <link rel="stylesheet" href="../css/aboutUs.css">
 
@@ -65,6 +64,19 @@
          <button class="product-action__button">COMPRAR PLAN</button>
       </span>
    </main>
+   <script>
+      let url = "https://realitylife2023.github.io/#slider-show";
+
+      let signButton = document.getElementsByClassName("generic-blue__button")[0];
+
+      signButton.onclick = ( event ) =>
+      {
+         event.preventDefault();
+
+         window.location.replace(url);
+      };
+   </script>
+
    <footer class="generic-footer__footer">
       <img src="" alt="" class="mini-logo__img">
       <q class="brand-quote__q mini-quote">Keep your memories and knowledge always alive</q>

@@ -5,7 +5,6 @@
    <link rel="stylesheet" href="../css/home.css">
    <link rel="stylesheet" href="../css/forms.css">
    <link rel="stylesheet" href="../css/footer.css">
-   <link rel="stylesheet" href="../css/videoRecord.css">
    <link rel="stylesheet" href="../css/homeInformation.css">
    <link rel="stylesheet" href="../css/aboutUs.css">
 
@@ -21,7 +20,7 @@
       <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/pricing.html">PLANES</a></button>
       <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/demo.html">DEMO</a></button>
       <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/contact.html">CONTACTO</a></button>
- <button type="button" href="#slider-show" class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
+      <button type="button" class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
       <button class="panel-option__button language-button"><img src="../static/language-icon.png" alt="Select language">Español</button>
    </nav>
    <main class="information__main">
@@ -41,6 +40,18 @@
          <button class="call-to-action__button generic-blue__button">COMIENZA AHORA</button>
       </article>
    </main>
+   <script>
+      let url = "https://realitylife2023.github.io/#slider-show";
+
+      let signButton = document.getElementsByClassName("generic-blue__button")[0];
+
+      signButton.onclick = ( event ) =>
+      {
+         event.preventDefault();
+
+         window.location.replace(url);
+      };
+   </script>
    <footer class="generic-footer__footer">
       <img src="" alt="" class="mini-logo__img">
       <q class="brand-quote__q mini-quote">Keep your memories and knowledge always alive</q>
