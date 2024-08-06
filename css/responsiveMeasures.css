@@ -23,6 +23,14 @@
       font-size : 3.2rem;
    }
 
+   form.sign-account__form>input.new-account-field__input:nth-child(1),
+   form.sign-account__form>input:nth-child(1),
+   form.sign-account__form>input.new-account-field__input:nth-child(4)
+   {
+      border-radius: 0;
+      margin : 0.25rem 0;
+   }
+
    form.sign-account__form>input
    {
       width : 47rem;
@@ -112,15 +120,12 @@
    {
       quotes: none;
       margin: auto;
-      margin-top: 4.5rem;
-      margin-bottom: 4.5rem;
-      /* max-width: 35.4rem; */
+      margin-top: 8.5rem;
+      margin-bottom: 8.5rem;
       display: block;
-      color: var(--aqua);
-      text-align: center;
-      font-family: "Poppins-Bold";
       font-size: 4.8rem;
-      width: 82%;
+      width: 82.78%;
+      max-width : none;
    }
 
    div.sign-options__div>p
@@ -213,25 +218,21 @@
       height: 11.25rem;
    }
 
+   aside.home-left__aside>span.globe-decoration__span
+   {
+      position : relative;
+      top : 0;
+      left : 0;
+   }
 
    aside.home-left__aside
    {
       position: absolute;
-      top: 42%;
-      left: 10%;
+      top: 45%;
+      left: 7%;
       width: 100%;
-      max-width : none;
       height : auto;
-   }
-
-   span.globe-decoration__span:nth-child(2),
-   span.globe-decoration__span:nth-child(3),
-   span.globe-decoration__span:nth-child(4),
-   span.globe-decoration__span
-   {
-      position : relative;
-      top : auto;
-      left : auto;
+      max-width : none;
    }
 
 
@@ -271,6 +272,8 @@
    article.home__article
    {
       position : relative;
+      height : max-content;
+      margin : 1rem 0 9rem 0;
    }
 
    header.brand-band__header

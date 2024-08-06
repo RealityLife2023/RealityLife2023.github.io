@@ -138,6 +138,7 @@ div.sign-options__div>p.sign-call__p>a
    font-family : "Poppins-Bold";
    cursor : pointer;
    text-decoration : underline;
+   animation : gelatine 0.5s infinite;
 }
 
 div.sign-options__div>p.sign-call__p
@@ -169,6 +170,12 @@ li.sign-option__li>button.generic-white__button
 {
    margin  : 9px 0 9px 0;
    width   : 480px;
+}
+
+li.sign-option__li>button.generic-white__button:hover
+{
+   background-color : var(--blue-prompt);
+   color : var(--default);
 }
 
 ul.sign-options__ul>li.sign-option__li
@@ -386,4 +393,14 @@ button.generic-blue__button:hover
 {
    background-color : var(--grey);
    color            : var(--white);
+}
+
+/* Animations */
+
+@keyframes gelatine 
+{
+   from, to { transform : scale(1,1);}
+   25% { transform : scale(0.9, 1.1);}
+   50% { transform : scale(1.1, 0.9);}
+   75% { transform : scale(0.95, 1.05);}
 }
