@@ -1,3 +1,45 @@
+
+@font-face
+{
+   font-family : "BuiltinSymbols";
+   src : url("../static/fonts/icons.eot");
+   src: url("../static/fonts/icons.eot?#iefix") format('embedded-opentype'), url("../static/fonts/icons.woff2") format('woff2'), url("../static/fonts/icons.woff") format('woff'), url("../static/fonts/icons.ttf") format('truetype'), url("../static/fonts/icons.svg#icons") format('svg');
+
+   font-style : normal;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-transform: none;
+}
+
+i.symbol
+{
+   display: inline;
+   opacity : 1;
+   text-align:center;
+   speak : none;
+
+   font-family : "BuiltinSymbols";
+   font-style : normal;
+   text-decoration : none;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing : antialiased;
+
+}
+
+i.symbol:before
+{
+   background : none;
+}
+
+
+i.symbol.play:before {
+  content: "\f04b";
+}
+
+i.symbol.stop:before {
+  content: "\f04d";
+}
+
 video-record
 {
    text-align : center;
@@ -151,34 +193,27 @@ audio-tool
 {
    display : block;
    margin : auto;
-
-   height : 8rem;
+   height : max-content;
    width 34%;
-
    overflow : hidden;
-
-   text-align: left;
+   text-align: center;
    position : relative;
 }
 
-audio-tool>button.audio-record__button
+audio-tool>button
 {
-   border-radius : 90px;
-   width : 4rem;
+   width : 4.45rem;
    font-size : 2.3rem;
-   height : 1.87rem;
-   content : "&#9654;";
+   height : 4.45rem;
+   padding : 12px 8px;
+
+   border-radius : 50%;
+   border: none;
+   text-align: center;
 }
 
-audio-tool>button.audio-stop__button
-{
-   border-radius : 90px;
-   width : 4rem;
-   font-size : 2.3rem;
-   content : "&#9208;";
-}
 
-audio-tool>div.time-bar__div
+div.bar-container__div
 {
    border-radius : 75px;
    background-color : var(--grey);
@@ -187,23 +222,31 @@ audio-tool>div.time-bar__div
    top : 0;
 }
 
-audio-tool>div.time-bar__div#unfulfilled
+div.time-bar__div>div.bar-container__div#unfulfilled
 {
    left : -100%;
    transition : 2s;
 }
 
-audio-tool>div.time-bar__div#fulfilled
+div.time-bar__div>div.bar-container__div#fulfilled
 {
    left : 30%;
    transition : 1.5s;
 }
 
-audio-tool>div.time-bar__div>audio.audio-output__audio
+div.bar-container__div>audio.audio-output__audio
 {
    font-size : 1.45rem;
    color : var(--default);
 }
 
 
+div.time-bar__div
+{
+   margin : auto;
+   width : 20%;
+   height : 12rem;
+   position : relative;
+   overflow : hidden;
+}
 

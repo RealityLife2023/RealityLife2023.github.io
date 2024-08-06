@@ -15,12 +15,14 @@ class AudioTool extends HTMLElement
    {
       this.innerHTML = `
 
-      <button class="audio-record__button"></button>
-      <button class="audio-stop__button"></button>
+      <button class="audio-record__button"><i class="symbol play"></i></button>
+      <button class="audio-stop__button"><i class="symbol stop"></i></button>
       <p id="clock"> 0:00</p>
 
       <div class="time-bar__div"> 
-         <audio class="audio-output__audio" controls>
+         <div class="bar-container__div">
+            <audio class="audio-output__audio" controls>
+         </div>
       </div>
 
       <p id="teller"></p>
@@ -32,7 +34,7 @@ class AudioTool extends HTMLElement
       this.timer = this.children[2];
       this.teller = this.children[4];
 
-      this.audioOutput = this.children[3].children[0];
+      this.audioOutput = this.children[3].children[0].children[0];
 
       this.recordButton.onclick = recordAudio;
       this.stopButton.onclick = storeAudioRecord;
