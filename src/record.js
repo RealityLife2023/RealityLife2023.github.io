@@ -70,7 +70,7 @@ async function recordVideo( event )
    tool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm"});
 
 
-   tool.mediaRecorder.addEventListener("dataavailable", ( event ) => {tool.video = event});
+   tool.mediaRecorder.addEventListener("dataavailable", ( event ) => {tool.video = event.data});
 
    tool.videoScreen.srcObject = stream;
 
