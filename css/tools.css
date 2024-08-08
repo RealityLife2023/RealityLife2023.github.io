@@ -40,6 +40,10 @@ i.symbol.stop:before {
   content: "\f04d";
 }
 
+i.symbol.upload:before {
+  content: "\f093";
+}
+
 video-record
 {
    text-align : center;
@@ -211,6 +215,17 @@ audio-tool>button
    border: none;
    text-align: center;
 }
+
+audio-tool>button>i.symbol
+{
+   cursor : pointer;
+}
+
+audio-tool>button:disabled>i.symbol
+{
+   cursor : default;
+}
+
 
 
 div.bar-container__div

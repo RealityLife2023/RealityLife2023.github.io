@@ -17,6 +17,7 @@ class AudioTool extends HTMLElement
 
       <button class="audio-record__button"><i class="symbol play"></i></button>
       <button class="audio-stop__button"><i class="symbol stop"></i></button>
+      <button class="audio-upload__button"><i class="symbol upload"></i></button>
       <p id="clock"> 0:00</p>
 
       <div class="time-bar__div"> 
@@ -31,15 +32,17 @@ class AudioTool extends HTMLElement
 
       this.recordButton = this.children[0];
       this.stopButton = this.children[1];
-      this.timer = this.children[2];
-      this.teller = this.children[4];
+      this.uploadButton = this.children[2];
+      this.timer = this.children[3];
+      this.teller = this.children[5];
 
-      this.audioOutput = this.children[3].children[0].children[0];
+      this.audioOutput = this.children[4].children[0].children[0];
 
       this.recordButton.onclick = recordAudio;
       this.stopButton.onclick = storeAudioRecord;
 
       this.stopButton.disabled = true;
+      this.uploadButton.disabled = true;
 
       this.recordPool = [];
       this.dataPool = [];
