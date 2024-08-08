@@ -64,7 +64,7 @@ async function getRecordData( event )
 {
    event.preventDefault();
 
-   audioTool.stopbutton.disabled = true;
+   audioTool.stopButton.disabled = true;
 
    let blob = new Blob([event.data], { type : audioTool.currentMediaRecorder.mimeType });
    saveAudioToRemoteDisk.blob  = blob;
