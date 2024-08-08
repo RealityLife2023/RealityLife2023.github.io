@@ -319,16 +319,15 @@ function loadDashboard()
    let innerDashboard = new Dashboard();
    dashboard = innerDashboard;
 
+   main.appendChild(innerDashboard);
+
    let textActioner = dashboard.actioners[2];
    let videoActioner = dashboard.actioners[1];
    let audioActioner = dashboard.actioners[0];
 
-
    textActioner.onclick = changeTool;
    videoActioner.onclick = changeTool;
    audioActioner.onclick = changeTool;
-
-   main.appendChild(innerDashboard);
 }
 
 /**
