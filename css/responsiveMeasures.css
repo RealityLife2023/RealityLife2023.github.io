@@ -319,4 +319,21 @@
       font-size : 3.5rem;
 
    }
+
+   .audio-stop__button, 
+   .audio-record__button,
+   .audio-upload__button
+   {
+      height : max-content;
+   }
+
+   p#clock
+   {
+      font-size : 4.35rem;
+   }
+
+   div.time-bar__div
+   {
+      width : 70vw;
+   }
 }

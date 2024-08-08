@@ -212,7 +212,7 @@ function saveToDisk( event )
 /*
  * Elements that will serve as tools to record the video
  */
-class VideoRecord extends HTMLElement
+class VideoTool extends HTMLElement
 {
    // TODO => avoid innerHTML
    connectedCallback()
@@ -224,9 +224,9 @@ class VideoRecord extends HTMLElement
             <p id="clock">0:00</p>
          </div>
          <div class="video-record-actions__div">
-            <button class="video-record__button generic-blue__button">Grabar</button>
-            <button class="stop-record__button generic-blue__button ">Parar</button>
-            <button class="generic-blue__button ">Subir</button>
+            <button class="video-record__button generic-blue__button"><i class="symbol play"></i></button>
+            <button class="stop-record__button generic-blue__button "><i class="symbol stop"></i></button>
+            <button class="generic-blue__button "><i class="symbol upload"></i></button>
          </div>
          <p id="teller__p"></p>
       `;
@@ -251,5 +251,5 @@ class VideoRecord extends HTMLElement
 }
 
 // Define the custom element right here!
-window.customElements.define("video-record", VideoRecord);
+window.customElements.define("video-tool", VideoTool);
 

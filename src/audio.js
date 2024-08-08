@@ -15,9 +15,10 @@ class AudioTool extends HTMLElement
    {
       this.innerHTML = `
 
-      <button class="audio-record__button"><i class="symbol play"></i></button>
-      <button class="audio-stop__button"><i class="symbol stop"></i></button>
-      <button class="audio-upload__button"><i class="symbol upload"></i></button>
+      <input type="text" placeholder="Nombre del archivo" class="file-name__input">
+      <button class="audio-record__button generic-blue__button"><i class="symbol play"></i></button>
+      <button class="audio-stop__button generic-blue__button"><i class="symbol stop"></i></button>
+      <button class="audio-upload__button generic-blue__button"><i class="symbol upload"></i></button>
       <p id="clock"> 0:00</p>
 
       <div class="time-bar__div"> 
@@ -30,13 +31,13 @@ class AudioTool extends HTMLElement
 
       `;
 
-      this.recordButton = this.children[0];
-      this.stopButton = this.children[1];
-      this.uploadButton = this.children[2];
-      this.timer = this.children[3];
-      this.teller = this.children[5];
+      this.recordButton = this.children[1];
+      this.stopButton = this.children[2];
+      this.uploadButton = this.children[3];
+      this.timer = this.children[4];
+      this.teller = this.children[6];
 
-      this.audioOutput = this.children[4].children[0].children[0];
+      this.audioOutput = this.children[5].children[0].children[0];
 
       this.recordButton.onclick = recordAudio;
       this.stopButton.onclick = storeAudioRecord;
@@ -50,7 +51,7 @@ class AudioTool extends HTMLElement
 
    movePlayer()
    {
-      this.children[3].setAttribute("id", "fulfilled");
+      this.children[5].children[0].setAttribute("id", "fulfilled");
    }
 }
 

@@ -1,3 +1,42 @@
+/**
+ * Step 1 : Disable only the clicked button
+ * Step 1.5 (Global) : Clean the html
+ * Step 2 : Summon the tool
+*/ 
+function changeTool( event )
+{
+   event.preventDefault();
+
+   let target = undefined; // Pointer to the button
+
+   for(let i = 0; i < dashboard.actioners.length; i++)
+   {
+      dashboard.actioners[i].disabled = dashboard.actioners[i] === event.target;
+
+      if(dashboard.actioners[i] === event.target)
+      {
+         target = event.target;
+      }
+   }
+
+   // ERROR => Do not do nothing to avoid any side-channel information leak
+   if(target === undefined)
+   {
+      return undefined;
+   }
+
+   //dashboard.container.children[0].classList.add("outing-tool");
+
+   let tool = target.summonTool(); // Get the global instance of the tool or create one
+
+   // Wait to callback
+   dashboard.container.replaceChildren();
+
+
+   //tool.classList.add("entring-tool");
+
+   dashboard.container.appendChild(tool);
+}
 
 class File extends HTMLElement
 {
@@ -92,7 +131,6 @@ class File extends HTMLElement
       return JSON.stringify(scheme);
    }
 }
-
 window.customElements.define("file-element", File);
 
 // record.js have to be appended first
@@ -121,32 +159,20 @@ class Dashboard extends HTMLElement
       `;
 
 
-      let actioners = document.getElementsByClassName("record-type__button");
+      this.actioners = document.getElementsByClassName("record-type__button");
+      this.container = this.children[2];
 
-      let textActioner = actioners[2];
-      let videoActioner = actioners[1];
-      let audioActioner = actioners[0];
+      let textActioner = this.actioners[2];
+      let videoActioner = this.actioners[1];
+      let audioActioner = this.actioners[0];
 
-      videoActioner.onclick = async (event) => 
-      {
-         event.preventDefault();
+      // Format for the buttons
+      let button = { summonTool : undefined };
 
-         event.target.setAttribute("disabled", "");
+      textActioner.summonTool = summonText;
+      videoActioner.summonTool = summonVideo;
+      audioActioner.summonTool = summonAudio;
 
-         // Instantiate the video-record
-         let videoRecord = new VideoRecord();
-
-         this.children[2].appendChild(videoRecord);
-      };
-
-      audioActioner.onclick = async (event) =>
-      {
-      };
-
-      textActioner.onclick = async (event) =>
-      {
-         
-      };
 
       this.refreshFiles();
 
@@ -271,6 +297,9 @@ window.customElements.define("dashboard-view", Dashboard);
 // Global access to the variable
 
 let dashboard;
+let audioTool;
+let videoTool;
+let textTool;
 
 /**
  * Removes the header and nav elements
@@ -288,8 +317,16 @@ function loadDashboard()
    main.replaceChildren();
 
    let innerDashboard = new Dashboard();
-
    dashboard = innerDashboard;
+
+   let textActioner = dashboard.actioners[2];
+   let videoActioner = dashboard.actioners[1];
+   let audioActioner = dashboard.actioners[0];
+
+
+   textActioner.onclick = changeTool;
+   videoActioner.onclick = changeTool;
+   audioActioner.onclick = changeTool;
 
    main.appendChild(innerDashboard);
 }
@@ -308,6 +345,65 @@ async function addSource( data )
 
    video.src = url;
 }
+
+
+function summonVideo()
+{
+   try 
+   {
+
+      if(videoTool === undefined)
+      {
+         videoTool= new VideoTool();
+      }
+
+   }
+   catch ( error )
+   {
+      return;
+   }
+
+   return videoTool;
+}
+
+
+function summonAudio()
+{
+   try 
+   {
+
+      if(audioTool === undefined)
+      {
+         audioTool = new AudioTool();
+      }
+
+   }
+   catch ( error )
+   {
+      return;
+   }
+
+   return audioTool;
+}
+
+
+function summonText()
+{
+   try 
+   {
+      if(textTool === undefined)
+      {
+         textTool = new TextTool();
+      }
+   }
+   catch ( error )
+   {
+      return;
+   }
+
+   return textTool;
+}
+
 
 
 async function testVideoFetch()
