@@ -115,7 +115,7 @@ async function saveAudioToRemoteDisk( event )
 
    Object.keys(params.fields).forEach( key => { body.append(key, params.fields[key]) });
 
-   body.append("file", blob);
+   body.append("file", saveAudioToRemoteDisk.blob);
 
    let request = 
       {
