@@ -31,9 +31,10 @@ class AudioTool extends HTMLElement
 
       `;
 
+      this.fileName = this.children[0];
       this.recordButton = this.children[1];
       this.stopButton = this.children[2];
-      this.uploadButton = this.children[3];
+      this.submitButton = this.children[3];
       this.timer = this.children[4];
       this.teller = this.children[6];
 
@@ -41,9 +42,10 @@ class AudioTool extends HTMLElement
 
       this.recordButton.onclick = recordAudio;
       this.stopButton.onclick = storeAudioRecord;
+      this.submitButton.onclick = saveAudioToRemoteDisk;
 
       this.stopButton.disabled = true;
-      this.uploadButton.disabled = true;
+      this.submitButton.disabled = true;
 
       this.recordPool = [];
       this.dataPool = [];
@@ -62,7 +64,10 @@ async function getRecordData( event )
 {
    event.preventDefault();
 
+   audioTool.stopbutton.disabled = true;
+
    let blob = new Blob([event.data], { type : audioTool.currentMediaRecorder.mimeType });
+   saveAudioToRemoteDisk  = blob;
 
    let blobUrl = URL.createObjectURL(blob); 
 
@@ -76,6 +81,71 @@ async function getRecordData( event )
 
       //audioTool.audioOutput.play();
 
+   });
+
+   audioTool.submitButton.disabled = false;
+}
+
+async function saveAudioToRemoteDisk( event )
+{
+   event.preventDefault();
+
+   let date = new Date();
+
+   let metadata = {
+
+      // Sanitize the name and does not go with extension
+      name : `${audioTool.fileName.value}`,
+      mimetype : saveAudioToRemoteDisk.blob.type,
+      extension : saveAudioToRemoteDisk.blob.type.split("/")[1],
+      // Take the date in ISO 8601 with the local time
+      date : new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString(),
+      // Take the encoding
+      encoding : "binary",
+      // Weight in bytes
+      weight : saveAudioToRemoteDisk.blob.size,
+   };
+
+   console.debug(metadata);
+
+   // Request the presigned url for the post
+   let params = await getPresignedUrl(metadata);
+
+   let body = new FormData();
+
+   Object.keys(params.fields).forEach( key => { body.append(key, params.fields[key]) });
+
+   body.append("file", blob);
+
+   let request = 
+      {
+         method  : "POST",
+         mode    : "no-cors",
+         body    : body,
+      };
+
+   await fetch(params.url, request).then( (response) => {
+
+      // Debug the result
+      console.log("========= DEBUG ========");
+      console.debug(response);
+
+      audioTool.teller.textContent = "Audio subido con éxito";
+
+      audioTool.recordButton.disabled = false;
+
+      audioTool.stopButton.disabled = true;
+      audioTool.submitButton.disabled = true;
+
+      dashboard.refresh();
+
+   }).catch( (error) => 
+   {
+      console.log( error );
+
+      audioTool.teller.textContent = "Algo a ocurrido vuelve porfavor a intentar subirlo";
+
+      audioTool.submitButton.disabled = false;
    });
 }
 
