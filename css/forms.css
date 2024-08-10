@@ -377,7 +377,7 @@ ul.record-types__ul>li.record-type__li
 button.generic-blue__button
 {
    padding : 9px 18px;
-   margin  : 40px 0 38px 0;
+   margin  : 40px auto 38px auto;
    width : max-content;
    border        : none;
    border-radius : 55px;
