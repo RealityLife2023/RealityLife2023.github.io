@@ -72,6 +72,7 @@ function loadDashboard()
    dashboard = innerDashboard;
 
    main.appendChild(innerDashboard);
+   document.body.appendChild(vWindow);
 
    let textActioner = dashboard.actioners[2];
    let videoActioner = dashboard.actioners[1];
@@ -200,3 +201,7 @@ emailButton.onclick = (event) =>
 
    section.scrollIntoView( { behavior : "smooth" } );
 };
+
+/* Plug the notification component */
+
+document.body.appendChild(notification);
