@@ -17,9 +17,6 @@ class Dashboard extends HTMLElement
       </ul>
       <section class="general-tool-container__section"></section>
       <ul class="user-files__ul updatable-view"></ul>
-      <section class="video-review__div">
-         <video class="record-view__video" id="video-test-output" controls>
-      </section>
       `;
 
       this.actioners = document.getElementsByClassName("record-type__button");
