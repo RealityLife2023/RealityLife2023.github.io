@@ -24,6 +24,7 @@ class Dashboard extends HTMLElement
 
       this.actioners = document.getElementsByClassName("record-type__button");
       this.container = this.children[2];
+      this.userFiles = this.children[3];
 
       let textActioner = this.actioners[2];
       let videoActioner = this.actioners[1];
@@ -33,10 +34,7 @@ class Dashboard extends HTMLElement
       videoActioner.summonTool = summonVideo;
       audioActioner.summonTool = summonAudio;
 
-
       this.refresh();
-
-      this.userFiles = this.children[3];
    }
 
    async refresh()
