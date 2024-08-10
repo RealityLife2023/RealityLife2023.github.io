@@ -63,7 +63,7 @@ function saveToDisk( event )
  * @param {Blob} extension
  * @return {Promise} fetch result
  */
-async function saveToRemoteDisk( name, mimetype, extension = "webm", type, blob)
+async function saveToRemoteDisk( name, mimetype, type, blob, extension = "webm" )
 {
 
    let date = new Date();

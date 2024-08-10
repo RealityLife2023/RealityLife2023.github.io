@@ -150,14 +150,14 @@ async function submitVideoFile( event )
    event.preventDefault();
 
    // ERROR => Record not saved
-   if(videoTool.lastRecord === undefined)
+   if(videoTool.lastVideo === undefined)
    {
 
    }
 
    videoTool.submitButton.disabled = true;
 
-   await saveToRemoteDisk(videoTool.lastVideo);
+   await saveToRemoteDisk(videoTool.lastVideo.name, videoTool.lastVideo.mimeType, videoTool.lastVideo.type, videoTool.lastVideo.blob);
 
    await dashboard.refresh();
 

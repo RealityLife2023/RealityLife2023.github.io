@@ -51,6 +51,11 @@ i.symbol.file-a:before
    content: "\f1c7";
 }
 
+i.symbol.file-v:before
+{
+   content: "\f1c8";
+}
+
 i.symbol.file-i:before
 {
    content: "\f1c5";

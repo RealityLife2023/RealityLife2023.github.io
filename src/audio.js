@@ -153,7 +153,7 @@ async function submitAudioFile( event )
 
    audioTool.submitButton.disabled = true;
 
-   await saveToRemoteDisk(audioTool.lastRecord);
+   await saveToRemoteDisk(audioTool.lastRecord.name, audioTool.lastRecord.mimeType, audioTool.lastRecord.type, audioTool.lastRecord.blob);
 
    await dashboard.refresh();
 
