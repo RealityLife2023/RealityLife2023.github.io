@@ -14,7 +14,6 @@ let firstChild = document.getElementById("open-sign-form");
 let secondChild = document.getElementById("open-signup-form");
 
 // Trigger for events
-
 let anchor = document.getElementById("slider-trigger-forward");
 
 let button = document.getElementById("slider-trigger-backward");
@@ -34,11 +33,11 @@ button.onclick = (event) =>
    selectForm( firstChild, secondChild );
 };
 
+/**
 console.log("------ DEBUGGING FORMS ------");
-
 console.log(firstChild);
 console.log(secondChild);
-
+**/
 
 if( !firstChild || !secondChild)
 {
@@ -59,7 +58,6 @@ firstChild.addEventListener("submit",  async (event) => {
    for(const [key,value] of formattedData.entries())
       structure[key] = value;
 
-
    let body = JSON.stringify(structure);
 
    let request = {
@@ -70,13 +68,9 @@ firstChild.addEventListener("submit",  async (event) => {
       body    : body,
    };
 
-   let div = document.createElement("div");
-
-   div.classList.add("prompt");
-
    await fetch("https://servicenuruk.realitynear.org:7726/sign", request).then( async (raw) => {
       
-      // ERROR - (user prompt)
+      // ERROR => It is necessary to check the request
       if(!raw.ok)
       {
          // Put red the border bottom of both inputs
@@ -85,11 +79,9 @@ firstChild.addEventListener("submit",  async (event) => {
          inputs.forEach( element => { element.style.borderBottom = "2px solid var(--red-warn)";} );
          inputs.forEach( element => { element.onclick = (event) => { event.target.style.borderColor = "2px solid var(--deep-blue)"; }});
 
-         div.textContent = "Puede que tengas un errorsito, puedes contactar a soporte si es necesario";
+         notification.teller("Puede que tengas un error");
 
-         event.target.appendChild(div);
-
-         throw new Error("Something went wrong");
+         throw new Error("[NETERR] : Possible bad request");
       }
 
       return raw.json();
@@ -98,16 +90,12 @@ firstChild.addEventListener("submit",  async (event) => {
       {
          token = response.token;
 
-         div.textContent = "Disfruta tu tiempo aquí";
-
-         event.target.appendChild(div);
+         notification.teller("Disfruta tu tiempo aquí");
 
          await setTimeout(loadDashboard, 2000);
    });
 });
 
-
-// SignUp functionality
 
 secondChild.addEventListener("submit",  async (event) => {
 
@@ -132,27 +120,17 @@ secondChild.addEventListener("submit",  async (event) => {
       body    : body,
    };
 
-   let div = document.createElement("div");
-
-   div.classList.add("prompt");
-
    await fetch("https://servicenuruk.realitynear.org:7726/signup", request).then( async (response) =>
       {
          // ERROR - (user prompt)
          if(!response.ok)
          {
-            div.textContent = "Algo falló, vuelve a intentar y si no funciona contacta a soporte";
+            notification.teller("Puede que tengas un error");
 
-            event.target.appendChild(div);
-            
-            throw new Error("Something went wrong");
+            throw new Error("[NETERR] : Possible bad request");
          }
 
-         // Clean the fields
-
-         div.textContent = "¡Has quedado registrado! Te invitamos a que ingreses con email";
-
-         event.target.appendChild(div);
+         notification.teller("¡Has quedado registrado! ingresa con email");
 
          await setTimeout(loadDashboard, 2000);
    });

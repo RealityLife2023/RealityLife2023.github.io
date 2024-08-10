@@ -1,4 +1,3 @@
-
 class InternalClock
 {
    constructor()
@@ -21,7 +20,7 @@ class InternalClock
 
       if(this.limit == this.minute)
       {
-       this.callback();
+         this.callback();
       }
    }
 

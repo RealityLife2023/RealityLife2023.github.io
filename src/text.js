@@ -8,8 +8,14 @@ class TextTool extends HTMLElement
       <textarea rows="10" cols="10" name="text-initial-page"></textarea>
       `;
    }
-}
 
+   constructor()
+   {
+      super();
+
+      this.type = "t";
+   }
+}
 
 window.customElements.define("text-tool", TextTool);
 

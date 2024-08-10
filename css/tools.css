@@ -6,9 +6,9 @@
    src: url("../static/fonts/icons.eot?#iefix") format('embedded-opentype'), url("../static/fonts/icons.woff2") format('woff2'), url("../static/fonts/icons.woff") format('woff'), url("../static/fonts/icons.ttf") format('truetype'), url("../static/fonts/icons.svg#icons") format('svg');
 
    font-style : normal;
-  font-variant: normal;
-  text-decoration: inherit;
-  text-transform: none;
+   font-variant: normal;
+   text-decoration: inherit;
+   text-transform: none;
 }
 
 i.symbol
@@ -31,17 +31,59 @@ i.symbol:before
    background : none;
 }
 
-
-i.symbol.play:before {
-  content: "\f04b";
+i.symbol.play:before 
+{
+   content: "\f04b";
 }
 
-i.symbol.stop:before {
-  content: "\f04d";
+i.symbol.stop:before
+{
+   content: "\f04d";
 }
 
-i.symbol.upload:before {
-  content: "\f093";
+i.symbol.upload:before
+{
+   content: "\f093";
+}
+
+i.symbol.file-a:before
+{
+   content: "\f1c7";
+}
+
+i.symbol.file-i:before
+{
+   content: "\f1c5";
+}
+
+i.symbol.image:before
+{
+   content: "\f03e";
+}
+
+i.symbol.file-t:before
+{
+   content: "\f15c";
+}
+
+i.symbol.trash:before
+{
+   content: "\f1f8";
+}
+
+i.symbol.cancel:before
+{
+   content: "\f00d";
+}
+
+i.symbol.trash.alternate:before
+{
+   content: "\f2ed";
+}
+
+i.symbol.trash.alternate.outline:before
+{
+   content: "\f2ed";
 }
 
 video-record
@@ -73,11 +115,9 @@ div.video-record-actions__div
    margin : auto;
    margin-top : 2rem;
    user-select : none;
-
    font-family: "Poppins-Regular";
    text-align : center;
 }
-
 
 h3.title-type__h3
 {
@@ -147,11 +187,13 @@ ul.user-files__ul>file-element
 
 ul.user-files__ul>file-element>li>a.file-name__a
 {
-   flex:3 1 0%;
+   flex:2 1 0%;
    overflow:hidden;
+   cursor : pointer;
 }
 
-ul.user-files__ul>file-element>li>a.file-extension__a
+
+ul.user-files__ul>file-element>li>i.symbol
 {
    flex:1 1 0%;
 }
@@ -203,7 +245,7 @@ audio-tool
    display : block;
    margin : auto;
    height : max-content;
-   width 34%;
+   width: 34%;
    overflow : hidden;
    text-align: center;
    position : relative;
@@ -243,7 +285,6 @@ audio-tool>button:disabled:hover
    color : var(--deep-blue);
 }
 
-
 div.bar-container__div
 {
    border-radius : 75px;
@@ -271,7 +312,6 @@ div.bar-container__div>audio.audio-output__audio
    color : var(--default);
 }
 
-
 div.time-bar__div
 {
    margin : auto;
@@ -280,5 +320,3 @@ div.time-bar__div
    position : relative;
    overflow : hidden;
 }
-
-

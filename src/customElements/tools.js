@@ -24,7 +24,7 @@ class VideoTool extends HTMLElement
 
          if(this.fileName().length === 0)
          {
-            this.teller = "No has puesto un nombre para el archivo";
+            notification.teller("No has puesto un nombre para el archivo");
             return;
          }
          

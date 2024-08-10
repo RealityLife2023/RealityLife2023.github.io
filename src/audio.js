@@ -1,14 +1,3 @@
-/*
-* Request only the audio media to the navigator
-* @returns {DevicesMediaStream} stream from only microphone
-*/
-async function resolveMediaOnlyAudio()
-{
-   let constraints = { "audio": true };
-	
-   return await navigator.mediaDevices.getUserMedia(constraints);
-}
-
 class AudioTool extends HTMLElement
 {
    connectedCallback()
@@ -27,8 +16,6 @@ class AudioTool extends HTMLElement
          </div>
       </div>
 
-      <p id="teller"></p>
-
       `;
 
       this.fileName = this.children[0];
@@ -36,19 +23,22 @@ class AudioTool extends HTMLElement
       this.stopButton = this.children[2];
       this.submitButton = this.children[3];
       this.timer = this.children[4];
-      this.teller = this.children[6];
 
       this.audioOutput = this.children[5].children[0].children[0];
 
       this.recordButton.onclick = recordAudio;
       this.stopButton.onclick = storeAudioRecord;
-      this.submitButton.onclick = saveAudioToRemoteDisk;
+      this.submitButton.onclick = submitAudioFile;
 
       this.stopButton.disabled = true;
       this.submitButton.disabled = true;
+   }
 
-      this.recordPool = [];
-      this.dataPool = [];
+   constructor()
+   {
+      super();
+
+      this.type = "a";
    }
 
    movePlayer()
@@ -60,93 +50,15 @@ class AudioTool extends HTMLElement
 window.customElements.define("audio-tool", AudioTool);
 
 
-async function getRecordData( event )
+/*
+* Request only the audio media to the navigator
+* @returns {DevicesMediaStream} stream from only microphone
+*/
+async function resolveMediaOnlyAudio()
 {
-   event.preventDefault();
-
-   audioTool.stopButton.disabled = true;
-
-   let blob = new Blob([event.data], { type : audioTool.currentMediaRecorder.mimeType });
-   saveAudioToRemoteDisk.blob  = blob;
-
-   let blobUrl = URL.createObjectURL(blob); 
-
-   audioTool.audioOutput.src = blobUrl;
-
-   audioTool.audioOutput.load();
-
-   audioTool.audioOutput.addEventListener("loadeddata", () => {
-
-      audioTool.movePlayer();
-
-      //audioTool.audioOutput.play();
-
-   });
-
-   audioTool.submitButton.disabled = false;
-}
-
-async function saveAudioToRemoteDisk( event )
-{
-   event.preventDefault();
-
-   let date = new Date();
-
-   let metadata = {
-
-      // Sanitize the name and does not go with extension
-      name : `${audioTool.fileName.value}`,
-      mimetype : saveAudioToRemoteDisk.blob.type,
-      extension : saveAudioToRemoteDisk.blob.type.split("/")[1],
-      // Take the date in ISO 8601 with the local time
-      date : new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString(),
-      // Take the encoding
-      encoding : "binary",
-      // Weight in bytes
-      weight : saveAudioToRemoteDisk.blob.size,
-   };
-
-   console.debug(metadata);
-
-   // Request the presigned url for the post
-   let params = await getPresignedUrl(metadata);
-
-   let body = new FormData();
-
-   Object.keys(params.fields).forEach( key => { body.append(key, params.fields[key]) });
-
-   body.append("file", saveAudioToRemoteDisk.blob);
-
-   let request = 
-      {
-         method  : "POST",
-         mode    : "no-cors",
-         body    : body,
-      };
-
-   await fetch(params.url, request).then( (response) => {
-
-      // Debug the result
-      console.log("========= DEBUG ========");
-      console.debug(response);
-
-      audioTool.teller.textContent = "Audio subido con éxito";
-
-      audioTool.recordButton.disabled = false;
-
-      audioTool.stopButton.disabled = true;
-      audioTool.submitButton.disabled = true;
-
-      dashboard.refresh();
-
-   }).catch( (error) => 
-   {
-      console.log( error );
-
-      audioTool.teller.textContent = "Algo a ocurrido vuelve porfavor a intentar subirlo";
-
-      audioTool.submitButton.disabled = false;
-   });
+   let constraints = { "audio": true };
+	
+   return await navigator.mediaDevices.getUserMedia(constraints);
 }
 
 
@@ -154,13 +66,19 @@ async function recordAudio( event )
 {
    event.preventDefault();
 
+   if(audioTool.fileName.value.length === 0)
+   {
+      notification.teller("Nombre del archivo no válido");
+      return;
+   }
+
    let mediaStream = await resolveMediaOnlyAudio();
 
-   let mediaRecorder = new MediaRecorder(mediaStream);
+   let mediaRecorder = new MediaRecorder(mediaStream, { mimeType :"audio/webm;codecs=opus" });
 
    mediaRecorder.addEventListener("dataavailable" , getRecordData);
 
-   audioTool.recordPool.push(mediaRecorder);
+   //audioTool.recordPool.push(mediaRecorder); // TODO => LocalStorage pool
 
    mediaRecorder.srcObject = mediaStream;
 
@@ -177,24 +95,85 @@ async function recordAudio( event )
    }
    catch( error )
    {
-      audioTool.teller.textContent = "Algo salio mal, intenta darle al boton de grabar otra vez o revisa que la camara y el microfono esten conectados";
+      notification.teller("Algo salio mal, intenta darle al botón de grabar otra vez o revisa que la cámara y el micrófono estén conectados");
 
       console.log( error );
 
-      // Habilitate the record button
-      audioTool.recordButton.disabled = false;
+      audioTool.recordButton.disabled = false; // Record available again
    }
 }
 
+
+/**
+ * Captures the event of "dataavailable" in the MediaRecorder
+ */
+async function getRecordData( event )
+{
+   event.preventDefault();
+
+   audioTool.stopButton.disabled = true;
+
+   let blob = new Blob([event.data], { type : audioTool.currentMediaRecorder.mimeType });
+
+   audioTool.lastRecord =
+   {
+      name : audioTool.fileName,
+      mimetype : audioTool.currentMediaRecorder.mimeType,
+      type : "a",
+      blob : blob,
+   };
+
+   let blobUrl = URL.createObjectURL(blob); 
+
+   audioTool.audioOutput.src = blobUrl;
+
+   audioTool.audioOutput.load();
+
+   audioTool.audioOutput.addEventListener("loadeddata", () => {
+
+      audioTool.movePlayer();
+   });
+
+   audioTool.submitButton.disabled = false;
+}
+
+
+/**
+ *
+ */
+async function submitAudioFile( event )
+{
+   event.preventDefault();
+
+   // ERROR => Record not saved
+   if(audioTool.lastRecord === undefined)
+   {
+      console.log("[ERR] : Last record is empty check record process");
+   }
+
+   audioTool.submitButton.disabled = true;
+
+   await saveToRemoteDisk(audioTool.lastRecord);
+
+   await dashboard.refresh();
+
+   audioTool.recordButton.disabled = false;
+
+   notification.teller("Audio subido con éxito");
+}
+
+
+
+/**
+ *
+ */
 async function storeAudioRecord()
 {
    await audioTool.currentMediaRecorder.stop();
 
-   audioTool.teller.textContent = "Audio grabado con éxito";
+   notification.teller("Audio grabado con éxito");
 
    stopTimer();
 
    //audioTool.loadAnimation();
-
-   //audiotTool.serveNewAudio();
 }
