@@ -88,7 +88,7 @@ async function recordVideo( event )
       videoTool.lastVideo = 
       {
          name : videoTool.fileName.value,
-         mimetype : videoTool.mediaRecorder.mimeType,
+         mimeType : videoTool.mediaRecorder.mimeType,
          type : videoTool.type,
          blob : blob,
       }
