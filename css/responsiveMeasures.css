@@ -311,7 +311,6 @@
    video.record-screen__video
    {
       width : 75%;
-/*      height : 75%;*/
    }
 
    input.file-name__input
@@ -335,5 +334,10 @@
    div.time-bar__div
    {
       width : 70vw;
+   }
+
+   audio-tool
+   {
+      width : 75%;
    }
 }

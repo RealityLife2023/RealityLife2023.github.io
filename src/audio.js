@@ -117,7 +117,7 @@ async function getRecordData( event )
 
    audioTool.lastRecord =
    {
-      name : audioTool.fileName,
+      name : audioTool.fileName.value,
       mimetype : audioTool.currentMediaRecorder.mimeType,
       type : "a",
       blob : blob,
