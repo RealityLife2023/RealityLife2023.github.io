@@ -119,7 +119,7 @@ async function getRecordData( event )
    {
       name : audioTool.fileName.value,
       mimetype : audioTool.currentMediaRecorder.mimeType,
-      type : "a",
+      type : audioTool.type,
       blob : blob,
    };
 

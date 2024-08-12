@@ -89,7 +89,7 @@ async function recordVideo( event )
       {
          name : videoTool.fileName.value,
          mimetype : videoTool.mediaRecorder.mimeType,
-         type : "a",
+         type : videoTool.type,
          blob : blob,
       }
    });
