@@ -18,7 +18,7 @@ p.notification-teller__p
 
 div.notification-bar__div#active-notification
 {
-   top : 108px;
+   top : -108px;
    transition : .5s ease-in-out;
 }
 
