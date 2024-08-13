@@ -179,16 +179,20 @@ audio-tool>button>i.symbol
    cursor : pointer;
 }
 
+button.generic-blue__button>i.symbol,
 audio-tool>button:disabled>i.symbol
 {
    cursor : default;
 }
 
+button.generic-blue__button:disabled,
 audio-tool>button:disabled
 {
    opacity : 0.3;
 }
 
+
+button.generic-blue__button:disabled:hover,
 audio-tool>button:disabled:hover
 {
    cursor : default;

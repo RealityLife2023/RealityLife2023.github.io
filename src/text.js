@@ -11,8 +11,13 @@ class TextTool extends HTMLElement
 
       this.fileName = this.children[0];
       this.submitButton = this.children[2];
+      this.documentHolder = this.children[1];
 
       this.submitButton.onclick = submitTextFile;
+      this.documentHolder.addEventListener("keydown", (event) =>
+      {
+         textTool.submitButton.disabled = event.target.value.length === 0;
+      });
 
       this.submitButton.disabled = true;
    }
