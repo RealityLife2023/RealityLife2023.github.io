@@ -46,7 +46,7 @@ async function submitTextFile( event )
       return;
    }
 
-   let blob = new Blob([audioText.documentHolder.value], { type : "text/plain" });
+   let blob = new Blob([textTool.documentHolder.value], { type : "text/plain" });
 
    textTool.lastDocument = {
       name : textTool.fileName.value,

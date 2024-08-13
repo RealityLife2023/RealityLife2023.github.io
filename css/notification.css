@@ -39,6 +39,7 @@ div.notification-bar__div
    left : calc( 50% - 17rem);
    top : 100%;
    text-align: center;
+   user-select: none;
 }
 
 div.notification-bar__div:hover
