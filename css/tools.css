@@ -1,96 +1,3 @@
-
-@font-face
-{
-   font-family : "BuiltinSymbols";
-   src : url("../static/fonts/icons.eot");
-   src: url("../static/fonts/icons.eot?#iefix") format('embedded-opentype'), url("../static/fonts/icons.woff2") format('woff2'), url("../static/fonts/icons.woff") format('woff'), url("../static/fonts/icons.ttf") format('truetype'), url("../static/fonts/icons.svg#icons") format('svg');
-
-   font-style : normal;
-   font-variant: normal;
-   text-decoration: inherit;
-   text-transform: none;
-}
-
-i.symbol
-{
-   display: inline;
-   opacity : 1;
-   text-align:center;
-   speak : none;
-
-   font-family : "BuiltinSymbols";
-   font-style : normal;
-   text-decoration : none;
-   -moz-osx-font-smoothing: grayscale;
-   -webkit-font-smoothing : antialiased;
-
-}
-
-i.symbol:before
-{
-   background : none;
-}
-
-i.symbol.play:before 
-{
-   content: "\f04b";
-}
-
-i.symbol.stop:before
-{
-   content: "\f04d";
-}
-
-i.symbol.upload:before
-{
-   content: "\f093";
-}
-
-i.symbol.file-a:before
-{
-   content: "\f1c7";
-}
-
-i.symbol.file-v:before
-{
-   content: "\f1c8";
-}
-
-i.symbol.file-i:before
-{
-   content: "\f1c5";
-}
-
-i.symbol.image:before
-{
-   content: "\f03e";
-}
-
-i.symbol.file-t:before
-{
-   content: "\f15c";
-}
-
-i.symbol.trash:before
-{
-   content: "\f1f8";
-}
-
-i.symbol.cancel:before
-{
-   content: "\f00d";
-}
-
-i.symbol.trash.alternate:before
-{
-   content: "\f2ed";
-}
-
-i.symbol.trash.alternate.outline:before
-{
-   content: "\f2ed";
-}
-
 video-record
 {
    text-align : center;
@@ -250,7 +157,6 @@ audio-tool
    display : block;
    margin : auto;
    height : max-content;
-   width: 34%;
    overflow : hidden;
    text-align: center;
    position : relative;
@@ -324,4 +230,38 @@ div.time-bar__div
    height : 12rem;
    position : relative;
    overflow : hidden;
+}
+
+/* TEXT */
+
+text-tool
+{
+   display : block;
+   margin : auto;
+   height : max-content;
+   padding : 0 0 70px 0;
+}
+
+textarea.document-holder__textarea
+{
+   display : block;
+   margin : auto;
+   resize: none;
+
+   width : 78%;
+   height : 70vh;
+
+   padding : 30px 35px;
+
+   color : var(--default);
+   background-color : rgb(200,200,200);
+
+   font-family: "Poppins-Medium";
+   font-size  : 1.78rem;
+   border-radius : 25px;
+}
+
+textarea.document-holder__textarea:focus
+{
+   outline : none;
 }

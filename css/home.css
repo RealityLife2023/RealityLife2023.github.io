@@ -1,24 +1,3 @@
-@font-face
-{
-   font-family: 'Poppins-Regular';
-   src: url("../static/Poppins-Regular.ttf");
-   font-style : normal;
-}
-
-@font-face
-{
-   font-family : "Poppins-Medium";
-   src         : url("../static/Poppins-Medium.ttf");
-   font-style : normal;
-}
-
-@font-face
-{
-   font-family : "Poppins-Bold";
-   src         : url("../static/Poppins-Bold.ttf");
-   font-style : normal;
-}
-
 
 :root
 {

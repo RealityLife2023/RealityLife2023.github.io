@@ -1,0 +1,113 @@
+
+@font-face
+{
+   font-family: 'Poppins-Regular';
+   src: url("../static/Poppins-Regular.ttf");
+   font-style : normal;
+}
+
+@font-face
+{
+   font-family : "Poppins-Medium";
+   src         : url("../static/Poppins-Medium.ttf");
+   font-style : normal;
+}
+
+@font-face
+{
+   font-family : "Poppins-Bold";
+   src         : url("../static/Poppins-Bold.ttf");
+   font-style : normal;
+}
+
+@font-face
+{
+   font-family : "BuiltinSymbols";
+   src : url("../static/fonts/icons.eot");
+   src: url("../static/fonts/icons.eot?#iefix") format('embedded-opentype'), url("../static/fonts/icons.woff2") format('woff2'), url("../static/fonts/icons.woff") format('woff'), url("../static/fonts/icons.ttf") format('truetype'), url("../static/fonts/icons.svg#icons") format('svg');
+
+   font-style : normal;
+   font-variant: normal;
+   text-decoration: inherit;
+   text-transform: none;
+}
+
+i.symbol
+{
+   display: inline;
+   opacity : 1;
+   text-align:center;
+   speak : none;
+
+   font-family : "BuiltinSymbols";
+   font-style : normal;
+   text-decoration : none;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing : antialiased;
+
+}
+
+i.symbol:before
+{
+   background : none;
+}
+
+i.symbol.play:before 
+{
+   content: "\f04b";
+}
+
+i.symbol.stop:before
+{
+   content: "\f04d";
+}
+
+i.symbol.upload:before
+{
+   content: "\f093";
+}
+
+i.symbol.file-a:before
+{
+   content: "\f1c7";
+}
+
+i.symbol.file-v:before
+{
+   content: "\f1c8";
+}
+
+i.symbol.file-i:before
+{
+   content: "\f1c5";
+}
+
+i.symbol.image:before
+{
+   content: "\f03e";
+}
+
+i.symbol.file-t:before
+{
+   content: "\f15c";
+}
+
+i.symbol.trash:before
+{
+   content: "\f1f8";
+}
+
+i.symbol.cancel:before
+{
+   content: "\f00d";
+}
+
+i.symbol.trash.alternate:before
+{
+   content: "\f2ed";
+}
+
+i.symbol.trash.alternate.outline:before
+{
+   content: "\f2ed";
+}
