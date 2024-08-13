@@ -1,3 +1,8 @@
+#activated-view
+{
+   display : block;
+}
+
 view-window 
 {
    width : 100%;
@@ -30,6 +35,28 @@ div.viwindow-container-background__div>div.viwindow-controls__div
 {
    width: 100%;
    height: 28%;
+}
+
+section.video-review__section>video.record-view__video,
+section.video-review__section>textarea.record-view__textarea,
+section.video-review__section>audio.record-view__audio
+{
+   display : none;
+}
+
+
+textarea.record-view__textarea
+{
+   width : 65%;
+   margin : auto;
+   resize: none;
+   padding : 30px 35px;
+
+   color : var(--default);
+   background-color : transparent;
+   font-family: "Poppins-Medium";
+   font-size  : 1.78rem;
+   border-radius : 25px;
 }
 
 section.video-review__section

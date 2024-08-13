@@ -55,13 +55,15 @@ class File extends HTMLElement
       {
          event.preventDefault();
 
+         vWindow.activate( this.type );
+
          fetchFile( this.grant() ).then( async (data) => 
             {
                let blob = await data.blob();
 
                let url = URL.createObjectURL(blob);
 
-               vWindow.activate( url );
+               vWindow.loadResource( url );
             });
       }
 

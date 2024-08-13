@@ -8,7 +8,9 @@ class VisualizationWindow extends HTMLElement
             <button class="exit-viwindow__button"><i class="symbol cancel"></i></button>
          </div>
          <section class="video-review__section">
-            <video class="record-view__video" id="video-test-output" controls></video>
+            <video class="record-view__video"  controls></video>
+            <audio class="record-view__audio" controls></audio>
+            <text class="record-view__text" readonly></text>
          </section>
       </div> 
       `;
@@ -18,23 +20,80 @@ class VisualizationWindow extends HTMLElement
       this.quitButton = container.children[0].children[0];
 
       this.video = container.children[1].children[0];
+      this.audio = container.children[1].children[1];
+      this.text = container.children[1].children[2];
 
-      this.quitButton.onclick = () => 
+      this.views = {
+         "v" : this.video,
+         "a" : this.audio,
+         "t" : this.text,
+      };
+
+      this.currentType = "";
+
+      this.quitButton.onclick = (event) => 
       {
+         event.preventDefault();
+
          this.style.display = "none";
-         this.video.pause();
 
-         this.video.removeAttribute("src");
+         this.views[this.currentType].removeAttribute("id");
 
-         this.video.load();
+         switch( this.currentType )
+         {
+            case "v":
+               this.video.pause();
+
+               URL.revokeObjectURL(this.video.src);
+
+               this.video.removeAttribute("src");
+
+               this.video.load();
+               break;
+
+            case "a":
+               this.audio.pause();
+
+               URL.revokeObjectURL(this.audio.src);
+
+               this.audio.removeAttribute("src");
+               break;
+         }
       };
    }
 
-   activate( url )
+   constructor()
    {
-      this.style.display = "block";
+      super();
 
-      this.video.src = url;
+      this.activationId = "activated-view";
+   }
+
+   activate( type )
+   {
+      this.currentType = type;
+      this.views[type].setAttribute("id", this.activationId)
+
+      this.style.display = "block"; // Appear
+   }
+
+   loadResource( url )
+   {
+      switch( this.currentType )
+      {
+         case "v":
+            this.video.src = url;
+            break;
+
+         case "a":
+            this.audio.src = url;
+            break;
+
+         // TODO => solve text blob problem
+         case "t":
+            this.text.value = url;
+            break;
+      }
    }
 }
 
