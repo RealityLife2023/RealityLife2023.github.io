@@ -2,18 +2,21 @@
 {
    font-family: 'Poppins-Regular';
    src: url("../static/Poppins-Regular.ttf");
+   font-style : normal;
 }
 
 @font-face
 {
    font-family : "Poppins-Medium";
    src         : url("../static/Poppins-Medium.ttf");
+   font-style : normal;
 }
 
 @font-face
 {
    font-family : "Poppins-Bold";
    src         : url("../static/Poppins-Bold.ttf");
+   font-style : normal;
 }
 
 
@@ -280,6 +283,16 @@ button.blue-button
    background-color : var(--aqua);
 }
 
-@media (min-width = 560px) and (min-height = 1020px)
+ul.generic-white__ul
 {
+   margin : auto;
+   padding : 0;
+   text-align : center;
 }
+
+ul.generic-white__ul>li
+{
+   list-style-type: none;
+   color : var(--default);
+}
+

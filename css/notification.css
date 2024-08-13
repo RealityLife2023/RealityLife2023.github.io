@@ -38,9 +38,6 @@ div.notification-bar__div
    position : absolute;
    left : calc( 50% - 17rem);
    top : 100%;
-  /*
-   transition : top 1s ease-in-out;
-   */
    text-align: center;
 }
 
