@@ -1,6 +1,7 @@
 #activated-view
 {
    display : block;
+   margin: auto;
 }
 
 view-window 
@@ -44,6 +45,10 @@ section.video-review__section>audio.record-view__audio
    display : none;
 }
 
+section.video-review__section>video.record-view__video
+{
+   border-radius: 45px;
+}
 
 textarea.record-view__textarea
 {
@@ -53,7 +58,7 @@ textarea.record-view__textarea
    padding : 30px 35px;
 
    color : var(--default);
-   background-color : transparent;
+   background-color : var(--almost-black); 
    font-family: "Poppins-Medium";
    font-size  : 1.78rem;
    border-radius : 25px;
@@ -63,6 +68,7 @@ section.video-review__section
 {
    width: 100%;
    height: 100%;
+   margin: 35px auto auto;
    text-align: center;
 }
 
