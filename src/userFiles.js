@@ -59,9 +59,18 @@ class File extends HTMLElement
 
          fetchFile( this.grant() ).then( async (data) => 
             {
+               let url = "";
+
                let blob = await data.blob();
 
-               let url = URL.createObjectURL(blob);
+               if(this.type === "t")
+               {
+                  url = await blob.text();
+               }
+               else
+               {
+                  url = URL.createObjectURL(blob);
+               }
 
                vWindow.loadResource( url );
             });
