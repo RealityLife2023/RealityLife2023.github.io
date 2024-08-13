@@ -39,7 +39,8 @@ div.sign-forms__div>form.sign-account__form>input:focus::placeholder
 
 
 form.white-generic__form>input,
-div.form-container__div>form.sign-account__form>input
+div.form-container__div>form.sign-account__form>input,
+div.form-container__div>form.sign-account__form>input:nth-child(4)
 {
    border-bottom : 2px solid var(--deep-blue);
    text-align : left;
@@ -84,7 +85,7 @@ div.form-container__div>form.sign-account__form#unselected-form:nth-child(1)
 
 div.form-container__div>form.sign-account__form#selected-form:nth-child(1)
 {
-   top : 0%;
+   top : -5%;
    transition : 3s;
 }
 
@@ -227,6 +228,11 @@ form.sign-account__form
    border-radius : 55px;
    background: linear-gradient(180deg, rgba(0, 32, 96, 1) 67%, rgb(26 65 75) 122%);
    font-family: "Poppins-Regular";
+}
+
+form.sign-account__form:nth-child(2)
+{
+   padding-top : 9rem;
 }
 
 /* Padding adjustments
