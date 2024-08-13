@@ -53,6 +53,7 @@ section.video-review__section>video.record-view__video
 textarea.record-view__textarea
 {
    width : 65%;
+   height : 40vh;
    margin : auto;
    resize: none;
    padding : 30px 35px;
