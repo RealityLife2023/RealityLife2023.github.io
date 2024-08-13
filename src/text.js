@@ -12,7 +12,7 @@ class TextTool extends HTMLElement
       this.fileName = this.children[0];
       this.submitButton = this.children[2];
 
-      this.submitButton = submitTextFile;
+      this.submitButton.onclick = submitTextFile;
 
       this.submitButton.disabled = true;
    }
