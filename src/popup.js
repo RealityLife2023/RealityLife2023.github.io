@@ -10,7 +10,7 @@ class VisualizationWindow extends HTMLElement
          <section class="video-review__section">
             <video class="record-view__video"  controls></video>
             <audio class="record-view__audio" controls></audio>
-            <text class="record-view__text" readonly></text>
+            <textarea class="record-view__textarea" readonly></textarea>
          </section>
       </div> 
       `;
