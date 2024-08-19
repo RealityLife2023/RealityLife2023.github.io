@@ -1,10 +1,21 @@
 
 const url = "https://servicenuruk.realitynear.org:7726/";
 
+const CLONE = "clone";
 const PRESIGN = "presigned";
 const NOMINATE = "nominate";
 const NOMINATION = "nomination";
 const NOMINATE_REVERSE = "nominatereverse";
+
+
+class Human 
+{
+   sex = "m|f";
+   age = 0;
+   email = "";
+   nation = "";
+   voiceSample = undefined;
+}
 
 /*
 * Fetch a JSON with the params to POST a file at the S3 bucket
@@ -174,4 +185,16 @@ async function nomination()
 
       return { ok : true , error : undefined, data : data};
    });
+}
+
+
+/**
+ * 
+ * @param {Human} human 
+ */
+async function binaryTrial( human )
+{
+   let endpoint = `${url}binary-trial`;
+   
+   fetch(endpoint, { method : "POST", body : human });
 }
