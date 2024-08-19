@@ -27,7 +27,7 @@
    </nav>
 
    <main class="information__main">
-      <p id="router"><a href="https://realitylife2023.github.io">HOME</a> > DEMO</p>
+      <p class="home-router__p"><a href="https://realitylife2023.github.io">HOME</a> > DEMO</p>
       <h2>¡Nuesta prueba DEMO está aquí!</h2>
       <p class="premise__p">¿Estás listo para comenzar a preservar tu legado? Prueba nuestra Demo versión 1.0.1. Nuestro asistente de IA clonará tu voz para replicarla en tus archivos futuros. Mira este video y descubre el poder de la IA en Reality LIFE</p>
 
@@ -282,6 +282,7 @@ class FormAudioTool extends HTMLElement
 
       this.recordButton.onclick = functions.recordAudio;
       this.stopButton.onclick = functions.storeAudio;
+      this.children[4].onclick = functions.submitFormTest;
 
       console.log(this.recordButton.onclick);
    }
@@ -293,17 +294,22 @@ class FormAudioTool extends HTMLElement
 
       let schema = this.constituteHuman(form);
 
-      Object.keys(schema.fields).forEach( key => { formData.append(key, params.fields[key]) });
+      Object.keys(schema).forEach( key => { formData.append(key, schema[key]) });
 
       return formData;
    }
 
    constituteHuman( form )
    {
-
+/*
       let email = form.children[2].value;
       let nation = form.children[3].value;
       let age = form.children[4].value;
+*/
+
+      let email = "test@test.com";
+      let nation = "Kosovo";
+      let age = "34";
 
       let human = new Human();
 
