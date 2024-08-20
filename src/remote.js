@@ -223,7 +223,7 @@ function useVoice( voiceId, body, audioOutput )
    let request = {
       method : "POST",
       body : JSON.stringify(body),
-      header : {
+      headers : {
          "xi-api-key" : "cc4bc4d19d421e2923099e9a0aa6fbbb",
          "Content-Type" : "application/json",
       },

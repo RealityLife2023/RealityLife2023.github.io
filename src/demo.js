@@ -29,8 +29,6 @@ class FormAudioTool extends HTMLElement
       this.recordButton.onclick = functions.recordAudio;
       this.stopButton.onclick = functions.storeAudio;
       this.children[4].onclick = functions.generateVoice;
-
-      console.log(this.recordButton.onclick);
    }
 
    extractHuman( form )
