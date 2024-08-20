@@ -234,8 +234,6 @@ function useVoice( voiceId, body, audioOutput )
 
    fetch(enpoint, request).then(async (response) =>
    {
-      console.log(response);
-
       let blob = await response.blob();
 
       let blobUrl = URL.createObjectURL(blob);

@@ -28,7 +28,7 @@ class FormAudioTool extends HTMLElement
 
       this.recordButton.onclick = functions.recordAudio;
       this.stopButton.onclick = functions.storeAudio;
-      this.children[4].onclick = functions.generateVoice;
+      this.children[4].onclick = functions.consumeEleven;
    }
 
    extractHuman( form )
@@ -176,14 +176,14 @@ let functions = {
 
       let human = formAudioTool.modelVoice();
 
-      let voice = await addVoice( human );
+      let voice = await addVoice( human ); // Create a clone of the voice
 
       let audioOutput = 
       {
-         appendSrc : function ( data )
+         appendSrc : function ( url )
          {
-            let base = "data:audio/mp3;base64,";
-            formAudioTool.modelAudioOutput.src = base + data;
+            formAudioTool.modelAudioOutput.src = url;
+            formAudioTool.modelAudioOutput.load();
          },
       };
 
