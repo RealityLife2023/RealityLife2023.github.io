@@ -210,10 +210,32 @@ async function addVoice( human )
       headers : {
          "xi-api-key" : "cc4bc4d19d421e2923099e9a0aa6fbbb",
       },
-   }
+   };
 
-   fetch(endpoint, request).then((response) =>
+   return await fetch(endpoint, request).then((response) => response.json());
+}
+
+function useVoice( voiceId, body, audioOutput )
+{
+
+   let enpoint = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
+
+   let request = {
+      method : "POST",
+      body : JSON.stringify(body),
+      headers : {
+         "xi-api-key" : "cc4bc4d19d421e2923099e9a0aa6fbbb",
+         "Content-Type" : "application/json",
+      },
+      query : {
+         "output_format" : "mp3_44100_96",
+      }
+   };
+
+   fetch(enpoint, request).then((response) =>
    {
       console.log(response);
+
+      audioOutput.appendSrc(response.response.data);
    });
 }

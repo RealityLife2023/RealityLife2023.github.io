@@ -10,7 +10,8 @@ class FormAudioTool extends HTMLElement
 
       <div class="time-bar__div"> 
          <div class="bar-container__div">
-            <audio class="audio-output__audio" controls></audio>
+            <audio class="audio-output__audio human-voice" controls></audio>
+            <audio class="audio-output__audio clone-model" controls></audio>
          </div>
       </div>
       <button type="button" class="generic-blue__button">CLONAR</button>
@@ -19,7 +20,9 @@ class FormAudioTool extends HTMLElement
       this.recordButton = this.children[0];
       this.stopButton = this.children[1];
 
-      this.audioOutput = this.children[3].children[0].children[0];
+      this.humanAudioOutput = this.children[3].children[0].children[0];
+
+      this.modelAudioOutput = this.children[3].children[0].children[1];
 
       this.stopButton.disabled = true;
 
@@ -47,12 +50,13 @@ class FormAudioTool extends HTMLElement
       let formData = new FormData();
 
       let schema = {
-         name : "prueba_en_nav",
-         files : [this.lastRecord.blob],
-         description : "This comes from the navigator",
+         name : "MiguelNav",
+         description : "20 years old Colombian with no strong accent",
       }
 
       Object.keys(schema).forEach( key => { formData.append(key, schema[key]); });
+
+      formData.append("files", this.lastRecord.blob);
 
       return formData;
    }
@@ -101,9 +105,9 @@ let functions = {
 
       let blobUrl = URL.createObjectURL(blob); 
 
-      formAudioTool.audioOutput.src = blobUrl;
+      formAudioTool.humanAudioOutput.src = blobUrl;
 
-      formAudioTool.audioOutput.load();
+      formAudioTool.humanAudioOutput.load();
    },
 
    recordAudio : async function ( event )
@@ -129,7 +133,7 @@ let functions = {
       event.preventDefault();
 
       // TODO => Check the if the url is valid
-      if(formAudioTool.audioOutput.src.length === 0)
+      if(formAudioTool.humanAudioOutput.src.length === 0)
       {
          notification.teller("El audio no es válido, intenta nuevamente");
       }
@@ -144,7 +148,7 @@ let functions = {
       event.preventDefault();
 
       // TODO => Check the if the url is valid
-      if(formAudioTool.audioOutput.src.length === 0)
+      if(formAudioTool.humanAudioOutput.src.length === 0)
       {
          notification.teller("El audio no es válido, intenta nuevamente");
       }
@@ -167,11 +171,35 @@ let functions = {
       stopTimer();
    },
 
-   consumeEleven: function ( event )
+   consumeEleven: async function ( event )
    {
+
+      event.preventDefault();
+
       let human = formAudioTool.modelVoice();
 
-      addVoice( human );
+      let voice = await addVoice( human );
+
+      let audioOutput = 
+      {
+         appendSrc : function ( data )
+         {
+            let base = "data:audio/mp3;base64,";
+            formAudioTool.modelAudioOutput.src = base + data;
+         },
+      };
+
+      let body = 
+      {
+         text : "Esta es una prueba con varias horas de antelacion al proyecto",
+         model_id : "eleven_multilingual_v2",
+         voice_settings: {
+            stability : 0.5,
+            similarity_boost : 0.35,
+         }
+      };
+
+      useVoice( voice.voice_id, body, audioOutput );
    },
 }
 
