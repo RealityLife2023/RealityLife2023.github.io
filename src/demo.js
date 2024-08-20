@@ -209,7 +209,7 @@ let functions = {
          appendSrc : function ( url )
          {
             formAudioTool.modelAudioOutput.src = url;
-            formAudioTool.load();
+            formAudioTool.modelAudioOutput.load();
          },
       };
 
