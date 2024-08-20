@@ -220,10 +220,10 @@ function useVoice( voiceId, body, audioOutput )
 
    let enpoint = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
 
-   let request = {
+   let draftRequest = {
       method : "POST",
       body : JSON.stringify(body),
-      headers : {
+      header : {
          "xi-api-key" : "cc4bc4d19d421e2923099e9a0aa6fbbb",
          "Content-Type" : "application/json",
       },
@@ -231,6 +231,15 @@ function useVoice( voiceId, body, audioOutput )
          "output_format" : "mp3_44100_96",
       }
    };
+
+   let request = {
+      method : "POST",
+      body : JSON.stringify(draftRequest),
+      headers : {
+         "Content-Type" : "application/json, text/plain",
+      },
+   }
+
 
    fetch(enpoint, request).then((response) =>
    {
