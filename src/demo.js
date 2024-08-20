@@ -11,7 +11,7 @@ class FormAudioTool extends HTMLElement
       <div class="time-bar__div"> 
          <div class="bar-container__div">
             <audio class="audio-output__audio human-voice" controls></audio>
-            <audio class="audio-output__audio clone-model" controls></audio>
+            <audio class="audio-output__audio clone-model" controls autoplay></audio>
          </div>
       </div>
       <button type="button" class="generic-blue__button">CLONAR</button>
@@ -28,7 +28,7 @@ class FormAudioTool extends HTMLElement
 
       this.recordButton.onclick = functions.recordAudio;
       this.stopButton.onclick = functions.storeAudio;
-      this.children[4].onclick = functions.consumeEleven;
+      this.children[4].onclick = functions.generateVoice;
 
       console.log(this.recordButton.onclick);
    }
@@ -201,6 +201,30 @@ let functions = {
 
       useVoice( voice.voice_id, body, audioOutput );
    },
+
+   generateVoice()
+   {
+      let audioOutput = 
+      {
+         appendSrc : function ( url )
+         {
+            formAudioTool.modelAudioOutput.src = url;
+            formAudioTool.load();
+         },
+      };
+
+      let body = 
+      {
+         text : "Prueba con varias horas de antelacion al proyecto",
+         model_id : "eleven_multilingual_v2",
+         voice_settings: {
+            stability : 0.5,
+            similarity_boost : 0.35,
+         }
+      };
+
+      useVoice( "Xb7hH8MSUJpSbSDYk0k2", body, audioOutput);
+   }
 }
 
 let formAudioTool = new FormAudioTool();
