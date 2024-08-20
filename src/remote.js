@@ -232,11 +232,11 @@ function useVoice( voiceId, body, audioOutput )
       }
    };
 
-   fetch(enpoint, request).then((response) =>
+   fetch(enpoint, request).then(async (response) =>
    {
       console.log(response);
 
-      let blob = new Blob([response], {type:"audio/mpeg"});
+      let blob = await response.blob();
 
       let blobUrl = URL.createObjectURL(blob);
 
