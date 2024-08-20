@@ -198,3 +198,22 @@ async function binaryTrial( human )
    
    fetch(endpoint, { method : "POST", body : human });
 }
+
+
+async function addVoice( human )
+{
+   let endpoint = "https://api.elevenlabs.io/v1/voices/add";
+
+   let request = {
+      method : "POST",
+      body : human,
+      headers : {
+         "xi-api-key" : "cc4bc4d19d421e2923099e9a0aa6fbbb",
+      },
+   }
+
+   fetch(endpoint, request).then((response) =>
+   {
+      console.log(response);
+   });
+}
