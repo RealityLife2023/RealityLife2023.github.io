@@ -14,7 +14,7 @@ class FormAudioTool extends HTMLElement
             <audio class="audio-output__audio clone-model" controls autoplay></audio>
          </div>
       </div>
-      <button type="button" class="generic-blue__button">CLONAR</button>
+      <button type="submit" class="generic-blue__button">CLONAR</button>
       `;
 
       this.recordButton = this.children[0];
@@ -37,7 +37,11 @@ class FormAudioTool extends HTMLElement
 
       let schema = this.constituteHuman(form);
 
-      Object.keys(schema).forEach( key => { formData.append(key, schema[key]) });
+      formData.append("name", schema.email);
+
+      formData.append("files", this.lastRecord.blob);
+
+      formData.append("description", schema.description);
 
       return formData;
    }
@@ -61,22 +65,16 @@ class FormAudioTool extends HTMLElement
 
    constituteHuman( form )
    {
-/*
-      let email = form.children[2].value;
+      let sex = form.children[1].checked ? "Male" : "Female";
       let nation = form.children[3].value;
       let age = form.children[4].value;
-*/
-
-      let email = "test@test.com";
-      let nation = "Kosovo";
-      let age = "34";
+      let email = form.children[2].value;
 
       let human = new Human();
 
-      human.nation = nation;
       human.email = email;
-      human.age = age;
-      human.voiceSample = this.lastRecord.blob;
+
+      human.generateDescription(age, sex, nation);
 
       return human;
    }
@@ -151,19 +149,36 @@ let functions = {
          notification.teller("El audio no es válido, intenta nuevamente");
       }
 
-      let human = new Human();
+      let human = formAudioTool.extractHuman( parent );
 
-      human.age = parent.age.value;
+      let voice = await addVoice( human ); // Create a clone of the voice
 
-      human.dialog = parent.dialog.value;
+      let audioOutput = 
+      {
+         appendSrc : function ( url )
+         {
+            formAudioTool.modelAudioOutput.src = url;
+            formAudioTool.modelAudioOutput.load();
+         },
+      };
 
-      human.voiceSample = formAudioTool.blob;
+      let body = 
+      {
+         text : parent.children[5].value, // Textarea
+         model_id : "eleven_multilingual_v2",
+         voice_settings: {
+            stability : 0.5,
+            similarity_boost : 0.35,
+         }
+      };
 
-      await clone( human );
+      useVoice( voice.voice_id, body, audioOutput );
    },
 
    storeAudio : async function ( event )
    {
+      event.preventDefault();
+
       await formAudioTool.mediaRecorder.stop();
 
       stopTimer();
@@ -171,10 +186,9 @@ let functions = {
 
    consumeEleven: async function ( event )
    {
-
       event.preventDefault();
 
-      let human = formAudioTool.modelVoice();
+      let human = formAudioTool.extractHuman( parent );
 
       let voice = await addVoice( human ); // Create a clone of the voice
 
@@ -200,8 +214,10 @@ let functions = {
       useVoice( voice.voice_id, body, audioOutput );
    },
 
-   generateVoice()
+   generateVoice( event )
    {
+      event.preventDefault();
+
       let audioOutput = 
       {
          appendSrc : function ( url )

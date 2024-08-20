@@ -14,7 +14,12 @@ class Human
    age = 0;
    email = "";
    nation = "";
-   voiceSample = undefined;
+   description = "";
+
+   generateDescription(age, sex, nation) {
+
+      this.description = `${age} years old ${sex} from ${nation}`;
+   }
 }
 
 /*
@@ -240,4 +245,22 @@ function useVoice( voiceId, body, audioOutput )
 
       audioOutput.appendSrc(blobUrl);
    });
+}
+
+
+async function deleteVoice( voiceId )
+{
+   let endpoint = `https://api.elevenlabs.io/v1/voices/${voiceId}`;
+
+   let request = {
+      method : "DELETE",
+      headers : {
+         "xi-api-key" : "cc4bc4d19d421e2923099e9a0aa6fbbb",
+      },
+   };
+
+   return await fetch(endpoint, request).then((response) => 
+      {
+         return response.ok;
+      });
 }
