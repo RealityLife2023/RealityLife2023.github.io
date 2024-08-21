@@ -193,6 +193,14 @@
 
     /* FIRST IMPRESSION */
 
+   p.home-router__p
+   {
+      margin : 20px auto;
+      padding : 0 0 0 30px;
+
+      font-size : 5rem;
+      text-align: left;
+   }
 
    q.welcome-quote__q
    {
@@ -348,11 +356,32 @@
 
    /** DEMO **/
 
+   .demo-title__h2
+   {
+      font-size : 4rem;
+      display: block;
+      margin : auto;
+      text-align: center;
+   }
+
+   p.premise__p
+   {
+      padding :  12px;
+
+      margin : 50px auto;
+
+      width : 78%;
+
+      font-size : 3.6rem;
+   }
+
+
    form.chatbot-context__form
    {
       width : 83%;
       padding : 30px 12px;
       height: max-content;
+      backdrop-filter: none;
    }
 
    .chatbot-context__form>input,
@@ -388,5 +417,11 @@
    .chatbot-context__form>input[type="checkbox"]::after
    {
       font-size: 4rem;
+   }
+
+   form.chatbot-context__form>textarea
+   {
+      font-size : 3rem;
+      padding : 14px 17px;
    }
 }

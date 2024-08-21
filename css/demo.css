@@ -68,6 +68,11 @@ form.chatbot-context__form>textarea
    font-size  : 1.78rem;
 }
 
+.demo-title__h2
+{
+   font-size : 5.4rem;
+}
+
 form-audio-tool
 {
    display : block;
