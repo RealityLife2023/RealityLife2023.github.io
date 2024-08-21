@@ -76,11 +76,11 @@ async function recordAudio( event )
 
    if(MediaRecorder.isTypeSupported("video/webm;codecs=opus"))
    {
-      audioTool.currentMediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm;codecs=opus"});
+      audioTool.currentMediaRecorder = new MediaRecorder(mediaStream, { mimeType: "video/webm;codecs=opus"});
    }
    else
    {
-      audioTool.currentMediaRecorder = new MediaRecorder(stream, { mimeType: "video/mp3"});
+      audioTool.currentMediaRecorder = new MediaRecorder(mediaStream, { mimeType: "video/mp3"});
    }
 
    audioTool.curretnMediaRecorder.addEventListener("dataavailable" , getRecordData);

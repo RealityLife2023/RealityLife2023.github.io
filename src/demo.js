@@ -124,11 +124,11 @@ let functions = {
 
       if(MediaRecorder.isTypeSupported("video/webm;codecs=opus"))
       {
-         formAudioTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm;codecs=opus"});
+         formAudioTool.mediaRecorder = new MediaRecorder(mediaStream, { mimeType: "video/webm;codecs=opus"});
       }
       else
       {
-         formAudioTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/mp3"});
+         formAudioTool.mediaRecorder = new MediaRecorder(mediaStream, { mimeType: "video/mp3"});
       }
 
       formAudioTool.mediaRecorder.addEventListener("dataavailable" , functions.getRecordData);
