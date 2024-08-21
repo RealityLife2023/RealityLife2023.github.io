@@ -137,10 +137,13 @@ span.globe-decoration__span:nth-child(4)>p
 
 p.home-router__p
 {
+   margin : 20px auto;
+   padding : 0 0 0 30px;
+   text-align: left;
    color : var(--aqua);
    font-family: "Poppins-Bold";
    font-weight: 200;
-   font-size  : 1.4rem;
+   font-size  : 2.5rem;
 }
 
 p.home-router__p>a

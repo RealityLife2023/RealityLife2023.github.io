@@ -11,6 +11,69 @@
       font-size : 2.4vh;
    }
 
+   /** NAV **/
+
+   header.brand-band__header
+   {
+      width: 100%;
+      height: 10vh;
+      margin: auto;
+      padding : 0;
+      border-bottom: 1px solid rgba(20,19,20,94%);
+      background-color: var(--default);
+      border-radius: 10px 10px 0 0;
+   }
+
+   img.brand-logo__img
+   {
+      margin : auto;
+      width: 67.4rem;
+      height: 11.25rem;
+   }
+
+   nav.generic-nav-bar__nav#not-home
+   {
+      display: none;
+   }
+
+   nav.generic-nav-bar__nav
+   {
+      height : max-content;
+      width : 100%;
+      margin : 0;
+      padding : 5vh 0 3.45vh 0;
+      box-sizing: content-box;
+      background-color: var(--default);
+      text-align: center;
+   }
+   
+
+   nav.generic-nav-bar__nav>button.panel-option__button>a
+   {
+      color  : var(--deep-blue);
+      font-size : 4.3rem;
+      font-family: "Poppins-Medium";
+      text-decoration: none;
+   }
+
+   nav.generic-nav-bar__nav>button.panel-option__button
+   {
+      display: block;
+      width: 48rem;
+      margin : 32px auto;
+      padding : 5px 48vw 0 5px;
+      color  : var(--deep-blue);
+   }
+
+   nav.generic-nav-bar__nav>button.generic-blue__button,
+   nav.generic-nav-bar__nav>button.panel-option__button.language-button
+   {
+      display: inline-block;
+      margin : 12px 10px;
+      font-size : 3.2rem;
+   }
+
+
    /* LOGIN SECTION */
 
    form.white-generic__form>input::placeholder,
@@ -205,6 +268,7 @@
    q.welcome-quote__q
    {
       font-size : 6.12rem;
+      display : none;
    }
 
    q.brand-quote__q
@@ -213,18 +277,12 @@
       width: calc(100vw - 10vw);
       margin : 1rem 0 1.2rem 0;
       max-width : none;
-      display : inline-block;
+      display : none;
       color     : var(--aqua);
       font-size : 4rem;
    }
 
 
-   img.brand-logo__img
-   {
-      margin : 4vh auto;
-      width: 67.4rem;
-      height: 11.25rem;
-   }
 
    aside.home-left__aside>span.globe-decoration__span
    {
@@ -282,12 +340,6 @@
       position : relative;
       height : max-content;
       margin : 1rem 0 9rem 0;
-   }
-
-   header.brand-band__header
-   {
-      height: 86vh;
-      margin: auto;
    }
 
    /*****/
