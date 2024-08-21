@@ -37,7 +37,8 @@ h3.title-type__h3
    text-align: center;
 }
 
-ul.record-types__ul>li.record-type__li
+ul.record-types__ul>li.record-type__li,
+ul.record-types__ul>li.record-type__li>button.record-type__button
 {
    display: inline;
 }
@@ -190,6 +191,14 @@ audio-tool>button:disabled:hover
    color : var(--deep-blue);
 }
 
+button.audio-record__button,
+button.stop-record__button,
+button.audio-upload__button
+{
+   display : inline;
+}
+
+audio-tool>button:disabled
 div.bar-container__div
 {
    border-radius : 75px;

@@ -92,6 +92,11 @@ form-audio-tool>div.time-bar__div
    width: 96%;
 }
 
+div.time-bar__div>button.generic-blue__button
+{
+   display : inline;
+}
+
 div.time-bar__div>p
 {
    color : var(--deep-blue);

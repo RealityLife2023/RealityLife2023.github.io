@@ -385,7 +385,6 @@ button.generic-blue__button
    padding : 9px 18px;
    margin  : 40px auto 38px auto;
    width : max-content;
-   display : block;
    border        : none;
    border-radius : 55px;
    background-color : var(--aqua);
