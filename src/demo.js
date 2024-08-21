@@ -215,7 +215,7 @@ let functions = {
          }
       }
 
-      this.submitForm();
+      functions.submitForm();
    },
 
    generateVoice( event )
