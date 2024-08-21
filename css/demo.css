@@ -1,4 +1,20 @@
 
+.demo-title__h2
+{
+   font-size : 4rem;
+   display: block;
+   margin : auto;
+   text-align: center;
+}
+
+p.premise__p
+{
+   padding :  12px;
+   margin : 50px auto;
+   width : 78%;
+   font-size : 3.1rem;
+}
+
 form.chatbot-context__form
 {
    margin : auto;

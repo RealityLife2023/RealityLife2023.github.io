@@ -31,8 +31,16 @@ class FormAudioTool extends HTMLElement
 
       this.recordButton.onclick = functions.recordAudio;
       this.stopButton.onclick = functions.storeAudio;
-      this.submitButton.onclick = functions.consumeEleven;
+      this.submitButton.onclick = functions.checkForm;
 
+   }
+
+   report()
+   {
+      return { 
+         isValid : (this.lastRecord !== undefined),
+         message : "Todavía no has grabado un audio"
+      };
    }
 
    extractHuman( form )
@@ -143,15 +151,8 @@ let functions = {
       binaryTrial( human );
    },
 
-   submitForm : async function ( event )
+   submitForm : async function ()
    {
-      event.preventDefault();
-
-      // TODO => Check the if the url is valid
-      if(formAudioTool.humanAudioOutput.src.length === 0)
-      {
-         notification.teller("El audio no es válido, intenta nuevamente");
-      }
 
       let human = formAudioTool.extractHuman( parent );
 
@@ -188,33 +189,26 @@ let functions = {
       stopTimer();
    },
 
-   consumeEleven: async function ( event )
+   checkForm : function ( event )
    {
+      event.preventDefault();
 
-      let human = formAudioTool.extractHuman( parent );
-
-      let voice = await addVoice( human ); // Create a clone of the voice
-
-      let audioOutput = 
+      // Take the children of the form
+      for(let i = 0; i < parent.children.length; i++)
       {
-         appendSrc : function ( url )
+         if(parent.children[i].report)
          {
-            formAudioTool.modelAudioOutput.src = url;
-            formAudioTool.modelAudioOutput.load();
-         },
-      };
+            let report = parent.children[i].report();
 
-      let body = 
-      {
-         text : "Esta es una prueba con varias horas de antelacion al proyecto",
-         model_id : "eleven_multilingual_v2",
-         voice_settings: {
-            stability : 0.5,
-            similarity_boost : 0.35,
+            if(!report.isValid)
+            {
+               notification.teller(report.message);
+               return false;
+            }
          }
-      };
+      }
 
-      useVoice( voice.voice_id, body, audioOutput );
+      this.submitForm();
    },
 
    generateVoice( event )
@@ -266,9 +260,52 @@ parent.children[1].addEventListener("change", (event) =>
    parent.children[0].required = false;
 });
 
-function checkForm()
+parent.children[0].report = () =>
 {
-   // Take the children of the form
-}
+   return {
+      isValid : (parent.children[1].checked || parent.children[0].checked),
+      message : "Debes seleccionar un sexo",
+   };
+};
+
+parent.children[1].report = () =>
+{
+   return {
+      isValid : (parent.children[1].checked || parent.children[0].checked),
+      message : "Debes seleccionar un sexo",
+   };
+};
+
+parent.children[2].report = () =>
+{
+   return {
+      isValid : parent.children[2].value === "",
+      message : "Debes poner una edad",
+   };
+};
+
+parent.children[3].report = () =>
+{
+   return {
+      isValid : (parent.children[3].value === ""),
+      message : "Debes poner un correo",
+   };
+};
+
+parent.children[4].report = () =>
+{
+   return {
+      isValid : (parent.children[4].value === ""),
+      message : "Debes seleccionar una nación",
+   };
+};
+
+parent.children[5].report = () =>
+{
+   return {
+      isValid : (parent.children[5].value === ""),
+      message : "Debes escribir un diálogo para el clon",
+   };
+};
 
 parent.appendChild(formAudioTool);

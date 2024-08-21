@@ -198,7 +198,6 @@ button.audio-upload__button
    display : inline;
 }
 
-audio-tool>button:disabled
 div.bar-container__div
 {
    border-radius : 75px;
