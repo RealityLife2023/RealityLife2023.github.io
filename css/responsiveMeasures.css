@@ -62,7 +62,7 @@
       display: block;
       position: relative;
       width: 49rem;
-      margin : 32px auto 0 8vw ;
+      margin : 32px auto 3.3vw 8vw ;
       padding : 5px 49.5vw 0 5px;
       color  : var(--deep-blue);
       border-bottom : 1px solid rgba(89,84,89, 94%);
@@ -79,11 +79,17 @@
    }
 
    nav.generic-nav-bar__nav>button.generic-blue__button,
-   nav.generic-nav-bar__nav>button.panel-option__button.language-button
+   nav.generic-nav-bar__nav>button.language-button
    {
       display: inline-block;
-      margin : 12px 10px;
+      margin : 27px 30px;
       font-size : 3.2rem;
+   }
+
+   nav.generic-nav-bar__nav>button.language-button
+   {
+      height: 14rem;
+      width : 11.8rem;
    }
 
 

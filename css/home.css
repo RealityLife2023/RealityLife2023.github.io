@@ -202,6 +202,20 @@ nav.generic-nav-bar__nav>button.panel-option__button:hover>a
    color : var(--aqua);
 }
 
+nav.generic-nav-bar__nav>button.language-button
+{
+   position : relative;
+   border : none;
+   font-size : 1.8vw;
+}
+
+nav.generic-nav-bar__nav>button.language-button>img
+{
+   position : absolute;
+   top : 0;
+   left : 35%;
+}
+
 
 /*
 nav.generic-nav-bar__nav>button.panel-option__button:hover
