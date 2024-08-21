@@ -244,4 +244,18 @@ let formAudioTool = new FormAudioTool();
 
 let parent = document.getElementsByClassName("chatbot-context__form")[0];
 
+parent.children[0].addEventListener("change", (event) => 
+{
+   event.preventDefault();
+
+   parent.children[1].checked = !parent.children[0].checked;
+});
+
+parent.children[1].addEventListener("change", (event) => 
+{
+   event.preventDefault();
+
+   parent.children[0].checked = !parent.children[1].checked;
+});
+
 parent.appendChild(formAudioTool);

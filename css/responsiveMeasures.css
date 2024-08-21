@@ -384,4 +384,9 @@
       height : 32rem;
       padding : 13px 0;
    }
+
+   .chatbot-context__form>input[type="checkbox"]::after
+   {
+      font-size: 4rem;
+   }
 }
