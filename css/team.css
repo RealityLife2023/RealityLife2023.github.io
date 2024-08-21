@@ -3,10 +3,8 @@
 h3.generic-blue__h3
 {
    color : var(--aqua);
-
    margin : auto;
    text-align : center;
-
    font-size : 3.25rem;
    font-family: "Poppins-Bold";
 }

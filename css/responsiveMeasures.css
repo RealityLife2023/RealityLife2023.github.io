@@ -20,7 +20,7 @@
       margin: auto;
       padding : 0;
       border-bottom: 1px solid rgba(20,19,20,94%);
-      background-color: var(--default);
+      background-color: rgba(245,245,245, 84%);
       border-radius: 10px 10px 0 0;
    }
 
@@ -56,13 +56,26 @@
       text-decoration: none;
    }
 
+
    nav.generic-nav-bar__nav>button.panel-option__button
    {
       display: block;
-      width: 48rem;
-      margin : 32px auto;
-      padding : 5px 48vw 0 5px;
+      position: relative;
+      width: 49rem;
+      margin : 32px auto 0 8vw ;
+      padding : 5px 49.5vw 0 5px;
       color  : var(--deep-blue);
+      border-bottom : 1px solid rgba(89,84,89, 94%);
+   }
+
+   nav.generic-nav-bar__nav>button.panel-option__button::after
+   {
+      position : absolute;
+      top : 22%;
+      left : 89%;
+      content : "\f061";
+      font-family : "BuiltinSymbols";
+      font-size : 1.8rem;
    }
 
    nav.generic-nav-bar__nav>button.generic-blue__button,
@@ -86,8 +99,8 @@
       font-size : 3.2rem;
    }
 
-   form.sign-account__form>input.new-account-field__input:nth-child(1),
    form.sign-account__form>input:nth-child(1),
+   form.sign-account__form>input.new-account-field__input:nth-child(1),
    form.sign-account__form>input.new-account-field__input:nth-child(4)
    {
       border-radius: 0;
