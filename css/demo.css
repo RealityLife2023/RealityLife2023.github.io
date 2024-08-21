@@ -33,9 +33,19 @@ form.chatbot-context__form
    width: 41.3%;
 }
 
+.chatbot-context__form>input.male[type="checkbox"]::after
+{
+   content: "\f183";
+}
+
+.chatbot-context__form>input.female[type="checkbox"]::after
+{
+   content: "\f182";
+}
+
 .chatbot-context__form>input[type="checkbox"]::after
 {
-   content: "\f1f8";
+   content: "\f183";
    font-family: "BuiltinSymbols";
    font-size: 2rem;
 }

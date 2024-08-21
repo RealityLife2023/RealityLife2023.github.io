@@ -111,3 +111,13 @@ i.symbol.trash.alternate.outline:before
 {
    content: "\f2ed";
 }
+
+i.symbol.male:before
+{
+   content: "\f183";
+}
+
+i.symbol.female:before
+{
+   content: "\f182";
+}
