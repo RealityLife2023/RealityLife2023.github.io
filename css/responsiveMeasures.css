@@ -344,4 +344,44 @@
    {
       width : 75%;
    }
+
+
+   /** DEMO **/
+
+   form.chatbot-context__form
+   {
+      width : 83%;
+      padding : 30px 12px;
+      height: max-content;
+   }
+
+   .chatbot-context__form>input,
+   .chatbot-context__form>select
+   {
+      margin : 30px auto;
+      width : 76%;
+      height : 4.65rem;
+      font-family: "Poppins-Regular";
+   }
+
+   form-audio-tool>div.time-bar__div
+   {
+      height : max-content;
+      width : 98%;
+   }
+
+   audio.audio-output__audio
+   {
+      display: block;
+      margin : 30px auto;
+   }
+
+   form-audio-tool>div.time-bar__div>div.bar-container__div
+   {
+      display: block;
+      position : static;
+      width: 92%;
+      height : 32rem;
+      padding : 13px 0;
+   }
 }

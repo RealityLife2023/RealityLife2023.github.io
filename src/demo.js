@@ -6,15 +6,14 @@ class FormAudioTool extends HTMLElement
 
       <button type="button" class="audio-record__button generic-blue__button"><i class="symbol play"></i></button>
       <button type="button" class="audio-stop__button generic-blue__button"><i class="symbol stop"></i></button>
-      <p id="clock"> 0:00</p>
-
       <div class="time-bar__div"> 
+         <p id="clock"> 0:00</p>
+         <button class="generic-blue__button">CLONAR</button>
          <div class="bar-container__div">
             <audio class="audio-output__audio human-voice" controls></audio>
             <audio class="audio-output__audio clone-model" controls autoplay></audio>
          </div>
       </div>
-      <button type="submit" class="generic-blue__button">CLONAR</button>
       `;
 
       this.recordButton = this.children[0];

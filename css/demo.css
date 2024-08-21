@@ -1,0 +1,101 @@
+
+form.chatbot-context__form
+{
+   margin : auto;
+   width : 38rem;
+   position : relative;
+   text-align : center;
+   padding : 40px 22px;
+   -webkit-backdrop-filter: blur(10px) saturate(180%);
+   backdrop-filter: blur(10px) saturate(180%);
+   background-color: rgba(240,242,240,98%);
+
+   box-shadow : 0 1rem 2rem rgba(0,0,0,0.5);
+}
+
+.chatbot-context__form>input,
+.chatbot-context__form>select
+{
+   display : block;
+   margin : 30px auto;
+   outline: none;
+   border : none;
+
+   width : 76%;
+   height : 2.65rem;
+   font-family: "Poppins-Regular";
+}
+
+.chatbot-context__form>input[type="checkbox"]
+{
+   display: inline-block;
+   position : relative;
+   width: 41.3%;
+}
+
+.chatbot-context__form>input[type="checkbox"]::after
+{
+   content: "\f1f8";
+   font-family: "BuiltinSymbols";
+   font-size: 2rem;
+}
+
+form.chatbot-context__form>textarea
+{
+   display : block;
+   margin : auto;
+   resize: none;
+
+   width : 78%;
+   height : 17rem;
+
+   padding : 30px 35px;
+
+   color : var(--deep-blue);
+   background-color : rgb(242,245,242);
+
+   font-family: "Poppins-Medium";
+   font-size  : 1.78rem;
+}
+
+form-audio-tool
+{
+   display : block;
+   height : max-content;
+   width: 100%;
+   text-align : center;
+}
+
+form-audio-tool>button.generic-blue__button
+{
+   display : inline-block;
+}
+
+form-audio-tool>div.time-bar__div
+{
+   height : max-content;
+   width: 96%;
+}
+
+div.time-bar__div>p
+{
+   color : var(--deep-blue);
+}
+
+audio.audio-output__audio
+{
+   display: block;
+   margin : 40px auto;
+}
+
+div.bar-container__div
+{
+   display: block;
+   position : static;
+   margin : auto;
+   padding : 22px 0;
+   width: 80%;
+   height : 13.5rem;
+   text-align: center;
+   border-radius: 18px;
+}
