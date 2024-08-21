@@ -79,7 +79,15 @@ async function recordVideo( event )
 
    let stream = await resolveMedia();
 
-   videoTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm"});
+   if(MediaRecorder.isTypeSupported("video/webm"))
+   {
+      videoTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm"});
+   }
+   else
+   {
+      videoTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/mp4"});
+   }
+
 
    videoTool.mediaRecorder.addEventListener("dataavailable", ( event ) => {
 
