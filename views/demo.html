@@ -34,14 +34,13 @@
       <h2 class="demo-title__h2">¡Nuesta prueba DEMO está aquí!</h2>
       <p class="premise__p">¿Estás listo para comenzar a preservar tu legado? Prueba nuestra Demo versión 1.0.1. Nuestro asistente de IA clonará tu voz para replicarla en tus archivos futuros. Mira este video y descubre el poder de la IA en Reality LIFE</p>
 
-      <form method="POST" class="white-generic__form chatbot-context__form ">
-         <input class="sex-checkbox__input male" type="checkbox" name="sex">
-         <input class="sex-checkbox__input female" type="checkbox" name="sex">
-         <input type="email" name="email" placeholder="Tú email">
-         <select name="nation">
-               <option value="Algeria">Algeria</option>
+      <form id="parent-form" class="white-generic__form chatbot-context__form ">
+         <input class="sex-checkbox__input male" type="checkbox" name="sex" required>
+         <input class="sex-checkbox__input female" type="checkbox" name="sex" required>
+         <input type="number" name="age" min="18" max="122" placeholder="Edad" required>
+         <input type="email" name="email" placeholder="Tú email" required>
+         <select name="nation" required>
                <option value="Andorra">Andorra</option>
-               <option value="Angola">Angola</option>
                <option value="Antarctica">Antarctica</option>
                <option value="Argentina">Argentina</option>
                <option value="Aruba">Aruba</option>
@@ -213,8 +212,7 @@
                <option value="Sweden">Sweden</option>
                <option value="Switzerland">Switzerland</option>
          </select>
-         <input type="number" name="age" min="18" max="122" placeholder="Edad">
-         <textarea maxlength="100"></textarea>
+         <textarea name="dialog" maxlength="100"></textarea required>
       </form>
 
       <section class="faq__section">

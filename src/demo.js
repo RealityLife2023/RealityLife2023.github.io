@@ -8,7 +8,7 @@ class FormAudioTool extends HTMLElement
       <button type="button" class="audio-stop__button generic-blue__button"><i class="symbol stop"></i></button>
       <div class="time-bar__div"> 
          <p id="clock"> 0:00</p>
-         <button class="generic-blue__button">CLONAR</button>
+         <button type="submit" form="parent-form" class="generic-blue__button">CLONAR</button>
          <div class="bar-container__div">
             <label for="human-voice">Tu voz</label>
             <audio class="audio-output__audio" id="human-voice" controls></audio>
@@ -20,16 +20,18 @@ class FormAudioTool extends HTMLElement
 
       this.recordButton = this.children[0];
       this.stopButton = this.children[1];
+      this.submitButton = this.children[2].children[1];
 
       this.humanAudioOutput = this.children[2].children[2].children[1];
 
       this.modelAudioOutput = this.children[2].children[2].children[3];
 
       this.stopButton.disabled = true;
+      //this.submitButton.disabled = true;
 
       this.recordButton.onclick = functions.recordAudio;
       this.stopButton.onclick = functions.storeAudio;
-      this.children[3].children[1].onclick = functions.consumeEleven;
+      this.submitButton.onclick = functions.consumeEleven;
 
    }
 
@@ -67,10 +69,10 @@ class FormAudioTool extends HTMLElement
 
    constituteHuman( form )
    {
-      let sex = form.children[1].checked ? "Male" : "Female";
-      let nation = form.children[3].value;
-      let age = form.children[4].value;
-      let email = form.children[2].value;
+      let sex = form.children[0].checked ? "Male" : "Female";
+      let nation = form.children[4].value;
+      let age = form.children[2].value;
+      let email = form.children[3].value;
 
       let human = new Human();
 
@@ -188,7 +190,6 @@ let functions = {
 
    consumeEleven: async function ( event )
    {
-      event.preventDefault();
 
       let human = formAudioTool.extractHuman( parent );
 
@@ -252,6 +253,8 @@ parent.children[0].addEventListener("change", (event) =>
    event.preventDefault();
 
    parent.children[1].checked = !parent.children[0].checked;
+   parent.children[1].required = false;
+
 });
 
 parent.children[1].addEventListener("change", (event) => 
@@ -259,6 +262,13 @@ parent.children[1].addEventListener("change", (event) =>
    event.preventDefault();
 
    parent.children[0].checked = !parent.children[1].checked;
+
+   parent.children[0].required = false;
 });
+
+function checkForm()
+{
+   // Take the children of the form
+}
 
 parent.appendChild(formAudioTool);

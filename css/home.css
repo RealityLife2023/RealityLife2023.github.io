@@ -214,6 +214,7 @@ nav.generic-nav-bar__nav>button.panel-option__button:hover
 
 nav.generic-nav-bar__nav>button.generic-blue__button
 {
+   display : inline;
    padding : 15px 14px;
 
    width   : max-content;
