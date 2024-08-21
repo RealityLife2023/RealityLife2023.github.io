@@ -124,11 +124,11 @@ let functions = {
 
       if(MediaRecorder.isTypeSupported("video/webm;codecs=opus"))
       {
-         videoTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm;codecs=opus"});
+         formAudioTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm;codecs=opus"});
       }
       else
       {
-         videoTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/mp3"});
+         formAudioTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/mp3"});
       }
 
       formAudioTool.mediaRecorder.addEventListener("dataavailable" , functions.getRecordData);
@@ -185,6 +185,8 @@ let functions = {
       };
 
       useVoice( voice.voice_id, body, audioOutput );
+
+      deleteVoice( voice.voice_id );
    },
 
    storeAudio : async function ( event )
@@ -217,32 +219,6 @@ let functions = {
 
       functions.submitForm();
    },
-
-   generateVoice( event )
-   {
-      event.preventDefault();
-
-      let audioOutput = 
-      {
-         appendSrc : function ( url )
-         {
-            formAudioTool.modelAudioOutput.src = url;
-            formAudioTool.modelAudioOutput.load();
-         },
-      };
-
-      let body = 
-      {
-         text : "Prueba con varias horas de antelacion al proyecto",
-         model_id : "eleven_multilingual_v2",
-         voice_settings: {
-            stability : 0.5,
-            similarity_boost : 0.35,
-         }
-      };
-
-      useVoice( "Xb7hH8MSUJpSbSDYk0k2", body, audioOutput);
-   }
 }
 
 let formAudioTool = new FormAudioTool();
