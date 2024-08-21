@@ -103,6 +103,13 @@ audio.audio-output__audio
    margin : 40px auto;
 }
 
+div.bar-container__div>label
+{
+   font-size : 2.8rem;
+   margin : 3px auto;
+   display: block;
+}
+
 div.bar-container__div
 {
    display: block;
@@ -110,7 +117,16 @@ div.bar-container__div
    margin : auto;
    padding : 22px 0;
    width: 80%;
-   height : 13.5rem;
+   height : 25.9rem;
    text-align: center;
    border-radius: 18px;
+}
+
+section.faq__section
+{
+   width: 97%;
+   margin : auto;
+
+   text-align: center;
+   font-size : 4rem;
 }

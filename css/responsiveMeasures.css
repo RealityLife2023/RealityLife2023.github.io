@@ -388,10 +388,11 @@
    .chatbot-context__form>select
    {
       margin : 30px auto;
-      width : 76%;
-      height : 4.65rem;
+      width : 79%;
+      height : 5.75rem;
       font-family: "Poppins-Regular";
    }
+
 
    form-audio-tool>div.time-bar__div
    {
@@ -410,13 +411,13 @@
       display: block;
       position : static;
       width: 92%;
-      height : 32rem;
+      height : 48.8rem;
       padding : 13px 0;
    }
 
    .chatbot-context__form>input[type="checkbox"]::after
    {
-      font-size: 4rem;
+      font-size: 4.5rem;
    }
 
    form.chatbot-context__form>textarea

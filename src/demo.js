@@ -10,8 +10,10 @@ class FormAudioTool extends HTMLElement
          <p id="clock"> 0:00</p>
          <button class="generic-blue__button">CLONAR</button>
          <div class="bar-container__div">
-            <audio class="audio-output__audio human-voice" controls></audio>
-            <audio class="audio-output__audio clone-model" controls autoplay></audio>
+            <label for="human-voice">Tu voz</label>
+            <audio class="audio-output__audio" id="human-voice" controls></audio>
+            <label for="clone-model">Tu clon</label>
+            <audio class="audio-output__audio" id="clone-model" controls autoplay></audio>
          </div>
       </div>
       `;
@@ -19,9 +21,9 @@ class FormAudioTool extends HTMLElement
       this.recordButton = this.children[0];
       this.stopButton = this.children[1];
 
-      this.humanAudioOutput = this.children[2].children[2].children[0];
+      this.humanAudioOutput = this.children[2].children[2].children[1];
 
-      this.modelAudioOutput = this.children[2].children[2].children[1];
+      this.modelAudioOutput = this.children[2].children[2].children[3];
 
       this.stopButton.disabled = true;
 
