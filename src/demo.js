@@ -279,7 +279,7 @@ parent.children[1].report = () =>
 parent.children[2].report = () =>
 {
    return {
-      isValid : parent.children[2].value === "",
+      isValid : parent.children[2].value !== "",
       message : "Debes poner una edad",
    };
 };
@@ -287,7 +287,7 @@ parent.children[2].report = () =>
 parent.children[3].report = () =>
 {
    return {
-      isValid : (parent.children[3].value === ""),
+      isValid : (parent.children[3].value !== ""),
       message : "Debes poner un correo",
    };
 };
@@ -295,7 +295,7 @@ parent.children[3].report = () =>
 parent.children[4].report = () =>
 {
    return {
-      isValid : (parent.children[4].value === ""),
+      isValid : (parent.children[4].value !== ""),
       message : "Debes seleccionar una nación",
    };
 };
@@ -303,9 +303,10 @@ parent.children[4].report = () =>
 parent.children[5].report = () =>
 {
    return {
-      isValid : (parent.children[5].value === ""),
+      isValid : (parent.children[5].value !== ""),
       message : "Debes escribir un diálogo para el clon",
    };
 };
 
 parent.appendChild(formAudioTool);
+document.body.appendChild(notification);

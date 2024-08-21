@@ -34,7 +34,7 @@ class InternalClock
 
    cleanElement()
    {
-      this.element.textContent = "";
+      this.element.textContent = "0:00";
    }
 }
 
