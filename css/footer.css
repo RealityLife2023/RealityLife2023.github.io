@@ -11,4 +11,5 @@ footer.generic-footer__footer
 footer.generic-footer__footer>q.mini-quote
 {
    font-size : 2rem;
+   display : inline;
 }
