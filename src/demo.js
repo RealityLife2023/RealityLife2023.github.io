@@ -208,7 +208,7 @@ let functions = {
 
       for(let i = 0; i < parent.importantChildren.length; i++)
       {
-         let report = parent.children[i].report();
+         let report = parent.importantChildren[i].report();
 
          if(!report.isValid)
          {
@@ -308,4 +308,5 @@ nation.report = () =>
 
 
 parent.appendChild(formAudioTool);
+
 document.body.appendChild(notification);
