@@ -7,6 +7,13 @@
    text-align: center;
 }
 
+p.guidance__p
+{
+   color : var(--deep-blue);
+   font-family: "Poppins-Medium";
+   font-size : 2.2rem;
+}
+
 p.premise__p
 {
    padding :  12px;
@@ -29,6 +36,11 @@ form.chatbot-context__form
    box-shadow : 0 1rem 2rem rgba(0,0,0,0.5);
 }
 
+.chatbot-context__form>input::placeholder
+{
+   font-size : 1.62rem;
+}
+
 .chatbot-context__form>input,
 .chatbot-context__form>select
 {
@@ -38,8 +50,9 @@ form.chatbot-context__form
    border : none;
 
    width : 76%;
-   height : 2.65rem;
+   height : 3.24rem;
    font-family: "Poppins-Regular";
+   font-size : 1.75rem;
 }
 
 .chatbot-context__form>input[type="checkbox"]
@@ -63,17 +76,17 @@ form.chatbot-context__form
 {
    content: "\f183";
    font-family: "BuiltinSymbols";
-   font-size: 2rem;
+   font-size: 2.3rem;
 }
 
-form.chatbot-context__form>textarea
+div.time-bar__div>textarea
 {
    display : block;
    margin : auto;
    resize: none;
 
    width : 78%;
-   height : 17rem;
+   height : 15rem;
 
    padding : 30px 35px;
 
@@ -102,6 +115,7 @@ form-audio-tool>button.generic-blue__button
    display : inline-block;
 }
 
+
 form-audio-tool>div.time-bar__div
 {
    height : max-content;
@@ -110,7 +124,7 @@ form-audio-tool>div.time-bar__div
 
 div.time-bar__div>button.generic-blue__button
 {
-   display : inline;
+   display : block;
 }
 
 div.time-bar__div>p

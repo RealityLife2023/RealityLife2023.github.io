@@ -63,6 +63,7 @@ div.form-container__div
 div.form-container__div>form.sign-account__form>input
 {
    background : none;
+   position : relative;
 }
 
 div.form-container__div>form.sign-account__form

@@ -26,7 +26,6 @@
       <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/demo.html">DEMO</a></button>
       <button class="panel-option__button"><a href="https://realitylife2023.github.io/views/contact.html">CONTACTO</a></button>
       <button type="button" href="#slider-show" class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
-      <button class="panel-option__button language-button"><img src="../static/language-icon.png" alt="Select language">Español</button>
    </nav>
 
    <main class="information__main">
@@ -35,11 +34,12 @@
       <p class="premise__p">¿Estás listo para comenzar a preservar tu legado? Prueba nuestra Demo versión 1.0.1. Nuestro asistente de IA clonará tu voz para replicarla en tus archivos futuros. Mira este video y descubre el poder de la IA en Reality LIFE</p>
 
       <form id="parent-form" class="white-generic__form chatbot-context__form ">
+         <p class="guidance__p">1. Llena los siguientes datos</p>
          <input class="sex-checkbox__input male" type="checkbox" name="sex" required>
          <input class="sex-checkbox__input female" type="checkbox" name="sex" required>
          <input type="number" name="age" min="18" max="122" placeholder="Edad" required>
-         <input type="email" name="email" placeholder="Tú email" required>
          <select name="nation" required>
+               <option value="">Seleciona tu país</option>
                <option value="Andorra">Andorra</option>
                <option value="Antarctica">Antarctica</option>
                <option value="Argentina">Argentina</option>
@@ -212,7 +212,7 @@
                <option value="Sweden">Sweden</option>
                <option value="Switzerland">Switzerland</option>
          </select>
-         <textarea name="dialog" maxlength="100" required></textarea>
+         <input type="email" name="email" placeholder="Tú email" required>
       </form>
 
       <section class="faq__section">

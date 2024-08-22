@@ -4,10 +4,13 @@ class FormAudioTool extends HTMLElement
    {
       this.innerHTML = `
 
+      <p class="guidance__p">2. Dale a play para grabar tu voz</p>
       <button type="button" class="audio-record__button generic-blue__button"><i class="symbol play"></i></button>
       <button type="button" class="audio-stop__button generic-blue__button"><i class="symbol stop"></i></button>
       <div class="time-bar__div"> 
          <p id="clock"> 0:00</p>
+         <p class="guidance__p">3. Escribe lo que quieres que diga tu clon.</p>
+         <textarea placeholder="Escribe algo para tu clon." name="dialog" maxlength="100" required></textarea>
          <button type="submit" form="parent-form" class="generic-blue__button">CLONAR</button>
          <div class="bar-container__div">
             <label for="human-voice">Tu voz</label>
@@ -18,13 +21,15 @@ class FormAudioTool extends HTMLElement
       </div>
       `;
 
-      this.recordButton = this.children[0];
-      this.stopButton = this.children[1];
-      this.submitButton = this.children[2].children[1];
+      this.recordButton = this.children[1];
+      this.stopButton = this.children[2];
+      this.submitButton = this.children[3].children[3];
 
-      this.humanAudioOutput = this.children[2].children[2].children[1];
+      this.dialog = this.children[3].children[2];
 
-      this.modelAudioOutput = this.children[2].children[2].children[3];
+      this.humanAudioOutput = this.children[3].children[4].children[1];
+
+      this.modelAudioOutput = this.children[3].children[4].children[3];
 
       this.stopButton.disabled = true;
       //this.submitButton.disabled = true;
@@ -32,13 +37,12 @@ class FormAudioTool extends HTMLElement
       this.recordButton.onclick = functions.recordAudio;
       this.stopButton.onclick = functions.storeAudio;
       this.submitButton.onclick = functions.checkForm;
-
    }
 
    report()
    {
       return { 
-         isValid : (this.lastRecord !== undefined),
+         isValid : (this.lastRecord !== undefined && this.dialog.value !== ""),
          message : "Todavía no has grabado un audio"
       };
    }
@@ -77,10 +81,10 @@ class FormAudioTool extends HTMLElement
 
    constituteHuman( form )
    {
-      let sex = form.children[0].checked ? "Male" : "Female";
-      let nation = form.children[4].value;
-      let age = form.children[2].value;
-      let email = form.children[3].value;
+      let sex = form.sex;
+      let nation = form.nation.value;
+      let age = form.age.value;
+      let email = form.email.value;
 
       let human = new Human();
 
@@ -176,7 +180,7 @@ let functions = {
 
       let body = 
       {
-         text : parent.children[5].value, // Textarea
+         text : formAudioTool.dialog.value, // Textarea
          model_id : "eleven_multilingual_v2",
          voice_settings: {
             stability : 0.5,
@@ -202,18 +206,14 @@ let functions = {
    {
       event.preventDefault();
 
-      // Take the children of the form
-      for(let i = 0; i < parent.children.length; i++)
+      for(let i = 0; i < parent.importantChildren.length; i++)
       {
-         if(parent.children[i].report)
-         {
-            let report = parent.children[i].report();
+         let report = parent.children[i].report();
 
-            if(!report.isValid)
-            {
-               notification.teller(report.message);
-               return false;
-            }
+         if(!report.isValid)
+         {
+            notification.teller(report.message);
+            return false;
          }
       }
 
@@ -225,71 +225,87 @@ let formAudioTool = new FormAudioTool();
 
 let parent = document.getElementsByClassName("chatbot-context__form")[0];
 
-parent.children[0].addEventListener("change", (event) => 
+let checkboxes = document.querySelectorAll("input[type=\"checkbox\"]");
+
+parent.importantChildren = [];
+parent.sex = "";
+
+parent.importantChildren.push(checkboxes[0], checkboxes[1], formAudioTool);
+
+checkboxes[0].addEventListener("change", (event) => 
 {
    event.preventDefault();
 
-   parent.children[1].checked = !parent.children[0].checked;
-   parent.children[1].required = false;
-
+   checkboxes[1].checked = !checkboxes[0].checked;
+   checkboxes[1].required = false;
+   parent.sex = "Male";
 });
 
-parent.children[1].addEventListener("change", (event) => 
+checkboxes[1].addEventListener("change", (event) => 
 {
    event.preventDefault();
 
-   parent.children[0].checked = !parent.children[1].checked;
-
-   parent.children[0].required = false;
+   checkboxes[0].checked = !checkboxes[1].checked;
+   checkboxes[0].required = false;
+   parent.sex = "Female";
 });
 
-parent.children[0].report = () =>
+
+checkboxes[0].report = () =>
 {
    return {
-      isValid : (parent.children[1].checked || parent.children[0].checked),
+      isValid : (checkboxes[1].checked || checkboxes[0].checked),
       message : "Debes seleccionar un sexo",
    };
 };
 
-parent.children[1].report = () =>
+checkboxes[1].report = () =>
 {
    return {
-      isValid : (parent.children[1].checked || parent.children[0].checked),
+      isValid : (checkboxes[1].checked || checkboxes[0].checked),
       message : "Debes seleccionar un sexo",
    };
 };
 
-parent.children[2].report = () =>
+let age = document.querySelector("input[type=\"number\"]");
+
+parent.importantChildren.push(age);
+parent.age = age;
+
+age.report = () =>
 {
    return {
-      isValid : parent.children[2].value !== "",
+      isValid : (age.value !== ""),
       message : "Debes poner una edad",
    };
 };
 
-parent.children[3].report = () =>
+let email = document.querySelector("input[name=\"email\"]");
+
+parent.importantChildren.push(email);
+parent.email = email;
+
+email.report = () =>
 {
    return {
-      isValid : (parent.children[3].value !== ""),
+      isValid : (email.value !== ""),
       message : "Debes poner un correo",
    };
 };
 
-parent.children[4].report = () =>
+let nation = document.querySelector("select");
+
+parent.importantChildren.push(nation);
+parent.nation = nation;
+
+nation.report = () =>
 {
    return {
-      isValid : (parent.children[4].value !== ""),
+      isValid : (nation.value !== ""),
       message : "Debes seleccionar una nación",
    };
 };
 
-parent.children[5].report = () =>
-{
-   return {
-      isValid : (parent.children[5].value !== ""),
-      message : "Debes escribir un diálogo para el clon",
-   };
-};
 
 parent.appendChild(formAudioTool);
 document.body.appendChild(notification);
