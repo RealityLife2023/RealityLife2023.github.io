@@ -186,9 +186,12 @@ function changeTool( event )
    dashboard.container.appendChild(tool);
 }
 
-let emailButton = document.getElementsByClassName("panel-option__button")[5];
+let emailButton = document.querySelector("#sign-button");
 
 let section = document.getElementsByClassName("generic-quote__q")[0];
+
+console.log(emailButton);
+console.log(section);
 
 emailButton.onclick = (event) =>
 {
