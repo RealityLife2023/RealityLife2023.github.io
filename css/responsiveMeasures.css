@@ -301,8 +301,6 @@
       font-size : 4rem;
    }
 
-
-
    aside.home-left__aside>span.globe-decoration__span
    {
       position : relative;
@@ -339,7 +337,6 @@
       max-width:none;
    }
 
-
    aside.home-right__aside>p
    {
       max-width  : 50rem;
@@ -351,7 +348,6 @@
    aside.home-right__aside>p:nth-child(2)
    {
       margin-top: 29vh;
-
    }
 
    article.home__article
@@ -361,10 +357,29 @@
       margin : 1rem 0 9rem 0;
    }
 
-   /*****/
+   /** TEAM **/
+
    h3.generic-blue__h3
    {
       font-size:5rem;
+   }
+
+   span.team-member__span>img
+   {
+      width : calc(278px / 2);
+      height : calc(278px / 2);
+   }
+
+   ul.member-achievements__ul
+   {
+      width: auto;
+      height: auto;
+   }
+
+   ul.member-achievements__ul>li
+   {
+      margin : 3vh auto;
+      font-size : 2rem;
    }
 
    /* DASHBOARD */
