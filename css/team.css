@@ -42,11 +42,12 @@ ul.member-achievements__ul
 
 span.team-member__span
 {
+   float : left;
    display : inline-block;
-   margin : auto;
-   width : 47%;
+   margin : 5vh 5vw;
+   width : 38%;
    height : max-content;
-   padding : 0 0 10px 0;
+   padding : 0 0 0 0;
 }
 
 img.team-photo__img
