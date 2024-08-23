@@ -38,6 +38,7 @@
 
    nav.generic-nav-bar__nav
    {
+      display: block;
       height : max-content;
       width : 100%;
       margin : 0;
@@ -368,6 +369,7 @@
    {
       width : calc(278px / 2);
       height : calc(278px / 2);
+      margin : 20px auto;
    }
 
    ul.member-achievements__ul
@@ -380,6 +382,25 @@
    {
       margin : 3vh auto;
       font-size : 2rem;
+   }
+
+   span.team-member__span
+   {
+      display : block;
+      float : none;
+      margin : 22px auto;
+   }
+
+   section.team-members__section
+   {
+      height: max-content;
+   }
+
+   img.team-photo__img
+   {
+      width: 56%;
+      height : 40%;
+      margin : 18px auto;
    }
 
    /* DASHBOARD */

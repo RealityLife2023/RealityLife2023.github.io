@@ -1,5 +1,9 @@
 /* "Nosotros" or "AboutUs"*/
 
+img.paragraph-image__img
+{
+   object-fit: cover;
+}
 
 article.about-us__article>p,
 div.combo-container__div>p,
@@ -10,13 +14,10 @@ article.about-us__article>img
    font-size : 1.6rem;
 }
 
-
-
 div.combo-container__div>img
 {
    height : 90%;
 }
-
 
 article.about-us__article>p
 {
@@ -27,7 +28,6 @@ article.about-us__article>p
 article.about-us__article>p:nth-child(1)
 {
    display: block;
-
    text-align : justify;
 }
 

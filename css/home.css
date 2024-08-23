@@ -164,6 +164,8 @@ nav.generic-nav-bar__nav
    margin-bottom : 2rem;
 
    padding-left  : 1.8vw;
+   display : flex;
+   justify-content: space-between;
 
    text-align : left;
 
@@ -177,7 +179,7 @@ nav.generic-nav-bar__nav
 nav.generic-nav-bar__nav>button.panel-option__button>a
 {
    color : var(--default);
-
+   text-decoration: none;
 }
 
 nav.generic-nav-bar__nav>button.panel-option__button
