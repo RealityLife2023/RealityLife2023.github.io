@@ -116,6 +116,7 @@
 
    form.sign-account__form>input
    {
+      position : relative;
       width : 47rem;
       min-height: 6rem;
       padding: 10px 10px 10px 10px;
@@ -495,8 +496,13 @@
       width : 79%;
       height : 5.75rem;
       font-family: "Poppins-Regular";
+      font-size : 21.2px;
    }
 
+.chatbot-context__form>input::placeholder
+{
+   font-size : 18.9px;
+}
 
    form-audio-tool>div.time-bar__div
    {
@@ -528,5 +534,58 @@
    {
       font-size : 3rem;
       padding : 14px 17px;
+   }
+
+   /** ABOUT US **/
+
+   article.about-us__article
+   {
+      padding : 2rem 5rem;
+   }
+
+   p.paragraph__p
+   {
+      font-size : 2.6rem;
+   }
+
+   div.combo-container__div
+   {
+      flex-direction : column-reverse;
+      column-gap : 20px;
+      height: max-content;
+      margin : 2.3rem auto 1.2rem auto;
+   }
+
+   div.combo-container__div:nth-child(3)
+   {
+      flex-direction: column;
+   }
+   
+   article.about-us__article>p
+   {
+      font-size : 2.65rem;
+      margin : 3rem auto 7rem auto;
+   }
+
+   div.combo-container__div>p
+   {
+      display:block;
+      width : 98%;
+      font-size : 2.65rem;
+      margin: 3.4rem auto;
+   }
+
+   div.combo-container__div>img
+   {
+      width: calc(547px / 2);
+      height: calc(547px / 2);
+      display : block;
+      margin : auto;
+   }
+
+   div.combo-container__div>p.paragraph__p:last-child
+   {
+      text-align : left;
+      margin : 4rem auto;
    }
 }
