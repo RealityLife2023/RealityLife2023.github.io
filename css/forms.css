@@ -45,6 +45,8 @@ div.form-container__div>form.sign-account__form>input:nth-child(4)
    border-bottom : 2px solid var(--deep-blue);
    text-align : left;
    border-radius : 0;
+   background : none;
+   position : relative;
 }
 
 
@@ -60,11 +62,6 @@ div.form-container__div
    background-color : var(--white);
 }
 
-div.form-container__div>form.sign-account__form>input
-{
-   background : none;
-   position : relative;
-}
 
 div.form-container__div>form.sign-account__form
 {
@@ -99,7 +96,6 @@ div.form-container__div>form.sign-account__form:nth-child(2)
 div.form-container__div>form.sign-account__form#unselected-form:nth-child(2)
 {
    top  : 100%;
-
    transition : 2.5s;
 }
 

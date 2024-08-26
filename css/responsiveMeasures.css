@@ -134,14 +134,16 @@
 
    div.form-container__div>form.sign-account__form:nth-child(1)
    {
-      top  : 6px;
-      left : 13px;
+      top  : -1%;
+      left : 2%;
+      right : 2%;
    }
 
    div.form-container__div>form.sign-account__form:nth-child(2)
    {
       top  : 100%;
-      left : 13px;
+      left : 2%;
+      right : 2%;
    }
 
    div.form-container__div>form.sign-account__form#unselected-form:nth-child(1)
@@ -152,7 +154,7 @@
 
    div.form-container__div>form.sign-account__form#selected-form:nth-child(1)
    {
-      top : 6px;
+      top : -1%;
       transition : 3s;
    }
 
@@ -165,7 +167,7 @@
 
    div.form-container__div>form.sign-account__form#selected-form:nth-child(2)
    {
-      top  : 6px;
+      top  : -8%;
       transition : 3.6s;
    }
 
