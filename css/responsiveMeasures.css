@@ -95,14 +95,16 @@
 
 
    /* LOGIN SECTION */
-
+   form.white-generic__form>input::-webkit-input-placeholder,
+   div.sign-forms__div>form.sign-account__form>::-webkit-input-placeholder,
+   div.form-container__div>form.sign-account__form>input::-webkit-input-placeholder,
    form.white-generic__form>input::placeholder,
    div.sign-forms__div>form.sign-account__form>input::placeholder,
    div.form-container__div>form.sign-account__form>input::placeholder
    {
       position: absolute;
       left    : 0;
-      top     : .4rem;
+      top     : .9px;
       font-size : 3.2rem;
    }
 
@@ -111,7 +113,6 @@
    form.sign-account__form>input.new-account-field__input:nth-child(4)
    {
       border-radius: 0;
-      margin : 0.25rem 0;
    }
 
    form.sign-account__form>input
@@ -170,8 +171,13 @@
 
    form.sign-account__form>a:nth-child(3)
    {
-      margin: 33px 0px;
+      margin: 33px auto;
       font-size: 3.45rem;
+   }
+
+   section.call-to-action__section
+   {
+      height : max-content;
    }
 
    section.call-to-action__section>div.sign-forms__div

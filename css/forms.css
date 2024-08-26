@@ -278,7 +278,7 @@ form.sign-account__form>input
 {
    width  : 332px;
    height : 25px;
-   margin : auto;
+   margin : 9px auto;
    padding : 15px 15px 15px 15px;
    display : block;
    border-color : transparent;
@@ -318,8 +318,7 @@ form.sign-account__form>input.new-account-field__input:nth-child(4)
 
 form.sign-account__form>input:nth-child(2)
 {
-   margin-top    : 3px;
-   margin-bottom : 1rem;
+   margin : 3px auto;
    border-radius : 0 0 23px 23px;
    background : var(--default);
 }
