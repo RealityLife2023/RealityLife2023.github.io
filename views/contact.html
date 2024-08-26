@@ -8,6 +8,7 @@
    <link rel="stylesheet" href="../css/team.css">
    <link rel="stylesheet" href="../css/forms.css">
    <link rel="stylesheet" href="../css/footer.css">
+   <link rel="stylesheet" href="../css/contact.css">
    <link rel="stylesheet" href="../css/homeInformation.css">
    <link rel="stylesheet" href="../css/aboutUs.css">
    <link rel="stylesheet" href="../css/responsiveMeasures.css">
@@ -28,19 +29,20 @@
    </nav>
    <main class="information__main">
       <p class="home-router__p"><a href="../index.html">HOME</a> > CONTACTO</p>
-      <h3>Envíanos un mensaje</h3>
-      <p> Nuestro equipo te atenderá a la brevedad. </p>
+      <h3 class="generic-blue__h3">Envíanos un mensaje</h3>
+      <p class="generic-paragraph__p"> Nuestro equipo te atenderá a la brevedad. </p>
       <ul class="contact-information__ul">
-         <li class="contact-info__li"><p>Javier Bambaren D.</p></li>
-         <li class="contact-info__li"><p>jbambaren@realitynear.org</p></li>
-         <li class="contact-info__li"><p>+91 993513194</p></li>
-         <li class="contact-info__li"><p>@JavierBD84</p></li>
-      </ul>
-      <ul class="contact-options-list__ul">
-         <li class="contact-info__li"><button>Personal</button></li>
-         <li class="contact-info__li"><button>Empresa</button></li>
+         <li class="contact-info__li"><i class="symbol user"></i>Javier Bambaren D.</li>
+         <li class="contact-info__li"><i class="symbol email"></i>jbambaren@realitynear.org</li>
+         <li class="contact-info__li"><i class="symbol phone"></i>+91 993513194</li>
+         <li class="contact-info__li"><i class="symbol telegram"></i>@JavierBD84</li>
       </ul>
       <form method="POST" class="enterprise-contact__form">
+         <select class="contact-type__select">
+            <option value="">Elige tu categoría</option>
+            <option value="Enterprise">Empresa</option>
+            <option value="Individual">Personal</option>
+         </select>
          <input type="text" name="enterprise" placeholder="Nombre de la empresa">
          <input type="text" name="natural-name" placeholder="Nombre">
          <input type="email" name="email" placeholder="Email">

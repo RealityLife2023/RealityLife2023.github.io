@@ -1,0 +1,51 @@
+p.generic-paragraph__p
+{
+   font-size : 3rem;
+   margin : auto;
+
+   text-align: center;
+}
+
+
+ul.contact-information__ul
+{
+   margin: 7rem auto;
+   font-size : 2.4rem;
+   text-decoration: none;
+   list-style-type: none;
+}
+
+ul.contact-information__ul>li
+{
+   display: block;
+   margin : 24px auto;
+   font-size : 3.35rem;
+}
+
+form.enterprise-contact__form
+{
+   display : block;
+   margin : 4rem auto;
+}
+
+form.enterprise-contact__form>input
+{
+   display : block;
+   margin  : 30px auto;
+   font-family: "Poppins-Regular";
+   font-size : 3rem;
+}
+
+form.enterprise-contact__form>button[type="submit"]
+{
+   display:block;
+   margin : auto;
+}
+
+select.contact-type__select
+{
+   display: block;
+   margin : auto;
+   font-size : 2.4rem;
+   font-family: "Poppins-Regular";
+}
