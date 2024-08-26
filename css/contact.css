@@ -1,8 +1,7 @@
 p.generic-paragraph__p
 {
    font-size : 3rem;
-   margin : auto;
-
+   margin : 3rem auto;
    text-align: center;
 }
 
@@ -15,6 +14,11 @@ ul.contact-information__ul
    list-style-type: none;
 }
 
+ul.contact-information__ul>li>i
+{
+   color : var(--aqua);
+}
+
 ul.contact-information__ul>li
 {
    display: block;
@@ -25,27 +29,47 @@ ul.contact-information__ul>li
 form.enterprise-contact__form
 {
    display : block;
-   margin : 4rem auto;
+   margin : 35px auto;
 }
 
-form.enterprise-contact__form>input
+select.contact-type__select
 {
+   width : 74%;
+   height : 5.8rem;
+   padding : 3px 8px;
+   display: block;
+   margin : auto;
+   font-size : 3rem;
+   font-family: "Poppins-Regular";
+   border-radius : 10px;
+   outline: none;
+   border: none;
+}
+
+form.enterprise-contact__form>input,
+form.enterprise-contact__form>textarea
+{
+   width : 73%;
+   height : 5.4rem;
    display : block;
    margin  : 30px auto;
+   padding : 3px 8px;
    font-family: "Poppins-Regular";
    font-size : 3rem;
+   border-radius : 10px;
+   outline: none;
+   border: none;
+   resize: none;
+}
+
+form.enterprise-contact__form>textarea
+{
+   height: 17rem;
+   padding : 10px 12px;
 }
 
 form.enterprise-contact__form>button[type="submit"]
 {
    display:block;
    margin : auto;
-}
-
-select.contact-type__select
-{
-   display: block;
-   margin : auto;
-   font-size : 2.4rem;
-   font-family: "Poppins-Regular";
 }

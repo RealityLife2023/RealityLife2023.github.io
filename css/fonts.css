@@ -121,3 +121,18 @@ i.symbol.female:before
 {
    content: "\f182";
 }
+
+i.symbol.mail:before
+{
+   content: "\f0e0";
+}
+
+i.symbol.phone:before
+{
+   content: "\f095";
+}
+
+i.symbol.user:before
+{
+   content: "\f007";
+}
