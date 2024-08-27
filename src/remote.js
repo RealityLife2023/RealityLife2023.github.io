@@ -2,6 +2,7 @@
 const url = "https://servicenuruk.realitynear.org:7726/";
 
 const CLONE = "clone";
+const EMAIL = "email-me";
 const PRESIGN = "presigned";
 const NOMINATE = "nominate";
 const NOMINATION = "nomination";
@@ -20,6 +21,19 @@ class Human
 
       this.description = `${age} years old ${sex} from ${nation}`;
    }
+}
+
+async function sendContactRequest( formData )
+{
+   let endpoint = `${url}${EMAIL}`;
+
+   let request = 
+   {
+      method : "POST",
+      body : formData,
+   };
+
+   return await fetch(endpoint, request);
 }
 
 /*
@@ -190,18 +204,6 @@ async function nomination()
 
       return { ok : true , error : undefined, data : data};
    });
-}
-
-
-/**
- * 
- * @param {Human} human 
- */
-async function binaryTrial( human )
-{
-   let endpoint = `${url}binary-trial`;
-   
-   fetch(endpoint, { method : "POST", body : human });
 }
 
 

@@ -32,13 +32,13 @@
       <h3 class="generic-blue__h3">Envíanos un mensaje</h3>
       <p class="generic-paragraph__p"> Nuestro equipo te atenderá a la brevedad. </p>
       <form method="POST" class="enterprise-contact__form">
-         <select class="contact-type__select">
+         <select class="contact-type__select" name="motive">
             <option value="">Elige tu categoría</option>
             <option value="Enterprise">Empresa</option>
             <option value="Individual">Personal</option>
          </select>
          <input type="text" name="enterprise" placeholder="Nombre de la empresa">
-         <input type="text" name="natural-name" placeholder="Nombre">
+         <input type="text" name="senderName" placeholder="Nombre">
          <input type="email" name="email" placeholder="Email">
          <textarea placeholder="Mensaje" name="message"></textarea>
          <button type="submit" class="generic-blue__button">ENVIAR</button>
@@ -50,6 +50,9 @@
          <li class="contact-info__li"><i class="symbol telegram"></i>  @JavierBD84</li>
       </ul>
    </main>
+   <script src="../src/remote.js"></script>
+   <script src="../src/notification.js"></script>
+   <script src="../src/contact.js"></script>
    <footer class="generic-footer__footer">
       <img src="" alt="" class="mini-logo__img">
       <q class="brand-quote__q mini-quote">Keep your memories and knowledge always alive</q>
