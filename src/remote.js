@@ -30,6 +30,9 @@ async function sendContactRequest( formData )
    let request = 
    {
       method : "POST",
+      headers : {
+         "Content-Type" : "application/x-www-form-urlencoded",
+      },
       body : formData,
    };
 
