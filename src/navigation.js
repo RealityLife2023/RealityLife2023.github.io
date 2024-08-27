@@ -186,6 +186,9 @@ function changeTool( event )
    dashboard.container.appendChild(tool);
 }
 
+/* Plug the notification component */
+document.body.appendChild(notification);
+
 let emailButton = document.querySelector("#sign-button");
 
 let section = document.getElementsByClassName("generic-quote__q")[0];
@@ -200,6 +203,3 @@ emailButton.onclick = (event) =>
    section.scrollIntoView( { behavior : "smooth" } );
 };
 
-/* Plug the notification component */
-
-document.body.appendChild(notification);

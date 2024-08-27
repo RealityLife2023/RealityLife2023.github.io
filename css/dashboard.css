@@ -47,13 +47,13 @@ section.video-review__section>audio.record-view__audio
 
 section.video-review__section>video.record-view__video
 {
-   border-radius: 45px;
+   border-radius: 12px;
 }
 
 textarea.record-view__textarea
 {
-   width : 65%;
-   height : 40vh;
+   width : 68%;
+   height : 41vh;
    margin : auto;
    resize: none;
    padding : 30px 35px;
@@ -62,7 +62,7 @@ textarea.record-view__textarea
    background-color : var(--almost-black); 
    font-family: "Poppins-Medium";
    font-size  : 1.78rem;
-   border-radius : 25px;
+   border-radius : 18px;
 }
 
 section.video-review__section
@@ -77,5 +77,5 @@ video.record-view__video
 {
    width  : 640px;
    height : 480px;
-   border-radius:45px;
+   border-radius:12px;
 }

@@ -89,7 +89,6 @@ class VisualizationWindow extends HTMLElement
             this.audio.src = url;
             break;
 
-         // TODO => solve text blob problem
          case "t":
             this.text.value = url;
             break;

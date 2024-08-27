@@ -469,6 +469,17 @@
       width : 75%;
    }
 
+   video.record-view__video
+   {
+      width : 75.2%;
+      height : 45.3vh;
+      object-fit: contain;
+   }
+
+   section.video-review__section>textarea.record-view__textarea
+   {
+      font-size : 2.45rem;
+   }
 
    /** DEMO **/
 
