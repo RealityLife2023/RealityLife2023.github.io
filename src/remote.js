@@ -27,13 +27,18 @@ async function sendContactRequest( formData )
 {
    let endpoint = `${url}${EMAIL}`;
 
-   let request = 
+   let json =  {};
+
+   for(const [key,value] of formData.entries())
+      json[key] = value;
+
+   let request =
    {
       method : "POST",
       headers : {
-         "Content-Type" : "application/x-www-form-urlencoded",
+         "Content-Type" : "application/json",
       },
-      body : formData,
+      body : JSON.stringify(json),
    };
 
    return await fetch(endpoint, request);
