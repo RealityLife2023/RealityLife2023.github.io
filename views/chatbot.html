@@ -52,7 +52,7 @@
 <script type="module" name="test">
    import * as rag from "../src/chatbot.js";
 
-   function TRank()
+   function TRank( expected )
    {
       let pilots = [34, 9, 3, 4, 5, 6, 10, 23];
 
@@ -62,7 +62,18 @@
 
       let guns = pointers.map( value => value = pilots[value] );
 
-      console.log(`top guns : ${guns}`);
+      let areEqual = true;
+
+      for(let i = 0; i < guns.length; i++)
+      {
+         if( guns[i] !== expected[i] )
+         {
+            areEqual = false;
+            break;
+         }
+      }
+
+      return areEqual;
    }
 
    function TEuclideanNorm()
@@ -73,11 +84,27 @@
 
       console.log(magnitude);
    }
-   const vector = [ 2, 7 , 3, -3, 9];
 
-   let magnitude = rag.euclideanNorm( vector );
 
-   console.log(magnitude);
+   function TCosineSimilarity()
+   {
+      const x = [ 5, 23, 2, 5, 9 ], y = [ 3, 21, 2, 5, 14 ];
 
-</script>
+      const similarity = rag.cosineSimilarity( x, y, x.length );
+
+      console.log( similarity );
+   }
+
+   function tryBreak()
+   {
+      console.log("Starting test session!!");
+
+      console.assert( TRank([34,23,10]) , "Test 1: failure");
+      console.assert( TEuclideanNorm() > 12, "Test 2: failure");
+      console.assert( TCosineSimilarity() > 0.99, "Test 3: failure");
+   }
+
+   tryBreak();
+
+</script> 
 </html> 

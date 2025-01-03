@@ -105,9 +105,9 @@ function dynamicRank( array, top = 2 )
 /**
  * Takes the cosine similarity of two vector of the same dimensions
  */
-function cosineSimilarity( x, y, dimensions )
+function cosineSimilarity( x, y, dimension )
 {
-   const dot = dotProduct( x, y, dimensions );
+   const dot = dotProduct( x, y, dimension );
 
    const l2normX = euclideanNorm( x );
    const l2normY = euclideanNorm( y );
@@ -231,7 +231,7 @@ function dotProduct( x, y, length )
 {
    let sum = 0;
 
-   for ( i = 0; i < length; i++ )
+   for( let i = 0; i < length; i++ )
    {
       sum += x[ i ] * y[ i ];
    }
@@ -252,7 +252,7 @@ function euclideanNorm( vector )
 
    while( i < length)
    {
-      if( vector[i] == 0)
+      if(vector[i] == 0)
       {
          i++;
          continue;
@@ -260,22 +260,23 @@ function euclideanNorm( vector )
 
       unsigned = vector[i] < 0 ? -vector[i] : vector[i];
 
-      if( t > unsigned )
+      i++;
+
+      if( unsigned > t )
       {
          ratio = t / unsigned;
-         s = 1 + s*(ratio**2);
+         s = 1 + s*ratio**2;
+
+         /** Override t for future **/
+         t = unsigned;
          continue;
       }
 
       ratio = unsigned / t;
       s = s + ratio**2;
-      /** Override t for future **/
-      t = unsigned;
-
-      i++;
    }
 
-   return t * Math.sqrt(s);
+   return (t * Math.sqrt(s));
 }
 
-export { dynamicRank, euclideanNorm };
+export { dynamicRank, euclideanNorm, cosineSimilarity };
