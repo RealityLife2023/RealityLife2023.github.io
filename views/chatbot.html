@@ -49,5 +49,35 @@
       window.location.replace(url);
    };
 </script>
-<script type="module" src="../src/chatbot.js"></script>
+<script type="module" name="test">
+   import * as rag from "../src/chatbot.js";
+
+   function TRank()
+   {
+      let pilots = [34, 9, 3, 4, 5, 6, 10, 23];
+
+      console.log(`pilots : ${pilots}`);
+
+      let pointers = rag.dynamicRank( pilots );
+
+      let guns = pointers.map( value => value = pilots[value] );
+
+      console.log(`top guns : ${guns}`);
+   }
+
+   function TEuclideanNorm()
+   {
+      const vector = [ 2, 7 , 3, -3, 9];
+
+      let magnitude = rag.euclideanNorm( vector );
+
+      console.log(magnitude);
+   }
+   const vector = [ 2, 7 , 3, -3, 9];
+
+   let magnitude = rag.euclideanNorm( vector );
+
+   console.log(magnitude);
+
+</script>
 </html> 
