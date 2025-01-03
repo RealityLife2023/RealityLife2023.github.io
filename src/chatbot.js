@@ -99,6 +99,8 @@ function dynamicRank( array, top = 2 )
       rightWing = leftWing + 1;
    }
 
+   guns.pop(); // clean last element;
+
    return guns;
 }
 
