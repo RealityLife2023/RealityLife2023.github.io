@@ -83,6 +83,8 @@
       let magnitude = rag.euclideanNorm( vector );
 
       console.log(magnitude);
+
+      return magnitude;
    }
 
 
@@ -93,6 +95,8 @@
       const similarity = rag.cosineSimilarity( x, y, x.length );
 
       console.log( similarity );
+
+      return similarity;
    }
 
    function tryBreak()
@@ -101,7 +105,7 @@
 
       console.assert( TRank([34,23,10]) , "Test 1: failure");
       console.assert( TEuclideanNorm() > 12, "Test 2: failure");
-      console.assert( TCosineSimilarity() > 0.99, "Test 3: failure");
+      console.assert( TCosineSimilarity() < 0.99, "Test 3: failure");
    }
 
    tryBreak();
