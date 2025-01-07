@@ -1,58 +1,7 @@
+@import url("library.css");
 
-:root
+img.brand-logo__img
 {
-   scrollbar-color : #002060 #003344;
-}
-
-
-html
-{
-   font-size : 16px;
-   scroll-behavior : smooth;
-}
-
-html::-webkit-scrollbar-thumb
-{
-   border-radius : 8px;
-
-}
-
-body
-{
-
-   margin : 0;
-
-   padding : 0px 0px;
-
-   width  : 100%;
-   height : max-content;
-   min-height : 100%;
-
-
-   /* Custom variables */
-
-   --gradient-a-background : rgb(4, 18, 52);
-   --gradient-b-background : rgba(4, 18,52);
-   --gradient-c-background : rgb(2, 56, 81);
-   --default    : rgb(240,240,240);
-   --deep-blue  : #002060;
-   --red-warn   : #BF483F;
-   --blue-prompt: #2A65AD;
-   --aqua       : #A1ECFF;
-   --white      : #EEE;
-   --grey       : #4B4D4B;
-   --almost-black : #333;
-
-   /* end */
-
-
-   background : linear-gradient(180deg, var(--gradient-a-background) 10%, var(--gradient-b-background) 35%, var(--gradient-c-background) 100%);
-
-   font-family : 'Poppins-Regular';
-
-   color       : var(--default);
-}
-
 /*
  * Variables:
  * brand logo height
@@ -60,8 +9,6 @@ body
  * nav bar margin top bottom
  * */
 
-img.brand-logo__img
-{
    --normal-dimension-width : 1045px;
    --normal-dimension-height : 177px;
 
@@ -156,140 +103,147 @@ header.brand-band__header
    user-select: none;
 }
 
-/* Navigation bar */
-
-nav.generic-nav-bar__nav
+aside.home-left__aside, aside.home-right__aside
 {
-   margin-top    : 1rem;
-   margin-bottom : 2rem;
-
-   padding-left  : 1.8vw;
-   display : flex;
-   justify-content: space-between;
-
-   text-align : left;
-
-   user-select : none;
-
-   font-family : "Poppins-Regular";
-
-   background-color : transparent;
+   height  : 100%;
 }
 
-nav.generic-nav-bar__nav>button.panel-option__button>a
+aside.home-left__aside
 {
-   color : var(--default);
-   text-decoration: none;
-}
+   float : left;
+   max-width   : 48%;
 
-nav.generic-nav-bar__nav>button.panel-option__button
-{
-   --max-content-width: max-content;
-
-   margin         : 0 2vw 0 2vw;
-   padding-top    : 0.2rem;
-   padding-bottom : 0.12rem;
-
-   border : none;
-
-   color       : var(--default);
-   font-weight : 100;
-   font-size   : 1.8vw;
-
-   background-color: transparent;
-}
-
-nav.generic-nav-bar__nav>button.panel-option__button:hover>a
-{
-   color : var(--aqua);
-}
-
-nav.generic-nav-bar__nav>button.language-button
-{
    position : relative;
-   border : none;
-   font-size : 1.8vw;
+
+   color       : var(--aqua);
+   font-family : "Poppins-Bold";
+/*   font-size   : 1.8rem;*/
+   text-align  : left;
 }
 
-nav.generic-nav-bar__nav>button.language-button>img
+aside.home-right__aside
 {
-   position : absolute;
-   top : 0;
-   left : 35%;
-}
-
-
-/*
-nav.generic-nav-bar__nav>button.panel-option__button:hover
-{
-   cursor : help;
-   font-weight: bold;
-   width          : calc(var(--max-content-width) - 14px);
-}
-*/
-
-nav.generic-nav-bar__nav>button.generic-blue__button
-{
-   display : inline;
-   padding : 15px 14px;
-
-   width   : max-content;
-
-   border-radius : 30px;
-
-   background-color : var(--aqua);
-
-   color : var(--deep-blue);
-
-   font-size   : 1.4rem;
-   font-weight : 200;
-}
-
-nav.generic-nav-bar__nav>button.generic-blue__button:hover
-{
-   color : var(--aqua);
-   background-color : var(--grey);
-}
-
-nav.generic-nav-bar__nav>button.panel-option__button:nth-child(7)
-{
-   width : 10rem;
-   font-size : 1.2rem;
-}
-
-/* Note: Do not add a padding in the right and left, 
- * is better if only the children add their own padding
- */
-main.information__main
-{
-   height    : max-content;
-   min-height: 100vh;
-
-   padding-top  : 1.5rem;
-   padding-bottom : 1.8rem;
-
+   float : right;
+   max-width   : 48%;
+   padding-right : 40px;
    margin : auto;
+   color       : var(--default);
+   font-family : "Poppins-Regular";
+   font-size   : 2.2rem;
+   text-align  : right;
 }
 
-/* Generic elements */
 
-button.blue-button
+aside.home-left__aside>img:nth-child(1)
 {
-   border-radius : 8px 8px;
-
-   background-color : var(--aqua);
+   --original-width  : 734px;
+   --original-height : 463px;
+   width  : 41vw;
+   height : 48vh;
 }
 
-ul.generic-white__ul
+
+aside.home-right__aside>p
 {
-   margin : auto;
+   max-width: 720px;
+   box-sizing: border-box;
+   font-size : 3.3vh;
+}
+
+aside.home-left__aside>p
+{
+   max-width : 300px;
+}
+
+article.home__article
+{
+   width  : 100%;
+   height : 95vh;
+
+   margin  : 1rem 0 1rem 0;
    padding : 0;
+   text-align : right;
+   user-select: none;
+}
+
+span.globe-decoration__span
+{
+   --normal-width    : 370px;
+   --normal-height   : 348px;
+   width    : 27.9rem;
+   height   : 26.35rem;
+
+   display: inline-flex;
+   position : absolute;
+}
+
+span.globe-decoration__span>img
+{
+   flex : 1;
+}
+
+span.globe-decoration__span>p
+{
+
+   /*height: 100%;*/
+   margin : 0;
+   width : 100%;
+   top   : 44%;
+   position:absolute;
    text-align : center;
 }
 
-ul.generic-white__ul>li
+/* Recuerdos */
+span.globe-decoration__span:nth-child(2)
 {
-   list-style-type: none;
-   color : var(--default);
+   --normal-width    : 277px;
+   --normal-height   : 258px;
+
+   width  : 17rem;
+   height : 15.99rem;
+   top  : 27%;
+   left : 31%;
+}
+span.globe-decoration__span:nth-child(2)>p
+{
+   font-size : 2rem;
 }
 
+/* Acompañamiento */
+span.globe-decoration__span:nth-child(3)
+{
+   --normal-width    : 321px;
+   --normal-height   : 302px;
+   width : 20.08rem;
+   height : 18.87rem;
+   top  : 41%;
+   left : 68%;
+}
+span.globe-decoration__span:nth-child(3)>p
+{
+   font-size : 1.4rem;
+}
+
+/* Tecnologia */
+span.globe-decoration__span:nth-child(4)
+{
+    --spec-width: 370px;
+    --spec-height: 348px;
+    width: 23.19rem;
+    height: 21.8rem;
+    top: 57%;
+    left: 20%;
+}
+span.globe-decoration__span:nth-child(4)>p
+{
+   font-size : 2rem;
+}
+
+
+section.call-to-action__section
+{
+   margin : 0;
+   margin-top : 13rem;
+
+   height : 125vh;
+}

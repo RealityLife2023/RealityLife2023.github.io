@@ -1,5 +1,5 @@
 <!DOCTYPE html> 
-<html> 
+<html lang="es"> 
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes, user-scalable=no">
@@ -8,12 +8,7 @@
 
    <link rel="ico" type="image/x-icon" href="../static/favicon.ico">
 
-   <link rel="stylesheet" href="../css/fonts.css">
-   <link rel="stylesheet" href="../css/home.css">
-   <link rel="stylesheet" href="../css/team.css">
-   <link rel="stylesheet" href="../css/forms.css">
-   <link rel="stylesheet" href="../css/footer.css">
-   <link rel="stylesheet" href="../css/homeInformation.css">
+   <link rel="stylesheet" href="../css/chatbot.css">
    <link rel="stylesheet" href="../css/responsiveMeasures.css">
 
 </head>
@@ -26,15 +21,25 @@
       <button class="panel-option__button"><a href="contact.html">CONTACTO</a></button>
       <button type="button" class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
    </nav>
-   <main>
-      <form id="document-submitter" enctype="multipart/form-data"> 
-         <input type="file" name="document"> 
-         <input type="submit" value="Submit"> 
-      </form> 
-      <form id="chat-submitter" enctype="multipart/form-data"> 
-         <input type="text" name="message"> 
-         <input class="chat-buttton-sender__input" type="submit" value="Emoji of plain"> 
-      </form> 
+   <main class="information__main">
+      <p class="home-router__p"><a href="../index.html">HOME</a> > DEMO</p>
+      <div class="chat-body__div">
+         <article class="chat-configuration__article" status="hidden">
+            <form id="document-submitter" enctype="multipart/form-data"> 
+               <input type="file" name="document"> 
+            </form> 
+         </article>
+         <div class="chat-bubble-jar__div">
+            <p class="chat-bubble__p" type="sender">Have you ever been in the Chicamocha park?</p>
+            <p class="chat-bubble__p" type="receiver">Can you stop texting me?</p>
+            <p class="chat-bubble__p" type="sender">Have you ever been in the Chicamocha park?</p>
+            <p class="chat-bubble__p" type="receiver">Can you stop texting me?</p>
+         </div>
+         <form id="chat-submitter">
+            <input type="text" name="message"> 
+            <input class="chat-buttton-sender__input" type="submit" value="E"> 
+         </form> 
+      </div>
    </main>
 </body> 
 <script>
@@ -84,11 +89,10 @@
 
       let magnitude = rag.euclideanNorm( vector );
 
-      console.log(magnitude);
+      console.log( magnitude );
 
       return magnitude;
    }
-
 
    function TCosineSimilarity()
    {
