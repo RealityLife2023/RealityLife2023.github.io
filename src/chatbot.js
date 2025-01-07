@@ -5,16 +5,33 @@ const PDF_EXTRACTOR = "https://servicenuruk.realitynear.org:7725/document";
 const VECTOR_GENERATOR = "https://servicenuruk.realitynear.org:7726/vectorize";
 const PROMPT_END = "https://servicenuruk.realitynear.org:7726/ask";
 
+const jar = document.getElementsByClassName("chat-bubble-jar__div")[0];
+
+function pushToJar( type, content )
+{
+   let bubble = document.createElement("p");
+
+   bubble.classList.add("chat-bubble__p");
+   bubble.setAttribute("type", type);
+   bubble.append(content);
+
+   jar.appendChild( bubble );
+}
+
+
 chat.addEventListener("submit", async event => {
 
    event.preventDefault();
+
 
    let form = {
       content : event.target.message.value,
    };
 
-   /*
+   pushToJar( "sender", event.target.message.value );
+   event.target.reset();
 
+   /*
    pushToChat( event.target );
 
    let embedding = await vectorize( form );
@@ -281,4 +298,4 @@ function euclideanNorm( vector )
    return (t * Math.sqrt(s));
 }
 
-export { dynamicRank, euclideanNorm, cosineSimilarity };
+export { dynamicRank, euclideanNorm, cosineSimilarity, pushToJar };

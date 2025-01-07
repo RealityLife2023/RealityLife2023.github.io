@@ -110,9 +110,11 @@
       console.log("Starting test session!!");
 
       console.assert( TRank([34,23]) , "Test 1: failure");
-      //console.assert( TEuclideanNorm() > 12, "Test 2: failure");
-      //console.assert( TCosineSimilarity() < 0.99, "Test 3: failure");
+      console.assert( TEuclideanNorm() > 12, "Test 2: failure");
+      console.assert( TCosineSimilarity() < 0.99, "Test 3: failure");
+      console.log("Passing through!");
    }
+
 
    tryBreak();
 
