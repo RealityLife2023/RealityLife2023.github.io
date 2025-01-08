@@ -16,7 +16,6 @@
    <nav class="generic-nav-bar__nav" id="not-home">
       <button class="panel-option__button"><a href="aboutus.html">NOSOTROS</a></button>
       <button class="panel-option__button"><a href="team.html">EQUIPO</a></button>
-      <button class="panel-option__button"><a href="pricing.html">PLANES</a></button>
       <button class="panel-option__button"><a href="demo.html">DEMO</a></button>
       <button class="panel-option__button"><a href="contact.html">CONTACTO</a></button>
       <button type="button" class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
@@ -105,6 +104,20 @@
       return similarity;
    }
 
+   function InsertFakePages()
+   {
+      let keys = [];
+      for(let i = 0; i < 8; i++)
+      {
+         let key = `p.${i}`;
+         keys.push(key);
+      }
+
+      localStorage.setItem('pages', keys);
+
+      return rag.retrievePages();
+   }
+
    function tryBreak()
    {
       console.log("Starting test session!!");
@@ -112,6 +125,7 @@
       console.assert( TRank([34,23]) , "Test 1: failure");
       console.assert( TEuclideanNorm() > 12, "Test 2: failure");
       console.assert( TCosineSimilarity() < 0.99, "Test 3: failure");
+      console.assert( InsertFakePages().length === 8, "Test 4: failure");
       console.log("Passing through!");
    }
 

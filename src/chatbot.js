@@ -29,16 +29,15 @@ chat.addEventListener("submit", async event => {
    };
 
    pushToJar( "sender", event.target.message.value );
+
    event.target.reset();
 
    /*
-   pushToChat( event.target );
 
    let embedding = await vectorize( form );
 
    let answer = await ask( embedding, event.target );
 
-   pushToChat( answer );
    */
 });
 
@@ -234,7 +233,7 @@ async function ask( question )
  */
 function retrievePages()
 {
-   return localStorage.getItem("pages").split();
+   return localStorage.getItem("pages").split(",");
 }
 
 async function pushToChat( content, side = 0)
@@ -298,4 +297,4 @@ function euclideanNorm( vector )
    return (t * Math.sqrt(s));
 }
 
-export { dynamicRank, euclideanNorm, cosineSimilarity, pushToJar };
+export { dynamicRank, euclideanNorm, cosineSimilarity, pushToJar, retrievePages };
