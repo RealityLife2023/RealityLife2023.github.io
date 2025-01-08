@@ -118,6 +118,16 @@
       return rag.retrievePages();
    }
 
+   function TUIInsertBubbles()
+   {
+      let i = 0;
+      while( i < 8 )
+      {
+         rag.pushToJar( i % 2 === 0 ? "sender" : "receiver", "Hello");
+         i++;
+      }
+   }
+
    function tryBreak()
    {
       console.log("Starting test session!!");
@@ -127,8 +137,8 @@
       console.assert( TCosineSimilarity() < 0.99, "Test 3: failure");
       console.assert( InsertFakePages().length === 8, "Test 4: failure");
       console.log("Passing through!");
-   }
 
+   }
 
    tryBreak();
 

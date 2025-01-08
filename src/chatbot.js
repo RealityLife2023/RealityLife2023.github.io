@@ -1,11 +1,23 @@
 const chat = document.getElementById("chat-submitter");
-const element = document.getElementById("document-submitter");
+const file = document.getElementById("document-submitter");
 
 const PDF_EXTRACTOR = "https://servicenuruk.realitynear.org:7725/document";
 const VECTOR_GENERATOR = "https://servicenuruk.realitynear.org:7726/vectorize";
 const PROMPT_END = "https://servicenuruk.realitynear.org:7726/ask";
 
 const jar = document.getElementsByClassName("chat-bubble-jar__div")[0];
+
+
+function isStickToBottom( element )
+{
+   const diff = element.scrollHeight - element.clientHeight <= element.scrollTop + 1;
+   return diff;
+}
+
+function stickyScroll( element )
+{
+   element.scrollTop = element.scrollHeight - element.clientHeight;
+}
 
 function pushToJar( type, content )
 {
@@ -15,7 +27,12 @@ function pushToJar( type, content )
    bubble.setAttribute("type", type);
    bubble.append(content);
 
+   const signal = isStickToBottom( jar );
+
    jar.appendChild( bubble );
+
+   if(signal)
+      stickyScroll( jar );
 }
 
 
@@ -41,7 +58,7 @@ chat.addEventListener("submit", async event => {
    */
 });
 
-element.addEventListener("submit", async event => {
+file.addEventListener("submit", async event => {
 
    event.preventDefault();
 

@@ -56,6 +56,12 @@ main.information__main
    overflow-x: scroll;
 }
 
+.chat-reverse-jar__div
+{
+   display : flex;
+   flex-direction : column;
+}
+
 .chat-bubble__p
 {
    padding : 2rem;
