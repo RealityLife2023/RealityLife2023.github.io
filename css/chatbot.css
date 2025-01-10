@@ -24,8 +24,8 @@ main.information__main
 
 .chat-configuration__article
 {
-   height: 100%;
-   width : 92vw;
+   height: 50%;
+   width : 100%;
    position : absolute;
    background-color : var(--aqua);
    border-radius : 35px;
@@ -116,4 +116,21 @@ main.information__main
    height: 4.25rem;
    width: 4.25rem;
    border-radius: 50%;
+}
+
+#document-submitter
+{
+   text-align : center;
+   margin : auto;
+   width : 90%;
+   height : 100%;
+   padding-top : 20vh;
+}
+
+#document-submitter>input
+{
+   display: inline-block;
+   font-size : 3.2rem;
+
+   margin: 3rem auto;
 }

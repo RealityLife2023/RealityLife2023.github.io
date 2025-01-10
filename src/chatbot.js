@@ -40,23 +40,16 @@ chat.addEventListener("submit", async event => {
 
    event.preventDefault();
 
-
-   let form = {
-      content : event.target.message.value,
-   };
+   let answer = await ask( event.target.message.value );
 
    pushToJar( "sender", event.target.message.value );
 
    event.target.reset();
 
-   /*
+   pushToJar( "receiver", answer );
 
-   let embedding = await vectorize( form );
-
-   let answer = await ask( embedding, event.target );
-
-   */
 });
+
 
 file.addEventListener("submit", async event => {
 
@@ -77,8 +70,7 @@ file.addEventListener("submit", async event => {
 
    localStorage.setItem('pages', keys);
 
-   //let docEmbedding = await vectorizeDocument( keys );
-  // localStorage.setItem('embedding', docEmbedding);// Save pages to return later
+   let docEmbedding = await vectorizeDocument( keys );
 });
 
 /**
@@ -88,12 +80,129 @@ async function vectorizeDocument( sections )
 {
    for( const page of sections )
    {
-      let content = localStorage.getItem(page);
+      let pageContent = localStorage.getItem(page);
 
-      let response = await vectorize( content );
+      let response = await vectorize({ content : pageContent });
+      
+      let container = JSON.stringify( response );
 
-      localStorage.setItem(`e.${page}`, response);
+      localStorage.setItem(`e.${page}`,container);
    }
+}
+
+
+/**
+ * Uses cosine similarity to compare one vector with all the vectors stored and then ranks the results
+ */
+function buildContext( sections, vectorX )
+{
+   let results = [];
+
+   for( const page of sections )
+   {
+      let container = localStorage.getItem(`e.${page}`);
+      let vectorY =  JSON.parse(container);
+
+      let similarity = cosineSimilarity( vectorX, vectorY, vectorY.length );
+
+      results.push( similarity );
+   }
+
+   console.log( results );
+
+   /** results are 1:1 with sections **/
+
+   let topResults = dynamicRank( results ); // List of indexes for the most relevant results
+   let context = "";
+
+   for( const index of topResults )
+   {
+      context += localStorage.getItem(sections[index]);
+      context += "\n";
+   }
+
+   return context;
+}
+
+/**
+ * Request the embedding for a text
+ * @params object - requires the prompt property
+ */
+async function promptOnto( object )
+{
+   let request = 
+      {
+         method : "POST", 
+         headers : {"Content-Type" : "application/json"},
+         body : JSON.stringify(object),
+      };
+
+   return await fetch(PROMPT_END, request).then( async response => 
+      {
+         let json = await response.json();
+         console.log(json.answer);
+
+         return json.answer;
+
+      });
+}
+
+/**
+ * Request the embedding for a text
+ * @params object - requires the content property
+ */
+async function vectorize( object )
+{
+   let request = 
+      {
+         method : "POST", 
+         headers : { "Content-Type" : "application/json" },
+         body : JSON.stringify(object),
+      };
+
+   return await fetch(VECTOR_GENERATOR, request).then( res => res.json());
+}
+
+/**
+ * @params form - FormData object
+ */
+async function readPDF( form )
+{
+
+   let request = 
+      {
+         method : "POST", 
+         body : form,
+      };
+
+   return await fetch(PDF_EXTRACTOR, request).then( response => response.json());
+}
+
+async function ask( question )
+{
+   const questionEmbedding = await vectorize({ content : question });
+
+   const pages = retrievePages();
+
+   const context = buildContext(pages,questionEmbedding);
+
+   const finalPrompt = 
+     ` We're only talking about what's on the brackets, if the question is unrelated try to make clear what's the topic of the conversation, you can be very creative with this kind of answers
+     \{
+     ${context}
+     \}
+     reply please to the next question: ${question}`;
+
+
+   return await promptOnto({prompt : finalPrompt});
+}
+
+/**
+ * Returns the keys to access the content of each page in local storage
+ */
+function retrievePages()
+{
+   return localStorage.getItem("pages").split(",");
 }
 
 /**
@@ -135,128 +244,6 @@ function dynamicRank( array, top = 2 )
    guns.pop(); // clean last element;
 
    return guns;
-}
-
-/**
- * Takes the cosine similarity of two vector of the same dimensions
- */
-function cosineSimilarity( x, y, dimension )
-{
-   const dot = dotProduct( x, y, dimension );
-
-   const l2normX = euclideanNorm( x );
-   const l2normY = euclideanNorm( y );
-
-   return dot / ( l2normX * l2normY );
-}
-
-/**
- * Uses cosine similarity to compare one vector with all the vectors stored and then ranks the results
- */
-function buildContext( sections, vectorX )
-{
-   let results = [];
-
-   for( const page of sections )
-   {
-      let vectorY = localStorage.getItem(`e.${page}`);
-
-      let similarity = cosineSimilarity( vectorX, vectorY );
-
-      results.push( similarity );
-   }
-
-   /** results are 1:1 with sections **/
-
-   let topResults = dynamicRank( results ); // List of indexes for the most relevant results
-   let context = "";
-
-   for( const index of topResults )
-   {
-      context += localStorage.getItem(sections[index]);
-      context += "\n";
-   }
-
-   return context;
-}
-
-/**
- * Request the embedding for a text
- * @params object - requires the prompt property
- */
-async function promptOnto( object )
-{
-   let request = 
-      {
-         method : "POST", 
-         body : JSON.stringify(object),
-      };
-
-   return await fetch(PROMPT_END, request).then( response => response.json());
-}
-
-/**
- * Request the embedding for a text
- * @params object - requires the content property
- */
-async function vectorize( object )
-{
-   let request = 
-      {
-         method : "POST", 
-         body : JSON.stringify(object),
-      };
-
-   return await fetch(VECTOR_GENERATOR, request).then( res => res.json());
-}
-
-/**
- * @params form - FormData object
- */
-async function readPDF( form )
-{
-
-   let request = 
-      {
-         method : "POST", 
-         body : form,
-      };
-
-   return await fetch(PDF_EXTRACTOR, request).then( response => response.json());
-}
-
-async function ask( question )
-{
-   const questionEmbedding = await vectorize( question );
-
-   const pages = retrievePages();
-
-   const context = buildContext(pages,questionEmbedding);
-
-   const finalPrompt = 
-     ` We're only talking about what's on the brackets, 
-     \{
-     ${context}
-     \}
-     reply please to the next question: ${question}
-
-     If the question is unrelated, then please reply: I don't know, but with a poetic and very polite manner`;
-
-   return await promptOnto({prompt : finalPrompt});
-}
-
-/**
- * Help function to retrieved an array from localStorage
- */
-function retrievePages()
-{
-   return localStorage.getItem("pages").split(",");
-}
-
-async function pushToChat( content, side = 0)
-{
-   // Add children to the chat
-   // If 0 means agent 1 means client
 }
 
 /**
@@ -312,6 +299,19 @@ function euclideanNorm( vector )
    }
 
    return (t * Math.sqrt(s));
+}
+
+/**
+ * Takes the cosine similarity of two vector of the same dimensions
+ */
+function cosineSimilarity( x, y, dimension )
+{
+   const dot = dotProduct( x, y, dimension );
+
+   const l2normX = euclideanNorm( x );
+   const l2normY = euclideanNorm( y );
+
+   return dot / ( l2normX * l2normY );
 }
 
 export { dynamicRank, euclideanNorm, cosineSimilarity, pushToJar, retrievePages };

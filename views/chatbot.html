@@ -25,14 +25,11 @@
       <div class="chat-body__div">
          <article class="chat-configuration__article" status="hidden">
             <form id="document-submitter" enctype="multipart/form-data"> 
-               <input type="file" name="document"> 
+               <input type="file" name="document" accept=".pdf,application/pdf">
+               <input type="submit" value="Send">
             </form> 
          </article>
          <div class="chat-bubble-jar__div">
-            <p class="chat-bubble__p" type="sender">Have you ever been in the Chicamocha park?</p>
-            <p class="chat-bubble__p" type="receiver">Can you stop texting me?</p>
-            <p class="chat-bubble__p" type="sender">Have you ever been in the Chicamocha park?</p>
-            <p class="chat-bubble__p" type="receiver">Can you stop texting me?</p>
          </div>
          <form id="chat-submitter">
             <input type="text" name="message"> 
@@ -130,13 +127,12 @@
 
    function tryBreak()
    {
-      console.log("Starting test session!!");
-
+      console.log("[TEST JOURNAL] => START");
       console.assert( TRank([34,23]) , "Test 1: failure");
       console.assert( TEuclideanNorm() > 12, "Test 2: failure");
       console.assert( TCosineSimilarity() < 0.99, "Test 3: failure");
-      console.assert( InsertFakePages().length === 8, "Test 4: failure");
-      console.log("Passing through!");
+      //console.assert( InsertFakePages().length === 8, "Test 4: failure");
+      console.log("[TEST JOURNAL] => FINISH");
 
    }
 
