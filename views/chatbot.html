@@ -22,6 +22,10 @@
    </nav>
    <main class="information__main">
       <p class="home-router__p"><a href="../index.html">HOME</a> > DEMO</p>
+      <div class="chat-top__div">
+         <button class="home-router__button"></button>
+         <button class="document-panel__button"></button>
+      </div>
       <div class="chat-body__div">
          <article class="chat-configuration__article" status="hidden">
             <form id="document-submitter" enctype="multipart/form-data"> 
@@ -30,113 +34,13 @@
             </form> 
          </article>
          <div class="chat-bubble-jar__div">
+            <p class="user-guide__p"></p>
          </div>
          <form id="chat-submitter">
-            <input type="text" name="message"> 
+            <input type="text" name="message" placeholder="Escribe tu pregunta...">
             <input class="chat-buttton-sender__input" type="submit" value="E"> 
          </form> 
       </div>
    </main>
 </body> 
-<script>
-   let url = "https://realitylife2023.github.io/#slider-show";
-
-   let signButton = document.getElementsByClassName("generic-blue__button")[0];
-
-   signButton.onclick = ( event ) =>
-   {
-      event.preventDefault();
-
-      window.location.replace(url);
-   };
-</script>
-<script type="module" name="test">
-   import * as rag from "../src/chatbot.js";
-
-   function TRank( expected )
-   {
-      let pilots = [34, 9, 3, 4, 5, 6, 10, 23];
-
-      console.log(`pilots : ${pilots}`);
-
-      let pointers = rag.dynamicRank( pilots );
-
-      let guns = pointers.map( value => value = pilots[value] );
-
-      console.log(`top guns : ${guns}`);
-
-      let areEqual = true;
-
-      for(let i = 0; i < guns.length; i++)
-      {
-         if( guns[i] !== expected[i] )
-         {
-            areEqual = false;
-            break;
-         }
-      }
-
-      return areEqual;
-   }
-
-   function TEuclideanNorm()
-   {
-      const vector = [ 2, 7 , 3, -3, 9];
-
-      let magnitude = rag.euclideanNorm( vector );
-
-      console.log( magnitude );
-
-      return magnitude;
-   }
-
-   function TCosineSimilarity()
-   {
-      const x = [ 5, 23, 2, 5, 9 ], y = [ 3, 21, 2, 5, 14 ];
-
-      const similarity = rag.cosineSimilarity( x, y, x.length );
-
-      console.log( similarity );
-
-      return similarity;
-   }
-
-   function InsertFakePages()
-   {
-      let keys = [];
-      for(let i = 0; i < 8; i++)
-      {
-         let key = `p.${i}`;
-         keys.push(key);
-      }
-
-      localStorage.setItem('pages', keys);
-
-      return rag.retrievePages();
-   }
-
-   function TUIInsertBubbles()
-   {
-      let i = 0;
-      while( i < 8 )
-      {
-         rag.pushToJar( i % 2 === 0 ? "sender" : "receiver", "Hello");
-         i++;
-      }
-   }
-
-   function tryBreak()
-   {
-      console.log("[TEST JOURNAL] => START");
-      console.assert( TRank([34,23]) , "Test 1: failure");
-      console.assert( TEuclideanNorm() > 12, "Test 2: failure");
-      console.assert( TCosineSimilarity() < 0.99, "Test 3: failure");
-      //console.assert( InsertFakePages().length === 8, "Test 4: failure");
-      console.log("[TEST JOURNAL] => FINISH");
-
-   }
-
-   tryBreak();
-
-</script> 
 </html> 
