@@ -4,10 +4,12 @@ main.information__main
 {
    box-sizing : border-box;
    display: inline-block;
+   position : relative;
    height : 100vh;
    width : 100vw;
    padding : 0;
    min-height : max-content;
+   overflow : hidden;
 }
 
 .home-router__p
@@ -21,6 +23,7 @@ main.information__main
    height : 11vh;
    text-align : right;
    background-color : var(--white);
+   user-select : none;
 }
 
 .home-router__button,
@@ -34,7 +37,7 @@ main.information__main
 .chat-body__div
 {
    width : 100vw;
-   height: 88%;
+   height: 89%;
    margin : auto;
    background-color : var(--white);
    position : relative;
@@ -46,9 +49,10 @@ main.information__main
    width : 100%;
    height: 50%;
    position : absolute;
+   top : 0%;
    background-color : var(--aqua);
    border-radius : 35px;
-   transition : 1.8s;
+   transition : .7s;
 }
 
 .chat-configuration__article[status="hidden"]
@@ -107,6 +111,7 @@ main.information__main
    margin: auto;
    width : 100%;
    padding : 0;
+   position: relative;
    box-sizing: border-box;
    text-align: center;
 }
@@ -115,14 +120,14 @@ main.information__main
 {
    outline: none;
    margin : 0.2rem;
+   border: none;
 }
 
 #chat-submitter>input[type="text"]
 {
-   width : 78%;
+   width : 91%;
    padding : 1.3rem 2rem;
-   margin : auto auto auto -20px;
-   border: none;
+   margin : auto;
    border-radius: 22px;
    color : var(--grey);
    font-size : 2.7rem;
@@ -133,9 +138,13 @@ main.information__main
 
 #chat-submitter>input[type="submit"]
 {
-   height: 4.25rem;
-   width: 4.25rem;
+   height: 5.45rem;
+   width: 5.45rem;
    border-radius: 50%;
+   position : absolute;
+   right : 3%;
+   top : 12%;
+   font-weight: 700;
 }
 
 #document-submitter
@@ -151,6 +160,5 @@ main.information__main
 {
    display: inline-block;
    font-size : 3.2rem;
-
    margin: 3rem auto;
 }

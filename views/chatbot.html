@@ -27,20 +27,21 @@
          <button class="document-panel__button"></button>
       </div>
       <div class="chat-body__div">
-         <article class="chat-configuration__article" status="hidden">
-            <form id="document-submitter" enctype="multipart/form-data"> 
-               <input type="file" name="document" accept=".pdf,application/pdf">
-               <input type="submit" value="Send">
-            </form> 
-         </article>
          <div class="chat-bubble-jar__div">
             <p class="user-guide__p"></p>
          </div>
          <form id="chat-submitter">
             <input type="text" name="message" placeholder="Escribe tu pregunta...">
-            <input class="chat-buttton-sender__input" type="submit" value="E"> 
+            <input class="chat-buttton-sender__input" type="submit" value="S"> 
          </form> 
       </div>
+      <article class="chat-configuration__article" status="hidden">
+         <form id="document-submitter" enctype="multipart/form-data"> 
+            <input type="file" name="document" accept=".pdf,application/pdf">
+            <input type="submit" value="Send">
+         </form> 
+      </article>
    </main>
+   <script async type="module" src="../src/chatbot.js"></script>
 </body> 
 </html> 
