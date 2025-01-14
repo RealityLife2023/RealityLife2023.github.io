@@ -784,4 +784,19 @@ button.generic-blue__button:hover
    {
       content: "\f007";
    }
+
+   i.symbol.plane:before
+   {
+      content : "\f072";
+   }
+
+   i.symbol.home:before
+   {
+      content : "\f015";
+   }
+
+   i.symbol.paperclip:before
+   {
+      content : "\f0c6";
+   }
 }

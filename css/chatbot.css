@@ -20,7 +20,7 @@ main.information__main
 .chat-top__div
 {
    width : 100vw;
-   height : 11vh;
+   height : 10vh;
    text-align : right;
    background-color : var(--white);
    user-select : none;
@@ -29,15 +29,31 @@ main.information__main
 .home-router__button,
 .document-panel__button
 {
-   height : 2rem;
-   width : 2rem;
+   display : inline-block;
+   height: max-content;
+   width: max-content;
+   padding : 0;
+   font-size : 8rem;
+   background-color : transparent;
+   border : none;
+   color : #79C7C5;
 
+}
+
+.home-router__button
+{
+   margin : 2rem 3rem 2rem 2rem;
+}
+
+.document-panel__button
+{
+   margin : 2rem 5rem 2rem 2rem;
 }
 
 .chat-body__div
 {
    width : 100vw;
-   height: 89%;
+   height: 90%;
    margin : auto;
    background-color : var(--white);
    position : relative;
@@ -106,6 +122,13 @@ main.information__main
    background-color : var(--deep-blue);
 }
 
+.chat-title__h3
+{
+   display: inline-block;
+   font-size : 6rem;
+   color : var(--almost-black);
+}
+
 #chat-submitter
 {
    margin: auto;
@@ -129,11 +152,17 @@ main.information__main
    padding : 1.3rem 2rem;
    margin : auto;
    border-radius: 22px;
-   color : var(--grey);
-   font-size : 2.7rem;
+   color : var(--almost-black);
+   font-size : 2.8rem;
+   font-weight: 500;
    overflow-y: scroll;
    word-wrap: break-word;
    line-height : 5rem;
+}
+
+#chat-submitter>input[type="text"]:placeholder
+{
+   color : var(--grey);
 }
 
 #chat-submitter>input[type="submit"]
@@ -145,6 +174,12 @@ main.information__main
    right : 3%;
    top : 12%;
    font-weight: 700;
+   font-family : "BuiltinSymbols";
+   font-style : normal;
+   text-decoration : none;
+   -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing : antialiased;
+   content: "\f015";
 }
 
 #document-submitter

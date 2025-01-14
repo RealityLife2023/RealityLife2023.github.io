@@ -9,6 +9,11 @@ const chat = document.getElementById("chat-submitter");
 const file = document.getElementById("document-submitter");
 const jar = document.getElementsByClassName("chat-bubble-jar__div")[0];
 
+function sanitizer( target, key, descriptor )
+{
+
+}
+
 
 function isStickToBottom( element )
 {
@@ -37,13 +42,17 @@ function pushToJar( type, content )
       stickyScroll( jar );
 }
 
-function firstLine( event )
+
+class Chat
 {
-   event.preventDefault();
+   firstLine( event )
+   {
+      event.preventDefault();
 
-   senderProcess(event.target.message.value);
+      senderProcess(event.target.message.value);
 
-   event.target.reset();
+      event.target.reset();
+   }
 }
 
 
