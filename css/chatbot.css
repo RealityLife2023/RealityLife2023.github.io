@@ -20,10 +20,32 @@ main.information__main
 .chat-top__div
 {
    width : 100vw;
-   height : 10vh;
-   text-align : right;
+   max-height : 7vh;
+   height : max-content;
+   padding : 2vh 0;
    background-color : var(--white);
    user-select : none;
+}
+
+.chat-profile__p
+{
+   display : inline-block;
+   width : 7rem;
+   height : 7rem;
+   margin: 0 3rem;
+   border-radius : 50%;
+   background : linear-gradient(to bottom left, var(--dark-aqua) 40%, var(--white) 100%);
+   font-size : 6rem;
+   font-weight: 700;
+   text-align: center;
+}
+
+.chat-title__h3
+{
+   margin : 0 5rem 0 1rem;
+   display: inline-block;
+   font-size : 6rem;
+   color : var(--almost-black);
 }
 
 .home-router__button,
@@ -36,25 +58,24 @@ main.information__main
    font-size : 8rem;
    background-color : transparent;
    border : none;
-   color : #79C7C5;
+   color : var(--dark-aqua);
 
 }
 
 .home-router__button
 {
-   margin : 2rem 3rem 2rem 2rem;
+   margin : 0 1rem 0 1rem;
 }
 
 .document-panel__button
 {
-   margin : 2rem 5rem 2rem 2rem;
+   margin : 0 2rem 0 1rem;
 }
 
 .chat-body__div
 {
    width : 100vw;
    height: 90%;
-   margin : auto;
    background-color : var(--white);
    position : relative;
    overflow-x : hidden;
@@ -80,7 +101,6 @@ main.information__main
 {
    left : 0%;
 }
-
 
 .chat-bubble-jar__div
 {
@@ -122,12 +142,6 @@ main.information__main
    background-color : var(--deep-blue);
 }
 
-.chat-title__h3
-{
-   display: inline-block;
-   font-size : 6rem;
-   color : var(--almost-black);
-}
 
 #chat-submitter
 {
@@ -160,9 +174,9 @@ main.information__main
    line-height : 5rem;
 }
 
-#chat-submitter>input[type="text"]:placeholder
+#chat-submitter>input[type="text"]::placeholder
 {
-   color : var(--grey);
+   color : var(--dark-aqua);
 }
 
 #chat-submitter>input[type="submit"]
