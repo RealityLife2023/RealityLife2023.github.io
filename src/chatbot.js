@@ -9,11 +9,6 @@ const chat = document.getElementById("chat-submitter");
 const file = document.getElementById("document-submitter");
 const jar = document.getElementsByClassName("chat-bubble-jar__div")[0];
 
-function sanitizer( target, key, descriptor )
-{
-
-}
-
 
 function isStickToBottom( element )
 {
@@ -40,19 +35,6 @@ function pushToJar( type, content )
 
    if(signal)
       stickyScroll( jar );
-}
-
-
-class Chat
-{
-   firstLine( event )
-   {
-      event.preventDefault();
-
-      senderProcess(event.target.message.value);
-
-      event.target.reset();
-   }
 }
 
 
@@ -220,3 +202,20 @@ function retrievePages()
    return localStorage.getItem("pages").split(",");
 }
 
+chat.addEventListener("submit", event =>
+   {
+      event.preventDefault();
+
+      pushToJar( "sender", event.target.message.value, );
+      pushToJar( "receiver","Can you stop texting me?" );
+   });
+(function () {
+   const windowOpener = document.getElementsByClassName("document-panel__button")[0];
+
+   windowOpener.addEventListener("click", event =>
+      {
+         const documentPanel = document.getElementsByClassName("chat_configuration__article")[0];
+         documentPanel.setAttribute("type", "display");
+      });
+
+})
