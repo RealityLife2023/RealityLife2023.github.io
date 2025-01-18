@@ -801,4 +801,14 @@ button.generic-blue__button:hover
    {
       content : "\f0c6";
    }
+
+   i.symbol.arrowright:before
+   {
+      content : "\f061";
+   }
+
+   i.symbol.arrowleft:before
+   {
+      content : "\f060";
+   }
 }

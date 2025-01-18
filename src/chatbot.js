@@ -98,6 +98,7 @@ function buildContext( sections, vectorX )
    for( const page of sections )
    {
       let container = localStorage.getItem(`e.${page}`);
+
       let vectorY =  JSON.parse(container);
 
       let similarity = math.cosineSimilarity( vectorX, vectorY, vectorY.length );
@@ -202,20 +203,37 @@ function retrievePages()
    return localStorage.getItem("pages").split(",");
 }
 
-chat.addEventListener("submit", event =>
+
+function chatListener(event)
+{
+   event.preventDefault();
+
+   event.target.reset();
+
+   senderProcess( event.target.value );
+}
+
+
+chat.addEventListener("submit", chatListener);
+
+
+file.addEventListener("submit", documentProcessor);
+
+
+const windowOpener = document.getElementsByClassName("document-panel__button")[0];
+const windowCloser = document.getElementsByClassName("document-panel__button")[1];
+
+windowOpener.addEventListener("click", event =>
    {
       event.preventDefault();
-
-      pushToJar( "sender", event.target.message.value, );
-      pushToJar( "receiver","Can you stop texting me?" );
+      const documentPanel = document.getElementsByClassName("chat-configuration__div")[0];
+      documentPanel.setAttribute("status", "display");
    });
-(function () {
-   const windowOpener = document.getElementsByClassName("document-panel__button")[0];
 
-   windowOpener.addEventListener("click", event =>
-      {
-         const documentPanel = document.getElementsByClassName("chat_configuration__article")[0];
-         documentPanel.setAttribute("type", "display");
-      });
+windowCloser.addEventListener("click", event =>
+   {
+      event.preventDefault();
+      const documentPanel = document.getElementsByClassName("chat-configuration__div")[0];
+      documentPanel.setAttribute("status", "hidden");
+   });
 
-})

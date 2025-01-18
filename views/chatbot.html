@@ -36,13 +36,19 @@
             <input type="text" name="message" placeholder="Escribe tu pregunta..." autocomplete="off">
             <button class="chat-sender__button tool-button" type="submit"><i class="symbol plane"></i></button>
          </form> 
+         <div class="chat-configuration__div" status="hidden">
+            <form id="document-submitter" enctype="multipart/form-data"> 
+               <input type="file" name="document" accept=".pdf,application/pdf">
+               <button class="document-sender__button tool-button" type="submit"><i class="symbol cross"></i></button>
+            </form> 
+            <button class="document-panel__button panel-button"><i class="symbol arrowleft"></i></button>
+            <ul class="errata-list__ul">
+               <li> El archivo debe pesar menos de 0.6MB</li>
+               <li> Las imagenes todavia no se pueden tener en cuenta</li>
+               <li> Si reinicias o cierras la pestania el contenido se borrara</li>
+            </ul>
+         </div>
       </div>
-      <article class="chat-configuration__article" status="hidden">
-         <form id="document-submitter" enctype="multipart/form-data"> 
-            <input type="file" name="document" accept=".pdf,application/pdf">
-            <input type="submit" value="Send">
-         </form> 
-      </article>
    </main>
    <script async type="module" src="../src/chatbot.js"></script>
 </body> 
