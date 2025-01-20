@@ -1,4 +1,6 @@
-import { cosineSimilarity } from "./math.js";
+'use strict';
+
+import { cosineSimilarity, dynamicRank } from "./math.js";
 
 
 const PDF_EXTRACTOR = "https://servicenuruk.realitynear.org:7725/document";
@@ -8,6 +10,7 @@ const PROMPT_END = "https://servicenuruk.realitynear.org:7726/ask";
 const chat = document.getElementById("chat-submitter");
 const file = document.getElementById("document-submitter");
 const jar = document.getElementsByClassName("chat-bubble-jar__div")[0];
+const progressBar = document.getElementsByClassName("progress-document-form")[0];
 
 
 function isStickToBottom( element )
@@ -37,14 +40,64 @@ function pushToJar( type, content )
       stickyScroll( jar );
 }
 
+function pushEmptyToJar( bubble )
+{
+   const signal = isStickToBottom( jar );
+
+   jar.appendChild( bubble );
+
+   if(signal)
+      stickyScroll( jar );
+}
+
+function createBubble( type, content )
+{
+   let bubble = document.createElement("p");
+
+   bubble.classList.add("chat-bubble__p");
+   bubble.setAttribute("type", type);
+
+   if( content === "")
+   {
+      let dotGroup = document.createElement("span");
+      dotGroup.classList.add("dot-group");
+
+      for(let i = 0; i < 3; i++)
+      {
+         let dot = document.createElement("span");
+         dot.classList.add("dot");
+         dot.setAttribute("delay", `${i}`);
+         dotGroup.appendChild( dot );
+      }
+
+      bubble.appendChild(dotGroup);
+
+      return bubble;
+   }
+
+   bubble.append(content);
+   return bubble;
+}
+
+
+function insertContent( bubble, content )
+{
+   bubble.children[0].remove();
+
+   bubble.append( content );
+}
 
 async function senderProcess( message )
 {
    pushToJar( "sender", message );
 
+   let botBubble = createBubble("receiver", "");
+
+   pushEmptyToJar( botBubble );
+
    let answer = await ask( message );
 
-   pushToJar( "receiver", answer );
+   insertContent( botBubble, answer );
 }
 
 
@@ -53,6 +106,8 @@ async function documentProcessor( event )
    event.preventDefault();
 
    let form = new FormData( event.target );
+
+   changeStateForm( event.target, true ); // Freeze
 
    let pages = await readPDF( form );
 
@@ -65,9 +120,23 @@ async function documentProcessor( event )
       keys.push(key);
    }
 
+   progressBar.setAttribute("value", 20);
+
    localStorage.setItem('pages', keys);
 
-   let docEmbedding = await vectorizeDocument( keys );
+   try
+   {
+      let docEmbedding = await vectorizeDocument( keys );
+      progressBar.setAttribute("value", 100);
+      changeStateForm( chat, false ); // Unfreeze
+      
+   }
+   catch( error )
+   {
+      progressBar.setAttribute("value", 0);
+   }
+
+   changeStateForm( event.target, false ); // Unfreeze
 }
 
 /**
@@ -84,7 +153,9 @@ async function vectorizeDocument( sections )
       let container = JSON.stringify( response );
 
       localStorage.setItem(`e.${page}`,container);
+
    }
+   progressBar.setAttribute("value", 80);
 }
 
 
@@ -101,12 +172,10 @@ function buildContext( sections, vectorX )
 
       let vectorY =  JSON.parse(container);
 
-      let similarity = math.cosineSimilarity( vectorX, vectorY, vectorY.length );
+      let similarity = cosineSimilarity( vectorX, vectorY, vectorY.length );
 
       results.push( similarity );
    }
-
-   console.log( results );
 
    /** results are 1:1 with sections **/
 
@@ -138,10 +207,8 @@ async function promptOnto( object )
    return await fetch(PROMPT_END, request).then( async response => 
       {
          let json = await response.json();
-         console.log(json.answer);
 
          return json.answer;
-
       });
 }
 
@@ -176,16 +243,22 @@ async function readPDF( form )
    return await fetch(PDF_EXTRACTOR, request).then( response => response.json());
 }
 
+function changeStateForm( form, state )
+{
+   for(const child of form.children)
+      child.disabled = state;
+}
+
 async function ask( question )
 {
-   const questionEmbedding = await vectorize({ content : question });
+   const questionEmbedding = await vectorize({content : question});
 
    const pages = retrievePages();
 
    const context = buildContext(pages,questionEmbedding);
 
    const finalPrompt = 
-     ` We're only talking about what's on the brackets, if the question is unrelated try to make clear what's the topic of the conversation, you can be very creative with this kind of answers
+     `We're only talking about what's on the brackets, if the question is unrelated try to make clear what's the topic of the conversation, you can be very creative with this kind of answers
      \{
      ${context}
      \}
@@ -208,17 +281,21 @@ function chatListener(event)
 {
    event.preventDefault();
 
-   event.target.reset();
+   if( event.target.message.value.length === 0 )
+   {
+      return;
+   }
 
-   senderProcess( event.target.value );
+   senderProcess( event.target.message.value );
+
+   event.target.reset();
 }
 
 
 chat.addEventListener("submit", chatListener);
-
-
 file.addEventListener("submit", documentProcessor);
 
+changeStateForm( chat, true );
 
 const windowOpener = document.getElementsByClassName("document-panel__button")[0];
 const windowCloser = document.getElementsByClassName("document-panel__button")[1];
