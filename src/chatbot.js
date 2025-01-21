@@ -6,6 +6,7 @@ import { cosineSimilarity, dynamicRank } from "./math.js";
 const PDF_EXTRACTOR = "https://servicenuruk.realitynear.org:7725/document";
 const VECTOR_GENERATOR = "https://servicenuruk.realitynear.org:7726/vectorize";
 const PROMPT_END = "https://servicenuruk.realitynear.org:7726/ask";
+const MAXIMUM_SIZE = 700000;
 
 const chat = document.getElementById("chat-submitter");
 const file = document.getElementById("document-submitter");
@@ -294,6 +295,15 @@ function chatListener(event)
 
 chat.addEventListener("submit", chatListener);
 file.addEventListener("submit", documentProcessor);
+file.addEventListener("change", event =>
+   {
+      const size = event.target.files[0].size;
+
+      if(size > MAXIMUM_SIZE)
+      {
+         event.target.parentNode.reset();
+      }
+   });
 
 changeStateForm( chat, true );
 
