@@ -114,7 +114,6 @@ main.information__main
    position : absolute;
    top : 0%;
    background-color : var(--white);
-   border-radius : 35px;
    transition : .7s;
 }
 
@@ -150,8 +149,9 @@ main.information__main
 
 .chat-bubble__p
 {
-   padding : 2rem;
+   padding : 2rem 3rem;
    word-wrap: break-word;
+   white-space: pre-line;
    font-size : 2.9rem;
 }
 
@@ -240,22 +240,19 @@ main.information__main
 #document-submitter
 {
    text-align : center;
-   margin : auto;
+   margin : auto auto 7rem auto;
    width : 90%;
-   padding-top : 20vh;
+   padding-top : 2vh;
+   color : var(--grey);
 }
 
+/*
 #document-submitter>input
 {
    display: inline-block;
    font-size : 3.2rem;
    margin: 3rem auto;
-}
-
-.document-sender__button
-{
    background-color : var(--grey);
-
    width : 7rem;
    height : 7rem;
    font-size : 2.6rem;
@@ -263,5 +260,73 @@ main.information__main
    outline : none;
    border-radius : 50%;
    color : var(--almost-black);
-   
+}
+*/
+
+.errata-list__ul
+{
+   font-size : 3rem;
+   color: var(--almost-black);
+}
+
+.dot-group
+{
+   height: 2vh;
+   display : inline-block;
+   padding : 1rem 0;
+}
+
+.dot
+{
+   width: 20px;
+   height: 20px;
+   display : inline-block;
+   border-radius: 50%;
+   background: var(--grey);
+   animation : bounce 1.3s linear infinite;
+}
+
+.dot[delay="1"]
+{
+   animation-delay : 0.6s;
+}
+
+.dot[delay="2"]
+{
+   animation-delay : 0.5s;
+}
+
+.dot[delay="3"]
+{
+   animation-delay : 0.8s;
+}
+
+
+@keyframes bounce
+{
+   30%
+   {
+      transform : translateY( -2px );
+   }
+   60%
+   {
+      transform : translateY( 0px );
+   }
+   80%
+   {
+      transform : translateY( 2px );
+   }
+   100%
+   {
+      transform : translateY( 0px );
+      opacity : 0.5;
+   }
+}
+
+progress
+{
+   display : block;
+   margin: auto;
+   width : 19vw;
+   height : 3vh;
 }
