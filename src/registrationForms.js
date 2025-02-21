@@ -131,7 +131,5 @@ secondChild.addEventListener("submit",  async (event) => {
          }
 
          notification.teller("¡Has quedado registrado! ingresa con email");
-
-         await setTimeout(loadDashboard, 2000);
    });
 });
