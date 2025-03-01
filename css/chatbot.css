@@ -45,7 +45,7 @@ body
 
 .chat-top__div[status="hidden"]
 {
-   top : -37%;
+   top : -100%;
 }
 
 .chat-props__div
@@ -96,9 +96,10 @@ body
 .chat-bubble-jar__div
 {
    margin : auto;
+   margin-top : 2vh;
    width: 65%;
-   height: 73vh;
-   padding: 4.25rem 2.35rem;
+   height: 82vh;
+   padding: 1.05rem 2.35rem;
    display: flex;
    flex-direction: column;
    gap : 0.85rem;
@@ -124,7 +125,7 @@ body
 
 .chat-bubble__p
 {
-   padding : 2rem 3rem;
+   padding : 1.65rem 2.55rem;
    word-wrap: break-word;
    white-space: pre-line;
    font-size : 1.1rem;
@@ -135,7 +136,7 @@ body
    align-self: flex-end;
    border-radius: 13px 13px 0 13px;
    background-color : var(--dark-aqua);
-   box-shadow: -10px 7px 5px var(--shadow-black);
+   box-shadow: -10px 7px 5px var(--bubble-shadow);
 }
 
 .chat-bubble__p[type="receiver"]
@@ -143,7 +144,7 @@ body
    align-self: flex-start;
    border-radius: 13px 13px 13px 0;
    background-color : var(--deep-grey);
-   box-shadow: 10px 7px 5px var(--shadow-black);
+   box-shadow: 10px 7px 5px var(--bubble-shadow);
 }
 
 .chat-title__h3
@@ -165,7 +166,7 @@ body
    text-align: center;
    z-index: 30;
    border-radius: 20px;
-   box-shadow: 10px 7px 5px var(--shadow-black);
+   box-shadow: 4px 7px 6px var(--shadow-black);
    background-color: var(--deep-grey);
 }
 
@@ -203,7 +204,7 @@ body
    border-radius: 50%;
    border: none;
    position : absolute;
-   right : 8%;
+   right : 8.55%;
    top : 7.9%;
    font-weight: 700;
    font-family : "BuiltinSymbols";
