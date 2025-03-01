@@ -120,15 +120,17 @@ body
 .chat-bubble-jar__div::-webkit-scrollbar-thumb
 {
    border-radius: 3px;
-   background: var(--almost-black);
+   background: var(--grey);
+   box-shadow : inset 2px 0 4px var(--shadow-black);
 }
 
 .chat-bubble__p
 {
-   padding : 1.65rem 2.55rem;
+   max-width : 52rem;
+   padding : 1.65rem 2.30rem;
    word-wrap: break-word;
    white-space: pre-line;
-   font-size : 1.1rem;
+   font-size : 1.12rem;
 }
 
 .chat-bubble__p[type="sender"]
