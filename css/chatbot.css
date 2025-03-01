@@ -169,7 +169,7 @@ body
    z-index: 30;
    border-radius: 20px;
    box-shadow: 4px 7px 6px var(--shadow-black);
-   background-color: var(--deep-grey);
+   background-color: var(--almost-black);
 }
 
 #chat-submitter>textarea
@@ -386,7 +386,7 @@ body
    {
       align-self: flex-end;
       border-radius: 13px 13px 0 13px;
-      background-color : var(--dark-aqua);
+      background-color : var(--blue-prompt);
    }
 
    .chat-bubble__p[type="receiver"]
