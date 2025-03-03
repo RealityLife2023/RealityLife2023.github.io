@@ -305,7 +305,7 @@ file.addEventListener("change", event =>
       }
    });
 
-changeStateForm( chat, true );
+//changeStateForm( chat, true );
 
 const windowOpener = document.getElementsByClassName("document-panel__button")[0];
 const windowCloser = document.getElementsByClassName("document-panel__button")[1];
