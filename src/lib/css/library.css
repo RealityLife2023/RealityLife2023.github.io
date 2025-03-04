@@ -1,0 +1,814 @@
+@layer fonts, generics, colors, bottom, navigation, forms;
+
+@layer generics
+{
+
+   p.home-router__p
+   {
+      margin : 20px auto;
+      padding : 0 0 0 30px;
+      text-align: left;
+      color : var(--aqua);
+      font-family: "Poppins-Bold";
+      font-weight: 200;
+      font-size  : 2.5rem;
+   }
+
+   p.home-router__p>a
+   {
+      color : var(--default);
+   }
+
+
+   /* Note: Do not add a padding in the right and left, 
+    * is better if only the children add their own padding
+    */
+   main.information__main
+   {
+      height    : max-content;
+      min-height: 100vh;
+
+      padding-top  : 1.5rem;
+      padding-bottom : 1.8rem;
+
+      margin : auto;
+   }
+
+   /* Generic elements */
+
+   button.blue-button
+   {
+      border-radius : 8px 8px;
+
+      background-color : var(--aqua);
+   }
+
+   ul.generic-white__ul
+   {
+      margin : auto;
+      padding : 0;
+      text-align : center;
+   }
+
+   ul.generic-white__ul>li
+   {
+      list-style-type: none;
+      color : var(--default);
+   }
+
+   button.call-to-action__button
+   {
+      margin     : auto;
+      margin-top : 2rem;
+      display : block;
+      padding : 1.2rem 2.2rem;
+      width     : max-content;
+      max-width : none;
+      font-size : 2.05rem;
+   }
+}
+
+@layer forms
+{
+   /* Sign options */
+
+   section.call-to-action__section>div.sign-options__div
+   {
+      width: 50%;
+      height: 30rem;
+      display: inline-flex;
+      float: left;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+   }
+
+   div.sign-forms__div
+   {
+      width: 50%;
+      height: 35.89rem;
+      float : right;
+      border-radius : 55px;
+      position : relative;
+      overflow : hidden;
+   }
+
+   /* Possible its own style*/
+   form.white-generic__form>input::placeholder,
+   div.sign-forms__div>form.sign-account__form>input::placeholder,
+   div.form-container__div>form.sign-account__form>input::placeholder
+   {
+      position: absolute;
+      left    : 0;
+      top     : 1rem;
+   }
+
+   form.white-generic__form>input:focus::placeholder,
+   div.sign-forms__div>form.sign-account__form>input:focus::placeholder
+   {
+      color : transparent;
+   }
+
+
+   form.white-generic__form>input,
+   div.form-container__div>form.sign-account__form>input,
+   div.form-container__div>form.sign-account__form>input:nth-child(4)
+   {
+      border-bottom : 2px solid var(--deep-blue);
+      text-align : left;
+      border-radius : 0;
+      background : none;
+      position : relative;
+   }
+
+
+   /* Open forms */
+   div.form-container__div
+   {
+      width  : 500px;
+      height : 100%;
+      margin : auto;
+      position : relative;
+      overflow : hidden;
+      border-radius    : 55px;
+      background-color : var(--white);
+   }
+
+
+   div.form-container__div>form.sign-account__form
+   {
+      position : absolute;
+      background : none;
+   }
+
+   div.form-container__div>form.sign-account__form:nth-child(1)
+   {
+      top  : 0;
+      left : 0;
+   }
+
+   div.form-container__div>form.sign-account__form#unselected-form:nth-child(1)
+   {
+      top : -100%;
+      transition : 3s;
+   }
+
+   div.form-container__div>form.sign-account__form#selected-form:nth-child(1)
+   {
+      top : -5%;
+      transition : 3s;
+   }
+
+   div.form-container__div>form.sign-account__form:nth-child(2)
+   {
+      top  : 100%;
+      left : 0;
+   }
+
+   div.form-container__div>form.sign-account__form#unselected-form:nth-child(2)
+   {
+      top  : 100%;
+      transition : 2.5s;
+   }
+
+   div.form-container__div>form.sign-account__form#selected-form:nth-child(2)
+   {
+      top  : 0%;
+      transition : 3.6s;
+   }
+
+   form.white-generic__form>a,
+   div.form-container__div>form.sign-account__form>a
+   {
+      color : var(--deep-blue);
+   }
+
+   form.white-generic__form,
+   div.sign-forms__div>form.sign-account__form
+   {
+      background: #EEE;
+      position  : absolute;
+      left      : 0;
+      top       : 0;
+   }
+
+
+   div.sign-options__div>p
+   {
+      margin        : auto;
+      margin-bottom : 0;
+      display : block;
+      font-size : 2.2rem;
+   }
+
+
+   div.sign-options__div>p.sign-call__p>a
+   {
+      color       : var(--default);
+      font-family : "Poppins-Bold";
+      cursor : pointer;
+      text-decoration : underline;
+      animation : gelatine 0.5s infinite;
+   }
+
+   div.sign-options__div>p.sign-call__p
+   {
+      width     : 380px;
+      max-width : 390px;
+
+      margin-top : 0.5rem;
+      font-size  : 1.2rem;
+
+      text-align : center;
+   }
+
+   form>div.prompt
+   {
+      margin : auto;
+      /* Max is aroung 18rem*/
+      max-width  : 18rem;
+      color : var(--blue-prompt);
+   }
+
+   ul.sign-options__ul>li.sign-option__li::marker
+   {
+      display:none;
+      background-color: rgba(0,0,0,0);
+   }
+
+   li.sign-option__li>button.generic-white__button
+   {
+      margin  : 9px 0 9px 0;
+      width   : 480px;
+   }
+
+   li.sign-option__li>button.generic-white__button:hover
+   {
+      background-color : var(--blue-prompt);
+      color : var(--default);
+   }
+
+   ul.sign-options__ul>li.sign-option__li
+   {
+      margin-top: 0.3rem;
+      margin-bottom: 0.3rem;
+      list-style-type: none;
+   }
+
+   ul.sign-options__ul
+   {
+      margin : auto;
+      margin-top    : 1.2rem;
+      margin-bottom : 1rem;
+      padding       : 0;
+      text-align : center;
+      user-select : none;
+   }
+
+
+   /* Generic white button */
+   button.generic-white__button
+   {
+      width : max-content;
+      margin  : 40px 0 38px 0;
+      padding : 14px 20px;
+      border        : none;
+      border-radius : 35px;
+      background-color : var(--white);
+      color : var(--deep-blue);
+      font-family : "Poppins-Medium";
+      font-size   : 1.6rem;
+      font-weight : 300;
+      cursor : pointer;
+   }
+
+
+   /* Registration Form */
+   form.sign-account__form
+   {
+      width  : 500px;
+      height : max-content;
+      margin : auto;
+      min-height : 380px;
+      padding-top    : 12rem;
+      padding-bottom : 3rem;
+      display : block;
+      text-align: center;
+      border-radius : 55px;
+      background: linear-gradient(180deg, rgba(0, 32, 96, 1) 67%, rgb(26 65 75) 122%);
+      font-family: "Poppins-Regular";
+   }
+
+   form.sign-account__form:nth-child(2)
+   {
+      padding-top : 9rem;
+   }
+
+   /* Padding adjustments
+   div.form-container__div>form.sign-account__form
+   {
+   padding-top : 10rem;
+   padding-bottom : 2.5rem;
+   }
+    */
+
+/* Sign up */
+form.sign-account__form>p:nth-child(5)>a
+{
+   color       : var(--default);
+   font-family : "Poppins-Bold";
+   cursor : pointer;
+}
+form.sign-account__form>p:nth-child(5)
+{
+   width     : 385px;
+   height    : 90px;
+   max-width : 380px;
+   margin : auto;
+   font-family : "Poppins-Medium";
+   font-size   : 1.4rem;
+   font-weight : 400 ;
+}
+
+/* Forgot password? */
+form.sign-account__form>a:nth-child(3)
+{
+   display     : block;
+   color       : var(--aqua);
+   font-family : "Poppins-Medium";
+   font-size   : 1rem;
+   text-decoration: underline;
+   cursor : pointer;
+}
+
+
+form.sign-account__form>input
+{
+   width  : 332px;
+   height : 25px;
+   margin : 9px auto;
+   padding : 15px 15px 15px 15px;
+   display : block;
+   border-color : transparent;
+   font-weight  : 100;
+   font-family  : "Poppins-Medium";
+   font-size    : 1.2rem;
+}
+
+form.sign-account__form>input::placeholder
+{
+   color       : var(--deep-blue);
+   font-family : "Poppins-Regular";
+   font-weight : 200;
+   font-size   : 1.2rem;
+}
+
+form.sign-account__form>input.new-account-field__input:nth-child(1),
+form.sign-account__form>input:nth-child(1)
+{
+   border-radius : 23px 23px 0 0;
+   background    : var(--default);
+}
+
+form.sign-account__form>input.new-account-field__input:nth-child(2)
+{
+   border-radius : 0;
+   margin-bottom : 0.2rem;
+}
+
+form.sign-account__form>input.new-account-field__input:nth-child(4)
+{
+   margin-top    : 3px;
+   margin-bottom : 1rem;
+   border-radius : 0 0 23px 23px;
+   background : var(--default);
+}
+
+form.sign-account__form>input:nth-child(2)
+{
+   margin : 3px auto;
+   border-radius : 0 0 23px 23px;
+   background : var(--default);
+}
+
+form.new-account__form
+{
+   margin: auto;
+   margin-top: 1.3rem;
+
+   padding-top: 2rem;
+
+   text-align:center
+}
+
+form.new-account__form>input,
+form.new-account__form>button
+{
+   margin:auto;
+   margin-top: 1.2rem;
+
+   padding-top: 7px;
+   padding-bottom: 3px;
+
+   display:block;
+
+   border-radius: 5px 7px 4px 4px;
+   font-family: "Poppins-Regular";
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+{
+   font-family : "Poppins-Regular";
+   font-size   : 1rem;
+}
+
+/* Record options */
+
+ul.record-types__ul
+{
+   margin : auto;
+
+   margin-top  : 1.2rem;
+   padding-top : 1rem;
+
+   text-align : center;
+
+   user-select : none;
+
+   list-style-type : none;
+}
+
+ul.record-types__ul>li.record-type__li
+{
+   list-style-type : none;
+
+   margin-top    : 1.1rem;
+   margin-bottom : 1.1rem;
+}
+
+button.generic-blue__button
+{
+   padding : 9px 18px;
+   margin  : 40px auto 38px auto;
+   width : max-content;
+   border        : none;
+   border-radius : 55px;
+   background-color : var(--aqua);
+   color : var(--deep-blue);
+   font-family : "Poppins-Medium";
+   font-size   : 1.4rem;
+   font-weight : 300;
+   cursor : pointer;
+}
+
+button.generic-blue__button:hover
+{
+   background-color : var(--grey);
+   color            : var(--white);
+}
+
+/* Animations */
+
+@keyframes gelatine 
+{
+   from, to { transform : scale(1,1);}
+   25% { transform : scale(0.9, 1.1);}
+   50% { transform : scale(1.1, 0.9);}
+   75% { transform : scale(0.95, 1.05);}
+}
+}
+
+/* Navigation bar */
+@layer navigation
+{
+   nav.generic-nav-bar__nav
+   {
+      margin-top    : 1rem;
+      margin-bottom : 2rem;
+
+      padding-left  : 1.8vw;
+      display : flex;
+      justify-content: space-between;
+
+      text-align : left;
+
+      user-select : none;
+
+      font-family : "Poppins-Regular";
+
+      background-color : transparent;
+   }
+
+   nav.generic-nav-bar__nav>button.panel-option__button>a
+   {
+      color : var(--default);
+      text-decoration: none;
+   }
+
+   nav.generic-nav-bar__nav>button.panel-option__button
+   {
+      --max-content-width: max-content;
+
+      margin         : 0 2vw 0 2vw;
+      padding-top    : 0.2rem;
+      padding-bottom : 0.12rem;
+
+      border : none;
+
+      color       : var(--default);
+      font-weight : 100;
+      font-size   : 1.8vw;
+
+      background-color: transparent;
+   }
+
+   nav.generic-nav-bar__nav>button.panel-option__button:hover>a
+   {
+      color : var(--aqua);
+   }
+
+   nav.generic-nav-bar__nav>button.language-button
+   {
+      position : relative;
+      border : none;
+      font-size : 1.8vw;
+   }
+
+   nav.generic-nav-bar__nav>button.language-button>img
+   {
+      position : absolute;
+      top : 0;
+      left : 35%;
+   }
+
+   nav.generic-nav-bar__nav>button.generic-blue__button
+   {
+      display : inline;
+      padding : 15px 14px;
+
+      width   : max-content;
+
+      border-radius : 30px;
+
+      background-color : var(--aqua);
+
+      color : var(--deep-blue);
+
+      font-size   : 1.4rem;
+      font-weight : 200;
+   }
+
+   nav.generic-nav-bar__nav>button.generic-blue__button:hover
+   {
+      color : var(--aqua);
+      background-color : var(--grey);
+   }
+
+   nav.generic-nav-bar__nav>button.panel-option__button:nth-child(7)
+   {
+      width : 10rem;
+      font-size : 1.2rem;
+   }
+
+}
+
+@layer colors
+{
+   html
+   {
+      font-size : 16px;
+      font-family : "Poppins-Regular";
+      scroll-behavior : smooth;
+   }
+
+   html::-webkit-scrollbar-thumb
+   {
+      border-radius : 8px;
+   }
+
+   body
+   {
+
+      margin : 0;
+
+      padding : 0px 0px;
+
+      width  : 100%;
+      height : max-content;
+      min-height : 100%;
+
+
+      /* Custom variables */
+
+      --gradient-a-background : rgb(4, 18, 52);
+      --gradient-b-background : rgba(4, 18,52);
+      --gradient-c-background : rgb(2, 56, 81);
+      --default    : rgb(240,240,240);
+      --deep-blue  : #002060;
+      --red-warn   : #BF483F;
+      --blue-prompt: #2A65AD;
+      --aqua       : #A1ECFF;
+      --dark-aqua  : #79C7C5;
+      --white      : #EEE;
+      --grey       : #4B4D4B;
+      --deep-grey  : #777777;
+      --almost-black : #333;
+
+      /* end */
+
+
+      background : linear-gradient(180deg, var(--gradient-a-background) 10%, var(--gradient-b-background) 35%, var(--gradient-c-background) 100%);
+
+      font-family : 'Poppins-Regular';
+
+      color       : var(--default);
+   }
+}
+
+@layer bottom
+{
+   
+   footer.generic-footer__footer
+   {
+      margin:auto;
+      margin-top: 2.7rem;
+
+      padding-top:1.4rem;
+
+      text-align:center;
+   }
+
+   footer.generic-footer__footer>q.mini-quote
+   {
+      font-size : 2rem;
+      display : inline;
+   }
+}
+
+@layer fonts
+{
+   @font-face
+   {
+      font-family: "Poppins-Regular";
+      src: url("/fonts/Poppins-Regular.ttf");
+      font-style : normal;
+   }
+
+   @font-face
+   {
+      font-family : "Poppins-Medium";
+      src         : url("/fonts/Poppins-Medium.ttf");
+      font-style : normal;
+   }
+
+   @font-face
+   {
+      font-family : "Poppins-Bold";
+      src         : url("/fonts/Poppins-Bold.ttf");
+      font-style : normal;
+   }
+
+   @font-face
+   {
+      font-family : "BuiltinSymbols";
+      src : url("/fonts/icons.eot");
+      src: url("/fonts/icons.eot?#iefix") format('embedded-opentype'), url("/fonts/icons.woff2") format('woff2'), url("/fonts/icons.woff") format('woff'), url("/fonts/icons.ttf") format('truetype'), url("/fonts/icons.svg#icons") format('svg');
+
+      font-style : normal;
+      font-variant: normal;
+      text-decoration: inherit;
+      text-transform: none;
+   }
+
+   i.symbol
+   {
+      display: inline;
+      opacity : 1;
+      text-align:center;
+      speak : none;
+
+      font-family : "BuiltinSymbols";
+      font-style : normal;
+      text-decoration : none;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing : antialiased;
+
+   }
+
+   i.symbol:before
+   {
+      background : none;
+   }
+
+   i.symbol.play:before 
+   {
+      content: "\f04b";
+   }
+
+   i.symbol.stop:before
+   {
+      content: "\f04d";
+   }
+
+   i.symbol.upload:before
+   {
+      content: "\f093";
+   }
+
+   i.symbol.file-a:before
+   {
+      content: "\f1c7";
+   }
+
+   i.symbol.file-v:before
+   {
+      content: "\f1c8";
+   }
+
+   i.symbol.file-i:before
+   {
+      content: "\f1c5";
+   }
+
+   i.symbol.image:before
+   {
+      content: "\f03e";
+   }
+
+   i.symbol.file-t:before
+   {
+      content: "\f15c";
+   }
+
+   i.symbol.trash:before
+   {
+      content: "\f1f8";
+   }
+
+   i.symbol.cancel:before
+   {
+      content: "\f00d";
+   }
+
+   i.symbol.trash.alternate:before
+   {
+      content: "\f2ed";
+   }
+
+   i.symbol.trash.alternate.outline:before
+   {
+      content: "\f2ed";
+   }
+
+   i.symbol.male:before
+   {
+      content: "\f183";
+   }
+
+   i.symbol.female:before
+   {
+      content: "\f182";
+   }
+
+   i.symbol.mail:before
+   {
+      content: "\f0e0";
+   }
+
+   i.symbol.phone:before
+   {
+      content: "\f095";
+   }
+
+   i.symbol.user:before
+   {
+      content: "\f007";
+   }
+
+   i.symbol.plane:before
+   {
+      content : "\f072";
+   }
+
+   i.symbol.home:before
+   {
+      content : "\f015";
+   }
+
+   i.symbol.paperclip:before
+   {
+      content : "\f0c6";
+   }
+
+   i.symbol.arrowright:before
+   {
+      content : "\f061";
+   }
+
+   i.symbol.arrowleft:before
+   {
+      content : "\f060";
+   }
+}

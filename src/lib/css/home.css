@@ -1,0 +1,247 @@
+img.brand-logo__img
+{
+/*
+ * Variables:
+ * brand logo height
+ * brand div margin top bottom
+ * nav bar margin top bottom
+ * */
+
+   --normal-dimension-width : 1045px;
+   --normal-dimension-height : 177px;
+
+   --min-dimension-width  : calc(881px/4);
+   --min-dimension-height : calc(187px/4);
+
+   margin        : auto;
+   margin-bottom : 0.7rem;
+
+   min-width  : var(--min-dimension-width);
+   min-height : var(--min-dimension-height);
+
+   width  : 53.8rem;
+   height : 9.28rem;
+
+   display : block;
+
+   /*Do not make the asumption that the parent could have user-select:none*/
+   user-select : none;
+}
+
+q.welcome-quote__q
+{
+   quotes : none;
+   color  : var(--aqua);
+
+   font-family : "Poppins-Medium";
+   font-weight : 500;
+   font-size   : 3.8rem;
+}
+
+q.brand-quote__q>b
+{
+   color       : var(--default);
+   font-weight : bold;
+}
+
+q.brand-quote__q
+{
+   quotes : none;
+
+   margin-top    : 1rem;
+   margin-bottom : 1.2rem;
+
+   margin-left  : 0px;
+   margin-right : 0px;
+
+   max-width : 1200px;
+
+   display : inline-block;
+
+   color     : var(--aqua);
+   font-size : 3rem;
+}
+
+q.generic-quote__q
+{
+   quotes : none;
+
+   margin        : auto;
+
+   margin-top    : 4.5rem;
+   margin-bottom : 4.5rem;
+
+   max-width : 1200px;
+
+   display : block;
+
+   color       : var(--aqua);
+   text-align  : center;
+   font-family : "Poppins-Bold";
+   font-size   : 2.7rem;
+}
+
+header.brand-band__header
+{
+   height : 80vh;
+
+   margin       : auto;
+   margin-left  : 0;
+   margin-right : 0;
+
+   position : relative;
+
+   padding-top    : 1.4rem;
+   padding-left   : 0.2rem;
+   padding-bottom : 0.52rem;
+
+   align-content : center;
+   text-align    : center;
+
+   user-select: none;
+}
+
+aside.home-left__aside, aside.home-right__aside
+{
+   height  : 100%;
+}
+
+aside.home-left__aside
+{
+   float : left;
+   max-width   : 48%;
+
+   position : relative;
+
+   color       : var(--aqua);
+   font-family : "Poppins-Bold";
+/*   font-size   : 1.8rem;*/
+   text-align  : left;
+}
+
+aside.home-right__aside
+{
+   float : right;
+   max-width   : 48%;
+   padding-right : 40px;
+   margin : auto;
+   color       : var(--default);
+   font-family : "Poppins-Regular";
+   font-size   : 2.2rem;
+   text-align  : right;
+}
+
+
+aside.home-left__aside>img:nth-child(1)
+{
+   --original-width  : 734px;
+   --original-height : 463px;
+   width  : 41vw;
+   height : 48vh;
+}
+
+
+aside.home-right__aside>p
+{
+   max-width: 720px;
+   box-sizing: border-box;
+   font-size : 3.3vh;
+}
+
+aside.home-left__aside>p
+{
+   max-width : 300px;
+}
+
+article.home__article
+{
+   width  : 100%;
+   height : 95vh;
+
+   margin  : 1rem 0 1rem 0;
+   padding : 0;
+   text-align : right;
+   user-select: none;
+}
+
+span.globe-decoration__span
+{
+   --normal-width    : 370px;
+   --normal-height   : 348px;
+   width    : 27.9rem;
+   height   : 26.35rem;
+
+   display: inline-flex;
+   position : absolute;
+}
+
+span.globe-decoration__span>img
+{
+   flex : 1;
+}
+
+span.globe-decoration__span>p
+{
+
+   /*height: 100%;*/
+   margin : 0;
+   width : 100%;
+   top   : 44%;
+   position:absolute;
+   text-align : center;
+}
+
+/* Recuerdos */
+span.globe-decoration__span:nth-child(2)
+{
+   --normal-width    : 277px;
+   --normal-height   : 258px;
+
+   width  : 17rem;
+   height : 15.99rem;
+   top  : 27%;
+   left : 31%;
+}
+span.globe-decoration__span:nth-child(2)>p
+{
+   font-size : 2rem;
+}
+
+/* Acompañamiento */
+span.globe-decoration__span:nth-child(3)
+{
+   --normal-width    : 321px;
+   --normal-height   : 302px;
+   width : 20.08rem;
+   height : 18.87rem;
+   top  : 41%;
+   left : 68%;
+}
+span.globe-decoration__span:nth-child(3)>p
+{
+   font-size : 1.4rem;
+}
+
+/* Tecnologia */
+span.globe-decoration__span:nth-child(4)
+{
+    --spec-width: 370px;
+    --spec-height: 348px;
+    width: 23.19rem;
+    height: 21.8rem;
+    top: 57%;
+    left: 20%;
+}
+span.globe-decoration__span:nth-child(4)>p
+{
+   font-size : 2rem;
+}
+
+
+section.call-to-action__section
+{
+   margin : 0;
+   margin-top : 13rem;
+
+   height : 125vh;
+}
