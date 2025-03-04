@@ -11,8 +11,36 @@ const MAXIMUM_SIZE = 700000;
 const chat = document.getElementById("chat-submitter");
 const file = document.getElementById("document-submitter");
 const jar = document.getElementsByClassName("chat-bubble-jar__div")[0];
-const progressBar = document.getElementsByClassName("progress-document-form")[0];
 
+const props =
+{
+   isLoaded : false,
+   file : undefined,
+   trigger : file.children[0],
+   fileName : file.children[4],
+   icon : file.children[3],
+   progressBar : document.getElementsByClassName("progress-document-form")[0],
+   panel : document.getElementsByClassName("chat-top__div")[0],
+
+   alterDisplay : ( state ) =>
+   {
+      props.panel.setAttribute("status", state);
+   },
+
+   loadFile : ( doc ) =>
+   {
+      props.file = doc
+
+      console.log(doc.name);
+
+
+      props.fileName.textContent = doc.name.replace(".pdf", "");
+
+      props.icon.setAttribute("status", "loaded");
+
+      props.isLoaded = true;
+   },
+}
 
 function isStickToBottom( element )
 {
@@ -101,10 +129,12 @@ async function senderProcess( message )
    insertContent( botBubble, answer );
 }
 
-
 async function documentProcessor( event )
 {
    event.preventDefault();
+
+   if(!props.isLoaded)
+      return;
 
    let form = new FormData( event.target );
 
@@ -121,20 +151,20 @@ async function documentProcessor( event )
       keys.push(key);
    }
 
-   progressBar.setAttribute("value", 20);
+   props.progressBar.setAttribute("value", 20);
 
    localStorage.setItem('pages', keys);
 
    try
    {
-      let docEmbedding = await vectorizeDocument( keys );
-      progressBar.setAttribute("value", 100);
+      props.progressBar.setAttribute("value", 80);
+      await vectorizeDocument( keys );
+      props.progressBar.setAttribute("value", 100);
       changeStateForm( chat, false ); // Unfreeze
-      
    }
    catch( error )
    {
-      progressBar.setAttribute("value", 0);
+      props.progressBar.setAttribute("value", 0);
    }
 
    changeStateForm( event.target, false ); // Unfreeze
@@ -154,9 +184,7 @@ async function vectorizeDocument( sections )
       let container = JSON.stringify( response );
 
       localStorage.setItem(`e.${page}`,container);
-
    }
-   progressBar.setAttribute("value", 80);
 }
 
 
@@ -294,33 +322,45 @@ function chatListener(event)
 
 
 chat.addEventListener("submit", chatListener);
+
 file.addEventListener("submit", documentProcessor);
 file.addEventListener("change", event =>
    {
-      const size = event.target.files[0].size;
+      const file = event.target.files[0];
 
-      if(size > MAXIMUM_SIZE)
+
+      if(file.size > MAXIMUM_SIZE)
       {
          event.target.parentNode.reset();
+         return;
       }
+
+      props.loadFile( file );
+
    });
 
-//changeStateForm( chat, true );
+const fileAdder = document.getElementsByClassName("document-adder__button")[0];
+const windowOpener = document.getElementsByClassName("document-panel__button")[1];
+const windowCloser = document.getElementsByClassName("document-panel__button")[0];
 
-const windowOpener = document.getElementsByClassName("document-panel__button")[0];
-const windowCloser = document.getElementsByClassName("document-panel__button")[1];
+
+fileAdder.addEventListener("click", event =>
+{
+   event.preventDefault();
+   props.trigger.click();
+
+});
+
 
 windowOpener.addEventListener("click", event =>
    {
       event.preventDefault();
-      const documentPanel = document.getElementsByClassName("chat-configuration__div")[0];
-      documentPanel.setAttribute("status", "display");
+      props.alterDisplay( "display" );
    });
 
 windowCloser.addEventListener("click", event =>
    {
       event.preventDefault();
-      const documentPanel = document.getElementsByClassName("chat-configuration__div")[0];
-      documentPanel.setAttribute("status", "hidden");
+      props.alterDisplay( "hidden" );
    });
 

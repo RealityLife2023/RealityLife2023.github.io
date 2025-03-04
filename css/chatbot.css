@@ -25,16 +25,20 @@ body
 
 .chat-top__div
 {
-   width : 18%;
+   width : 17%;
+   min-width : 299.8px;
+
 /**   max-height : 7vh;*/
    height : max-content;
-   padding : 0.5vh 0;
+   padding : 2vh 1rem;
    position : absolute;
    display : flex;
    flex-direction: column;
    border-radius : 0 20px 20px 0;
 
-   transition : .7s;
+   transition : .7s ease-out;
+   box-sizing : border-box;
+   box-shadow: 5px 4px 4px var(--shadow-black);
    background-color : var(--white);
 
    & .chat-title__h3
@@ -43,7 +47,7 @@ body
       display: inline-block;
       font-size : 2rem;
       color : var(--deep-blue);
-   }  user-select : none;
+   }
 
    & .chat-profile__p
    {
@@ -60,12 +64,75 @@ body
       font-weight: 700;
       text-align: center;
    }
+
+   & #document-submitter
+   {
+      text-align : center;
+      margin : auto auto 1rem auto;
+      width : 90%;
+      padding-top : 2vh;
+      color : var(--grey);
+
+      & button, input, p
+      {
+         font-family: "Poppins-Regular";
+      }
+
+      & button:hover, input:hover
+      {
+         font-weight: 500;
+      }
+
+      & input[type="file"]
+      {
+         display: none;
+      }
+
+      & p
+      {
+         color : var(--almost-black);
+      }
+
+      & .file-icon__img
+      {
+         width : 3rem;
+         height: 3rem;
+         display : block;
+         margin : 1rem auto;
+      }
+   }
+
+   .document-adder__button
+   {
+      display: inline-block;
+      margin : 0.5rem auto;
+   }
+
+   progress
+   {
+      display : block;
+      margin: auto;
+      width : 7vw;
+      height : 1.45rem;
+   }
+
+   .errata-list__ul
+   {
+      font-size : 0.85rem;
+      color: var(--almost-black);
+   }
 }
 
 .chat-top__div[status="hidden"]
 {
    top : 4%;
-   left : -18%;
+   left : -20%;
+}
+
+.chat-top__div[status="display"]
+{
+   top : 4%;
+   left : 0%;
 }
 
 .chat-props__div
@@ -75,9 +142,9 @@ body
 
 .chat-configuration__div
 {
+   margin : 2rem 0;
    display : inline-block;
    z-index: 25;
-   background-color : var(--white);
 }
 
 .home-router__button
@@ -141,10 +208,7 @@ body
       background-color : var(--deep-grey);
       box-shadow: 10px 7px 5px var(--bubble-shadow);
    }
-
 }
-
-
 
 .chat-bubble-jar__div::-webkit-scrollbar
 {
@@ -165,7 +229,7 @@ body
 #chat-submitter
 {
    margin: 1vh auto;
-   width: 34%;
+   width: 39%;
    height: max-content;
    padding: 0 0.65rem;
    position: relative;
