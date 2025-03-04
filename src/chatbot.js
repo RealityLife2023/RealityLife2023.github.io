@@ -14,6 +14,25 @@ const jar = document.getElementsByClassName("chat-bubble-jar__div")[0];
 
 const props =
 {
+   set loaded( value )
+   {
+      props.isLoaded = value;
+
+      props.add.disabled = props.isLoaded;
+
+      props.submit.disabled = !props.isLoaded;
+
+      props.icon.setAttribute("status", value ? "enabled" : "disabled");
+   },
+
+   set disableChat( value )
+   {
+      props.chat.children[0].disabled = 
+      props.chat.children[1].disabled = value;
+
+      props.chat.children[0].setAttribute("placeholder", value ? "Sube un documento para chatear" : "Escribe...");
+   },
+
    isLoaded : false,
    file : undefined,
    trigger : file.children[0],
@@ -32,12 +51,6 @@ const props =
       props.submit.disabled = !props.isLoaded;
    },
 
-   changeChatState( state )
-   {
-      props.chat.children[0].disabled = 
-      props.chat.children[1].disabled = state;
-   },
-
    alterDisplay : ( state ) =>
    {
       props.panel.setAttribute("status", state);
@@ -53,7 +66,7 @@ const props =
 
       props.icon.setAttribute("status", "loaded");
 
-      props.isLoaded = true;
+      props.loaded = true;
 
       props.changeStateForm();
    },
@@ -176,14 +189,14 @@ async function documentProcessor( event )
       props.progressBar.setAttribute("value", 80);
       await vectorizeDocument( keys );
       props.progressBar.setAttribute("value", 100);
-      props.changeChatState( false ); // Unfreeze
+      props.disableChat = false;
    }
    catch( error )
    {
       props.progressBar.setAttribute("value", 0);
    }
 
-   props.changeChatState( false ); // Unfreeze
+   props.disableChat = false;
 }
 
 /**
@@ -376,4 +389,5 @@ windowCloser.addEventListener("click", event =>
    });
 
 
-props.changeStateForm();
+props.loaded = false;
+props.disableChat = true;
