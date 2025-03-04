@@ -7,18 +7,22 @@
       </div>
       <div class="chat-body__div">
          <div class="chat-bubble-jar__div">
-            <p class="user-guide__p">ReLo versión 0.0.1 sencillo y adapatable sube tu documento haciendo click en "<i class="symbol paperclip"></i>"</p>
+            <p class="user-guide__p">ReLi versión 0.0.1 sencillo y adapatable sube tu documento haciendo click en "<i class="symbol paperclip"></i>"</p>
          </div>
          
-         <form id="chat-submitter">
+         <form id="chat-submitter" platform="mobile">
             <input type="text" name="message" placeholder="Escribe tu pregunta..." autocomplete="off">
             <button class="chat-sender__button tool-button" type="submit"><i class="symbol plane"></i></button>
          </form> 
+
          <div class="chat-configuration__div" status="hidden">
             <button class="document-panel__button panel-button"><i class="symbol arrowleft"></i></button>
             <form id="document-submitter" enctype="multipart/form-data"> 
-               <input type="file"  name="document" accept=".pdf,application/pdf">
-               <input type="submit" value="Subir">
+              <input type="file"  name="document" accept=".pdf,application/pdf">
+              <button class="document-adder__button panel-button">Añadir</i></button>
+              <input type="submit" value="Subir">
+              <img class="file-icon__img" src="../static/pdf-icon.png" status="enabled">
+              <p class="file-name__p"> Sube un PDF </p>
             </form> 
             <progress class="progress-document-form" value="0" max="100">
                <p> ¡Hecho! </p>

@@ -14,6 +14,15 @@ const jar = document.getElementsByClassName("chat-bubble-jar__div")[0];
 
 const props =
 {
+   trigger : undefined,
+   add : undefined,
+   submit : undefined,
+   icon : undefined,
+   fileName : undefined,
+
+   isLoaded : false,
+   pdfObject : undefined,
+
    set loaded( value )
    {
       props.isLoaded = value;
@@ -33,13 +42,17 @@ const props =
       props.chat.children[0].setAttribute("placeholder", value ? "Sube un documento para chatear" : "Escribe...");
    },
 
-   isLoaded : false,
-   file : undefined,
-   trigger : file.children[0],
-   add : file.children[1],
-   submit : file.children[2],
-   icon : file.children[3],
-   fileName : file.children[4],
+
+
+   set documentForm( value )
+   {
+      props.trigger = value.children[0];
+      props.add = value.children[1];
+      props.submit = value.children[2];
+      props.icon = value.children[3];
+      props.fileName = value.children[4];
+   },
+
    progressBar : document.getElementsByClassName("progress-document-form")[0],
    panel : document.getElementsByClassName("chat-top__div")[0],
    chat : chat,
@@ -58,7 +71,7 @@ const props =
 
    loadFile : ( doc ) =>
    {
-      props.file = doc
+      props.file = doc;
 
       console.log(doc.name);
 

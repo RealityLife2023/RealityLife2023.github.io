@@ -6,7 +6,7 @@ function insertStyles( src, node )
 
    link.rel = "stylesheet";
 
-   link.href = src
+   link.href = src;
 
    node.appendChild(link);
 }
@@ -22,7 +22,7 @@ const platformSpecs = {
       style : "../css/chatbot.css", 
       html : "deskchat.html",
    },
-}
+};
 
 async function getDocument(target)
 {
@@ -37,16 +37,9 @@ async function getNode(target)
 {
    const request = new XMLHttpRequest();
 
-
    request.onload = (event) =>
    {
-      console.log(`Ready state->${request.readyState}`);
-      //console.log(request.responseXML);
-
       const parent = request.responseXML.body.children[0];
-
-      console.log(parent);
-
       document.body.append(parent);
    };
 
@@ -55,9 +48,6 @@ async function getNode(target)
    request.send();
 }
 
-insertStyles( platformSpecs.desktop.style, document.head );
-getNode(platformSpecs.desktop);
+insertStyles( platformSpecs.desktop.style, document.head ); // Insert styles
 
-
-// Insert node
-// Insert styles
+getNode(platformSpecs.desktop); // Insert node
