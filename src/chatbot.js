@@ -21,6 +21,7 @@ const props =
    icon : undefined,
    fileName : undefined,
 
+
    isLoaded : false,
    pdfObject : undefined,
 
@@ -28,9 +29,9 @@ const props =
    {
       props.isLoaded = value;
 
-      props.add.disabled = props.isLoaded;
-
       props.submit.disabled = !props.isLoaded;
+
+      props.add.textContent = value ? "Cambiar" : "Añadir";
 
       props.icon.setAttribute("status", value ? "enabled" : "disabled");
    },
@@ -41,6 +42,8 @@ const props =
       props.chat.children[1].disabled = value;
 
       props.chat.children[0].setAttribute("placeholder", value ? "Sube un documento para chatear" : "Escribe...");
+
+      props.add.disabled = props.isLoaded;
    },
 
    set documentForm( value )
@@ -53,6 +56,7 @@ const props =
    },
 
    progressBar : document.getElementsByClassName("progress-document-form")[0],
+   prompt : document.getElementsByClassName("status-prompt__p")[0],
    panel : document.getElementsByClassName("configuration-container")[0],
    chat : chat,
 
@@ -167,26 +171,27 @@ async function documentProcessor( event )
    if(!props.isLoaded)
       return;
 
+   props.submit.disabled = true;
+
    let form = new FormData( event.target );
-
-
-   let pages = await readPDF( form );
-
-   let keys = [];
-
-   for(let i = 0; i < pages.length; i++)
-   {
-      let key = `p.${i}`;
-      localStorage.setItem(key, pages[i]);
-      keys.push(key);
-   }
-
-   props.progressBar.setAttribute("value", 20);
-
-   localStorage.setItem('pages', keys);
 
    try
    {
+      let pages = await readPDF( form );
+
+      let keys = [];
+
+      for(let i = 0; i < pages.length; i++)
+      {
+         let key = `p.${i}`;
+         localStorage.setItem(key, pages[i]);
+         keys.push(key);
+      }
+
+      props.progressBar.setAttribute("value", 20);
+
+      localStorage.setItem('pages', keys);
+
       props.progressBar.setAttribute("value", 80);
       await vectorizeDocument( keys );
       props.progressBar.setAttribute("value", 100);
@@ -195,9 +200,9 @@ async function documentProcessor( event )
    catch( error )
    {
       props.progressBar.setAttribute("value", 0);
+      props.submit.disabled = false;
+      props.prompt.textContent = "Intenta de nuevo";
    }
-
-   props.disableChat = false;
 }
 
 /**
@@ -391,5 +396,7 @@ windowCloser.addEventListener("click", event =>
    });
 
 props.documentForm = file;
+
 props.loaded = false;
 props.disableChat = true;
+
