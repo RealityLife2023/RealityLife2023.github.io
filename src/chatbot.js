@@ -17,10 +17,26 @@ const props =
    isLoaded : false,
    file : undefined,
    trigger : file.children[0],
-   fileName : file.children[4],
+   add : file.children[1],
+   submit : file.children[2],
    icon : file.children[3],
+   fileName : file.children[4],
    progressBar : document.getElementsByClassName("progress-document-form")[0],
    panel : document.getElementsByClassName("chat-top__div")[0],
+   chat : chat,
+
+   changeStateForm()
+   {
+      props.add.disabled = props.isLoaded;
+
+      props.submit.disabled = !props.isLoaded;
+   },
+
+   changeChatState( state )
+   {
+      props.chat.children[0].disabled = 
+      props.chat.children[1].disabled = state;
+   },
 
    alterDisplay : ( state ) =>
    {
@@ -33,12 +49,13 @@ const props =
 
       console.log(doc.name);
 
-
       props.fileName.textContent = doc.name.replace(".pdf", "");
 
       props.icon.setAttribute("status", "loaded");
 
       props.isLoaded = true;
+
+      props.changeStateForm();
    },
 }
 
@@ -138,7 +155,6 @@ async function documentProcessor( event )
 
    let form = new FormData( event.target );
 
-   changeStateForm( event.target, true ); // Freeze
 
    let pages = await readPDF( form );
 
@@ -160,14 +176,14 @@ async function documentProcessor( event )
       props.progressBar.setAttribute("value", 80);
       await vectorizeDocument( keys );
       props.progressBar.setAttribute("value", 100);
-      changeStateForm( chat, false ); // Unfreeze
+      props.changeChatState( false ); // Unfreeze
    }
    catch( error )
    {
       props.progressBar.setAttribute("value", 0);
    }
 
-   changeStateForm( event.target, false ); // Unfreeze
+   props.changeChatState( false ); // Unfreeze
 }
 
 /**
@@ -272,11 +288,6 @@ async function readPDF( form )
    return await fetch(PDF_EXTRACTOR, request).then( response => response.json());
 }
 
-function changeStateForm( form, state )
-{
-   for(const child of form.children)
-      child.disabled = state;
-}
 
 async function ask( question )
 {
@@ -364,3 +375,5 @@ windowCloser.addEventListener("click", event =>
       props.alterDisplay( "hidden" );
    });
 
+
+props.changeStateForm();

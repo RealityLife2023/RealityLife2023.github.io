@@ -38,6 +38,7 @@ body
 
    transition : .7s ease-out;
    box-sizing : border-box;
+   z-index: 40;
    box-shadow: 5px 4px 4px var(--shadow-black);
    background-color : var(--white);
 
@@ -102,13 +103,13 @@ body
       }
    }
 
-   .document-adder__button
+   & .document-adder__button
    {
       display: inline-block;
       margin : 0.5rem auto;
    }
 
-   progress
+   & progress
    {
       display : block;
       margin: auto;
@@ -116,10 +117,15 @@ body
       height : 1.45rem;
    }
 
-   .errata-list__ul
+   & .errata-list__ul
    {
       font-size : 0.85rem;
       color: var(--almost-black);
+   }
+
+   & .panel-button
+   {
+      cursor : pointer;
    }
 }
 
@@ -246,7 +252,7 @@ body
       min-height: 1vh;
       resize : none;
       padding-top: 0.65rem;
-      padding-right: 7rem;
+      padding-right: 6rem;
       box-sizing: border-box;
       font-family: 'Poppins-Regular';
       font-weight: 500;
@@ -256,9 +262,16 @@ body
       background-color: transparent;
    }
 
+
+
    & textarea::placeholder
    {
       color : var(--dark-aqua);
+   }
+
+   & textarea::-webkit-scrollbar
+   {
+      opacity: 0;
    }
 
    & button
@@ -289,6 +302,14 @@ body
    & .document-panel__button
    {
       right : 1.3%;
+      font-weight: 100;
+   }
+
+   & .document-panel__button:hover
+   {
+      font-weight: 500;
+      opacity : 0.9;
+      cursor: pointer;
    }
 }
 
