@@ -1,25 +1,28 @@
 "use strict";
 
-function insertStyles( src, node )
+function insertLinks( parent )
 {
-   const link = document.createElement("link");
+   const len = parent.children.length;
 
-   link.rel = "stylesheet";
+   document.head.appendChild(parent.children[0]);
+   /*
 
-   link.href = src;
+   for(let i = 0; i < len; i++)
+   {
+      console.log(parent.children[0].tagName );
 
-   node.appendChild(link);
+      document.head.appendChild(parent.children[i]);
+   }
+    */
 }
 
 const platformSpecs = {
 
    mobile : { 
-      style : "../css/mobileChat.css",
       html : "mobilechat.html",
    },
 
    desktop : {
-      style : "../css/chatbot.css", 
       html : "deskchat.html",
    },
 };
@@ -31,6 +34,24 @@ async function getDocument(target)
    const parser = new DOMParser();
 
    return parser.parseFromString(raw, "text/html");
+
+}
+
+function updateDOM( doc )
+{ 
+   const head = doc.head;
+   const body = doc.body;
+
+   insertLinks( head );
+
+   document.body.appendChild(body.children[0]);
+
+   const script = document.createElement("script");
+
+   script.src = "../src/chatbot.js";
+   script.type = "module";
+
+   document.body.appendChild(script);
 }
 
 async function getNode(target)
@@ -39,8 +60,7 @@ async function getNode(target)
 
    request.onload = (event) =>
    {
-      const parent = request.responseXML.body.children[0];
-      document.body.append(parent);
+      updateDOM( request.responseXML );
    };
 
    request.open("GET", target.html, true);
@@ -48,6 +68,4 @@ async function getNode(target)
    request.send();
 }
 
-insertStyles( platformSpecs.desktop.style, document.head ); // Insert styles
-
-getNode(platformSpecs.desktop); // Insert node
+getNode(platformSpecs.desktop);

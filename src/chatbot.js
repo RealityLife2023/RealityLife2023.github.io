@@ -6,7 +6,8 @@ import { cosineSimilarity, dynamicRank } from "./math.js";
 const PDF_EXTRACTOR = "https://servicenuruk.realitynear.org:7725/document";
 const VECTOR_GENERATOR = "https://servicenuruk.realitynear.org:7726/vectorize";
 const PROMPT_END = "https://servicenuruk.realitynear.org:7726/ask";
-const MAXIMUM_SIZE = 700000;
+
+const MAXIMUM_SIZE = 700000; // Size of the file in MB not MiB
 
 const chat = document.getElementById("chat-submitter");
 const file = document.getElementById("document-submitter");
@@ -42,8 +43,6 @@ const props =
       props.chat.children[0].setAttribute("placeholder", value ? "Sube un documento para chatear" : "Escribe...");
    },
 
-
-
    set documentForm( value )
    {
       props.trigger = value.children[0];
@@ -54,15 +53,8 @@ const props =
    },
 
    progressBar : document.getElementsByClassName("progress-document-form")[0],
-   panel : document.getElementsByClassName("chat-top__div")[0],
+   panel : document.getElementsByClassName("configuration-container")[0],
    chat : chat,
-
-   changeStateForm()
-   {
-      props.add.disabled = props.isLoaded;
-
-      props.submit.disabled = !props.isLoaded;
-   },
 
    alterDisplay : ( state ) =>
    {
@@ -73,17 +65,13 @@ const props =
    {
       props.file = doc;
 
-      console.log(doc.name);
-
       props.fileName.textContent = doc.name.replace(".pdf", "");
 
       props.icon.setAttribute("status", "loaded");
 
       props.loaded = true;
-
-      props.changeStateForm();
    },
-}
+};
 
 function isStickToBottom( element )
 {
@@ -377,8 +365,9 @@ file.addEventListener("change", event =>
    });
 
 const fileAdder = document.getElementsByClassName("document-adder__button")[0];
-const windowOpener = document.getElementsByClassName("document-panel__button")[1];
-const windowCloser = document.getElementsByClassName("document-panel__button")[0];
+
+const windowOpener = document.getElementsByClassName("opener")[0];
+const windowCloser = document.getElementsByClassName("closer")[0];
 
 
 fileAdder.addEventListener("click", event =>
@@ -401,6 +390,6 @@ windowCloser.addEventListener("click", event =>
       props.alterDisplay( "hidden" );
    });
 
-
+props.documentForm = file;
 props.loaded = false;
 props.disableChat = true;

@@ -1,6 +1,8 @@
-
+<head>
+  <link rel="stylesheet" href="../css/chatbot.css">
+</head>
 <main class="layout-container__main">
-   <div class="chat-top__div" status="hidden">
+   <div class="chat-top__div configuration-container" status="hidden">
       <div class="chat-props__div">
          <p class="chat-profile__p">R</p>
          <h3 class="chat-title__h3">CHATBOT</h3>
@@ -23,7 +25,7 @@
             <li> Las imágenes todavía no se pueden tener en cuenta</li>
             <li> Si reinicias o cierras la pestaña el contenido se borrará</li>
          </ul>
-         <button class="document-panel__button panel-button"><i class="symbol arrowleft"></i></button>
+         <button class="document-panel__button panel-button closer"><i class="symbol arrowleft"></i></button>
       </div>
    </div>
    <div class="chat-body__div">
@@ -33,7 +35,7 @@
       <form id="chat-submitter">
          <textarea type="text" name="message" placeholder="Escribe tu pregunta..." autocomplete="off"></textarea>
          <button class="chat-sender__button panel-button" type="submit"><i class="symbol plane"></i></button>
-         <button class="document-panel__button panel-button"><i class="symbol paperclip"></i></button>
+         <button class="document-panel__button panel-button opener"><i class="symbol paperclip"></i></button>
       </form> 
    </div>
 </main>

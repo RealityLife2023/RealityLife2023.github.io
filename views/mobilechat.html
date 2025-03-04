@@ -1,22 +1,25 @@
-<main class="information__main">
+<head>
+  <link rel="stylesheet" href="../css/mobilechat.css">
+</head>
+<main class="layout-container__main">
       <div class="chat-top__div">
          <p class="chat-profile__p">R</p>
          <h3 class="chat-title__h3">CHATBOT</h3>
          <button class="home-router__button panel-button"><i class="symbol home"></i></button>
-         <button class="document-panel__button panel-button"><i class="symbol paperclip"></i></button>
+         <button class="document-panel__button panel-button opener"><i class="symbol paperclip"></i></button>
       </div>
       <div class="chat-body__div">
          <div class="chat-bubble-jar__div">
-            <p class="user-guide__p">ReLi versión 0.0.1 sencillo y adapatable sube tu documento haciendo click en "<i class="symbol paperclip"></i>"</p>
+            <p class="user-guide__p">ReLi versión 0.0.1, sube tu documento haciendo click en "<i class="symbol paperclip"></i>"</p>
          </div>
          
          <form id="chat-submitter" platform="mobile">
-            <input type="text" name="message" placeholder="Escribe tu pregunta..." autocomplete="off">
+            <textarea type="text" name="message" placeholder="Escribe tu pregunta..." autocomplete="off"></textarea>
             <button class="chat-sender__button tool-button" type="submit"><i class="symbol plane"></i></button>
          </form> 
 
-         <div class="chat-configuration__div" status="hidden">
-            <button class="document-panel__button panel-button"><i class="symbol arrowleft"></i></button>
+         <div class="chat-configuration__div configuration-container" status="hidden">
+            <button class="document-panel__button panel-button closer"><i class="symbol arrowleft"></i></button>
             <form id="document-submitter" enctype="multipart/form-data"> 
               <input type="file"  name="document" accept=".pdf,application/pdf">
               <button class="document-adder__button panel-button">Añadir</i></button>
