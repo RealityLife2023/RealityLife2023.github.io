@@ -6,13 +6,76 @@ import { cosineSimilarity, dynamicRank } from "./math.js";
 const PDF_EXTRACTOR = "https://servicenuruk.realitynear.org:7725/document";
 const VECTOR_GENERATOR = "https://servicenuruk.realitynear.org:7726/vectorize";
 const PROMPT_END = "https://servicenuruk.realitynear.org:7726/ask";
-const MAXIMUM_SIZE = 700000;
+
+const MAXIMUM_SIZE = 700000; // Size of the file in MB not MiB
 
 const chat = document.getElementById("chat-submitter");
 const file = document.getElementById("document-submitter");
 const jar = document.getElementsByClassName("chat-bubble-jar__div")[0];
-const progressBar = document.getElementsByClassName("progress-document-form")[0];
 
+const props =
+{
+   trigger : undefined,
+   add : undefined,
+   submit : undefined,
+   icon : undefined,
+   fileName : undefined,
+
+
+   isLoaded : false,
+   pdfObject : undefined,
+
+   set loaded( value )
+   {
+      props.isLoaded = value;
+
+      props.submit.disabled = !props.isLoaded;
+
+      props.add.textContent = value ? "Cambiar" : "Añadir";
+
+      props.icon.setAttribute("status", value ? "enabled" : "disabled");
+   },
+
+   set disableChat( value )
+   {
+      props.chat.children[0].disabled = 
+      props.chat.children[1].disabled = value;
+
+      props.chat.children[0].setAttribute("placeholder", value ? "Sube un documento para chatear" : "Escribe...");
+
+      props.add.disabled = props.isLoaded;
+   },
+
+   set documentForm( value )
+   {
+      props.trigger = value.children[0];
+      props.add = value.children[1];
+      props.submit = value.children[2];
+      props.icon = value.children[3];
+      props.fileName = value.children[4];
+   },
+
+   progressBar : document.getElementsByClassName("progress-document-form")[0],
+   prompt : document.getElementsByClassName("status-prompt__p")[0],
+   panel : document.getElementsByClassName("configuration-container")[0],
+   chat : chat,
+
+   alterDisplay : ( state ) =>
+   {
+      props.panel.setAttribute("status", state);
+   },
+
+   loadFile : ( doc ) =>
+   {
+      props.file = doc;
+
+      props.fileName.textContent = doc.name.replace(".pdf", "");
+
+      props.icon.setAttribute("status", "loaded");
+
+      props.loaded = true;
+   },
+};
 
 function isStickToBottom( element )
 {
@@ -101,43 +164,45 @@ async function senderProcess( message )
    insertContent( botBubble, answer );
 }
 
-
 async function documentProcessor( event )
 {
    event.preventDefault();
 
+   if(!props.isLoaded)
+      return;
+
+   props.submit.disabled = true;
+
    let form = new FormData( event.target );
-
-   changeStateForm( event.target, true ); // Freeze
-
-   let pages = await readPDF( form );
-
-   let keys = [];
-
-   for(let i = 0; i < pages.length; i++)
-   {
-      let key = `p.${i}`;
-      localStorage.setItem(key, pages[i]);
-      keys.push(key);
-   }
-
-   progressBar.setAttribute("value", 20);
-
-   localStorage.setItem('pages', keys);
 
    try
    {
-      let docEmbedding = await vectorizeDocument( keys );
-      progressBar.setAttribute("value", 100);
-      changeStateForm( chat, false ); // Unfreeze
-      
+      let pages = await readPDF( form );
+
+      let keys = [];
+
+      for(let i = 0; i < pages.length; i++)
+      {
+         let key = `p.${i}`;
+         localStorage.setItem(key, pages[i]);
+         keys.push(key);
+      }
+
+      props.progressBar.setAttribute("value", 20);
+
+      localStorage.setItem('pages', keys);
+
+      props.progressBar.setAttribute("value", 80);
+      await vectorizeDocument( keys );
+      props.progressBar.setAttribute("value", 100);
+      props.disableChat = false;
    }
    catch( error )
    {
-      progressBar.setAttribute("value", 0);
+      props.progressBar.setAttribute("value", 0);
+      props.submit.disabled = false;
+      props.prompt.textContent = "Intenta de nuevo";
    }
-
-   changeStateForm( event.target, false ); // Unfreeze
 }
 
 /**
@@ -154,9 +219,7 @@ async function vectorizeDocument( sections )
       let container = JSON.stringify( response );
 
       localStorage.setItem(`e.${page}`,container);
-
    }
-   progressBar.setAttribute("value", 80);
 }
 
 
@@ -244,11 +307,6 @@ async function readPDF( form )
    return await fetch(PDF_EXTRACTOR, request).then( response => response.json());
 }
 
-function changeStateForm( form, state )
-{
-   for(const child of form.children)
-      child.disabled = state;
-}
 
 async function ask( question )
 {
@@ -294,33 +352,51 @@ function chatListener(event)
 
 
 chat.addEventListener("submit", chatListener);
+
 file.addEventListener("submit", documentProcessor);
 file.addEventListener("change", event =>
    {
-      const size = event.target.files[0].size;
+      const file = event.target.files[0];
 
-      if(size > MAXIMUM_SIZE)
+
+      if(file.size > MAXIMUM_SIZE)
       {
          event.target.parentNode.reset();
+         return;
       }
+
+      props.loadFile( file );
+
    });
 
-changeStateForm( chat, true );
+const fileAdder = document.getElementsByClassName("document-adder__button")[0];
 
-const windowOpener = document.getElementsByClassName("document-panel__button")[0];
-const windowCloser = document.getElementsByClassName("document-panel__button")[1];
+const windowOpener = document.getElementsByClassName("opener")[0];
+const windowCloser = document.getElementsByClassName("closer")[0];
+
+
+fileAdder.addEventListener("click", event =>
+{
+   event.preventDefault();
+   props.trigger.click();
+
+});
+
 
 windowOpener.addEventListener("click", event =>
    {
       event.preventDefault();
-      const documentPanel = document.getElementsByClassName("chat-configuration__div")[0];
-      documentPanel.setAttribute("status", "display");
+      props.alterDisplay( "display" );
    });
 
 windowCloser.addEventListener("click", event =>
    {
       event.preventDefault();
-      const documentPanel = document.getElementsByClassName("chat-configuration__div")[0];
-      documentPanel.setAttribute("status", "hidden");
+      props.alterDisplay( "hidden" );
    });
+
+props.documentForm = file;
+
+props.loaded = false;
+props.disableChat = true;
 

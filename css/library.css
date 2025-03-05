@@ -615,6 +615,8 @@ button.generic-blue__button:hover
       --grey       : #4B4D4B;
       --deep-grey  : #777777;
       --almost-black : #333;
+      --shadow-black : #0119;
+      --bubble-shadow : #0114;
 
       /* end */
 

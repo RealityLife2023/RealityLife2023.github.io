@@ -6,52 +6,10 @@
 
    <title>Chatbot</title>
 
-   <link rel="ico" type="image/x-icon" href="../static/favicon.ico">
-   <link rel="stylesheet" href="../css/chatbot.css">
+   <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
    <link rel="stylesheet" href="../css/responsiveMeasures.css">
 </head>
 <body> 
-   <nav class="generic-nav-bar__nav" id="not-home">
-      <button class="panel-option__button"><a href="aboutus.html">NOSOTROS</a></button>
-      <button class="panel-option__button"><a href="team.html">EQUIPO</a></button>
-      <button class="panel-option__button"><a href="demo.html">DEMO</a></button>
-      <button class="panel-option__button"><a href="contact.html">CONTACTO</a></button>
-      <button type="button" class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
-   </nav>
-   <main class="information__main">
-      <p class="home-router__p"><a href="../index.html">HOME</a> > DEMO</p>
-      <div class="chat-top__div">
-         <p class="chat-profile__p">R</p>
-         <h3 class="chat-title__h3">CHATBOT</h3>
-         <button class="home-router__button panel-button"><i class="symbol home"></i></button>
-         <button class="document-panel__button panel-button"><i class="symbol paperclip"></i></button>
-      </div>
-      <div class="chat-body__div">
-         <div class="chat-bubble-jar__div">
-            <p class="user-guide__p">ReLo versión 0.0.1 sencillo y adapatable sube tu documento haciendo click en "<i class="symbol paperclip"></i>"</p>
-         </div>
-         
-         <form id="chat-submitter">
-            <input type="text" name="message" placeholder="Escribe tu pregunta..." autocomplete="off">
-            <button class="chat-sender__button tool-button" type="submit"><i class="symbol plane"></i></button>
-         </form> 
-         <div class="chat-configuration__div" status="hidden">
-            <button class="document-panel__button panel-button"><i class="symbol arrowleft"></i></button>
-            <form id="document-submitter" enctype="multipart/form-data"> 
-               <input type="file"  name="document" accept=".pdf,application/pdf">
-               <input type="submit" value="Subir">
-            </form> 
-            <progress class="progress-document-form" value="0" max="100">
-               <p> ¡Hecho! </p>
-            </progress>
-            <ul class="errata-list__ul">
-               <li> El archivo debe pesar menos de 0.6MB</li>
-               <li> Las imágenes todavía no se pueden tener en cuenta</li>
-               <li> Si reinicias o cierras la pestaña el contenido se borrará</li>
-            </ul>
-         </div>
-      </div>
-   </main>
-   <script async type="module" src="../src/chatbot.js"></script>
+   <script type="module" src="../src/csr.js"></script>
 </body> 
 </html> 
