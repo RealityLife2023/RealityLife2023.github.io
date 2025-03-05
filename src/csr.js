@@ -38,18 +38,7 @@ const MOBILE_REGEX = /(Android|iOS)|iPhone|Windows Phone|BlackBerry|Symbian|webO
 
 function insertLinks( parent )
 {
-   const len = parent.children.length;
-
    document.head.appendChild(parent.children[0]);
-   /*
-
-   for(let i = 0; i < len; i++)
-   {
-      console.log(parent.children[0].tagName );
-
-      document.head.appendChild(parent.children[i]);
-   }
-    */
 }
 
 const platformSpecs = {
@@ -119,7 +108,6 @@ async function getNode(target)
    request.responseType = "document"; // Add it in between open and send
    request.send();
 }
-
 
 
 getNode(platformSpecs.checkPlatform());
