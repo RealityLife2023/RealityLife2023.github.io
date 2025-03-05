@@ -53,12 +53,40 @@ const props =
       props.submit = value.children[2];
       props.icon = value.children[3];
       props.fileName = value.children[4];
+
+      props.add.addEventListener("click", event =>
+      {
+         event.preventDefault();
+         props.trigger.click();
+      });
+
+      file.addEventListener("change", event =>
+         {
+            const file = event.target.files[0];
+
+            if(file.size > MAXIMUM_SIZE)
+            {
+               event.target.parentNode.reset();
+               return;
+            }
+
+            props.loadFile( file );
+
+         });
+
+      file.addEventListener("submit", documentProcessor);
    },
 
    progressBar : document.getElementsByClassName("progress-document-form")[0],
    prompt : document.getElementsByClassName("status-prompt__p")[0],
    panel : document.getElementsByClassName("configuration-container")[0],
    chat : chat,
+
+   progressStatus( message, disable = false )
+   {
+      props.prompt.textContent = message;
+      props.prompt.setAttribute("status", disable ? "empty" : "message");
+   },
 
    alterDisplay : ( state ) =>
    {
@@ -74,7 +102,11 @@ const props =
       props.icon.setAttribute("status", "loaded");
 
       props.loaded = true;
+
+      props.progressStatus("", true);
    },
+
+
 };
 
 function isStickToBottom( element )
@@ -171,7 +203,7 @@ async function documentProcessor( event )
    if(!props.isLoaded)
       return;
 
-   props.submit.disabled = true;
+   props.submit.disabled = true; // Avoid double submision
 
    let form = new FormData( event.target );
 
@@ -195,13 +227,14 @@ async function documentProcessor( event )
       props.progressBar.setAttribute("value", 80);
       await vectorizeDocument( keys );
       props.progressBar.setAttribute("value", 100);
+      props.progressStatus("¡Hecho!");
       props.disableChat = false;
    }
    catch( error )
    {
       props.progressBar.setAttribute("value", 0);
       props.submit.disabled = false;
-      props.prompt.textContent = "Intenta de nuevo";
+      props.progressStatus("Intenta de nuevo");
    }
 }
 
@@ -354,33 +387,9 @@ function chatListener(event)
 chat.addEventListener("submit", chatListener);
 
 file.addEventListener("submit", documentProcessor);
-file.addEventListener("change", event =>
-   {
-      const file = event.target.files[0];
-
-
-      if(file.size > MAXIMUM_SIZE)
-      {
-         event.target.parentNode.reset();
-         return;
-      }
-
-      props.loadFile( file );
-
-   });
-
-const fileAdder = document.getElementsByClassName("document-adder__button")[0];
 
 const windowOpener = document.getElementsByClassName("opener")[0];
 const windowCloser = document.getElementsByClassName("closer")[0];
-
-
-fileAdder.addEventListener("click", event =>
-{
-   event.preventDefault();
-   props.trigger.click();
-
-});
 
 
 windowOpener.addEventListener("click", event =>
@@ -399,4 +408,3 @@ props.documentForm = file;
 
 props.loaded = false;
 props.disableChat = true;
-
