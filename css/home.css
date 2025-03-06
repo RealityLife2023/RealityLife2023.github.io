@@ -35,7 +35,7 @@ q.welcome-quote__q
    quotes : none;
    color  : var(--aqua);
 
-   font-family : "Poppins-Medium";
+   font-family : "Poppins Medium";
    font-weight : 500;
    font-size   : 3.8rem;
 }
@@ -79,7 +79,7 @@ q.generic-quote__q
 
    color       : var(--aqua);
    text-align  : center;
-   font-family : "Poppins-Bold";
+   font-family : "Poppins Bold";
    font-size   : 2.7rem;
 }
 
@@ -116,7 +116,7 @@ aside.home-left__aside
    position : relative;
 
    color       : var(--aqua);
-   font-family : "Poppins-Bold";
+   font-family : "Poppins Bold";
 /*   font-size   : 1.8rem;*/
    text-align  : left;
 }
@@ -128,7 +128,7 @@ aside.home-right__aside
    padding-right : 40px;
    margin : auto;
    color       : var(--default);
-   font-family : "Poppins-Regular";
+   font-family : "Poppins Regular";
    font-size   : 2.2rem;
    text-align  : right;
 }
