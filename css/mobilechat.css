@@ -34,6 +34,7 @@ main.layout-container__main
 {
    width : 100vw;
    max-height : 7vh;
+   display : flex;
    height : max-content;
    padding : 2vh 0;
    background-color : var(--white);
