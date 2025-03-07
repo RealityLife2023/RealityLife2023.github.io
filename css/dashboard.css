@@ -60,7 +60,7 @@ textarea.record-view__textarea
 
    color : var(--default);
    background-color : var(--almost-black); 
-   font-family: "Poppins-Medium";
+   font-family: "Poppins Medium";
    font-size  : 1.78rem;
    border-radius : 18px;
 }

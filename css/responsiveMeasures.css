@@ -53,7 +53,7 @@
    {
       color  : var(--deep-blue);
       font-size : 4.3rem;
-      font-family: "Poppins-Medium";
+      font-family: "Poppins Medium";
       text-decoration: none;
    }
 
@@ -202,7 +202,7 @@
       border-radius: 55px;
       background-color: var(--aqua);
       color: var(--deep-blue);
-      font-family: "Poppins-Medium";
+      font-family: "Poppins Medium";
       font-size: 3.6rem;
       font-weight: 300;
       cursor: pointer;
@@ -337,7 +337,7 @@
    aside.home-right__aside
    {
       color: var(--default);
-      font-family: "Poppins-Regular";
+      font-family: "Poppins Regular";
       font-size: 2.2rem;
       text-align: left;
       margin: auto;
@@ -513,7 +513,7 @@
       margin : 30px auto;
       width : 79%;
       height : 5.75rem;
-      font-family: "Poppins-Regular";
+      font-family: "Poppins Regular";
       font-size : 21.2px;
    }
 

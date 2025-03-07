@@ -14,11 +14,11 @@
          </div>
          
          <form id="chat-submitter" platform="mobile">
-            <textarea type="text" name="message" placeholder="Escribe tu pregunta..." autocomplete="off"></textarea>
+            <textarea type="text" name="message" enterkeyhint="send" placeholder="" autocomplete="off"></textarea>
             <button class="chat-sender__button tool-button" type="submit"><i class="symbol plane"></i></button>
          </form> 
 
-         <div class="chat-configuration__div configuration-container" status="hidden">
+         <div class="chat-configuration__div configuration-container" status="display">
             <button class="document-panel__button panel-button closer"><i class="symbol arrowleft"></i></button>
             <form id="document-submitter" enctype="multipart/form-data"> 
                <input type="file"  name="document" accept=".pdf,application/pdf">

@@ -9,7 +9,7 @@
       padding : 0 0 0 30px;
       text-align: left;
       color : var(--aqua);
-      font-family: "Poppins-Bold";
+      font-family: "Poppins Bold";
       font-weight: 200;
       font-size  : 2.5rem;
    }
@@ -205,7 +205,7 @@
    div.sign-options__div>p.sign-call__p>a
    {
       color       : var(--default);
-      font-family : "Poppins-Bold";
+      font-family : "Poppins Bold";
       cursor : pointer;
       text-decoration : underline;
       animation : gelatine 0.5s infinite;
@@ -276,7 +276,7 @@
       border-radius : 35px;
       background-color : var(--white);
       color : var(--deep-blue);
-      font-family : "Poppins-Medium";
+      font-family : "Poppins Medium";
       font-size   : 1.6rem;
       font-weight : 300;
       cursor : pointer;
@@ -296,7 +296,7 @@
       text-align: center;
       border-radius : 55px;
       background: linear-gradient(180deg, rgba(0, 32, 96, 1) 67%, rgb(26 65 75) 122%);
-      font-family: "Poppins-Regular";
+      font-family: "Poppins Regular";
    }
 
    form.sign-account__form:nth-child(2)
@@ -316,7 +316,7 @@
 form.sign-account__form>p:nth-child(5)>a
 {
    color       : var(--default);
-   font-family : "Poppins-Bold";
+   font-family : "Poppins Bold";
    cursor : pointer;
 }
 form.sign-account__form>p:nth-child(5)
@@ -325,7 +325,7 @@ form.sign-account__form>p:nth-child(5)
    height    : 90px;
    max-width : 380px;
    margin : auto;
-   font-family : "Poppins-Medium";
+   font-family : "Poppins Medium";
    font-size   : 1.4rem;
    font-weight : 400 ;
 }
@@ -335,7 +335,7 @@ form.sign-account__form>a:nth-child(3)
 {
    display     : block;
    color       : var(--aqua);
-   font-family : "Poppins-Medium";
+   font-family : "Poppins Medium";
    font-size   : 1rem;
    text-decoration: underline;
    cursor : pointer;
@@ -351,14 +351,14 @@ form.sign-account__form>input
    display : block;
    border-color : transparent;
    font-weight  : 100;
-   font-family  : "Poppins-Medium";
+   font-family  : "Poppins Medium";
    font-size    : 1.2rem;
 }
 
 form.sign-account__form>input::placeholder
 {
    color       : var(--deep-blue);
-   font-family : "Poppins-Regular";
+   font-family : "Poppins Regular";
    font-weight : 200;
    font-size   : 1.2rem;
 }
@@ -413,14 +413,14 @@ form.new-account__form>button
    display:block;
 
    border-radius: 5px 7px 4px 4px;
-   font-family: "Poppins-Regular";
+   font-family: "Poppins Regular";
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus
 {
-   font-family : "Poppins-Regular";
+   font-family : "Poppins Regular";
    font-size   : 1rem;
 }
 
@@ -457,7 +457,7 @@ button.generic-blue__button
    border-radius : 55px;
    background-color : var(--aqua);
    color : var(--deep-blue);
-   font-family : "Poppins-Medium";
+   font-family : "Poppins Medium";
    font-size   : 1.4rem;
    font-weight : 300;
    cursor : pointer;
@@ -496,7 +496,7 @@ button.generic-blue__button:hover
 
       user-select : none;
 
-      font-family : "Poppins-Regular";
+      font-family : "Poppins Regular";
 
       background-color : transparent;
    }
@@ -579,7 +579,7 @@ button.generic-blue__button:hover
    html
    {
       font-size : 16px;
-      font-family : "Poppins-Regular";
+      font-family : "Poppins Regular";
       scroll-behavior : smooth;
    }
 
@@ -623,7 +623,7 @@ button.generic-blue__button:hover
 
       background : linear-gradient(180deg, var(--gradient-a-background) 10%, var(--gradient-b-background) 35%, var(--gradient-c-background) 100%);
 
-      font-family : 'Poppins-Regular';
+      font-family : 'Poppins Regular';
 
       color       : var(--default);
    }
@@ -653,22 +653,22 @@ button.generic-blue__button:hover
 {
    @font-face
    {
-      font-family: "Poppins-Regular";
-      src: url("../static/fonts/Poppins-Regular.ttf");
+      font-family: "Poppins Regular";
+      src: url("../static/fonts/Poppins-Regular.woff2");
       font-style : normal;
    }
 
    @font-face
    {
-      font-family : "Poppins-Medium";
-      src         : url("../static/fonts/Poppins-Medium.ttf");
+      font-family : "Poppins Medium";
+      src         : url("../static/fonts/Poppins-Medium.woff2");
       font-style : normal;
    }
 
    @font-face
    {
-      font-family : "Poppins-Bold";
-      src         : url("../static/fonts/Poppins-Bold.ttf");
+      font-family : "Poppins Bold";
+      src         : url("../static/fonts/Poppins-Bold.woff2");
       font-style : normal;
    }
 

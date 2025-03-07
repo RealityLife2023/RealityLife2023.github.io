@@ -76,7 +76,20 @@ body
 
       & button, input, p
       {
-         font-family: "Poppins-Regular";
+         font-family : "Poppins Bold";
+         font-weight : 400;
+      }
+
+      & button, input
+      {
+         color : var(--deep-blue);
+         padding : 0.62rem;
+         margin : .55rem;
+         outline : none;
+         border : none;
+         border-radius: 15px;
+         font-size : 1.03rem;
+         box-shadow :  1px 2px 2px var(--shadow-black);
       }
 
       & button:hover, input:hover
@@ -123,6 +136,20 @@ body
       color: var(--almost-black);
    }
 
+   & .document-panel__button.closer
+   {
+      display : inline-block;
+      height: auto;
+      width: auto;
+      padding : 0;
+      font-size : 2.3rem;
+      background-color : transparent;
+      border : none;
+      color : var(--dark-aqua);
+      transition : 0.2s;
+      position : absolute;
+      right : calc(4% + 1vw);
+   }
 }
 
 
@@ -255,9 +282,10 @@ body
       resize : none;
       padding-top: 0.65rem;
       padding-right: calc(6rem + 1dvh);
+      color : var(--white);
       box-sizing: border-box;
-      font-family: 'Poppins-Regular';
-      font-weight: 500;
+      font-family: "Poppins Bold";
+      font-weight: 600;
       font-size: 1rem;
       outline: none;
       border: none;
@@ -267,6 +295,8 @@ body
    & textarea::placeholder
    {
       color : var(--dark-aqua);
+      font-family: "Poppins Regular";
+      font-weight: 400;
    }
 
    & textarea::-webkit-scrollbar
@@ -356,7 +386,7 @@ body
       width : 100vw;
       max-height : 7vh;
       height : max-content;
-      padding : 2vh 0;
+      padding : 2vh 1.5rem;
       background-color : var(--white);
       user-select : none;
    }
@@ -588,12 +618,18 @@ body
    }
    */
 
-   .errata-list__ul
+   & .errata-list__ul
    {
       font-size : 3rem;
       color: var(--almost-black);
+
    }
 
+}
+
+li
+{
+   margin: 1rem;
 }
 
 .dot-group
@@ -656,4 +692,17 @@ progress
    margin: auto;
    width : 19vw;
    height : 3vh;
+}
+
+.status-prompt__p
+{
+   color : var(--almost-black);
+   font-size : 1.2rem;
+   margin : 1vw auto;
+   text-align : center;
+}
+
+.status-prompt__p[status="empty"]
+{
+   color : transparent;
 }

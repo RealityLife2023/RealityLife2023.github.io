@@ -40,7 +40,7 @@ select.contact-type__select
    display: block;
    margin : auto;
    font-size : 3rem;
-   font-family: "Poppins-Regular";
+   font-family: "Poppins Regular";
    border-radius : 10px;
    outline: none;
    border: none;
@@ -54,7 +54,7 @@ form.enterprise-contact__form>textarea
    display : block;
    margin  : 30px auto;
    padding : 3px 8px;
-   font-family: "Poppins-Regular";
+   font-family: "Poppins Regular";
    font-size : 3rem;
    border-radius : 10px;
    outline: none;
