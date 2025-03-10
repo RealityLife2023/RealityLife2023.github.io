@@ -21,12 +21,20 @@ body
    overflow : hidden;
    contain : paint;
 
-   & .brand-logo__img
+   & .logo-container__button
    {
-      width : 13%;
+      width : calc(1045px * 0.23);
+      height : 4.32%;
       position : absolute;
       top : 2%;;
       left : 2%;
+      background-size: cover;
+      background-color: transparent;
+      background-image: url("../static/logo.png");
+      outline: none;
+      border: none;
+      box-shadow: 2px 2px 5px var(--shadow-black);
+      z-index: 20;
    }
 
    & span
