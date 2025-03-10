@@ -52,7 +52,7 @@ input.file-name__input
    border-color: transparent;
    display: block;
    border-bottom: solid var(--aqua);
-   border-radius: 0 0 45px 45px;
+   border-radius: 0 0 17px 17px;
    background-color: transparent;
    font-weight: 100;
    font-family: "Poppins Medium";
@@ -69,7 +69,7 @@ section.general-tool-container__section
    width: 95%;
    height: max-content;
    margin: auto;
-   border-radius: 70px 70px 35px 35px;
+   border-radius: 48px 48px 35px 35px;
    background-color: #aAA;
    padding: 30px 0 0 0;
 }
@@ -155,11 +155,12 @@ audio-tool
 
 audio-tool>button
 {
-   width : 4.45rem;
-   font-size : 2.3rem;
-   height : 3.37rem;
-   padding : 12px 8px;
+   width : auto;
+   font-size : 2rem;
+   height : auto;
+   padding : 0.35rem 1rem;
 
+   box-sizing: border-box;
    border-radius : 50%;
    border: none;
    text-align: center;
@@ -195,7 +196,13 @@ button.audio-record__button,
 button.stop-record__button,
 button.audio-upload__button
 {
+   margin : 0 1rem;
    display : inline;
+}
+
+button.audio-record__button
+{
+   padding-left : 1.14rem;
 }
 
 div.bar-container__div
@@ -242,6 +249,14 @@ text-tool
    margin : auto;
    height : max-content;
    padding : 0 0 70px 0;
+   position : relative;
+
+   & .generic-blue__button
+   {
+      position : absolute;
+      bottom : 10vh;
+      right : 9vw;
+   }
 }
 
 textarea.document-holder__textarea
@@ -251,7 +266,8 @@ textarea.document-holder__textarea
    resize: none;
 
    width : 78%;
-   height : 70vh;
+   height: max-content;
+   min-height : 50vh;
 
    padding : 30px 35px;
 

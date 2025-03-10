@@ -21,7 +21,6 @@ const props =
    icon : undefined,
    fileName : undefined,
 
-
    isLoaded : false,
    pdfObject : undefined,
 
@@ -86,6 +85,28 @@ const props =
    {
       props.prompt.textContent = message;
       props.prompt.setAttribute("status", disable ? "empty" : "message");
+   },
+
+   setLinks()
+   {
+      let link, classes;
+
+      [link, ...classes] = arguments;
+
+      classes.forEach( value =>{
+
+         const element = document.getElementsByClassName(value)[0];
+
+         console.log(`${element}`);
+
+         element.addEventListener("click", (event) => location.href = link);
+      });
+
+   },
+
+   focusChat()
+   {
+      props.chat.click();
    },
 
    alterDisplay : ( state ) =>
@@ -390,12 +411,20 @@ file.addEventListener("submit", documentProcessor);
 
 const windowOpener = document.getElementsByClassName("opener")[0];
 const windowCloser = document.getElementsByClassName("closer")[0];
+const home = document.getElementsByClassName("logo-container__button")[0];
 
+home.addEventListener("click", (event) =>
+{
+   event.preventDefault();
+   
+   location.href = "/";
+});
 
 windowOpener.addEventListener("click", event =>
    {
       event.preventDefault();
       props.alterDisplay( "display" );
+      props.focusChat();
    });
 
 windowCloser.addEventListener("click", event =>
@@ -403,6 +432,8 @@ windowCloser.addEventListener("click", event =>
       event.preventDefault();
       props.alterDisplay( "hidden" );
    });
+
+//props.setLinks("/", "logo-container__button");
 
 props.documentForm = file;
 
