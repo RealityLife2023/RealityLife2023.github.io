@@ -21,7 +21,6 @@ main.layout-container__main
    display: inline-block;
    position : relative;
    padding : 0;
-   overflow : clip;
    background-color: var(--gradient-a-background);
 }
 

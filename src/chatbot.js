@@ -88,6 +88,11 @@ const props =
       props.prompt.setAttribute("status", disable ? "empty" : "message");
    },
 
+   focusChat()
+   {
+      props.chat.click();
+   },
+
    alterDisplay : ( state ) =>
    {
       props.panel.setAttribute("status", state);
@@ -396,6 +401,7 @@ windowOpener.addEventListener("click", event =>
    {
       event.preventDefault();
       props.alterDisplay( "display" );
+      props.focusChat();
    });
 
 windowCloser.addEventListener("click", event =>
@@ -407,4 +413,4 @@ windowCloser.addEventListener("click", event =>
 props.documentForm = file;
 
 props.loaded = false;
-props.disableChat = true;
+props.disableChat = false;
