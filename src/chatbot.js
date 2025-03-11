@@ -74,6 +74,31 @@ const props =
          });
 
       file.addEventListener("submit", documentProcessor);
+
+      const windowOpener = document.getElementsByClassName("opener")[0];
+      const windowCloser = document.getElementsByClassName("closer")[0];
+
+      windowOpener.addEventListener("click", event =>
+         {
+            event.preventDefault();
+            props.alterDisplay( "display" );
+            props.focusChat();
+         });
+
+      windowCloser.addEventListener("click", event =>
+         {
+            event.preventDefault();
+            props.alterDisplay( "hidden" );
+         });
+
+      const home = document.getElementsByClassName("home-router")[0];
+
+      home.addEventListener("click", (event) =>
+      {
+         event.preventDefault();
+         
+         location.href = "/";
+      });
    },
 
    progressBar : document.getElementsByClassName("progress-document-form")[0],
@@ -404,36 +429,9 @@ function chatListener(event)
    event.target.reset();
 }
 
-
 chat.addEventListener("submit", chatListener);
 
 file.addEventListener("submit", documentProcessor);
-
-const windowOpener = document.getElementsByClassName("opener")[0];
-const windowCloser = document.getElementsByClassName("closer")[0];
-const home = document.getElementsByClassName("logo-container__button")[0];
-
-home.addEventListener("click", (event) =>
-{
-   event.preventDefault();
-   
-   location.href = "/";
-});
-
-windowOpener.addEventListener("click", event =>
-   {
-      event.preventDefault();
-      props.alterDisplay( "display" );
-      props.focusChat();
-   });
-
-windowCloser.addEventListener("click", event =>
-   {
-      event.preventDefault();
-      props.alterDisplay( "hidden" );
-   });
-
-//props.setLinks("/", "logo-container__button");
 
 props.documentForm = file;
 
