@@ -104,7 +104,7 @@ body
       & button, input, p
       {
          font-family : "Poppins Bold";
-         font-weight : 400;
+         font-weight : 200;
       }
 
       & button, input
@@ -127,6 +127,12 @@ body
       & button:disabled, input:disabled
       {
          opacity: 0.3;
+      }
+
+
+      & button:active, input:active
+      {
+         box-shadow :  1px 2px 2px var(--almost-black);
       }
 
       & input[type="file"]
