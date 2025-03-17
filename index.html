@@ -21,6 +21,26 @@
       gtag("config", "G-9M7HP2FW9N");
    </script>
 
+
+
+   <script src="https://accounts.google.com/gsi/client" async></script>
+
+   <!-- strict order -->
+   <!-- TOOLS -->
+   <script defer src="src/record.js"></script>
+   <script src="src/audio.js" defer></script>
+   <script src="src/text.js" defer></script>
+
+   <!-- UTILS -->
+   <script src="src/popup.js" defer></script>
+   <script src="src/remote.js" defer></script>
+   <script src="src/userFiles.js" defer></script>
+   <script src="src/timer.js" defer></script>
+
+   <!-- DASHBOARD -->
+   <script src="src/navigation.js" defer></script>
+   <script src="src/forms.js" defer></script>
+
    <link rel="stylesheet" href="css/home.css">
    <link rel="stylesheet" href="css/notification.css">
    <link rel="stylesheet" href="css/dashboard.css">
@@ -65,61 +85,117 @@
             <p>Nuestra tecnología asegura la seguridad y autenticidad de tus datos, ofreciendo una experiencia inmersiva a través de realidad virtual y aumentada. Reality LIFE no solo almacena datos, sino que preserva tu legado emocional e intelectual, proporcionando consuelo y compañía constante a tus seres queridos.</p>
          </aside>
       </article>
+   <style>
+         .form-panel-tab
+         {
+            margin: auto;
+            font-size: calc(2rem + 1vw);
+            text-align: center;
+            cursor: default;
+            user-select: none;
+         }
+
+         .form-panel-title-tab
+         {
+            position: relative;
+            cursor: pointer;
+         }
+
+         .form-panel-title-tab::after
+         {
+            content: '';
+            position:absolute;
+            width : 100%;
+            height : 4px;
+            left : 0;
+            top : 55px;
+            background-color: #34AA;
+            transform: scaleX(0);
+            transform-origin : left;
+            transition: transform 0.35s ease-in-out;
+         }
+
+         .form-panel-title-tab:hover::after
+         {
+            transform: scaleX(1);
+         }
+
+         .form-panel-title-tab[status="focus"]
+         {
+            color : #CCC;
+         }
+
+         .sign-options__div
+         {
+            display : flex;
+            flex-direction: row;
+            margin : 2rem auto;
+            text-align: center;;
+            float:unset;
+         }
+
+         .parent-wrapper
+         {
+            display : none;
+         }
+
+      </style>
       <section class="call-to-action__section" id="slider-show">
-         <button class="call-to-action__button generic-blue__button">COMIENZA AHORA</button>
          <q class="generic-quote__q">¡Empieza a almacenar tu legado hoy mismo!</q>
+         <p class="form-panel-tab"><span class="form-panel-title-tab">Regístrate</span> o <span class="form-panel-title-tab">inicia sesión</span></p>
          <div class="sign-options__div">
-            <p>Regístrate o inicia sesión</p>
             <ul class="sign-options__ul">
                <li class="sign-option__li">
-                  <button class="generic-white__button oauth-sign__button">
-                     Continúa con Google
-                  </button>
+                  <button class="generic-white__button" id="slider-trigger-backward" type="submit"> Empieza con Google</button>
                </li>
+               <br>
                <li class="sign-option__li">
-                  <button class="generic-white__button" id="slider-trigger-backward">
-                     Continúa con email
-                  </button>
+                  <form class="simple-email__form" enctype="application/json">
+                     <div class="email-composed-field">
+                        <input name="email" type="text" autocomplete="email" placeholder="Continúa con email" required>
+                        <q class="field-feedback"></q>
+                     </div>
+                     <button class="generic-white__button" id="slider-trigger-backward" type="submit">
+                        Siguiente
+                     </button>
+                  </form>
+                  <form action="POST" class="password-check__form">
+                     <div class="password-composed-field">
+                        <input type="password" placeholder="Contraseña fuerte" required>
+                        <q class="field-feedback"></q>
+                     </div>
+                     <div class="password-composed-field">
+                        <input type="password" placeholder="Confirma la contraseña" required>
+                        <q class="field-feedback"></q>
+                     </div>
+                     <button class="generic-white__button" id="slider-trigger-backward" type="submit">
+                        Registrarme
+                     </button>
+                  </form>
                </li>
             </ul>
-            <p class="sign-call__p">¿Todavía no tienes una cuenta? <a id="slider-trigger-forward">Regístrate aquí</a></p>
-         </div>
-         <div class="sign-forms__div">
-            <div class="form-container__div">
-               <form method="POST" class="sign-account__form white-generic__form" id="open-sign-form">
-                  <input type="email" name="email" placeholder="Tu correo">
-                  <input type="password" name="password" placeholder="Tu contraseña">
-                  <a>¿Olvidaste la contraseña?</a>
-                  <button type="submit" class="generic-blue__button">INGRESAR</button>
-               </form>
-               <form method="POST" class="sign-account__form" id="open-signup-form">
-                  <input  class="new-account-field__input" type="text" name="forename" placeholder="Ingresa tu nombre">
-                  <input class="new-account-field__input" type="text" name="surname" placeholder="Tu apellido">
-                  <input class="new-account-field__input" type="email" name="email" placeholder="Tu correo">
-                  <input class="new-account-field__input" type="password" name="password" placeholder="Tu contraseña">
-                  <button type="submit" class="generic-blue__button">REGISTRARME</button>
-               </form>
-            </div>
+            <ul class="sign-options__ul">
+               <li class="sign-option__li">
+                  <button class="generic-white__button" id="slider-trigger-backward" type="submit"> Continúa con Google</button>
+               </li>
+               <li class="sign-option__li">
+                  <form class="login-email__form" enctype="application/json">
+                     <div class="email-composed-field">
+                        <input type="text" autocomplete="email" placeholder="Continúa con email">
+                        <q class="field-feedback"></q>
+                     </div>
+                     <div class="password-composed-field">
+                        <input type="password" placeholder="Contraseña">
+                        <q class="field-feedback"></q>
+                     </div>
+                     <button class="generic-white__button" id="slider-trigger-backward" type="submit">
+                        Ingresar
+                     </button>
+               </li>
+            </ul>
          </div>
       </section>
    </main>
-
-   <!-- strict order -->
-   <!-- TOOLS -->
-   <script src="src/record.js"></script>
-   <script src="src/audio.js"></script>
-   <script src="src/text.js"></script>
-
-   <!-- UTILS -->
-   <script src="src/popup.js"></script>
-   <script src="src/remote.js"></script>
-   <script src="src/userFiles.js"></script>
-   <script src="src/timer.js"></script>
-
-   <!-- DASHBOARD -->
-   <script src="src/registrationForms.js"></script>
-   <script src="src/navigation.js"></script>
-
    <footer class="generic-footer__footer">
       <img src="" alt="" class="mini-logo__img">
       <q class="brand-quote__q mini-quote">Keep your memories and knowledge always alive</q>
