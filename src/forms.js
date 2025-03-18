@@ -30,6 +30,11 @@ class Form {
       for (let i = 0; i < len; i++) {
          const key = this.fields[i].name;
 
+         if (event.target[key].value === "") {
+            this.setFeedback("This field is required!", i);
+            return;
+         }
+
          scheme[key] = event.target[key].value;
       }
 
@@ -42,7 +47,9 @@ class Form {
 
          const values = root.deconstructEvent(event);
 
-         root.onSubmit(values);
+         if (values) {
+            root.onSubmit(values);
+         }
       };
    }
 
@@ -64,12 +71,11 @@ class Form {
    setFeedback(message, fieldIndex) {
       const root = this.fields[fieldIndex];
 
-      root.querySelector(this.feedbackTag).textContent = message;
+      root.querySelector(Form.feedbackTag).textContent = message;
    }
 }
 
 async function validateEmail(email) {
-   console.log(email);
    const regex = /^[\w-\.]+@([\w-]+\.)+[\w.]{2-4}/;
    return regex.test(email);
 }
@@ -84,10 +90,12 @@ const passwordCheck = new Form("password-check__form");
 
 passwordCheck.onSubmit = verifyPassword;
 
+// Called when submmited not exactly to change//
 async function verifyPassword({ original, confirmation }) {
    const strengthRegex =
       /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*()-_]{1,})(?=.*[0-9].*[0-9]{2,}).{8}$/;
 
+   /** Cases :  */
    if (!strengthRegex.test(original)) {
       console.log(`Your passkey ${original} can improve!`);
    }
