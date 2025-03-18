@@ -7,35 +7,64 @@ class Form {
       // ** TODO : PING DOMAIN ** //
    }
 
+   static feedbackTag = "q";
+
    constructor(name, index = 0) {
       this.root = document.getElementsByClassName(name)[index];
 
-      this.root.addEventListener("submit", this.onSubmit(this));
+      this.root.addEventListener("submit", this.wrapper(this));
 
       this.submitButton = this.root.querySelector("button[type=submit]");
 
       this.fields = this.root.querySelectorAll("div");
+
+      for (let i = 0; i < this.fields.length; i++) {
+         this.fields[i].name = this.fields[i].children[0].name;
+      }
    }
 
-   onSubmit(root) {
-      return (event) => {
+   deconstructEvent(event) {
+      const len = this.fields.length;
+      let scheme = {};
+
+      for (let i = 0; i < len; i++) {
+         const key = this.fields[i].name;
+
+         scheme[key] = event.target[key].value;
+      }
+
+      return scheme;
+   }
+
+   wrapper(root) {
+      return async (event) => {
          event.preventDefault();
 
-         const form = event.target;
+         const values = root.deconstructEvent(event);
 
-         root.setFeedback(
-            validateEmail(form.email.value)
-               ? "invalid email, please check"
-               : "valid email! please pass",
-            0,
-         );
+         root.onSubmit(values);
       };
    }
+
+   /**
+    * To be extended
+    */
+   onSubmit() {}
+
+   /**
+    * To be extended
+    */
+   accept() {}
+
+   /**
+    * To be extended
+    */
+   reject() {}
 
    setFeedback(message, fieldIndex) {
       const root = this.fields[fieldIndex];
 
-      root.querySelector("q").textContent = message;
+      root.querySelector(this.feedbackTag).textContent = message;
    }
 }
 
@@ -47,27 +76,27 @@ async function validateEmail(email) {
 
 // ** NEW UI ** //
 
+const simpleEmail = new Form("simple-email__form");
+
 const directLogin = new Form("login-email__form");
 
 const passwordCheck = new Form("password-check__form");
 
-async function verificationStage() {}
+passwordCheck.onSubmit = verifyPassword;
 
-async function verifyPassword(original, decoy) {
+async function verifyPassword({ original, confirmation }) {
    const strengthRegex =
       /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*()-_]{1,})(?=.*[0-9].*[0-9]{2,}).{8}$/;
 
    if (!strengthRegex.test(original)) {
+      console.log(`Your passkey ${original} can improve!`);
    }
 
-   if (decoy.length === 0) {
-      // Do not alert
+   if (confirmation.length === 0) {
    }
 
-   return original === decoy;
+   return original === confirmation;
 }
-
-const simpleEmail = new Form("simple-email__form");
 
 async function submitResults(data) {
    let formattedData = new FormData(data);
