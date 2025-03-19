@@ -12,7 +12,7 @@ class Form {
    constructor(name, index = 0) {
       this.root = document.getElementsByClassName(name)[index];
 
-      this.root.addEventListener("submit", this.wrapper(this));
+      this.root.addEventListener("submit", this.wrapper(this), true);
 
       this.submitButton = this.root.querySelector("button[type=submit]");
 
@@ -75,9 +75,16 @@ class Form {
    }
 }
 
-async function validateEmail(email) {
-   const regex = /^[\w-\.]+@([\w-]+\.)+[\w.]{2-4}/;
-   return regex.test(email);
+class Panel {
+   static parentName = "sign-options__div";
+
+   constructor(index) {
+      this.root = document.getElementsByClassName(Panel.parentName).children[
+         index
+      ];
+   }
+
+   disable() {}
 }
 
 // ** NEW UI ** //
@@ -89,6 +96,11 @@ const directLogin = new Form("login-email__form");
 const passwordCheck = new Form("password-check__form");
 
 passwordCheck.onSubmit = verifyPassword;
+
+async function validateEmail(email) {
+   const regex = /^[\w-\.]+@([\w-]+\.)+[\w.]{2-4}/;
+   return regex.test(email);
+}
 
 // Called when submmited not exactly to change//
 async function verifyPassword({ original, confirmation }) {
