@@ -312,172 +312,172 @@
    }
     */
 
-/* Sign up */
-form.sign-account__form>p:nth-child(5)>a
-{
-   color       : var(--default);
-   font-family : "Poppins Bold";
-   cursor : pointer;
-}
-form.sign-account__form>p:nth-child(5)
-{
-   width     : 385px;
-   height    : 90px;
-   max-width : 380px;
-   margin : auto;
-   font-family : "Poppins Medium";
-   font-size   : 1.4rem;
-   font-weight : 400 ;
-}
+   /* Sign up */
+   form.sign-account__form>p:nth-child(5)>a
+   {
+      color       : var(--default);
+      font-family : "Poppins Bold";
+      cursor : pointer;
+   }
+   form.sign-account__form>p:nth-child(5)
+   {
+      width     : 385px;
+      height    : 90px;
+      max-width : 380px;
+      margin : auto;
+      font-family : "Poppins Medium";
+      font-size   : 1.4rem;
+      font-weight : 400 ;
+   }
 
-/* Forgot password? */
-form.sign-account__form>a:nth-child(3)
-{
-   display     : block;
-   color       : var(--aqua);
-   font-family : "Poppins Medium";
-   font-size   : 1rem;
-   text-decoration: underline;
-   cursor : pointer;
-}
+   /* Forgot password? */
+   form.sign-account__form>a:nth-child(3)
+   {
+      display     : block;
+      color       : var(--aqua);
+      font-family : "Poppins Medium";
+      font-size   : 1rem;
+      text-decoration: underline;
+      cursor : pointer;
+   }
 
 
-form.sign-account__form>input
-{
-   width  : 332px;
-   height : 25px;
-   margin : 9px auto;
-   padding : 15px 15px 15px 15px;
-   display : block;
-   border-color : transparent;
-   font-weight  : 100;
-   font-family  : "Poppins Medium";
-   font-size    : 1.2rem;
-}
+   form.sign-account__form>input
+   {
+      width  : 332px;
+      height : 25px;
+      margin : 9px auto;
+      padding : 15px 15px 15px 15px;
+      display : block;
+      border-color : transparent;
+      font-weight  : 100;
+      font-family  : "Poppins Medium";
+      font-size    : 1.2rem;
+   }
 
-form.sign-account__form>input::placeholder
-{
-   color       : var(--deep-blue);
-   font-family : "Poppins Regular";
-   font-weight : 200;
-   font-size   : 1.2rem;
-}
+   form.sign-account__form>input::placeholder
+   {
+      color       : var(--deep-blue);
+      font-family : "Poppins Regular";
+      font-weight : 200;
+      font-size   : 1.2rem;
+   }
 
-form.sign-account__form>input.new-account-field__input:nth-child(1),
-form.sign-account__form>input:nth-child(1)
-{
-   border-radius : 23px 23px 0 0;
-   background    : var(--default);
-}
+   form.sign-account__form>input.new-account-field__input:nth-child(1),
+   form.sign-account__form>input:nth-child(1)
+   {
+      border-radius : 23px 23px 0 0;
+      background    : var(--default);
+   }
 
-form.sign-account__form>input.new-account-field__input:nth-child(2)
-{
-   border-radius : 0;
-   margin-bottom : 0.2rem;
-}
+   form.sign-account__form>input.new-account-field__input:nth-child(2)
+   {
+      border-radius : 0;
+      margin-bottom : 0.2rem;
+   }
 
-form.sign-account__form>input.new-account-field__input:nth-child(4)
-{
-   margin-top    : 3px;
-   margin-bottom : 1rem;
-   border-radius : 0 0 23px 23px;
-   background : var(--default);
-}
+   form.sign-account__form>input.new-account-field__input:nth-child(4)
+   {
+      margin-top    : 3px;
+      margin-bottom : 1rem;
+      border-radius : 0 0 23px 23px;
+      background : var(--default);
+   }
 
-form.sign-account__form>input:nth-child(2)
-{
-   margin : 3px auto;
-   border-radius : 0 0 23px 23px;
-   background : var(--default);
-}
+   form.sign-account__form>input:nth-child(2)
+   {
+      margin : 3px auto;
+      border-radius : 0 0 23px 23px;
+      background : var(--default);
+   }
 
-form.new-account__form
-{
-   margin: auto;
-   margin-top: 1.3rem;
+   form.new-account__form
+   {
+      margin: auto;
+      margin-top: 1.3rem;
 
-   padding-top: 2rem;
+      padding-top: 2rem;
 
-   text-align:center
-}
+      text-align:center
+   }
 
-form.new-account__form>input,
-form.new-account__form>button
-{
-   margin:auto;
-   margin-top: 1.2rem;
+   form.new-account__form>input,
+   form.new-account__form>button
+   {
+      margin:auto;
+      margin-top: 1.2rem;
 
-   padding-top: 7px;
-   padding-bottom: 3px;
+      padding-top: 7px;
+      padding-bottom: 3px;
 
-   display:block;
+      display:block;
 
-   border-radius: 5px 7px 4px 4px;
-   font-family: "Poppins Regular";
-}
+      border-radius: 5px 7px 4px 4px;
+      font-family: "Poppins Regular";
+   }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus
-{
-   font-family : "Poppins Regular";
-   font-size   : 1rem;
-}
+   input:-webkit-autofill,
+   input:-webkit-autofill:hover,
+   input:-webkit-autofill:focus
+   {
+      font-family : "Poppins Regular";
+      font-size   : 1rem;
+   }
 
-/* Record options */
+   /* Record options */
 
-ul.record-types__ul
-{
-   margin : auto;
+   ul.record-types__ul
+   {
+      margin : auto;
 
-   margin-top  : 1.2rem;
-   padding-top : 1rem;
+      margin-top  : 1.2rem;
+      padding-top : 1rem;
 
-   text-align : center;
+      text-align : center;
 
-   user-select : none;
+      user-select : none;
 
-   list-style-type : none;
-}
+      list-style-type : none;
+   }
 
-ul.record-types__ul>li.record-type__li
-{
-   list-style-type : none;
+   ul.record-types__ul>li.record-type__li
+   {
+      list-style-type : none;
 
-   margin-top    : 1.1rem;
-   margin-bottom : 1.1rem;
-}
+      margin-top    : 1.1rem;
+      margin-bottom : 1.1rem;
+   }
 
-button.generic-blue__button
-{
-   padding : 9px 18px;
-   margin  : 40px auto 38px auto;
-   width : max-content;
-   border        : none;
-   border-radius : 55px;
-   background-color : var(--aqua);
-   color : var(--deep-blue);
-   font-family : "Poppins Medium";
-   font-size   : 1.4rem;
-   font-weight : 300;
-   cursor : pointer;
-}
+   button.generic-blue__button
+   {
+      padding : 9px 18px;
+      margin  : 40px auto 38px auto;
+      width : max-content;
+      border        : none;
+      border-radius : 55px;
+      background-color : var(--aqua);
+      color : var(--deep-blue);
+      font-family : "Poppins Medium";
+      font-size   : 1.4rem;
+      font-weight : 300;
+      cursor : pointer;
+   }
 
-button.generic-blue__button:hover
-{
-   background-color : var(--grey);
-   color            : var(--white);
-}
+   button.generic-blue__button:hover
+   {
+      background-color : var(--grey);
+      color            : var(--white);
+   }
 
-/* Animations */
+   /* Animations */
 
-@keyframes gelatine 
-{
-   from, to { transform : scale(1,1);}
-   25% { transform : scale(0.9, 1.1);}
-   50% { transform : scale(1.1, 0.9);}
-   75% { transform : scale(0.95, 1.05);}
-}
+   @keyframes gelatine 
+   {
+      from, to { transform : scale(1,1);}
+      25% { transform : scale(0.9, 1.1);}
+      50% { transform : scale(1.1, 0.9);}
+      75% { transform : scale(0.95, 1.05);}
+   }
 }
 
 /* Navigation bar */
@@ -627,6 +627,8 @@ button.generic-blue__button:hover
 
       color       : var(--default);
    }
+
+   q { quotes: none; }
 }
 
 @layer bottom

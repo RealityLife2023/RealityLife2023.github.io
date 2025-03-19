@@ -21,8 +21,6 @@
       gtag("config", "G-9M7HP2FW9N");
    </script>
 
-
-
    <script src="https://accounts.google.com/gsi/client" async></script>
 
    <!-- strict order -->
@@ -89,6 +87,7 @@
          .form-panel-tab
          {
             margin: auto;
+            margin-bottom: 6.45rem;
             font-size: calc(2rem + 1vw);
             text-align: center;
             cursor: default;
@@ -120,37 +119,90 @@
             transform: scaleX(1);
          }
 
-         .form-panel-title-tab[status="focus"]
+         .form-panel-title-tab[status="selected"]::after
          {
             color : #CCC;
+            transform: scaleX(1);
          }
+
 
          .sign-options__div
          {
-            display : flex;
+            display: block;
             flex-direction: row;
-            margin : 2rem auto;
+            margin: 2rem auto;
             text-align: center;;
-            float:unset;
+            float: unset;
          }
 
          .parent-wrapper
          {
-            display : none;
+            display: none;
+         }
+
+         .generic-form
+         {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: "Poppins Regular", monospace;
+            font-size: 1.2rem;
+
+            & input,q
+            {
+               display: inline-block;
+               margin : auto;
+               font-style: unset;
+               font-size: inherit;
+               font-family: inherit;
+            }
+
+            & input
+            {
+               border: none;
+               padding : 0.85rem 0.65rem;
+               margin-top: 1.2rem;
+               border-radius : 23px;
+               border-bottom: solid #8AB;
+            }
+
+            & input:focus
+            {
+               outline: none;
+            }
+
+            & button
+            {
+               display : inline-block;
+            }
+
+            & div::after
+            {
+               content: '';
+               position:absolute;
+               width : 100%;
+               height : 4px;
+               left : 0;
+               top : 55px;
+               background-color: #34AA;
+               transform: scaleX(0);
+               transform-origin : left;
+               transition: transform 0.35s ease-in-out;
+            }
          }
 
       </style>
       <section class="call-to-action__section" id="slider-show">
          <q class="generic-quote__q">¡Empieza a almacenar tu legado hoy mismo!</q>
-         <p class="form-panel-tab"><span class="form-panel-title-tab">Regístrate</span> o <span class="form-panel-title-tab">inicia sesión</span></p>
          <div class="sign-options__div">
+            <p class="form-panel-tab"><span status="selected" class="form-panel-title-tab">Regístrate</span> o <span status="" class="form-panel-title-tab">inicia sesión</span></p>
             <ul class="sign-options__ul">
                <li class="sign-option__li">
                   <button class="generic-white__button" id="slider-trigger-backward" type="submit"> Empieza con Google</button>
                </li>
                <br>
                <li class="sign-option__li">
-                  <form class="simple-email__form" enctype="application/json">
+                  <form class="generic-form simple-email__form" enctype="application/json">
                      <div class="email-composed-field">
                         <input name="email" type="text" autocomplete="email" placeholder="Continúa con email" required>
                         <q class="field-feedback"></q>
@@ -159,7 +211,7 @@
                         Siguiente
                      </button>
                   </form>
-                  <form action="POST" class="password-check__form">
+                  <form action="POST" class="generic-form password-check__form">
                      <div class="password-composed-field">
                         <input name="original" type="password" placeholder="Contraseña fuerte" required>
                         <q class="field-feedback"></q>
@@ -177,10 +229,10 @@
 
             <ul class="sign-options__ul">
                <li class="sign-option__li">
-                  <button class="generic-white__button"  type="submit"> Continúa con Google</button>
+                  <button class="generic-white__button" type="submit"> Continúa con Google</button>
                </li>
                <li class="sign-option__li">
-                  <form class="login-email__form" enctype="application/json">
+                  <form class="generic-form login-email__form" enctype="application/json">
                      <div class="email-composed-field">
                         <input name="email" type="text" autocomplete="email" placeholder="Continúa con email">
                         <q class="field-feedback"></q>
@@ -189,7 +241,7 @@
                         <input name="password" type="password" placeholder="Contraseña">
                         <q class="field-feedback"></q>
                      </div>
-                     <button class="generic-white__button" type="submit">
+                     <button class="generic-white__button"  type="submit">
                         Ingresar
                      </button>
                </li>
