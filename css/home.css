@@ -4,20 +4,16 @@
 
 @layer animations {
 
-   @keyframes cycles
-   {
-      0%
-      {
+   @keyframes cycles {
+      0% {
          transform: rotate(0rad);
       }
 
-      45%
-      {
+      45% {
          transform: rotate(3rad);
       }
 
-      100%
-      {
+      100% {
          transform: rotate3d(0rad);
       }
    }
@@ -26,16 +22,16 @@
       position: absolute;
 
       & .globe-decoration__span {
-         animation: 3s ease-out 0s infinite cycles;
+         animation: 14s ease-in-out 0s infinite cycles;
       }
    }
 
    .globes-animation.left {
-      left: 0;
+      left: -14%;
    }
 
    .globes-animation.right {
-      right: 0;
+      right: 10%;
    }
 }
 
@@ -333,14 +329,20 @@ span.globe-decoration__span:nth-child(4)>p {
    margin: auto;
    margin-top: 1.2rem;
    margin-bottom: 1rem;
-   padding: 0;
+   padding-bottom: 8rem;
    text-align: center;
    user-select: none;
    overflow: clip;
 
    & br {
+      content:' ';
+      display:block;
+      height: 0.07rem;;
+      margin : 2.1rem auto;
+      width: 85%;
       line-height: 4;
-      background-color: var(--grey);
+      background: linear-gradient(90deg, var(--deep-grey) 2%, var(--almost-black) 75%);
+      border-radius: 4px;
    }
 
    & .two-step-form {
@@ -352,8 +354,17 @@ span.globe-decoration__span:nth-child(4)>p {
          position: absolute;
          z-index: 20;
       }
-   }
 
+      & .generic-form:nth-child(1)[status="filled"] {
+         transform: translate(-88%, 0);
+         transition: transform 0.48s ease-in;
+      }
+
+      & .generic-form:nth-child(2)[status="selected"] {
+         right: 25%;
+         transition: 0.78s ease-out;
+      }
+   }
 }
 
 .sign-options__ul[status="disabled"] {
@@ -374,6 +385,7 @@ span.globe-decoration__span:nth-child(4)>p {
 .generic-form {
    display: flex;
    flex-direction: column;
+   --width: calc(100% + 0);
    flex-wrap: wrap;
    align-items: center;
    font-family: "Poppins Regular", monospace;
@@ -408,6 +420,14 @@ span.globe-decoration__span:nth-child(4)>p {
       min-height: 1rem;
    }
 
+   input:hover + q,
+   input:focus + q
+   {
+      text-shadow: -4px 2px 8px #011A, #8AB 0 2px;
+      transform: translate(0, -1%);
+      transition: transform 0.25s ease-in;
+   }
+
    & input:hover,
    .generic-white__button:hover,
    input:focus {
@@ -415,6 +435,7 @@ span.globe-decoration__span:nth-child(4)>p {
       box-shadow: 7px 4px 8px #1116, #8AB 0 4px;
       transform: translate(0, -2%);
       transition: transform 0.25s ease-in;
+
    }
 
    .generic-white__button:active {

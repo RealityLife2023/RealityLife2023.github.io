@@ -78,8 +78,6 @@ class Form {
 
          if (values) {
             root.onSubmit(values);
-
-            root.cycle(values);
          }
          // Invoke and event that allows to reject or to accept, nothing to do with fetching til now
       };
@@ -190,7 +188,10 @@ const passwordCheck = new Form("password-check__form");
 
 passwordCheck.onSubmit = verifyPassword;
 
-simpleEmail.onSubmit = validateEmail;
+simpleEmail.onSubmit = () => {
+   simpleEmail.root.setAttribute("status", "filled");
+   passwordCheck.root.setAttribute("status", "selected");
+};
 
 simpleEmail.accept = () => {
    simpleEmail.disable();
