@@ -1,5 +1,9 @@
 @import url("library.css");
 
+*[status="hidden"] {
+   display: none;
+}
+
 img.brand-logo__img {
    /*
  * Variables:
@@ -250,7 +254,7 @@ section.call-to-action__section {
    height: 4px;
    left: 0;
    top: 55px;
-   background-color: #34AA;
+   background-color: #34AC;
    transform: scaleX(0);
    transform-origin: left;
    transition: transform 0.35s ease-in-out;
@@ -263,6 +267,10 @@ section.call-to-action__section {
 .form-panel-title-tab[status="selected"]::after {
    color: #CCC;
    transform: scaleX(1);
+}
+
+.form-panel-title-tab[status="selected"] {
+   pointer-events: none;
 }
 
 .sign-options__div {
@@ -320,12 +328,6 @@ section.call-to-action__section {
       border-radius: 26px;
    }
 
-   & input:focus {
-      outline: none;
-      box-shadow: #8AB 0 3px;
-   }
-
-
    & button {
       display: inline-block;
       pointer-events: inherit;
@@ -336,17 +338,18 @@ section.call-to-action__section {
    }
 
    & input:hover,
-   .generic-white__button:hover {
-      box-shadow: #8AB 0 3px;
+   .generic-white__button:hover,
+   input:focus {
+      outline: none;
+      box-shadow: 7px 4px 8px #1116, #8AB 0 4px;
       transform: translate(0, -2%);
-      transition: transform 1.85 ease-in;
+      transition: transform 0.25s ease-in;
    }
 
    .generic-white__button:active {
       background-color: var(--blue-prompt);
       color: var(--default);
    }
-
 
    .password-composed-field {
       display: flex;
@@ -365,22 +368,22 @@ li>.generic-white__button::before {
    width: 100%;
    height: 4px;
    left: 0;
-   top: 67px;
+   top: 63px;
    border-radius: 35px;
    background-color: #34A;
    transform: scaleX(0);
-   transform-origin: left;
+   transform-origin: center;
    transition: transform 0.35s ease-in-out;
 }
 
 li>.generic-white__button::before {
    top: 0;
-   transform-origin: right;
+   /* transform-origin: right; */
 }
 
 li>.generic-white__button:hover::after,
 li>.generic-white__button:hover::before {
-   transform: scaleX(1);
+   transform: scaleX(0.85);
 }
 
 li.thirdparty-option-go>.generic-white__button::after,
@@ -388,6 +391,4 @@ li.thirdparty-option-go>.generic-white__button::before {
    background: linear-gradient(to right, #0F9D58, #F4B400, #Db4437);
 }
 
-li>.generic-white__button:hover{
-   box-shadow: 7px 4px 6px #1119;
-}
+li>.generic-white__button:hover {}

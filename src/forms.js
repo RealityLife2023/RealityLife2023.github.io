@@ -78,16 +78,60 @@ class Form {
 class Panel {
    static parentName = "sign-options__div";
 
-   constructor(index) {
-      this.root = document.getElementsByClassName(Panel.parentName).children[
-         index
-      ];
+   constructor() {
+      this.root = document.getElementsByClassName(Panel.parentName)[0];
+
+      this.tabs = this.root.children[0].children;
+
+      this.optionPanels = this.root.querySelectorAll("ul");
+
+      for (let i = 0; i < this.optionPanels.length; i++) {
+         this.tabs[i].addEventListener("click", this.focusTabTitle(this, i));
+      }
    }
 
-   disable() {}
+   focusTabTitle(root, index) {
+      return (event) => {
+         event.stopPropagation();
+
+         const status = event.target.getAttribute("status");
+
+         root.changeTab(status ? status : "", index);
+      };
+   }
+
+   disable() {
+      this.optionPanels[0].setAttribute("status", "disabled");
+   }
+
+   changeTab(key, index) {
+      /* Registration */
+      this.tabs[0].setAttribute(
+         "status",
+         (key === "") & (index === 0) ? "selected" : "",
+      );
+      this.optionPanels[0].setAttribute(
+         "status",
+         (key === "") & (index === 0) ? "" : "hidden",
+      );
+
+      /* Entrance */
+      this.tabs[1].setAttribute(
+         "status",
+         (key === "") & (index === 1) ? "selected" : "",
+      );
+      this.optionPanels[1].setAttribute(
+         "status",
+         (key === "") & (index === 1) ? "" : "hidden",
+      );
+   }
 }
 
 // ** NEW UI ** //
+
+const panel = new Panel();
+
+panel.changeTab("", 0);
 
 const simpleEmail = new Form("simple-email__form");
 
