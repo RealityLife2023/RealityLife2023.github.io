@@ -218,14 +218,6 @@
       list-style-type: none;
    }
 
-   ul.sign-options__ul {
-      margin: auto;
-      margin-top: 1.2rem;
-      margin-bottom: 1rem;
-      padding: 0;
-      text-align: center;
-      user-select: none;
-   }
 
 
    /* Generic white button */
@@ -525,7 +517,7 @@
 @layer colors {
    html {
       font-size: 16px;
-      font-family: "Poppins Regular";
+      font-family: "Poppins Regular", monospace;
       scroll-behavior: smooth;
    }
 
@@ -566,9 +558,6 @@
 
 
       background: linear-gradient(180deg, var(--gradient-a-background) 10%, var(--gradient-b-background) 35%, var(--gradient-c-background) 100%);
-
-      font-family: 'Poppins Regular';
-
       color: var(--default);
    }
 

@@ -1,12 +1,40 @@
 "use strict";
 
-class Form {
-   set endpoint(value) {
-      this.url = value;
+class Request {
+   #host;
+   #url;
 
-      // ** TODO : PING DOMAIN ** //
+   constructor() {
+      this.#host = window.location.host;
    }
 
+   set url(value) {
+      this.#url = value;
+   }
+
+   #endpoint() {
+      return (this.#host += this.#url);
+   }
+
+   #formalRequest() {
+      return {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+         },
+         body: this.body,
+      };
+   }
+
+   async fetch() {
+      const url = this.#endpoint();
+      const request = this.#formalRequest();
+
+      fetch(url, request);
+   }
+}
+
+class Form {
    static feedbackTag = "q";
 
    constructor(name, index = 0) {
@@ -31,7 +59,7 @@ class Form {
          const key = this.fields[i].name;
 
          if (event.target[key].value === "") {
-            this.setFeedback("This field is required!", i);
+            this.setFeedback("Este campo es necesario", i);
             return;
          }
 
@@ -44,13 +72,30 @@ class Form {
    wrapper(root) {
       return async (event) => {
          event.preventDefault();
+         event.stopPropagation();
 
          const values = root.deconstructEvent(event);
 
          if (values) {
             root.onSubmit(values);
+
+            root.cycle(values);
          }
+         // Invoke and event that allows to reject or to accept, nothing to do with fetching til now
       };
+   }
+
+   cycle(values) {
+      if (this.onSubmit(values)) {
+         this.accept();
+      } else {
+         this.reject();
+      }
+   }
+
+   createRequest() {
+      this.request = new Request();
+      return this.request;
    }
 
    /**
@@ -100,8 +145,12 @@ class Panel {
       };
    }
 
+   /* Possible bug checkout the tab role in this */
    disable() {
+      this.root.setAttribute("status", "disabled");
+
       this.optionPanels[0].setAttribute("status", "disabled");
+      this.optionPanels[1].setAttribute("status", "disabled");
    }
 
    changeTab(key, index) {
@@ -133,13 +182,31 @@ const panel = new Panel();
 
 panel.changeTab("", 0);
 
-const simpleEmail = new Form("simple-email__form");
-
 const directLogin = new Form("login-email__form");
 
+/* Email => (email check) => password => (password check) => (submision) => successful login */
+const simpleEmail = new Form("simple-email__form");
 const passwordCheck = new Form("password-check__form");
 
 passwordCheck.onSubmit = verifyPassword;
+
+simpleEmail.onSubmit = validateEmail;
+
+simpleEmail.accept = () => {
+   simpleEmail.disable();
+   /**
+    * Set animation for transition
+    * Pass the value for a request object
+    */
+};
+
+passwordCheck.accept = () => {
+   passwordCheck.disable();
+   /**
+    * Make the request
+    * Set animation for transition to dashboard
+    */
+};
 
 async function validateEmail(email) {
    const regex = /^[\w-\.]+@([\w-]+\.)+[\w.]{2-4}/;
@@ -147,19 +214,11 @@ async function validateEmail(email) {
 }
 
 // Called when submmited not exactly to change//
-async function verifyPassword({ original, confirmation }) {
+async function verifyPassword(password) {
    const strengthRegex =
       /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*()-_]{1,})(?=.*[0-9].*[0-9]{2,}).{8}$/;
 
-   /** Cases :  */
-   if (!strengthRegex.test(original)) {
-      console.log(`Your passkey ${original} can improve!`);
-   }
-
-   if (confirmation.length === 0) {
-   }
-
-   return original === confirmation;
+   return strengthRegex.test(password);
 }
 
 async function submitResults(data) {
@@ -171,13 +230,7 @@ async function submitResults(data) {
 
    let body = JSON.stringify(structure);
 
-   let request = {
-      method: "POST",
-      headers: {
-         "Content-Type": "application/json",
-      },
-      body: body,
-   };
+   let request = {};
 
    await fetch("https://servicenuruk.realitynear.org:7726/sign", request)
       .then(async (raw) => {

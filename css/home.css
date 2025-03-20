@@ -1,4 +1,43 @@
 @import url("library.css");
+@layer animations;
+
+
+@layer animations {
+
+   @keyframes cycles
+   {
+      0%
+      {
+         transform: rotate(0rad);
+      }
+
+      45%
+      {
+         transform: rotate(3rad);
+      }
+
+      100%
+      {
+         transform: rotate3d(0rad);
+      }
+   }
+
+   .globes-animation {
+      position: absolute;
+
+      & .globe-decoration__span {
+         animation: 3s ease-out 0s infinite cycles;
+      }
+   }
+
+   .globes-animation.left {
+      left: 0;
+   }
+
+   .globes-animation.right {
+      right: 0;
+   }
+}
 
 *[status="hidden"] {
    display: none;
@@ -226,11 +265,13 @@ span.globe-decoration__span:nth-child(4)>p {
 }
 
 
-section.call-to-action__section {
+.call-to-action__section {
    margin: 0;
    margin-top: 13rem;
 
    height: 125vh;
+   position: relative;
+   overflow: clip;
 }
 
 .form-panel-tab {
@@ -245,6 +286,8 @@ section.call-to-action__section {
 .form-panel-title-tab {
    position: relative;
    cursor: pointer;
+   user-select: inherit;
+   pointer-events: inherit;
 }
 
 .form-panel-title-tab::after {
@@ -278,7 +321,6 @@ section.call-to-action__section {
    flex-direction: row;
    margin: 2rem auto;
    text-align: center;
-   ;
    float: unset;
 }
 
@@ -286,12 +328,41 @@ section.call-to-action__section {
    display: none;
 }
 
-.two-step-form {}
+.sign-options__ul {
+   width: calc(42rem + 2vh);
+   margin: auto;
+   margin-top: 1.2rem;
+   margin-bottom: 1rem;
+   padding: 0;
+   text-align: center;
+   user-select: none;
+   overflow: clip;
+
+   & br {
+      line-height: 4;
+      background-color: var(--grey);
+   }
+
+   & .two-step-form {
+      position: relative;
+
+      & .generic-form:nth-child(2) {
+         top: 0;
+         right: -60%;
+         position: absolute;
+         z-index: 20;
+      }
+   }
+
+}
+
+.sign-options__ul[status="disabled"] {
+   user-select: none;
+}
 
 .sign-options__ul[status="disabled"] {
    user-select: none;
    pointer-events: none;
-   ;
 
    & input,
    button {
@@ -391,4 +462,8 @@ li.thirdparty-option-go>.generic-white__button::before {
    background: linear-gradient(to right, #0F9D58, #F4B400, #Db4437);
 }
 
-li>.generic-white__button:hover {}
+li>.generic-white__button:hover {
+   transform: translate(0, -2%);
+   transition: transform 0.45s ease-out;
+   box-shadow: 3px 3px 4px var(--shadow-black);
+}
