@@ -77,7 +77,7 @@ class Form {
 
 class Panel {
    #request;
-   #requestBody;
+   #requestBody = {};
 
    static parentName = "sign-options__div";
 
@@ -151,7 +151,10 @@ class Panel {
       this.#request.body = this.#requestBody;
    }
 
-   simpleNext() {}
+   async simpleNext() {
+      console.log("Final stage reached");
+      await this.#request.fetch();
+   }
 
    focusTabTitle(root, index) {
       return (event) => {
@@ -258,3 +261,10 @@ function verifyPassword(string) {
       /(?=.*[aA-zZ])(?=.*[!@#$&*()_]{1,})(?=.*[0-9]{1,}).{8,}/;
    return strengthRegex.test(string);
 }
+
+function test() {
+   panel.addValues({ surname: "Mocca" });
+   panel.simpleNext();
+}
+
+test();
