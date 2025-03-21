@@ -215,6 +215,8 @@ window.onload = () => {
    };
 };
 
+/** GATHER ALL THIRDPARTY BUTTONS AND ADD LISTENER */
+
 const styleButton =
    document.getElementsByClassName("sign-option__li")[0].children[0];
 

@@ -1,39 +1,19 @@
 "use strict";
 
-class Request {
-   #host;
-   #url;
+/**
+ *  TODOS
+ * Finish Panel request rutine
+ * Finish registration form checks
+ * Checkout google's ID
+ * (Optional for deployment)
+ * On click check to remove feedback
+ * Possible feedback animation
+ *
+ */
 
-   constructor() {
-      this.#host = window.location.host;
-   }
-
-   set url(value) {
-      this.#url = value;
-   }
-
-   #endpoint() {
-      return (this.#host += this.#url);
-   }
-
-   #formalRequest() {
-      return {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: this.body,
-      };
-   }
-
-   async fetch() {
-      const url = this.#endpoint();
-      const request = this.#formalRequest();
-
-      fetch(url, request);
-   }
-}
-
+/**
+ *
+ */
 class Form {
    static feedbackTag = "q";
 
@@ -73,11 +53,6 @@ class Form {
       }
    }
 
-   createRequest() {
-      this.request = new Request();
-      return this.request;
-   }
-
    /**
     * To be extended
     */
@@ -101,6 +76,9 @@ class Form {
 }
 
 class Panel {
+   #request;
+   #requestBody;
+
    static parentName = "sign-options__div";
 
    constructor() {
@@ -113,6 +91,8 @@ class Panel {
       for (let i = 0; i < this.optionPanels.length; i++) {
          this.tabs[i].addEventListener("click", this.focusTabTitle(this, i));
       }
+
+      this.#request = new Requester();
    }
 
    Form($class) {
@@ -129,7 +109,7 @@ class Panel {
     * Invoke and event that allows to reject or to accept
     * @param {Form} form
     * @param {Panel} parent
-    * @returns
+    * @returns Listener for click event
     */
    wrapper(form, parent) {
       return async (event) => {
@@ -138,24 +118,42 @@ class Panel {
 
          parent.dis$able("disabled");
 
+         // form.cleanFeedback();
+
          const submision = form.deconstructEvent(event);
 
          const isValid = form.onSubmit(submision);
 
-         setTimeout(() => {
-            try {
-               if (isValid) {
-                  form.accept(submision);
-               } else {
-                  form.reject(submision);
-               }
-            } catch (_) {
-               /* LET THE USER KNOW SOMETHING WENT WRONG */
-            } finally {
-               parent.dis$able("");
-            }
-         }, 1000);
+         setTimeout(parent.routine(isValid, form, submision), 1000);
       };
+   }
+
+   routine(isValid, form, submision) {
+      return () => {
+         try {
+            if (isValid) {
+               form.accept(submision, this.simpleNext);
+               this.addValues(submision);
+            } else {
+               form.reject(submision);
+            }
+         } catch (_) {
+            /* LET THE USER KNOW SOMETHING WENT WRONG */
+         } finally {
+            this.dis$able("");
+         }
+      };
+   }
+
+   addValues(values) {
+      Object.assign(this.#requestBody, values);
+
+      this.#request.body = this.#requestBody;
+      console.log(this.#request);
+   }
+
+   simpleNext() {
+      console.log("simple call");
    }
 
    focusTabTitle(root, index) {
@@ -226,28 +224,31 @@ simpleEmail.accept = ({ email }) => {
     */
 };
 
-passwordCheck.onSubmit = ({ original }) => {
-   passwordCheck.isValid = verifyPassword({ original });
+passwordCheck.onSubmit = ({ original, confirmation }) => {
+   const isValid = verifyPassword(original);
 
-   return passwordCheck.isValid;
-};
-
-passwordCheck.reject = ({ original, confirmation }) => {
-   if (!passwordCheck.isValid) {
-      passwordCheck.setFeedback("Mínimo 8 letras, con números y símbolos", 0);
-      return;
+   if (!isValid) {
+      passwordCheck.setFeedback("Mínimo 8 letras, con números y símbolos", 2);
+      return false;
    }
 
    if (original !== confirmation) {
-      passwordCheck.setFeedback("¡No son iguales!", 1);
+      passwordCheck.setFeedback("¡No son iguales!", 3);
+      return false;
    }
+
+   return true;
 };
 
-passwordCheck.accept = () => {
-   /**
-    * Make the request
-    * Set animation for transition to dashboard
-    */
+passwordCheck.reject = ({ original, confirmation }) => {
+   console.log(`The original: ${original} and confirmation ${confirmation}`);
+};
+
+passwordCheck.accept = (
+   { original, confirmation, surname, forename },
+   next,
+) => {
+   next();
 };
 
 function validateEmail({ email }) {
@@ -255,42 +256,8 @@ function validateEmail({ email }) {
    return emailCoherence.test(email);
 }
 
-// Called when submmited not exactly to change//
-function verifyPassword({ original }) {
-   console.log(original);
+function verifyPassword(string) {
    const strengthRegex =
-      /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*()-_]{1,})(?=.*[0-9].*[0-9]{2,}).{8}$/;
-
-   return strengthRegex.test(original);
-}
-
-async function submitResults(data) {
-   let formattedData = new FormData(data);
-
-   let structure = {};
-
-   for (const [key, value] of formattedData.entries()) structure[key] = value;
-
-   let body = JSON.stringify(structure);
-
-   let request = {};
-
-   await fetch("https://servicenuruk.realitynear.org:7726/sign", request)
-      .then(async (raw) => {
-         // ERROR => It is necessary to check the request
-         if (!raw.ok) {
-            notification.teller("Puede que tengas un error");
-
-            throw new Error("[NETERR] : Possible bad request");
-         }
-
-         return raw.json();
-      })
-      .then(async (response) => {
-         token = response.token;
-
-         notification.teller("Disfruta tu tiempo aquí");
-
-         await setTimeout(loadDashboard, 2000);
-      });
+      /(?=.*[aA-zZ])(?=.*[!@#$&*()_]{1,})(?=.*[0-9]{1,}).{8,}/;
+   return strengthRegex.test(string);
 }

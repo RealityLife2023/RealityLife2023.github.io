@@ -326,6 +326,7 @@ span.globe-decoration__span:nth-child(4)>p {
 
 .sign-options__ul {
    width: calc(42rem + 2vh);
+   height: calc(50rem + 1vh);
    margin: auto;
    margin-top: 1.2rem;
    margin-bottom: 1rem;
@@ -350,7 +351,7 @@ span.globe-decoration__span:nth-child(4)>p {
 
       & .generic-form:nth-child(2) {
          top: 0;
-         right: -70%;
+         right: -80%;
          position: absolute;
          z-index: 20;
       }
@@ -446,7 +447,8 @@ span.globe-decoration__span:nth-child(4)>p {
    }
 
    .password-composed-field,
-   .email-composed-field {
+   .email-composed-field,
+   .name-composed-field {
       display: flex;
       flex-flow: column wrap;
       gap : 0.45rem;

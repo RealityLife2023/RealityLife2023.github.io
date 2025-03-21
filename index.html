@@ -37,6 +37,7 @@
 
    <!-- DASHBOARD -->
    <script src="src/navigation.js" defer></script>
+   <script src="src/request.js" defer></script>
    <script src="src/forms.js" defer></script>
 
    <link rel="stylesheet" href="css/home.css">
@@ -115,6 +116,14 @@
                      </button>
                   </form>
                   <form action="POST" class="generic-form password-check__form">
+                     <div class="name-composed-field">
+                        <input name="forename" type="text" placeholder="Nombre completo" required>
+                        <q class="field-feedback"></q>
+                     </div>
+                     <div class="name-composed-field">
+                        <input name="surname" type="text" placeholder="Apellidos" required>
+                        <q class="field-feedback"></q>
+                     </div>
                      <div class="password-composed-field">
                         <input name="original" type="password" placeholder="Contraseña fuerte" required>
                         <q class="field-feedback"></q>
