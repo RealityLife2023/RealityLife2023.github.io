@@ -6,63 +6,45 @@ class Requester {
    #url;
    #isLocal;
    #body;
+   #callback;
+   #catch;
 
    static localhost = "localhost";
-
-   async #callback(response) {
-      return await response.json();
-   }
-
-   async #catch(error) {
-      return false;
-   }
-
-   async submitResults(data) {
-      let formattedData = new FormData(data);
-
-      let structure = {};
-
-      for (const [key, value] of formattedData.entries())
-         structure[key] = value;
-
-      let body = JSON.stringify(structure);
-
-      let request = {};
-
-      await fetch("https://servicenuruk.realitynear.org:7726/sign", request) // Change endpoint and host
-         .then(async (raw) => {
-            // ERROR => It is necessary to check the request
-            if (!raw.ok) {
-               notification.teller("Puede que tengas un error");
-
-               throw new Error("[NETERR] : Possible bad request");
-            }
-
-            return raw.json();
-         })
-         .then(async (response) => {
-            token = response.token;
-
-            notification.teller("Disfruta tu tiempo aquí");
-
-            await setTimeout(loadDashboard, 2000);
-         });
-   }
 
    /**
     * Initializes the host for future request, taking it from the host
     */
-   constructor() {
+   constructor($callback, $catch) {
       if (window.location.host.indexOf(Requester.localhost) !== -1) {
          this.#isLocal = true;
          this.#host = window.location.host.replace("8080", "5001");
       } else {
          this.#host = "servicenuruk.realitynear.org";
       }
+
+      this.#callback = $callback;
+      this.#catch = $catch;
    }
 
+   /**
+    * @param {String} value
+    */
    set url(value) {
-      this.#url = value;
+      console.log(value);
+      let count = 0,
+         startIndex = 0;
+
+      for (let i = 0; i < value.length; i++) {
+         if (value[i] === "/" && count === 2) {
+            startIndex = i;
+            break;
+         } else if (value[i] === "/") {
+            count++;
+         }
+      }
+
+      this.#url = value.substring(startIndex);
+      console.log(this.#url);
    }
 
    set body(object) {
@@ -70,6 +52,9 @@ class Requester {
    }
 
    #endpoint() {
+      if (this.#host.length === 0 || this.#url.length === 0)
+         throw SyntaxError("Host or URL are not defined");
+
       if (this.#isLocal) {
          return `http://${this.#host}${this.#url}`;
       }
@@ -78,8 +63,11 @@ class Requester {
    }
 
    #formalRequest() {
+      if (!this.#body) throw Error("Undefined body");
+
       return {
          method: "POST",
+         credentials: "include",
          headers: {
             "Content-Type": "application/json",
          },
@@ -88,9 +76,6 @@ class Requester {
    }
 
    async fetch() {
-      console.log(this.#body);
-      return;
-
       const url = this.#endpoint();
       const request = this.#formalRequest();
 

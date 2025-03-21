@@ -1,67 +1,45 @@
+const url = "http://localhost:5001/storage/";
 
-const url = "https://servicenuruk.realitynear.org:7726/";
-
-const CLONE = "clone";
 const EMAIL = "email-me";
 const PRESIGN = "presigned";
 const NOMINATE = "nominate";
 const NOMINATION = "nomination";
 const NOMINATE_REVERSE = "nominatereverse";
 
-
-class Human 
-{
-   sex = "m|f";
-   age = 0;
-   email = "";
-   nation = "";
-   description = "";
-
-   generateDescription(age, sex, nation) {
-
-      this.description = `${age} years old ${sex} from ${nation}`;
-   }
-}
-
-async function sendContactRequest( formData )
-{
+async function sendContactRequest(formData) {
    let endpoint = `${url}${EMAIL}`;
 
-   let json =  {};
+   let json = {};
 
-   for(const [key,value] of formData.entries())
-      json[key] = value;
+   for (const [key, value] of formData.entries()) json[key] = value;
 
-   let request =
-   {
-      method : "POST",
-      headers : {
-         "Content-Type" : "application/json",
+   let request = {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
       },
-      body : JSON.stringify(json),
+      body: JSON.stringify(json),
    };
 
    return await fetch(endpoint, request);
 }
 
 /*
-* Fetch a JSON with the params to POST a file at the S3 bucket
-* 
-* @param {object} fileMetada - Name and type of the file
-*/
-async function getPresignedUrl(fileMedata)
-{
+ * Fetch a JSON with the params to POST a file at the S3 bucket
+ *
+ * @param {object} fileMetada - Name and type of the file
+ */
+async function getPresignedUrl(fileMedata) {
    let endpoint = `${url}${PRESIGN}`;
 
-   let request = 
-      {
-         method  : "POST",
-         headers : {
-            "Content-Type"  : "application/json",
-            "authorization" : token, // <- Global token defined in the registrationForms
-         },
-         body    : JSON.stringify(fileMedata),
-      };
+   let request = {
+      method: "POST",
+      credentials: "include",
+      headers: {
+         "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fileMedata),
+   };
 
    return fetch(endpoint, request).then((response) => response.json());
 }
@@ -69,14 +47,13 @@ async function getPresignedUrl(fileMedata)
 let types = ["a", "v", "t"]; // Initials of audio, video, text
 
 /**
- * 
- * 
+ *
+ *
  */
-function saveToDisk( event )
-{
+function saveToDisk(event) {
    let invisibleAnchor = document.getElementById("invisible-anchor__a");
 
-   let blob = new Blob([event.data], { type : "video/webm" });
+   let blob = new Blob([event.data], { type: "video/webm" });
 
    let inner_path = URL.createObjectURL(blob);
 
@@ -90,10 +67,10 @@ function saveToDisk( event )
 }
 
 /**
- * 
+ *
  * Submit the blob to the upstream
  * Notes : The encoding is always set to binary
- * 
+ *
  * @param {String} name
  * @param {String} mimetype
  * @param {String} extension
@@ -101,26 +78,31 @@ function saveToDisk( event )
  * @param {Blob} extension
  * @return {Promise} fetch result
  */
-async function saveToRemoteDisk( name, mimetype, type, blob, extension = "webm" )
-{
-
+async function saveToRemoteDisk(
+   name,
+   mimetype,
+   type,
+   blob,
+   extension = "webm",
+) {
    let date = new Date();
 
    let metadata = {
-
       // Sanitize the name and does not go with extension
-      name : name,
-      mimetype  : mimetype,
-      type      : type,
-      extension : extension,
+      name: name,
+      mimetype: mimetype,
+      type: type,
+      extension: extension,
 
       // Take the date in ISO 8601 with the local time
-      date : new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString(),
+      date: new Date(
+         date.getTime() - date.getTimezoneOffset() * 60000,
+      ).toISOString(),
 
-      encoding : "binary",
+      encoding: "binary",
 
       // Weight in bytes
-      weight : blob.size,
+      weight: blob.size,
    };
 
    // Request the presigned url for the post
@@ -128,40 +110,39 @@ async function saveToRemoteDisk( name, mimetype, type, blob, extension = "webm" 
 
    let body = new FormData();
 
-   Object.keys(params.fields).forEach( key => { body.append(key, params.fields[key]) });
+   Object.keys(params.fields).forEach((key) => {
+      body.append(key, params.fields[key]);
+   });
 
    body.append("file", blob);
 
-   let request = 
-      {
-         method  : "POST",
-         mode    : "no-cors",
-         body    : body,
-      };
+   let request = {
+      method: "POST",
+      mode: "no-cors",
+      body: body,
+   };
 
    return await fetch(params.url, request);
 }
-
 
 /**
  * Requests the content of a file
  * @param {String} json - {name, type, hash}
  * @returns {Promise}
  */
-async function fetchFile( json )
-{
+async function fetchFile(json) {
    let endpoint = `${url}${NOMINATE}`;
 
    let request = {
-      method : "POST",
+      method: "POST",
 
-      headers : {
-         "Content-Type" : "application/json",
-         "authorization" : token, // Log in first
+      credentials: "include",
+      headers: {
+         "Content-Type": "application/json",
       },
 
-      body : json,
-   }
+      body: json,
+   };
 
    return await fetch(endpoint, request);
 }
@@ -169,86 +150,75 @@ async function fetchFile( json )
 /**
  * Requests the content of a file
  * @param {String} json - {name, type, hash}
- * @returns 
+ * @returns
  */
-async function deleteFile( json )
-{
+async function deleteFile(json) {
    let endpoint = `${url}${NOMINATE_REVERSE}`;
 
    let request = {
-      method : "POST",
+      method: "POST",
+      credentials: "include",
 
-      headers : {
-         "Content-Type" : "application/json",
-         "authorization" : token, // Log in first
+      headers: {
+         "Content-Type": "application/json",
       },
 
-      body : json,
-   }
+      body: json,
+   };
 
    return await fetch(endpoint, request);
 }
 
-async function nomination()
-{
+async function nomination() {
    let endpoint = `${url}${NOMINATION}`;
 
-   let request =
-   {
-      method : "POST",
-      headers :  {
-         "authorization" : token,
-      },
+   let request = {
+      method: "POST",
+      credentials: "include",
+      headers: {},
    };
 
-   return await fetch(endpoint, request).then( async (response) => 
-   {
-      if(!response.ok)
-      {
-         return { ok : false, error : new WebTransportError()};
+   return await fetch(endpoint, request).then(async (response) => {
+      if (!response.ok) {
+         return { ok: false, error: new WebTransportError() };
       }
 
       let data = await response.json();
 
-      return { ok : true , error : undefined, data : data};
+      return { ok: true, error: undefined, data: data };
    });
 }
 
-
-async function addVoice( human )
-{
+async function addVoice(human) {
    let endpoint = "https://api.elevenlabs.io/v1/voices/add";
 
    let request = {
-      method : "POST",
-      body : human,
-      headers : {
-         "xi-api-key" : "cc4bc4d19d421e2923099e9a0aa6fbbb",
+      method: "POST",
+      body: human,
+      headers: {
+         "xi-api-key": "cc4bc4d19d421e2923099e9a0aa6fbbb",
       },
    };
 
    return await fetch(endpoint, request).then((response) => response.json());
 }
 
-function useVoice( voiceId, body, audioOutput )
-{
-
+function useVoice(voiceId, body, audioOutput) {
    let enpoint = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
 
    let request = {
-      method : "POST",
-      body : JSON.stringify(body),
-      headers : {
-         "xi-api-key" : "cc4bc4d19d421e2923099e9a0aa6fbbb",
-         "Content-Type" : "application/json",
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+         "xi-api-key": "cc4bc4d19d421e2923099e9a0aa6fbbb",
+         "Content-Type": "application/json",
       },
-      query : {
-         "output_format" : "mp3_44100_96",
-      }
+      query: {
+         output_format: "mp3_44100_96",
+      },
    };
 
-   fetch(enpoint, request).then(async (response) =>
-   {
+   fetch(enpoint, request).then(async (response) => {
       let blob = await response.blob();
 
       let blobUrl = URL.createObjectURL(blob);
@@ -257,20 +227,17 @@ function useVoice( voiceId, body, audioOutput )
    });
 }
 
-
-async function deleteVoice( voiceId )
-{
+async function deleteVoice(voiceId) {
    let endpoint = `https://api.elevenlabs.io/v1/voices/${voiceId}`;
 
    let request = {
-      method : "DELETE",
-      headers : {
-         "xi-api-key" : "cc4bc4d19d421e2923099e9a0aa6fbbb",
+      method: "DELETE",
+      headers: {
+         "xi-api-key": "cc4bc4d19d421e2923099e9a0aa6fbbb",
       },
    };
 
-   return await fetch(endpoint, request).then((response) => 
-      {
-         return response.ok;
-      });
+   return await fetch(endpoint, request).then((response) => {
+      return response.ok;
+   });
 }

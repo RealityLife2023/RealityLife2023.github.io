@@ -3,16 +3,18 @@
 /**
  *  TODOS
  * Finish Panel request rutine
+ *    Test with backend
  * Finish registration form checks
+ *    Done
  * Checkout google's ID
+ *    Done
  * (Optional for deployment)
  * On click check to remove feedback
  * Possible feedback animation
- *
  */
 
 /**
- *
+ * Class to use any form
  */
 class Form {
    static feedbackTag = "q";
@@ -92,7 +94,19 @@ class Panel {
          this.tabs[i].addEventListener("click", this.focusTabTitle(this, i));
       }
 
-      this.#request = new Requester();
+      this.#request = new Requester(this.$then, this.$catch);
+   }
+
+   async $then(response) {
+      if (response.ok) {
+         notification.teller("Disfruta tu tiempo aquí");
+
+         await setTimeout(loadDashboard, 2000);
+      }
+   }
+
+   $catch(error) {
+      notification.teller("Checa por errores o mira tu conexión");
    }
 
    Form($class) {
@@ -118,8 +132,6 @@ class Panel {
 
          parent.dis$able("disabled");
 
-         // form.cleanFeedback();
-
          const submision = form.deconstructEvent(event);
 
          const isValid = form.onSubmit(submision);
@@ -132,8 +144,9 @@ class Panel {
       return () => {
          try {
             if (isValid) {
-               form.accept(submision, this.simpleNext);
-               this.addValues(submision);
+               this.#request.url = form.root.action; // Do not forget to use the root
+               this.#addValues(submision);
+               form.accept(submision, this.#next(this.#request));
             } else {
                form.reject(submision);
             }
@@ -145,15 +158,23 @@ class Panel {
       };
    }
 
-   addValues(values) {
+   #addValues(values) {
       Object.assign(this.#requestBody, values);
 
       this.#request.body = this.#requestBody;
    }
 
-   async simpleNext() {
-      console.log("Final stage reached");
-      await this.#request.fetch();
+   /**
+    *
+    * @param {Requester} request
+    * @returns
+    */
+   async #next(request) {
+      return new Promise((resolve) => {
+         resolve(() => {
+            request.fetch();
+         });
+      });
    }
 
    focusTabTitle(root, index) {
@@ -214,18 +235,13 @@ simpleEmail.reject = () => {
    simpleEmail.setFeedback("Email no válido.", 0);
 };
 
-simpleEmail.accept = ({ email }) => {
+simpleEmail.accept = () => {
    simpleEmail.root.setAttribute("status", "filled");
    passwordCheck.root.setAttribute("status", "focus");
-
-   /**
-    * Set animation for transition
-    * Pass the value for a request object
-    */
 };
 
 passwordCheck.onSubmit = ({ original, confirmation }) => {
-   const isValid = verifyPassword(original);
+   const isValid = validatePassword(original);
 
    if (!isValid) {
       passwordCheck.setFeedback("Mínimo 8 letras, con números y símbolos", 2);
@@ -240,15 +256,21 @@ passwordCheck.onSubmit = ({ original, confirmation }) => {
    return true;
 };
 
-passwordCheck.reject = ({ original, confirmation }) => {
-   console.log(`The original: ${original} and confirmation ${confirmation}`);
+passwordCheck.accept = async ({ _ }, next) => {
+   console.log("Accept callback consumed");
+   next.then((func) => func());
 };
 
-passwordCheck.accept = (
-   { original, confirmation, surname, forename },
-   next,
-) => {
-   next();
+directLogin.onSubmit = ({ email, password }) => {
+   if (!validateEmail(email) && !validatePassword(password)) {
+      directLogin.setFeedback("Correo o contraseña no válidos");
+      return false;
+   }
+   return true;
+};
+
+directLogin.accept = ({ _ }, next) => {
+   next.then((func) => func());
 };
 
 function validateEmail({ email }) {
@@ -256,15 +278,8 @@ function validateEmail({ email }) {
    return emailCoherence.test(email);
 }
 
-function verifyPassword(string) {
+function validatePassword(string) {
    const strengthRegex =
       /(?=.*[aA-zZ])(?=.*[!@#$&*()_]{1,})(?=.*[0-9]{1,}).{8,}/;
    return strengthRegex.test(string);
 }
-
-function test() {
-   panel.addValues({ surname: "Mocca" });
-   panel.simpleNext();
-}
-
-test();

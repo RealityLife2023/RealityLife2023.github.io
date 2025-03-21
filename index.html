@@ -106,7 +106,7 @@
                </li>
                <br>
                <li class="sign-option__li two-step-form" >
-                  <form class="generic-form simple-email__form" enctype="application/json">
+                  <form class="generic-form simple-email__form">
                      <div class="email-composed-field">
                         <input name="email" type="text" autocomplete="email" placeholder="Continúa con email" required>
                         <q class="field-feedback"></q>
@@ -115,7 +115,7 @@
                         Siguiente
                      </button>
                   </form>
-                  <form action="POST" class="generic-form password-check__form">
+                  <form action="/user/create" class="generic-form password-check__form">
                      <div class="name-composed-field">
                         <input name="forename" type="text" placeholder="Nombre completo" required>
                         <q class="field-feedback"></q>
@@ -144,7 +144,7 @@
                </li>
                <br>
                <li class="sign-option__li">
-                  <form class="generic-form login-email__form" enctype="application/json">
+                  <form action="/user/auth" class="generic-form login-email__form">
                      <div class="email-composed-field">
                         <input name="email" type="text" autocomplete="email" placeholder="Continúa con email">
                         <q class="field-feedback"></q>
