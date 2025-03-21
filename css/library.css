@@ -215,6 +215,7 @@
    ul.sign-options__ul>li.sign-option__li {
       margin-top: 0.3rem;
       margin-bottom: 0.3rem;
+      width: 100%;
       list-style-type: none;
    }
 

@@ -40,10 +40,6 @@ class Form {
    constructor(name, index = 0) {
       this.root = document.getElementsByClassName(name)[index];
 
-      this.root.addEventListener("submit", this.wrapper(this), true);
-
-      this.submitButton = this.root.querySelector("button[type=submit]");
-
       this.fields = this.root.querySelectorAll("div");
 
       for (let i = 0; i < this.fields.length; i++) {
@@ -67,20 +63,6 @@ class Form {
       }
 
       return scheme;
-   }
-
-   wrapper(root) {
-      return async (event) => {
-         event.preventDefault();
-         event.stopPropagation();
-
-         const values = root.deconstructEvent(event);
-
-         if (values) {
-            root.onSubmit(values);
-         }
-         // Invoke and event that allows to reject or to accept, nothing to do with fetching til now
-      };
    }
 
    cycle(values) {
@@ -133,6 +115,49 @@ class Panel {
       }
    }
 
+   Form($class) {
+      const form = new Form($class);
+
+      form.root.addEventListener("submit", this.wrapper(form, this), true);
+
+      form.submitButton = this.root.querySelector("button[type=submit]");
+
+      return form;
+   }
+
+   /**
+    * Invoke and event that allows to reject or to accept
+    * @param {Form} form
+    * @param {Panel} parent
+    * @returns
+    */
+   wrapper(form, parent) {
+      return async (event) => {
+         event.preventDefault();
+         event.stopPropagation();
+
+         parent.dis$able("disabled");
+
+         const submision = form.deconstructEvent(event);
+
+         const isValid = form.onSubmit(submision);
+
+         setTimeout(() => {
+            try {
+               if (isValid) {
+                  form.accept(submision);
+               } else {
+                  form.reject(submision);
+               }
+            } catch (_) {
+               /* LET THE USER KNOW SOMETHING WENT WRONG */
+            } finally {
+               parent.dis$able("");
+            }
+         }, 1000);
+      };
+   }
+
    focusTabTitle(root, index) {
       return (event) => {
          event.stopPropagation();
@@ -144,11 +169,11 @@ class Panel {
    }
 
    /* Possible bug checkout the tab role in this */
-   disable() {
-      this.root.setAttribute("status", "disabled");
+   dis$able(status) {
+      this.root.setAttribute("status", status);
 
-      this.optionPanels[0].setAttribute("status", "disabled");
-      this.optionPanels[1].setAttribute("status", "disabled");
+      this.optionPanels[0].setAttribute("status", status);
+      this.optionPanels[1].setAttribute("status", status);
    }
 
    changeTab(key, index) {
@@ -158,7 +183,7 @@ class Panel {
          (key === "") & (index === 0) ? "selected" : "",
       );
       this.optionPanels[0].setAttribute(
-         "status",
+         "display",
          (key === "") & (index === 0) ? "" : "hidden",
       );
 
@@ -168,58 +193,75 @@ class Panel {
          (key === "") & (index === 1) ? "selected" : "",
       );
       this.optionPanels[1].setAttribute(
-         "status",
+         "display",
          (key === "") & (index === 1) ? "" : "hidden",
       );
    }
 }
-
 // ** NEW UI ** //
 
 const panel = new Panel();
 
 panel.changeTab("", 0);
 
-const directLogin = new Form("login-email__form");
+const directLogin = panel.Form("login-email__form");
 
 /* Email => (email check) => password => (password check) => (submision) => successful login */
-const simpleEmail = new Form("simple-email__form");
-const passwordCheck = new Form("password-check__form");
+const simpleEmail = panel.Form("simple-email__form");
+const passwordCheck = panel.Form("password-check__form");
 
-passwordCheck.onSubmit = verifyPassword;
+simpleEmail.onSubmit = validateEmail;
 
-simpleEmail.onSubmit = () => {
-   simpleEmail.root.setAttribute("status", "filled");
-   passwordCheck.root.setAttribute("status", "selected");
+simpleEmail.reject = () => {
+   simpleEmail.setFeedback("Email no válido.", 0);
 };
 
-simpleEmail.accept = () => {
-   simpleEmail.disable();
+simpleEmail.accept = ({ email }) => {
+   simpleEmail.root.setAttribute("status", "filled");
+   passwordCheck.root.setAttribute("status", "focus");
+
    /**
     * Set animation for transition
     * Pass the value for a request object
     */
 };
 
+passwordCheck.onSubmit = ({ original }) => {
+   passwordCheck.isValid = verifyPassword({ original });
+
+   return passwordCheck.isValid;
+};
+
+passwordCheck.reject = ({ original, confirmation }) => {
+   if (!passwordCheck.isValid) {
+      passwordCheck.setFeedback("Mínimo 8 letras, con números y símbolos", 0);
+      return;
+   }
+
+   if (original !== confirmation) {
+      passwordCheck.setFeedback("¡No son iguales!", 1);
+   }
+};
+
 passwordCheck.accept = () => {
-   passwordCheck.disable();
    /**
     * Make the request
     * Set animation for transition to dashboard
     */
 };
 
-async function validateEmail(email) {
-   const regex = /^[\w-\.]+@([\w-]+\.)+[\w.]{2-4}/;
-   return regex.test(email);
+function validateEmail({ email }) {
+   const emailCoherence = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+   return emailCoherence.test(email);
 }
 
 // Called when submmited not exactly to change//
-async function verifyPassword(password) {
+function verifyPassword({ original }) {
+   console.log(original);
    const strengthRegex =
       /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*()-_]{1,})(?=.*[0-9].*[0-9]{2,}).{8}$/;
 
-   return strengthRegex.test(password);
+   return strengthRegex.test(original);
 }
 
 async function submitResults(data) {
