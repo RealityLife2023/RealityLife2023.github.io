@@ -262,10 +262,13 @@ span.globe-decoration__span:nth-child(4)>p {
 
 
 .call-to-action__section {
+   box-sizing: border-box;
    margin: 0;
    margin-top: 13rem;
+   padding: 1rem 0.5vw;
 
-   height: 125vh;
+   min-height: 125vh;
+   height: max-content;
    position: relative;
    overflow: clip;
 }
@@ -317,6 +320,7 @@ span.globe-decoration__span:nth-child(4)>p {
    flex-direction: row;
    margin: 2rem auto;
    text-align: center;
+   height: max-content;
    float: unset;
 }
 
@@ -326,14 +330,18 @@ span.globe-decoration__span:nth-child(4)>p {
 
 .sign-options__ul {
    width: calc(42rem + 2vh);
-   height: calc(50rem + 1vh);
+   height: calc(55rem + calc(2vh * 0.9));
    margin: auto;
    margin-top: 1.2rem;
    margin-bottom: 1rem;
-   padding-bottom: 8rem;
+   padding: 4rem 1rem;
+   border-radius : 30px;
    text-align: center;
    user-select: none;
    overflow: clip;
+   background-color: rgba(255,255,255,0.05);
+   backdrop-filter: blur(10px);
+   box-shadow: #8AB 0 1px 12px;
 
    & br {
       content:' ';
@@ -471,7 +479,7 @@ li>.generic-white__button::before {
    width: 100%;
    height: 4px;
    left: 0;
-   top: 63px;
+   top: 64px;
    border-radius: 35px;
    background-color: #34A;
    transform: scaleX(0);

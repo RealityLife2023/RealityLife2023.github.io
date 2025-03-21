@@ -149,12 +149,9 @@ class Panel {
       Object.assign(this.#requestBody, values);
 
       this.#request.body = this.#requestBody;
-      console.log(this.#request);
    }
 
-   simpleNext() {
-      console.log("simple call");
-   }
+   simpleNext() {}
 
    focusTabTitle(root, index) {
       return (event) => {
