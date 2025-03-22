@@ -2,9 +2,15 @@
 
 import { cosineSimilarity, dynamicRank } from "./math.js";
 
-const PDF_EXTRACTOR = "https://servicenuruk.realitynear.org:7725/document";
+const PDF_EXTRACTOR = "https://servicenuruk.realitynear.org/document";
 const VECTOR_GENERATOR = "http://localhost:5001/chat/vectorize";
 const PROMPT_END = "http://localhost:5001/chat/ask";
+
+const urlGen = (endpoint) => {
+   const domain = "https://servicenuruk.realitynear.org";
+
+   return String.join(domain, endpoint);
+};
 
 const MAXIMUM_SIZE = 700000; // Size of the file in MB not MiB
 

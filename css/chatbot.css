@@ -24,7 +24,7 @@ body
    & .logo-container__button
    {
       width : calc(1045px * 0.23);
-      height : 56px;
+      height : 55px;
       position : absolute;
       top : calc(2% + 1rem);
       left :calc(2% + 1rem);
@@ -45,15 +45,12 @@ body
 {
    width : 17%;
    min-width : 299.8px;
-
-/**   max-height : 7vh;*/
    height : max-content;
    padding : 2vh 1rem;
    position : absolute;
    display : flex;
    flex-direction: column;
    border-radius : 0 20px 20px 0;
-
    transition : .7s ease-out;
    box-sizing : border-box;
    z-index: 40;
@@ -240,7 +237,6 @@ body
    flex-direction: column;
    flex-grow : 3;
    gap : 0.85rem;
-   /**margin: 0 auto 1.6rem auto;*/
    color : var(--white);
    overflow-y: scroll;
    user-select: text;
@@ -293,7 +289,6 @@ body
    margin: 1vh auto;
    width: 42%;
    min-width : 442px;
-   /*height: max-content;*/
    flex-grow : 1;
    padding: 0 0.65rem;
    position: relative;

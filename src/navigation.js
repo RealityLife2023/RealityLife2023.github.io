@@ -162,6 +162,7 @@ let section = document.getElementsByClassName("generic-quote__q")[0];
 
 emailButton.onclick = (event) => {
    event.preventDefault();
+   event.stopPropagation();
 
    section.scrollIntoView({ behavior: "smooth" });
 };

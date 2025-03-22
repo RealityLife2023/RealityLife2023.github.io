@@ -2,6 +2,19 @@
 
 @layer generics {
 
+   html::-webkit-scrollbar
+   {
+      padding: 0;
+      width: 0.68vw;
+      background: #333B;
+   }
+
+   html::-webkit-scrollbar-thumb
+   {
+      border-radius: 5px;
+      background: #222;
+   }
+
    p.home-router__p {
       margin: 20px auto;
       padding: 0 0 0 30px;
