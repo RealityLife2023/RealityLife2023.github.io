@@ -24,7 +24,7 @@
    <nav class="generic-nav-bar__nav" id="not-home">
       <button class="panel-option__button"><a href="aboutus.html">NOSOTROS</a></button>
       <button class="panel-option__button"><a href="team.html">EQUIPO</a></button>
-      <button class="panel-option__button"><a href="chatbot.html">DEMO</a></button>
+      <button class="panel-option__button"><a href="chatbot.html">CHATBOT</a></button>
       <button class="panel-option__button"><a href="contact.html">CONTACTO</a></button>
       <button type="button" class="panel-option__button generic-blue__button">INICIA SESIÓN</button>
    </nav>
@@ -62,5 +62,17 @@
       <a href="" class="cookies-link__a"></a>
       <p class="copyright__p">Copyright Realtiy Near</p>
    </footer>
+   <script>
+      const signButton = document.getElementsByClassName("generic-blue__button")[0];
+
+      signButton.onclick = ( event ) =>
+      {
+         event.preventDefault();
+         event.stopPropagation();
+
+         const home = "/#slider-show"
+         window.location.replace(home);
+      };
+   </script>
 </body>
 </html>

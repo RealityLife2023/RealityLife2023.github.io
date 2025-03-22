@@ -1,5 +1,5 @@
 {
-  "name": "puna",
+  "name": "RealityLife2023",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -33,7 +33,6 @@
     "eslint": "^9.18.0",
     "eslint-plugin-svelte": "^2.46.1",
     "globals": "^15.14.0",
-    "storybook": "^8.5.0",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
     "typescript": "^5.0.0",

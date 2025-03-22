@@ -1,12 +1,15 @@
-
+<head>
+   <link rel="stylesheet" href="../css/chatbot.css">
+</head>
 <main class="layout-container__main">
-   <div class="chat-top__div" status="hidden">
+   <button class="home-router logo-container__button"></button>
+
+   <div class="chat-top__div configuration-container" status="hidden">
       <div class="chat-props__div">
          <p class="chat-profile__p">R</p>
          <h3 class="chat-title__h3">CHATBOT</h3>
       </div>
       <div class="chat-configuration__div">
-
          <form id="document-submitter" enctype="multipart/form-data"> 
             <input type="file"  name="document" accept=".pdf,application/pdf">
             <button class="document-adder__button panel-button">Añadir</i></button>
@@ -14,16 +17,14 @@
             <img class="file-icon__img" src="../static/pdf-icon.png" status="enabled">
             <p class="file-name__p"> Sube un PDF </p>
          </form> 
-
-         <progress class="progress-document-form" value="0" max="100">
-            <p class="status-prompt__p"> ¡Hecho! </p>
-         </progress>
+         <progress class="progress-document-form" value="0" max="100"></progress>
+         <p class="status-prompt__p" status="empty"> ¡Hecho! </p>
          <ul class="errata-list__ul">
             <li> El archivo debe pesar menos de 0.6MB</li>
             <li> Las imágenes todavía no se pueden tener en cuenta</li>
             <li> Si reinicias o cierras la pestaña el contenido se borrará</li>
          </ul>
-         <button class="document-panel__button panel-button"><i class="symbol arrowleft"></i></button>
+         <button class="document-panel__button panel-button closer"><i class="symbol arrowleft"></i></button>
       </div>
    </div>
    <div class="chat-body__div">
@@ -32,8 +33,9 @@
       
       <form id="chat-submitter">
          <textarea type="text" name="message" placeholder="Escribe tu pregunta..." autocomplete="off"></textarea>
-         <button class="chat-sender__button panel-button" type="submit"><i class="symbol plane"></i></button>
-         <button class="document-panel__button panel-button"><i class="symbol paperclip"></i></button>
+         <button discover="trick" class="chat-sender__button panel-button" type="submit"><i class="symbol plane"></i></button>
+         <button class="document-panel__button panel-button opener"><i class="symbol paperclip"></i></button>
       </form> 
    </div>
+   <!--Are you looking here?-->
 </main>

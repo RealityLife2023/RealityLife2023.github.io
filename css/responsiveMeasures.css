@@ -53,7 +53,7 @@
    {
       color  : var(--deep-blue);
       font-size : 4.3rem;
-      font-family: "Poppins-Medium";
+      font-family: "Poppins Medium";
       text-decoration: none;
    }
 
@@ -202,7 +202,7 @@
       border-radius: 55px;
       background-color: var(--aqua);
       color: var(--deep-blue);
-      font-family: "Poppins-Medium";
+      font-family: "Poppins Medium";
       font-size: 3.6rem;
       font-weight: 300;
       cursor: pointer;
@@ -337,7 +337,7 @@
    aside.home-right__aside
    {
       color: var(--default);
-      font-family: "Poppins-Regular";
+      font-family: "Poppins Regular";
       font-size: 2.2rem;
       text-align: left;
       margin: auto;
@@ -513,14 +513,14 @@
       margin : 30px auto;
       width : 79%;
       height : 5.75rem;
-      font-family: "Poppins-Regular";
+      font-family: "Poppins Regular";
       font-size : 21.2px;
    }
 
-.chatbot-context__form>input::placeholder
-{
-   font-size : 18.9px;
-}
+   .chatbot-context__form>input::placeholder
+   {
+      font-size : 18.9px;
+   }
 
    form-audio-tool>div.time-bar__div
    {
@@ -605,5 +605,28 @@
    {
       text-align : left;
       margin : 4rem auto;
+   }
+
+   section.general-tool-container__section
+   {
+      border-radius: 30px 30px 35px 35px;
+      padding: 1rem 0;
+   }
+
+   text-tool
+   {
+      padding : 2rem 0;
+
+      & textarea.document-holder__textarea
+      {
+         font-size : 4rem;
+      }
+
+
+      & .generic-blue__button
+      {
+         bottom : 4svh;
+         right : 6vw;
+      }
    }
 }

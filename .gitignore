@@ -1,10 +1,12 @@
 *.DS_Store
 *.vs
+*.vscode
 *.vsconfig
 *.swp
 *.~
 .jshintrc
 
+<<<<<<< HEAD
 test-results
 node_modules
 
@@ -30,3 +32,10 @@ Thumbs.db
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
+=======
+node_modules
+.svelte-kit
+
+LICENSE
+vite.config.*
+>>>>>>> feature/solid
