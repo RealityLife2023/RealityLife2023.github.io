@@ -1,4 +1,17 @@
-const url = "http://localhost:5001/storage/";
+const urlGen = (endpoint) => {
+   let host = "";
+   let scheme = "";
+
+   if (window.location.host.indexOf("localhost") !== -1) {
+      scheme = "http://";
+      host = window.location.host.replace("8080", "5001"); // Make regex here /\/.(?=.[0-9]{4})
+   } else {
+      scheme = "https://";
+      host = "servicenuruk.realitynear.org/storage/";
+   }
+
+   return [scheme, host, endpoint].join("");
+};
 
 const EMAIL = "email-me";
 const PRESIGN = "presigned";
@@ -7,7 +20,7 @@ const NOMINATION = "nomination";
 const NOMINATE_REVERSE = "nominatereverse";
 
 async function sendContactRequest(formData) {
-   let endpoint = `${url}${EMAIL}`;
+   let url = urlGen(EMAIL);
 
    let json = {};
 
@@ -21,7 +34,7 @@ async function sendContactRequest(formData) {
       body: JSON.stringify(json),
    };
 
-   return await fetch(endpoint, request);
+   return await fetch(url, request);
 }
 
 /*
@@ -30,7 +43,7 @@ async function sendContactRequest(formData) {
  * @param {object} fileMetada - Name and type of the file
  */
 async function getPresignedUrl(fileMedata) {
-   let endpoint = `${url}${PRESIGN}`;
+   let url = urlGen(PRESIGN);
 
    let request = {
       method: "POST",
@@ -41,7 +54,7 @@ async function getPresignedUrl(fileMedata) {
       body: JSON.stringify(fileMedata),
    };
 
-   return fetch(endpoint, request).then((response) => response.json());
+   return fetch(url, request).then((response) => response.json());
 }
 
 let types = ["a", "v", "t"]; // Initials of audio, video, text
@@ -131,7 +144,7 @@ async function saveToRemoteDisk(
  * @returns {Promise}
  */
 async function fetchFile(json) {
-   let endpoint = `${url}${NOMINATE}`;
+   let url = urlGen(NOMINATE);
 
    let request = {
       method: "POST",
@@ -144,7 +157,7 @@ async function fetchFile(json) {
       body: json,
    };
 
-   return await fetch(endpoint, request);
+   return await fetch(url, request);
 }
 
 /**
@@ -153,7 +166,7 @@ async function fetchFile(json) {
  * @returns
  */
 async function deleteFile(json) {
-   let endpoint = `${url}${NOMINATE_REVERSE}`;
+   let url = urlGen(NOMINATE_REVERSE);
 
    let request = {
       method: "POST",
@@ -166,11 +179,11 @@ async function deleteFile(json) {
       body: json,
    };
 
-   return await fetch(endpoint, request);
+   return await fetch(url, request);
 }
 
 async function nomination() {
-   let endpoint = `${url}${NOMINATION}`;
+   let url = urlGen(NOMINATION);
 
    let request = {
       method: "POST",
@@ -178,7 +191,7 @@ async function nomination() {
       headers: {},
    };
 
-   return await fetch(endpoint, request).then(async (response) => {
+   return await fetch(url, request).then(async (response) => {
       if (!response.ok) {
          return { ok: false, error: new WebTransportError() };
       }
@@ -186,58 +199,5 @@ async function nomination() {
       let data = await response.json();
 
       return { ok: true, error: undefined, data: data };
-   });
-}
-
-async function addVoice(human) {
-   let endpoint = "https://api.elevenlabs.io/v1/voices/add";
-
-   let request = {
-      method: "POST",
-      body: human,
-      headers: {
-         "xi-api-key": "cc4bc4d19d421e2923099e9a0aa6fbbb",
-      },
-   };
-
-   return await fetch(endpoint, request).then((response) => response.json());
-}
-
-function useVoice(voiceId, body, audioOutput) {
-   let enpoint = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`;
-
-   let request = {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: {
-         "xi-api-key": "cc4bc4d19d421e2923099e9a0aa6fbbb",
-         "Content-Type": "application/json",
-      },
-      query: {
-         output_format: "mp3_44100_96",
-      },
-   };
-
-   fetch(enpoint, request).then(async (response) => {
-      let blob = await response.blob();
-
-      let blobUrl = URL.createObjectURL(blob);
-
-      audioOutput.appendSrc(blobUrl);
-   });
-}
-
-async function deleteVoice(voiceId) {
-   let endpoint = `https://api.elevenlabs.io/v1/voices/${voiceId}`;
-
-   let request = {
-      method: "DELETE",
-      headers: {
-         "xi-api-key": "cc4bc4d19d421e2923099e9a0aa6fbbb",
-      },
-   };
-
-   return await fetch(endpoint, request).then((response) => {
-      return response.ok;
    });
 }

@@ -215,7 +215,6 @@ window.onload = () => {
 const thirdparty = document.getElementsByClassName("thirdparty-option-go");
 
 for (let i = 0; i < thirdparty.length; i++) {
-   console.log(thirdparty[i]);
    thirdparty[i].onclick = () => {
       window.handleGoogleLogin();
    };
