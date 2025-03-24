@@ -3,7 +3,7 @@
  */
 class Requester {
    #host;
-   #url;
+   #endpoint;
    #isLocal;
    #body;
    #callback;
@@ -29,7 +29,7 @@ class Requester {
    /**
     * @param {String} value
     */
-   set url(value) {
+   set endpoint(value) {
       console.log(value);
       let count = 0,
          startIndex = 0;
@@ -43,23 +43,22 @@ class Requester {
          }
       }
 
-      this.#url = value.substring(startIndex);
-      console.log(this.#url);
+      this.#endpoint = value.substring(startIndex);
    }
 
    set body(object) {
       this.#body = object;
    }
 
-   #endpoint() {
-      if (this.#host.length === 0 || this.#url.length === 0)
+   #genUrl() {
+      if (this.#host.length === 0 || this.#endpoint.length === 0)
          throw SyntaxError("Host or URL are not defined");
 
       if (this.#isLocal) {
-         return `http://${this.#host}${this.#url}`;
+         return `http://${this.#host}${this.#endpoint}`;
       }
 
-      return `https://${this.#host}${this.#url}`;
+      return `https://${this.#host}${this.#endpoint}`;
    }
 
    #formalRequest() {
@@ -76,29 +75,9 @@ class Requester {
    }
 
    async fetch() {
-      const url = this.#endpoint();
+      const url = this.#genUrl();
       const request = this.#formalRequest();
 
       await fetch(url, request).then(this.#callback).catch(this.#catch);
    }
 }
-
-async function moduleTest() {
-   /*@type Request*/
-   const request = new Request();
-
-   request.url = "/user/create";
-
-   request.body = {
-      forename: "Miguel",
-      surname: "Bye",
-      email: "test.night@test.com",
-      password: "12345",
-   };
-
-   const response = await request.fetch();
-
-   console.log(response);
-}
-
-// moduleTest();

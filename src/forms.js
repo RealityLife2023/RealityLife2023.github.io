@@ -257,7 +257,6 @@ passwordCheck.onSubmit = ({ original, confirmation }) => {
 };
 
 passwordCheck.accept = async ({ _ }, next) => {
-   console.log("Accept callback consumed");
    next.then((func) => func());
 };
 
@@ -283,14 +282,3 @@ function validatePassword(string) {
       /(?=.*[aA-zZ])(?=.*[!@#$&*()_]{1,})(?=.*[0-9]{1,}).{8,}/;
    return strengthRegex.test(string);
 }
-
-window.testJoin = () => {
-   const urlGen = (endpoint) => {
-      const domain = "https://servicenuruk.realitynear.org";
-
-      return [domain, endpoint].join();
-   };
-
-   const url = urlGen("/chat/ask");
-   console.log(url);
-};
