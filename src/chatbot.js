@@ -2,6 +2,7 @@
 
 import { cosineSimilarity, dynamicRank } from "./math.js";
 
+<<<<<<< HEAD
 const PDF_EXTRACTOR = "https://servicenuruk.realitynear.org/document";
 const VECTOR_GENERATOR = "http://localhost:5001/chat/vectorize";
 const PROMPT_END = "http://localhost:5001/chat/ask";
@@ -10,6 +11,25 @@ const urlGen = (endpoint) => {
    const domain = "https://servicenuruk.realitynear.org";
 
    return String.join(domain, endpoint);
+=======
+const PDF_EXTRACTOR = "document";
+const VECTOR_GENERATOR = "vectorize";
+const PROMPT_END = "ask";
+
+const urlGen = (endpoint) => {
+   let host = "";
+   let scheme = "";
+
+   if (window.location.host.indexOf("localhost") !== -1) {
+      scheme = "http://";
+      host = window.location.host.replace("8080", "5001"); // Make regex here /\/.(?=.[0-9]{4})
+   } else {
+      scheme = "https://";
+      host = "servicenuruk.realitynear.org/chat/";
+   }
+
+   return [scheme, host, endpoint].join("");
+>>>>>>> always/dev
 };
 
 const MAXIMUM_SIZE = 700000; // Size of the file in MB not MiB
@@ -309,7 +329,11 @@ async function promptOnto(object) {
       body: JSON.stringify(object),
    };
 
+<<<<<<< HEAD
    return await fetch(PROMPT_END, request).then(async (response) => {
+=======
+   return await fetch(urlGen(PROMPT_END), request).then(async (response) => {
+>>>>>>> always/dev
       let json = await response.json();
 
       return json.answer;
@@ -327,7 +351,13 @@ async function vectorize(object) {
       body: JSON.stringify(object),
    };
 
+<<<<<<< HEAD
    return await fetch(VECTOR_GENERATOR, request).then((res) => res.json());
+=======
+   return await fetch(urlGen(VECTOR_GENERATOR), request).then((res) =>
+      res.json(),
+   );
+>>>>>>> always/dev
 }
 
 /**
@@ -339,7 +369,11 @@ async function readPDF(form) {
       body: form,
    };
 
+<<<<<<< HEAD
    return await fetch(PDF_EXTRACTOR, request).then((response) =>
+=======
+   return await fetch(urlGen(PDF_EXTRACTOR), request).then((response) =>
+>>>>>>> always/dev
       response.json(),
    );
 }
