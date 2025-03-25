@@ -1,19 +1,64 @@
 @layer fonts, generics, colors, bottom, navigation, forms;
 
-@layer generics {
+:root,
+*::before,
+*::after {
+   --white: #EEE;
+   --gradient-a-background: rgb(4, 18, 52);
+   --gradient-b-background: rgba(4, 18, 52);
+   --gradient-c-background: rgb(2, 56, 81);
+   --default: rgb(240, 240, 240);
+   --deep-blue: #002060;
+   --red-warn: #BF483F;
+   --blue-prompt: #2A65AD;
+   --aqua: #A1ECFF;
+   --dark-aqua: #79C7C5;
+   --grey: #4B4D4B;
+   --deep-grey: #777777;
+   --almost-black: #333;
+   --shadow-black: #0119;
+   --bubble-shadow: #0114;
+}
 
-   html::-webkit-scrollbar
-   {
+@layer colors {
+   html {
+      font-size: 16px;
+      font-family: "Poppins Regular", monospace;
+      scroll-behavior: smooth;
+   }
+
+
+   html::-webkit-scrollbar {
       padding: 0;
       width: 0.68vw;
       background: #333B;
    }
 
-   html::-webkit-scrollbar-thumb
-   {
+   html::-webkit-scrollbar-thumb {
       border-radius: 5px;
       background: #222;
    }
+
+   body {
+
+      margin: 0;
+
+      padding: 0px 0px;
+
+      width: 100%;
+      height: max-content;
+      min-height: 100%;
+
+      background: linear-gradient(180deg, var(--gradient-a-background) 10%, var(--gradient-b-background) 35%, var(--gradient-c-background) 100%);
+      color: var(--default);
+   }
+
+   q {
+      quotes: none;
+   }
+}
+
+@layer generics {
 
    p.home-router__p {
       margin: 20px auto;
@@ -528,57 +573,6 @@
 
 }
 
-@layer colors {
-   html {
-      font-size: 16px;
-      font-family: "Poppins Regular", monospace;
-      scroll-behavior: smooth;
-   }
-
-   html::-webkit-scrollbar-thumb {
-      border-radius: 8px;
-   }
-
-   body {
-
-      margin: 0;
-
-      padding: 0px 0px;
-
-      width: 100%;
-      height: max-content;
-      min-height: 100%;
-
-
-      /* Custom variables */
-
-      --gradient-a-background: rgb(4, 18, 52);
-      --gradient-b-background: rgba(4, 18, 52);
-      --gradient-c-background: rgb(2, 56, 81);
-      --default: rgb(240, 240, 240);
-      --deep-blue: #002060;
-      --red-warn: #BF483F;
-      --blue-prompt: #2A65AD;
-      --aqua: #A1ECFF;
-      --dark-aqua: #79C7C5;
-      --white: #EEE;
-      --grey: #4B4D4B;
-      --deep-grey: #777777;
-      --almost-black: #333;
-      --shadow-black: #0119;
-      --bubble-shadow: #0114;
-
-      /* end */
-
-
-      background: linear-gradient(180deg, var(--gradient-a-background) 10%, var(--gradient-b-background) 35%, var(--gradient-c-background) 100%);
-      color: var(--default);
-   }
-
-   q {
-      quotes: none;
-   }
-}
 
 @layer bottom {
 

@@ -168,17 +168,11 @@ emailButton.onclick = (event) => {
 };
 
 window.successSign = async (profile) => {
-   let request = {
-      method: "POST",
+   const requester = new Requester(panel.$catch, panel.$then);
 
-      headers: {
-         "Content-Type": "application/json",
-      },
+   requester.endpoint = "/user/thirdparty";
 
-      body: JSON.stringify({ token: profile.credential }),
-   };
-
-   await fetch("http://localhost:5001/user/thirdparty", request);
+   await requester.fetch();
 };
 
 const buttonWrapper = () => {
@@ -218,9 +212,10 @@ window.onload = () => {
 
 /** GATHER ALL THIRDPARTY BUTTONS AND ADD LISTENER */
 
-const styleButton =
-   document.getElementsByClassName("sign-option__li")[0].children[0];
+const thirdparty = document.getElementsByClassName("thirdparty-option-go");
 
-styleButton.onclick = () => {
-   window.handleGoogleLogin();
-};
+for (let i = 0; i < thirdparty.length; i++) {
+   thirdparty[i].onclick = () => {
+      window.handleGoogleLogin();
+   };
+}
