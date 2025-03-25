@@ -2,9 +2,9 @@
 
 import { cosineSimilarity, dynamicRank } from "./math.js";
 
-const PDF_EXTRACTOR = "document";
-const VECTOR_GENERATOR = "vectorize";
-const PROMPT_END = "ask";
+const PDF_EXTRACTOR = "/document";
+const VECTOR_GENERATOR = "/chat/vectorize";
+const PROMPT_END = "/chat/ask";
 
 const urlGen = (endpoint) => {
    let host = "";
@@ -15,7 +15,7 @@ const urlGen = (endpoint) => {
       host = window.location.host.replace("8080", "5001"); // Make regex here /\/.(?=.[0-9]{4})
    } else {
       scheme = "https://";
-      host = "servicenuruk.realitynear.org/chat/";
+      host = "servicenuruk.realitynear.org";
    }
 
    return [scheme, host, endpoint].join("");
