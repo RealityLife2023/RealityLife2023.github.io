@@ -1,7 +1,5 @@
-class Dashboard extends HTMLElement
-{
-   connectedCallback()
-   {
+class Dashboard extends HTMLElement {
+   connectedCallback() {
       this.innerHTML = `
       <h3 class="title-type__h3">Puedes grabar tus memorias en los siguientes formatos</h3>
       <ul class="record-types__ul">
@@ -34,8 +32,7 @@ class Dashboard extends HTMLElement
       this.refresh();
    }
 
-   async refresh()
-   {
+   async refresh() {
       await fileManager.fulfill(this.userFiles);
    }
 }
@@ -51,8 +48,7 @@ let textTool;
 /**
  * Removes the header and nav elements
  */
-function loadDashboard()
-{
+function loadDashboard() {
    let header = document.getElementsByTagName("header")[0];
    let nav = document.getElementsByTagName("nav")[0];
 
@@ -79,67 +75,43 @@ function loadDashboard()
 }
 
 /**
- * 
+ *
  * @param {Array} data - Raw stream of data
  */
-async function addSource( data )
-{
+async function addSource(data) {
    let video = document.getElementById("video-test-output");
-
 }
 
-
-function summonVideo()
-{
-   try 
-   {
-
-      if(videoTool === undefined)
-      {
-         videoTool= new VideoTool();
+function summonVideo() {
+   try {
+      if (videoTool === undefined) {
+         videoTool = new VideoTool();
       }
-
-   }
-   catch ( error )
-   {
+   } catch (error) {
       return;
    }
 
    return videoTool;
 }
 
-
-function summonAudio()
-{
-   try 
-   {
-
-      if(audioTool === undefined)
-      {
+function summonAudio() {
+   try {
+      if (audioTool === undefined) {
          audioTool = new AudioTool();
       }
-
-   }
-   catch ( error )
-   {
+   } catch (error) {
       return;
    }
 
    return audioTool;
 }
 
-
-function summonText()
-{
-   try 
-   {
-      if(textTool === undefined)
-      {
+function summonText() {
+   try {
+      if (textTool === undefined) {
          textTool = new TextTool();
       }
-   }
-   catch ( error )
-   {
+   } catch (error) {
       return;
    }
 
@@ -150,26 +122,22 @@ function summonText()
  * Step 1 : Disable only the clicked button
  * Step 1.5 (Global) : Clean the html
  * Step 2 : Summon the tool
-*/ 
-function changeTool( event )
-{
+ */
+function changeTool(event) {
    event.preventDefault();
 
    let target = undefined; // Pointer to the button
 
-   for(let i = 0; i < dashboard.actioners.length; i++)
-   {
+   for (let i = 0; i < dashboard.actioners.length; i++) {
       dashboard.actioners[i].disabled = dashboard.actioners[i] === event.target;
 
-      if(dashboard.actioners[i] === event.target)
-      {
+      if (dashboard.actioners[i] === event.target) {
          target = event.target;
       }
    }
 
    // ERROR => Do not do nothing to avoid any side-channel information leak
-   if(target === undefined)
-   {
+   if (target === undefined) {
       return undefined;
    }
 
@@ -179,7 +147,6 @@ function changeTool( event )
 
    // Wait to callback
    dashboard.container.replaceChildren();
-
 
    //tool.classList.add("entring-tool");
 
@@ -193,13 +160,62 @@ let emailButton = document.querySelector("#sign-button");
 
 let section = document.getElementsByClassName("generic-quote__q")[0];
 
-console.log(emailButton);
-console.log(section);
-
-emailButton.onclick = (event) =>
-{
+emailButton.onclick = (event) => {
    event.preventDefault();
+   event.stopPropagation();
 
-   section.scrollIntoView( { behavior : "smooth" } );
+   section.scrollIntoView({ behavior: "smooth" });
 };
 
+window.successSign = async (profile) => {
+   const requester = new Requester(panel.$catch, panel.$then);
+
+   requester.endpoint = "/user/thirdparty";
+
+   await requester.fetch();
+};
+
+const buttonWrapper = () => {
+   const parent = document.createElement("div");
+
+   parent.classList.add("parent-wrapper");
+
+   window.google.accounts.id.renderButton(parent, {
+      type: "icon",
+      width: "200",
+   });
+
+   document.body.appendChild(parent);
+
+   const button = parent.querySelector("div[role=button]");
+
+   return {
+      click: () => {
+         button.click();
+      },
+   };
+};
+
+window.onload = () => {
+   window.google.accounts.id.initialize({
+      client_id: `622906780336-2c3a8e462lh55q976e4tvq1269bu3k36.apps.googleusercontent.com`,
+      ux_mode: "popup",
+      callback: successSign,
+   });
+
+   const wrapper = buttonWrapper();
+
+   window.handleGoogleLogin = () => {
+      wrapper.click();
+   };
+};
+
+/** GATHER ALL THIRDPARTY BUTTONS AND ADD LISTENER */
+
+const thirdparty = document.getElementsByClassName("thirdparty-option-go");
+
+for (let i = 0; i < thirdparty.length; i++) {
+   thirdparty[i].onclick = () => {
+      window.handleGoogleLogin();
+   };
+}

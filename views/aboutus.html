@@ -37,25 +37,25 @@
          <button class="call-to-action__button generic-blue__button">COMIENZA AHORA</button>
       </article>
    </main>
-   <script>
-      let url = "https://realitylife2023.github.io/#slider-show";
-
-      let signButton = document.getElementsByClassName("generic-blue__button")[0];
-
-      signButton.onclick = ( event ) =>
-      {
-         event.preventDefault();
-
-         window.location.replace(url);
-      };
-   </script>
    <footer class="generic-footer__footer">
       <img src="" alt="" class="mini-logo__img">
       <q class="brand-quote__q mini-quote">Keep your memories and knowledge always alive</q>
       <a href="" class="terms-link__a"></a>
       <a href="" class="privacy-link__a"></a>
       <a href="" class="cookies-link__a"></a>
-      <p class="copyright__p">Copyright Realtiy Near</p>
+      <p class="copyright__p">Copyright RealtiyNear 2025</p>
    </footer>
+   <script>
+      const signButton = document.getElementsByClassName("generic-blue__button")[0];
+
+      signButton.onclick = ( event ) =>
+      {
+         event.preventDefault();
+         event.stopPropagation();
+
+         const home = "/#slider-show"
+         window.location.replace(home);
+      };
+   </script>
 </body>
 </html>
