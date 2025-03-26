@@ -168,7 +168,9 @@ emailButton.onclick = (event) => {
 };
 
 window.successSign = async (profile) => {
-   const requester = new Requester(panel.$catch, panel.$then);
+   const requester = new Requester(panel.$then, panel.$catch);
+
+   requester.body = { token: profile.credential };
 
    requester.endpoint = "/user/thirdparty";
 
