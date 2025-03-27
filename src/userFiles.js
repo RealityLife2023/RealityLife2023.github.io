@@ -1,7 +1,5 @@
-const fileManager = 
-{
-   fulfill : async function ( containerElement )
-   {
+const fileManager = {
+   fulfill: async function (containerElement) {
       // TODO => Handle error
       let response = await nomination();
 
@@ -11,28 +9,33 @@ const fileManager =
 
       containerElement.replaceChildren();
 
-      // Efectivly fulfill the container with the information
-      for(let i = 0; i < data.length; i++)
-      {
+      for (let i = 0; i < data.length; i++) {
          let element = document.createElement("file-element");
 
          let halfs = data[i].split(innerDelimiter);
 
          let cleanName = halfs[0];
          let type = halfs[1];
-         let hash = halfs[2];
+         let hash = halfs[2].split(".")[0];
 
          element.setInformation(cleanName, type, hash);
 
          containerElement.appendChild(element);
       }
-   }
+   },
 };
 
-class File extends HTMLElement
-{
-   connectedCallback()
-   {
+class File extends HTMLElement {
+   static extensions = {
+      [TextTool.type]: TextTool.extension,
+      [AudioTool.type]: AudioTool.extension,
+   };
+
+   static typeToExtension(type) {
+      return File.extensions[type];
+   }
+
+   connectedCallback() {
       this.innerHTML = `
       <li class="file-metaphor__li">
          <i class="symbol"></i>
@@ -51,61 +54,53 @@ class File extends HTMLElement
 
       symbol.classList.add("file-" + this.type);
 
-      name.onclick = async (event) =>
-      {
+      name.onclick = async (event) => {
          event.preventDefault();
 
-         vWindow.activate( this.type );
+         vWindow.activate(this.type);
 
-         fetchFile( this.grant() ).then( async (data) => 
-            {
-               let url = "";
+         fetchFile(this.grant()).then(async (data) => {
+            let url = "";
 
-               let blob = await data.blob();
+            let blob = await data.blob();
 
-               if(this.type === "t")
-               {
-                  url = await blob.text();
-               }
-               else
-               {
-                  url = URL.createObjectURL(blob);
-               }
+            if (this.type === "t") {
+               url = await blob.text();
+            } else {
+               url = URL.createObjectURL(blob);
+            }
 
-               vWindow.loadResource( url );
-            });
-      }
+            vWindow.loadResource(url);
+         });
+      };
 
-      deleteAction.onclick = async (event) =>
-      {
+      deleteAction.onclick = async (event) => {
          event.preventDefault();
 
-         deleteFile( this.grant() ).then(async (response) =>
-         {
+         deleteFile(this.grant()).then(async (response) => {
             // TODO => Make plan B
-            if(response.ok)
-            {
+            if (response.ok) {
                // TODO => Remove the remanent of the file in the navigator
                this.remove();
             }
          });
-      }
+      };
    }
 
    // Call this before appending
-   setInformation( name, type, hash)
-   {
+   setInformation(name, type, hash) {
       this.name = name;
       this.hash = hash;
       this.type = type;
+      this.extension = File.typeToExtension(type);
    }
 
-   grant()
-   {
+   grant() {
       let scheme = {
-         name      : this.name,
-         hash      : this.hash,
-         type      : this.type,
+         name: this.name,
+         hash: this.hash,
+         type: this.type,
+         extension: this.extension,
       };
 
       return JSON.stringify(scheme);

@@ -4,7 +4,7 @@ const urlGen = (endpoint) => {
 
    if (window.location.host.indexOf("localhost") !== -1) {
       scheme = "http://";
-      host = window.location.host.replace("8080", "5001"); // Make regex here /\/.(?=.[0-9]{4})
+      host = window.location.host.replace("8080", "5001") + "/storage/"; // Make regex here /\/.(?=.[0-9]{4})
    } else {
       scheme = "https://";
       host = "servicenuruk.realitynear.org/storage/";
@@ -148,7 +148,6 @@ async function fetchFile(json) {
 
    let request = {
       method: "POST",
-
       credentials: "include",
       headers: {
          "Content-Type": "application/json",
