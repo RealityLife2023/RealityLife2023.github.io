@@ -1,11 +1,12 @@
 /*
  * Elements that will serve as tools to record the video
  */
-class VideoTool extends HTMLElement
-{
+class VideoTool extends HTMLElement {
+   static extension = "webm";
+   static type = "v";
+
    // TODO => avoid innerHTML
-   connectedCallback()
-   {
+   connectedCallback() {
       this.innerHTML = `
          <input type="text" placeholder="Nombre del archivo" class="file-name__input">
          <div class="video-container__div">
@@ -36,12 +37,8 @@ class VideoTool extends HTMLElement
       this.stopButton.disabled = true;
    }
 
-
-   constructor()
-   {
+   constructor() {
       super();
-
-      this.type = "v";
    }
 }
 
@@ -50,26 +47,22 @@ window.customElements.define("video-tool", VideoTool);
 
 /*
  * Request all media disposable, this assumes that the microphone and camera are needed
- * 
+ *
  * @returns {DevicesMediaStream} stream from microphone and camera
  */
-async function resolveMedia()
-{
-   let constraints = { "video": true, "audio": true};
-	
+async function resolveMedia() {
+   let constraints = { video: true, audio: true };
+
    return await navigator.mediaDevices.getUserMedia(constraints);
 }
-
 
 /**
  * Start recording with audio and camera streams
  */
-async function recordVideo( event )
-{
+async function recordVideo(event) {
    event.preventDefault();
 
-   if(videoTool.fileName.value === "" || videoTool.fileName.length < 2)
-   {
+   if (videoTool.fileName.value === "" || videoTool.fileName.length < 2) {
       notification.teller("El nombre del archivo no es válido");
       return;
    }
@@ -79,56 +72,54 @@ async function recordVideo( event )
 
    let stream = await resolveMedia();
 
-   if(MediaRecorder.isTypeSupported("video/webm"))
-   {
-      videoTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm"});
+   if (MediaRecorder.isTypeSupported("video/webm")) {
+      videoTool.mediaRecorder = new MediaRecorder(stream, {
+         mimeType: "video/webm",
+      });
+   } else {
+      videoTool.mediaRecorder = new MediaRecorder(stream, {
+         mimeType: "video/mp4",
+      });
    }
-   else
-   {
-      videoTool.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/mp4"});
-   }
 
+   videoTool.mediaRecorder.addEventListener("dataavailable", (event) => {
+      let blob = new Blob([event.data], {
+         type: videoTool.mediaRecorder.mimeType,
+      });
 
-   videoTool.mediaRecorder.addEventListener("dataavailable", ( event ) => {
-
-      let blob = new Blob([event.data], { type : videoTool.mediaRecorder.mimeType });
-
-      videoTool.lastVideo = 
-      {
-         name : videoTool.fileName.value,
-         mimeType : videoTool.mediaRecorder.mimeType,
-         type : videoTool.type,
-         blob : blob,
-      }
+      videoTool.lastVideo = {
+         name: videoTool.fileName.value,
+         mimeType: videoTool.mediaRecorder.mimeType,
+         type: videoTool.type,
+         blob: blob,
+      };
    });
 
    videoTool.videoScreen.srcObject = stream;
 
    // Start the recording
-   try
-   {
+   try {
       // Disable the record button
       videoTool.recordButton.disabled = true;
       videoTool.stopButton.disabled = false;
 
       videoTool.mediaRecorder.start();
       startTimer();
-   }
-   catch( error )
-   {
-      notification.teller("Algo salio mal, intenta darle al boton de grabar otra vez o revisa que la camara y el microfono esten conectados");
+   } catch (error) {
+      notification.teller(
+         "Algo salio mal, intenta darle al boton de grabar otra vez o revisa que la camara y el microfono esten conectados",
+      );
 
-      console.log( error );
+      console.log(error);
       // Habilitate the record button
       videoTool.recordButton.disabled = false;
    }
 }
 
-/** 
+/**
  * Stops all the streams and calls inderectely a callback for MediaStream
  */
-async function storeRecord( event )
-{
+async function storeRecord(event) {
    event.preventDefault();
 
    videoTool.mediaRecorder.stop();
@@ -136,7 +127,7 @@ async function storeRecord( event )
    stopTimer();
 
    // Stop the MediaStreamTrack of every device
-   videoTool.videoScreen.srcObject.getTracks().forEach( (track) => track.stop() );
+   videoTool.videoScreen.srcObject.getTracks().forEach((track) => track.stop());
 
    videoTool.submitButton.disabled = false;
 
@@ -153,24 +144,25 @@ async function storeRecord( event )
 /**
  *
  */
-async function submitVideoFile( event )
-{
+async function submitVideoFile(event) {
    event.preventDefault();
 
    // ERROR => Record not saved
-   if(videoTool.lastVideo === undefined)
-   {
-
+   if (videoTool.lastVideo === undefined) {
    }
 
    videoTool.submitButton.disabled = true;
 
-   await saveToRemoteDisk(videoTool.lastVideo.name, videoTool.lastVideo.mimeType, videoTool.lastVideo.type, videoTool.lastVideo.blob);
+   await saveToRemoteDisk(
+      videoTool.lastVideo.name,
+      videoTool.lastVideo.mimeType,
+      videoTool.lastVideo.type,
+      videoTool.lastVideo.blob,
+   );
 
    await dashboard.refresh();
 
    notification.teller("Audio subido con éxito");
 
    videoTool.recordButton.disabled = false;
-
 }

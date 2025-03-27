@@ -1,7 +1,7 @@
-class AudioTool extends HTMLElement
-{
-   connectedCallback()
-   {
+class AudioTool extends HTMLElement {
+   static extension = "webm";
+   static type = "a";
+   connectedCallback() {
       this.innerHTML = `
 
       <input type="text" placeholder="Nombre del archivo" class="file-name__input">
@@ -34,131 +34,125 @@ class AudioTool extends HTMLElement
       this.submitButton.disabled = true;
    }
 
-   constructor()
-   {
+   constructor() {
       super();
-
-      this.type = "a";
    }
 
-   movePlayer()
-   {
+   movePlayer() {
       this.children[5].children[0].setAttribute("id", "fulfilled");
    }
 }
 
 window.customElements.define("audio-tool", AudioTool);
 
-
 /*
-* Request only the audio media to the navigator
-* @returns {DevicesMediaStream} stream from only microphone
-*/
-async function resolveMediaOnlyAudio()
-{
-   let constraints = { "audio": true };
-	
+ * Request only the audio media to the navigator
+ * @returns {DevicesMediaStream} stream from only microphone
+ */
+async function resolveMediaOnlyAudio() {
+   let constraints = { audio: true };
+
    return await navigator.mediaDevices.getUserMedia(constraints);
 }
 
-
-async function recordAudio( event )
-{
+async function recordAudio(event) {
    event.preventDefault();
 
-   if(audioTool.fileName.value.length === 0)
-   {
+   if (audioTool.fileName.value.length === 0) {
       notification.teller("Nombre del archivo no válido");
       return;
    }
 
    let mediaStream = await resolveMediaOnlyAudio();
 
-   if(MediaRecorder.isTypeSupported("video/webm;codecs=opus"))
-   {
-      audioTool.currentMediaRecorder = new MediaRecorder(mediaStream, { mimeType: "video/webm;codecs=opus"});
-   }
-   else
-   {
-      audioTool.currentMediaRecorder = new MediaRecorder(mediaStream, { mimeType: "video/mp3"});
+   if (MediaRecorder.isTypeSupported("video/webm;codecs=opus")) {
+      audioTool.currentMediaRecorder = new MediaRecorder(mediaStream, {
+         mimeType: "video/webm;codecs=opus",
+      });
+   } else {
+      audioTool.currentMediaRecorder = new MediaRecorder(mediaStream, {
+         mimeType: "video/mp3",
+      });
    }
 
-   audioTool.curretnMediaRecorder.addEventListener("dataavailable" , getRecordData);
+   audioTool.curretnMediaRecorder.addEventListener(
+      "dataavailable",
+      getRecordData,
+   );
 
    //audioTool.recordPool.push(mediaRecorder); // TODO => LocalStorage pool
 
    audioTool.currentMediaRecorder.srcObject = mediaStream;
 
-   try
-   {
+   try {
       audioTool.stopButton.disabled = false;
       audioTool.recordButton.disabled = true;
 
       await audioTool.currentMediaRecorder.start();
 
       startTimer();
-   }
-   catch( error )
-   {
-      notification.teller("Algo salio mal, intenta darle al botón de grabar otra vez o revisa que la cámara y el micrófono estén conectados");
+   } catch (error) {
+      notification.teller(
+         "Algo salio mal, intenta darle al botón de grabar otra vez o revisa que la cámara y el micrófono estén conectados",
+      );
 
-      console.log( error );
+      console.log(error);
 
       audioTool.recordButton.disabled = false; // Record available again
    }
 }
 
-
 /**
  * Captures the event of "dataavailable" in the MediaRecorder
  */
-async function getRecordData( event )
-{
+async function getRecordData(event) {
    event.preventDefault();
 
    audioTool.stopButton.disabled = true;
 
-   let blob = new Blob([event.data], { type : audioTool.currentMediaRecorder.mimeType });
+   let blob = new Blob([event.data], {
+      type: audioTool.currentMediaRecorder.mimeType,
+   });
 
-   audioTool.lastRecord =
-   {
-      name : audioTool.fileName.value,
-      mimeType : audioTool.currentMediaRecorder.mimeType,
-      type : audioTool.type,
-      blob : blob,
+   audioTool.lastRecord = {
+      name: audioTool.fileName.value,
+      mimeType: audioTool.currentMediaRecorder.mimeType,
+      type: audioTool.type,
+      blob: blob,
    };
 
-   let blobUrl = URL.createObjectURL(blob); 
+   let blobUrl = URL.createObjectURL(blob);
 
    audioTool.audioOutput.src = blobUrl;
 
    audioTool.audioOutput.load();
 
    audioTool.audioOutput.addEventListener("loadeddata", () => {
-
       audioTool.movePlayer();
    });
 
    audioTool.submitButton.disabled = false;
 }
 
-
 /**
  *
  */
-async function submitAudioFile( event )
-{
+async function submitAudioFile(event) {
    event.preventDefault();
 
    // ERROR => Record not saved
-   if(audioTool.lastRecord === undefined)
-   {
+   if (audioTool.lastRecord === undefined) {
       console.log("[ERR] : Last record is empty check record process");
    }
 
    audioTool.submitButton.disabled = true;
 
-   await saveToRemoteDisk(audioTool.lastRecord.name, audioTool.lastRecord.mimeType, audioTool.lastRecord.type, audioTool.lastRecord.blob);
+   await saveToRemoteDisk(
+      audioTool.lastRecord.name,
+      audioTool.lastRecord.mimeType,
+      audioTool.lastRecord.type,
+      audioTool.lastRecord.blob,
+   );
 
    await dashboard.refresh();
 
@@ -167,13 +161,10 @@ async function submitAudioFile( event )
    notification.teller("Audio subido con éxito");
 }
 
-
-
 /**
  *
  */
-async function storeAudioRecord()
-{
+async function storeAudioRecord() {
    await audioTool.currentMediaRecorder.stop();
 
    notification.teller("Audio grabado con éxito");
