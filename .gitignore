@@ -1,13 +1,3 @@
-*.DS_Store
-*.vs
-*.vscode
-*.vsconfig
-*.swp
-*.~
-.jshintrc
-
 node_modules
-.svelte-kit
-
-LICENSE
-vite.config.*
+.vscode
+.vs
