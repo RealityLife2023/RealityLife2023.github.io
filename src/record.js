@@ -162,7 +162,7 @@ async function submitVideoFile(event) {
 
    await dashboard.refresh();
 
-   notification.teller("Audio subido con éxito");
+   notification.teller("Video subido con éxito");
 
    videoTool.recordButton.disabled = false;
 }

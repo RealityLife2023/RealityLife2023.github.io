@@ -30,7 +30,6 @@ class Requester {
     * @param {String} value
     */
    set endpoint(value) {
-      console.log(value);
       let count = 0,
          startIndex = 0;
 

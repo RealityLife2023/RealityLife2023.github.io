@@ -75,7 +75,7 @@ async function recordAudio(event) {
       });
    }
 
-   audioTool.curretnMediaRecorder.addEventListener(
+   audioTool.currentMediaRecorder.addEventListener(
       "dataavailable",
       getRecordData,
    );
